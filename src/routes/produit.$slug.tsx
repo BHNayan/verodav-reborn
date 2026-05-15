@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useState } from "react";
 import { ArrowLeft, Check, Mail, Phone, Star } from "lucide-react";
-import { getProduct, products } from "@/lib/products";
+import { getProduct, products, type Product } from "@/lib/products";
 import { ProductCard } from "@/components/ProductCard";
 import { formatPrice, SITE } from "@/lib/site";
 
@@ -54,7 +54,7 @@ function ProductPage() {
 
         <div>
           <div className="flex flex-wrap gap-2 mb-4">
-            {product.category_names.map((n, i) => (
+            {product.category_names.map((n: string, i: number) => (
               <Link key={i} to="/categorie/$slug" params={{ slug: product.categories[i] }}
                 className="text-[10px] uppercase tracking-[0.2em] text-copper border border-copper/40 px-2 py-1 hover:bg-copper hover:text-copper-foreground transition">
                 {n}
@@ -123,7 +123,7 @@ function ProductPage() {
           <div className="mx-auto max-w-7xl px-6 py-16">
             <h2 className="font-display text-3xl mb-8">Vous aimerez aussi</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-12">
-              {related.map((p) => <ProductCard key={p.id} p={p} />)}
+              {related.map((p: Product) => <ProductCard key={p.id} p={p} />)}
             </div>
           </div>
         </section>
