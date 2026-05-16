@@ -54,10 +54,6 @@ export function SiteFooter() {
             <li><Link to="/boutique" className="hover:text-copper transition">Boutique</Link></li>
             <li><Link to="/a-propos" className="hover:text-copper transition">À propos</Link></li>
             <li><Link to="/contact" className="hover:text-copper transition">Contact</Link></li>
-            <li><Link to="/mentions-legales" className="hover:text-copper transition">Mentions légales</Link></li>
-            <li><Link to="/politique-de-confidentialite" className="hover:text-copper transition">Politique de confidentialité</Link></li>
-            <li><Link to="/protection-des-donnees-personnelles" className="hover:text-copper transition">Protection des données</Link></li>
-            <li><Link to="/service-apres-vente" className="hover:text-copper transition">Service Après-Vente</Link></li>
           </ul>
         </div>
 
@@ -81,9 +77,14 @@ export function SiteFooter() {
       </div>
 
       <div className="border-t border-primary-foreground/15">
-        <div className="mx-auto max-w-7xl px-6 py-5 text-xs text-primary-foreground/50 flex flex-col md:flex-row justify-between gap-2">
+        <div className="mx-auto max-w-7xl px-6 py-5 text-xs text-primary-foreground/60 flex flex-col md:flex-row md:items-center justify-between gap-3">
           <span>© {new Date().getFullYear()} Verodav Home — Tous droits réservés.</span>
-          <span>Strasbourg, France</span>
+          <nav className="flex flex-wrap gap-x-5 gap-y-2 md:justify-end">
+            <Link to="/mentions-legales" className="hover:text-copper transition">Mentions légales</Link>
+            <Link to="/politique-de-confidentialite" className="hover:text-copper transition">Politique de confidentialité</Link>
+            <Link to="/protection-des-donnees-personnelles" className="hover:text-copper transition">Protection des données</Link>
+            <Link to="/service-apres-vente" className="hover:text-copper transition">Service Après-Vente</Link>
+          </nav>
         </div>
       </div>
     </footer>
