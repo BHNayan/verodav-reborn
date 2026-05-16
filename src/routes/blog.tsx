@@ -39,7 +39,7 @@ function BlogIndex() {
       ]
         .join(" ")
         .toLowerCase();
-      return tokens.every((t) => haystack.includes(t));
+      return tokens.every((t: string) => haystack.includes(t));
     });
   }, [q]);
 
@@ -66,7 +66,7 @@ function BlogIndex() {
             value={q}
             onChange={(e) =>
               navigate({
-                search: (prev) => ({ ...prev, q: e.target.value }),
+                search: (prev: { q: string }) => ({ ...prev, q: e.target.value }),
                 replace: true,
               })
             }
@@ -76,7 +76,7 @@ function BlogIndex() {
           {q && (
             <button
               type="button"
-              onClick={() => navigate({ search: (prev) => ({ ...prev, q: "" }), replace: true })}
+              onClick={() => navigate({ search: (prev: { q: string }) => ({ ...prev, q: "" }), replace: true })}
               aria-label="Effacer la recherche"
               className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-muted-foreground hover:text-copper"
             >
@@ -98,7 +98,7 @@ function BlogIndex() {
             <button
               type="button"
               className="text-copper underline underline-offset-4"
-              onClick={() => navigate({ search: (prev) => ({ ...prev, q: "" }), replace: true })}
+              onClick={() => navigate({ search: (prev: { q: string }) => ({ ...prev, q: "" }), replace: true })}
             >
               réinitialisez la recherche
             </button>
