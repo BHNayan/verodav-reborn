@@ -19,6 +19,9 @@ function BoutiquePage() {
   const [cat, setCat] = useState<string>("all");
   const [q, setQ] = useState("");
   const [sort, setSort] = useState<"default" | "price-asc" | "price-desc">("default");
+  const [page, setPage] = useState(1);
+
+  useEffect(() => { setPage(1); }, [cat, q, sort]);
 
   const list = useMemo(() => {
     let out = products;
