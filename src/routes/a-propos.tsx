@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { categories } from "@/lib/products";
 import { ChevronDown } from "lucide-react";
+import { Testimonials } from "@/components/Testimonials";
 
 export const Route = createFileRoute("/a-propos")({
   head: () => ({
