@@ -1,0 +1,111 @@
+import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { getPost, posts, formatDate } from "@/lib/blog";
+
+export const Route = createFileRoute("/blog/$slug")({
+  loader: ({ params }) => {
+    const post = getPost(params.slug);
+    if (!post) throw notFound();
+    return post;
+  },
+  head: ({ loaderData }) =>
+    loaderData
+      ? {
+          meta: [
+            { title: `${loaderData.title} — Verodav Home` },
+            { name: "description", content: loaderData.excerpt },
+            { property: "og:title", content: loaderData.title },
+            { property: "og:description", content: loaderData.excerpt },
+            { property: "og:image", content: loaderData.image },
+            { property: "og:type", content: "article" },
+          ],
+        }
+      : {},
+  notFoundComponent: () => (
+    <div className="mx-auto max-w-3xl px-5 py-24 text-center">
+      <h1 className="font-display text-5xl">Article introuvable</h1>
+      <Link to="/blog" className="mt-6 inline-block text-copper">← Retour au blog</Link>
+    </div>
+  ),
+  component: BlogPost,
+});
+
+function BlogPost() {
+  const post = Route.useLoaderData();
+  const related = posts.filter((p) => p.slug !== post.slug).slice(0, 3);
+
+  return (
+    <article className="mx-auto max-w-[1400px] px-5 lg:px-10 py-12 md:py-20">
+      <Link to="/blog" className="text-xs uppercase tracking-widest text-muted-foreground hover:text-copper">
+        ← Tous les articles
+      </Link>
+
+      <header className="mt-8 max-w-3xl">
+        <div className="flex items-center gap-3 text-xs uppercase tracking-widest text-muted-foreground">
+          <span className="text-copper">{post.category}</span>
+          <span className="h-px w-6 bg-border" />
+          <span>{formatDate(post.date)}</span>
+          <span>· {post.readTime} de lecture</span>
+        </div>
+        <h1 className="mt-4 font-display text-4xl md:text-6xl leading-[1.05]">{post.title}</h1>
+        <p className="mt-6 text-lg text-muted-foreground">{post.excerpt}</p>
+      </header>
+
+      <div className="mt-10 aspect-[16/9] overflow-hidden bg-secondary">
+        <img src={post.image} alt={post.title} className="h-full w-full object-cover" />
+      </div>
+
+      <div className="mt-12 grid lg:grid-cols-12 gap-12">
+        <div className="lg:col-span-8 lg:col-start-3 space-y-10">
+          {post.sections.map((s, i) => (
+            <section key={i}>
+              {s.heading && (
+                <h2 className="font-display text-2xl md:text-3xl mb-4">{s.heading}</h2>
+              )}
+              {s.paragraphs.map((p, j) => (
+                <p key={j} className="text-base md:text-lg leading-relaxed text-foreground/85 mb-4">
+                  {p}
+                </p>
+              ))}
+              {s.bullets && (
+                <ul className="mt-2 space-y-2">
+                  {s.bullets.map((b, k) => (
+                    <li key={k} className="flex gap-3 text-foreground/85">
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-copper" />
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </section>
+          ))}
+
+          <div className="border-t border-border pt-8 text-sm text-muted-foreground">
+            Article publié par <span className="text-foreground">Verodav Home</span> · {formatDate(post.date)}
+          </div>
+        </div>
+      </div>
+
+      {/* Related */}
+      <div className="mt-24">
+        <div className="flex items-end justify-between">
+          <h2 className="font-display text-3xl md:text-4xl">À lire aussi</h2>
+          <Link to="/blog" className="text-xs uppercase tracking-widest text-muted-foreground hover:text-copper">
+            Tout le blog →
+          </Link>
+        </div>
+        <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {related.map((p) => (
+            <Link key={p.slug} to="/blog/$slug" params={{ slug: p.slug }} className="group">
+              <div className="aspect-[4/3] overflow-hidden bg-secondary">
+                <img src={p.image} alt={p.title} loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              </div>
+              <div className="mt-4 text-[11px] uppercase tracking-widest text-copper">{p.category}</div>
+              <h3 className="mt-1 font-display text-lg leading-snug group-hover:text-copper transition">{p.title}</h3>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </article>
+  );
+}
