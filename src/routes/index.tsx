@@ -3,6 +3,7 @@ import { ArrowRight, ArrowUpRight, Truck, ShieldCheck, Wrench, Sparkles, Quote }
 import { categories, products } from "@/lib/products";
 import { ProductCard } from "@/components/ProductCard";
 import { SITE } from "@/lib/site";
+import { Testimonials } from "@/components/Testimonials";
 
 export const Route = createFileRoute("/")({
   head: () => ({
