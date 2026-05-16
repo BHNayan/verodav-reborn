@@ -3,6 +3,7 @@ import { ArrowRight, ArrowUpRight, Truck, ShieldCheck, Wrench, Sparkles, Quote }
 import { categories, products } from "@/lib/products";
 import { ProductCard } from "@/components/ProductCard";
 import { SITE } from "@/lib/site";
+import { Testimonials } from "@/components/Testimonials";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -256,6 +257,9 @@ function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* TESTIMONIALS */}
+      <Testimonials variant="light" />
 
       {/* CONTACT CTA — full bleed */}
       <section className="relative overflow-hidden bg-primary text-primary-foreground">
