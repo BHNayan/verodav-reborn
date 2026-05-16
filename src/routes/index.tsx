@@ -257,6 +257,9 @@ function HomePage() {
         </div>
       </section>
 
+      {/* TESTIMONIALS */}
+      <Testimonials variant="light" />
+
       {/* CONTACT CTA — full bleed */}
       <section className="relative overflow-hidden bg-primary text-primary-foreground">
         <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: "radial-gradient(circle at 20% 20%, var(--copper) 0, transparent 40%), radial-gradient(circle at 80% 80%, var(--copper) 0, transparent 50%)" }} />
