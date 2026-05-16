@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as PolitiqueDeConfidentialiteRouteImport } from './routes/politique-de-confidentialite'
 import { Route as MentionsLegalesRouteImport } from './routes/mentions-legales'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BoutiqueRouteImport } from './routes/boutique'
@@ -17,6 +18,12 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProduitSlugRouteImport } from './routes/produit.$slug'
 import { Route as CategorieSlugRouteImport } from './routes/categorie.$slug'
 
+const PolitiqueDeConfidentialiteRoute =
+  PolitiqueDeConfidentialiteRouteImport.update({
+    id: '/politique-de-confidentialite',
+    path: '/politique-de-confidentialite',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const MentionsLegalesRoute = MentionsLegalesRouteImport.update({
   id: '/mentions-legales',
   path: '/mentions-legales',
@@ -59,6 +66,7 @@ export interface FileRoutesByFullPath {
   '/boutique': typeof BoutiqueRoute
   '/contact': typeof ContactRoute
   '/mentions-legales': typeof MentionsLegalesRoute
+  '/politique-de-confidentialite': typeof PolitiqueDeConfidentialiteRoute
   '/categorie/$slug': typeof CategorieSlugRoute
   '/produit/$slug': typeof ProduitSlugRoute
 }
@@ -68,6 +76,7 @@ export interface FileRoutesByTo {
   '/boutique': typeof BoutiqueRoute
   '/contact': typeof ContactRoute
   '/mentions-legales': typeof MentionsLegalesRoute
+  '/politique-de-confidentialite': typeof PolitiqueDeConfidentialiteRoute
   '/categorie/$slug': typeof CategorieSlugRoute
   '/produit/$slug': typeof ProduitSlugRoute
 }
@@ -78,6 +87,7 @@ export interface FileRoutesById {
   '/boutique': typeof BoutiqueRoute
   '/contact': typeof ContactRoute
   '/mentions-legales': typeof MentionsLegalesRoute
+  '/politique-de-confidentialite': typeof PolitiqueDeConfidentialiteRoute
   '/categorie/$slug': typeof CategorieSlugRoute
   '/produit/$slug': typeof ProduitSlugRoute
 }
@@ -89,6 +99,7 @@ export interface FileRouteTypes {
     | '/boutique'
     | '/contact'
     | '/mentions-legales'
+    | '/politique-de-confidentialite'
     | '/categorie/$slug'
     | '/produit/$slug'
   fileRoutesByTo: FileRoutesByTo
@@ -98,6 +109,7 @@ export interface FileRouteTypes {
     | '/boutique'
     | '/contact'
     | '/mentions-legales'
+    | '/politique-de-confidentialite'
     | '/categorie/$slug'
     | '/produit/$slug'
   id:
@@ -107,6 +119,7 @@ export interface FileRouteTypes {
     | '/boutique'
     | '/contact'
     | '/mentions-legales'
+    | '/politique-de-confidentialite'
     | '/categorie/$slug'
     | '/produit/$slug'
   fileRoutesById: FileRoutesById
@@ -117,12 +130,20 @@ export interface RootRouteChildren {
   BoutiqueRoute: typeof BoutiqueRoute
   ContactRoute: typeof ContactRoute
   MentionsLegalesRoute: typeof MentionsLegalesRoute
+  PolitiqueDeConfidentialiteRoute: typeof PolitiqueDeConfidentialiteRoute
   CategorieSlugRoute: typeof CategorieSlugRoute
   ProduitSlugRoute: typeof ProduitSlugRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/politique-de-confidentialite': {
+      id: '/politique-de-confidentialite'
+      path: '/politique-de-confidentialite'
+      fullPath: '/politique-de-confidentialite'
+      preLoaderRoute: typeof PolitiqueDeConfidentialiteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/mentions-legales': {
       id: '/mentions-legales'
       path: '/mentions-legales'
@@ -181,6 +202,7 @@ const rootRouteChildren: RootRouteChildren = {
   BoutiqueRoute: BoutiqueRoute,
   ContactRoute: ContactRoute,
   MentionsLegalesRoute: MentionsLegalesRoute,
+  PolitiqueDeConfidentialiteRoute: PolitiqueDeConfidentialiteRoute,
   CategorieSlugRoute: CategorieSlugRoute,
   ProduitSlugRoute: ProduitSlugRoute,
 }
