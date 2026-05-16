@@ -172,6 +172,9 @@ function AboutPage() {
         </div>
       </section>
 
+      {/* TESTIMONIALS */}
+      <Testimonials variant="light" />
+
       {/* CATEGORIES */}
       <section className="bg-primary text-primary-foreground">
         <div className="mx-auto max-w-7xl px-6 py-20">
