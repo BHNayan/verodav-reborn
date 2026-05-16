@@ -10,14 +10,14 @@ export function SiteFooter() {
   return (
     <footer className="mt-24 bg-primary text-primary-foreground">
       <div className="mx-auto max-w-7xl px-6 py-16 grid gap-12 md:grid-cols-12">
-        <div className="md:col-span-4">
-          <div className="bg-white inline-block px-4 py-3 rounded-md">
-            <img src={logo} alt="Verodav Home" className="h-9 w-auto" />
-          </div>
-          <p className="mt-5 text-sm text-primary-foreground/70 leading-relaxed">
+        <div className="md:col-span-4 flex flex-col items-center text-center md:items-start md:text-left">
+          <Link to="/" aria-label="Verodav Home" className="inline-flex items-center justify-center bg-white rounded-lg px-5 py-3 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.45)] ring-1 ring-white/10">
+            <img src={logo} alt="Verodav Home" className="h-11 md:h-12 w-auto" />
+          </Link>
+          <p className="mt-5 text-sm text-primary-foreground/70 leading-relaxed max-w-sm">
             {SITE.tagline} Une sélection d'ustensiles de cuisine professionnels conçus pour durer.
           </p>
-          <div className="mt-6 flex gap-3">
+          <div className="mt-6 flex gap-3 justify-center md:justify-start">
             <a href={SITE.socials.facebook} aria-label="Facebook" className="p-2 border border-primary-foreground/20 hover:bg-copper hover:border-copper transition"><Facebook className="h-4 w-4" /></a>
             <a href={SITE.socials.instagram} aria-label="Instagram" className="p-2 border border-primary-foreground/20 hover:bg-copper hover:border-copper transition"><Instagram className="h-4 w-4" /></a>
           </div>
