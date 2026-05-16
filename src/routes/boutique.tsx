@@ -33,7 +33,7 @@ function BoutiquePage() {
   const [sort, setSort] = useState<"default" | "price-asc" | "price-desc">("default");
 
   useEffect(() => {
-    navigate({ search: (prev) => ({ ...prev, page: 1 }), replace: true });
+    navigate({ search: (prev: { page: number }) => ({ ...prev, page: 1 }), replace: true });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cat, q, sort]);
 
