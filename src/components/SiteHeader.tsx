@@ -81,6 +81,7 @@ export function SiteHeader() {
             </div>
           </div>
           <Link to="/a-propos" className="hover:text-copper transition" activeProps={{ className: "text-copper" }}>À propos</Link>
+          <Link to="/blog" className="hover:text-copper transition" activeProps={{ className: "text-copper" }}>Blog</Link>
           <Link to="/contact" className="hover:text-copper transition" activeProps={{ className: "text-copper" }}>Contact</Link>
         </nav>
 
