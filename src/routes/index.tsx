@@ -4,6 +4,7 @@ import { categories, products } from "@/lib/products";
 import { ProductCard } from "@/components/ProductCard";
 import { SITE } from "@/lib/site";
 import { Testimonials } from "@/components/Testimonials";
+import { CategoryCarousel } from "@/components/CategoryCarousel";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -136,6 +137,9 @@ function HomePage() {
           ))}
         </div>
       </section>
+
+      {/* CATEGORY CAROUSEL */}
+      <CategoryCarousel />
 
       {/* CATEGORIES — magazine grid */}
       <section className="mx-auto max-w-[1400px] px-6 lg:px-10 py-24">
