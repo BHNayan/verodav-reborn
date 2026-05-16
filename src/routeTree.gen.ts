@@ -10,11 +10,16 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ServiceApresVenteRouteImport } from './routes/service-apres-vente'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as ProtectionDesDonneesPersonnellesRouteImport } from './routes/protection-des-donnees-personnelles'
 import { Route as PolitiqueDeConfidentialiteRouteImport } from './routes/politique-de-confidentialite'
 import { Route as MentionsLegalesRouteImport } from './routes/mentions-legales'
+import { Route as FavorisRouteImport } from './routes/favoris'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CompteRouteImport } from './routes/compte'
+import { Route as CommandesRouteImport } from './routes/commandes'
 import { Route as BoutiqueRouteImport } from './routes/boutique'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AProposRouteImport } from './routes/a-propos'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProduitSlugRouteImport } from './routes/produit.$slug'
@@ -23,6 +28,11 @@ import { Route as CategorieSlugRouteImport } from './routes/categorie.$slug'
 const ServiceApresVenteRoute = ServiceApresVenteRouteImport.update({
   id: '/service-apres-vente',
   path: '/service-apres-vente',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProtectionDesDonneesPersonnellesRoute =
@@ -42,14 +52,34 @@ const MentionsLegalesRoute = MentionsLegalesRouteImport.update({
   path: '/mentions-legales',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FavorisRoute = FavorisRouteImport.update({
+  id: '/favoris',
+  path: '/favoris',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CompteRoute = CompteRouteImport.update({
+  id: '/compte',
+  path: '/compte',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommandesRoute = CommandesRouteImport.update({
+  id: '/commandes',
+  path: '/commandes',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BoutiqueRoute = BoutiqueRouteImport.update({
   id: '/boutique',
   path: '/boutique',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AProposRoute = AProposRouteImport.update({
@@ -76,11 +106,16 @@ const CategorieSlugRoute = CategorieSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/a-propos': typeof AProposRoute
+  '/auth': typeof AuthRoute
   '/boutique': typeof BoutiqueRoute
+  '/commandes': typeof CommandesRoute
+  '/compte': typeof CompteRoute
   '/contact': typeof ContactRoute
+  '/favoris': typeof FavorisRoute
   '/mentions-legales': typeof MentionsLegalesRoute
   '/politique-de-confidentialite': typeof PolitiqueDeConfidentialiteRoute
   '/protection-des-donnees-personnelles': typeof ProtectionDesDonneesPersonnellesRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/service-apres-vente': typeof ServiceApresVenteRoute
   '/categorie/$slug': typeof CategorieSlugRoute
   '/produit/$slug': typeof ProduitSlugRoute
@@ -88,11 +123,16 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/a-propos': typeof AProposRoute
+  '/auth': typeof AuthRoute
   '/boutique': typeof BoutiqueRoute
+  '/commandes': typeof CommandesRoute
+  '/compte': typeof CompteRoute
   '/contact': typeof ContactRoute
+  '/favoris': typeof FavorisRoute
   '/mentions-legales': typeof MentionsLegalesRoute
   '/politique-de-confidentialite': typeof PolitiqueDeConfidentialiteRoute
   '/protection-des-donnees-personnelles': typeof ProtectionDesDonneesPersonnellesRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/service-apres-vente': typeof ServiceApresVenteRoute
   '/categorie/$slug': typeof CategorieSlugRoute
   '/produit/$slug': typeof ProduitSlugRoute
@@ -101,11 +141,16 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/a-propos': typeof AProposRoute
+  '/auth': typeof AuthRoute
   '/boutique': typeof BoutiqueRoute
+  '/commandes': typeof CommandesRoute
+  '/compte': typeof CompteRoute
   '/contact': typeof ContactRoute
+  '/favoris': typeof FavorisRoute
   '/mentions-legales': typeof MentionsLegalesRoute
   '/politique-de-confidentialite': typeof PolitiqueDeConfidentialiteRoute
   '/protection-des-donnees-personnelles': typeof ProtectionDesDonneesPersonnellesRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/service-apres-vente': typeof ServiceApresVenteRoute
   '/categorie/$slug': typeof CategorieSlugRoute
   '/produit/$slug': typeof ProduitSlugRoute
@@ -115,11 +160,16 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/a-propos'
+    | '/auth'
     | '/boutique'
+    | '/commandes'
+    | '/compte'
     | '/contact'
+    | '/favoris'
     | '/mentions-legales'
     | '/politique-de-confidentialite'
     | '/protection-des-donnees-personnelles'
+    | '/reset-password'
     | '/service-apres-vente'
     | '/categorie/$slug'
     | '/produit/$slug'
@@ -127,11 +177,16 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/a-propos'
+    | '/auth'
     | '/boutique'
+    | '/commandes'
+    | '/compte'
     | '/contact'
+    | '/favoris'
     | '/mentions-legales'
     | '/politique-de-confidentialite'
     | '/protection-des-donnees-personnelles'
+    | '/reset-password'
     | '/service-apres-vente'
     | '/categorie/$slug'
     | '/produit/$slug'
@@ -139,11 +194,16 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/a-propos'
+    | '/auth'
     | '/boutique'
+    | '/commandes'
+    | '/compte'
     | '/contact'
+    | '/favoris'
     | '/mentions-legales'
     | '/politique-de-confidentialite'
     | '/protection-des-donnees-personnelles'
+    | '/reset-password'
     | '/service-apres-vente'
     | '/categorie/$slug'
     | '/produit/$slug'
@@ -152,11 +212,16 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AProposRoute: typeof AProposRoute
+  AuthRoute: typeof AuthRoute
   BoutiqueRoute: typeof BoutiqueRoute
+  CommandesRoute: typeof CommandesRoute
+  CompteRoute: typeof CompteRoute
   ContactRoute: typeof ContactRoute
+  FavorisRoute: typeof FavorisRoute
   MentionsLegalesRoute: typeof MentionsLegalesRoute
   PolitiqueDeConfidentialiteRoute: typeof PolitiqueDeConfidentialiteRoute
   ProtectionDesDonneesPersonnellesRoute: typeof ProtectionDesDonneesPersonnellesRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
   ServiceApresVenteRoute: typeof ServiceApresVenteRoute
   CategorieSlugRoute: typeof CategorieSlugRoute
   ProduitSlugRoute: typeof ProduitSlugRoute
@@ -169,6 +234,13 @@ declare module '@tanstack/react-router' {
       path: '/service-apres-vente'
       fullPath: '/service-apres-vente'
       preLoaderRoute: typeof ServiceApresVenteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/protection-des-donnees-personnelles': {
@@ -192,6 +264,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MentionsLegalesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/favoris': {
+      id: '/favoris'
+      path: '/favoris'
+      fullPath: '/favoris'
+      preLoaderRoute: typeof FavorisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/contact': {
       id: '/contact'
       path: '/contact'
@@ -199,11 +278,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/compte': {
+      id: '/compte'
+      path: '/compte'
+      fullPath: '/compte'
+      preLoaderRoute: typeof CompteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/commandes': {
+      id: '/commandes'
+      path: '/commandes'
+      fullPath: '/commandes'
+      preLoaderRoute: typeof CommandesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/boutique': {
       id: '/boutique'
       path: '/boutique'
       fullPath: '/boutique'
       preLoaderRoute: typeof BoutiqueRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/a-propos': {
@@ -240,11 +340,16 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AProposRoute: AProposRoute,
+  AuthRoute: AuthRoute,
   BoutiqueRoute: BoutiqueRoute,
+  CommandesRoute: CommandesRoute,
+  CompteRoute: CompteRoute,
   ContactRoute: ContactRoute,
+  FavorisRoute: FavorisRoute,
   MentionsLegalesRoute: MentionsLegalesRoute,
   PolitiqueDeConfidentialiteRoute: PolitiqueDeConfidentialiteRoute,
   ProtectionDesDonneesPersonnellesRoute: ProtectionDesDonneesPersonnellesRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
   ServiceApresVenteRoute: ServiceApresVenteRoute,
   CategorieSlugRoute: CategorieSlugRoute,
   ProduitSlugRoute: ProduitSlugRoute,
