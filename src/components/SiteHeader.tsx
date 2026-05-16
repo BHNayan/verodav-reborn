@@ -18,7 +18,7 @@ export function SiteHeader() {
         </div>
       </div>
 
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
+      <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 lg:px-10 py-5">
         <Link to="/" className="flex items-baseline gap-2">
           <span className="font-display text-2xl tracking-tight">Verodav</span>
           <span className="font-display text-2xl italic text-copper">Home</span>
