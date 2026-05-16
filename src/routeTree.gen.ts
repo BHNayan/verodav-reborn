@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ServiceApresVenteRouteImport } from './routes/service-apres-vente'
 import { Route as ProtectionDesDonneesPersonnellesRouteImport } from './routes/protection-des-donnees-personnelles'
 import { Route as PolitiqueDeConfidentialiteRouteImport } from './routes/politique-de-confidentialite'
 import { Route as MentionsLegalesRouteImport } from './routes/mentions-legales'
@@ -19,6 +20,11 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProduitSlugRouteImport } from './routes/produit.$slug'
 import { Route as CategorieSlugRouteImport } from './routes/categorie.$slug'
 
+const ServiceApresVenteRoute = ServiceApresVenteRouteImport.update({
+  id: '/service-apres-vente',
+  path: '/service-apres-vente',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProtectionDesDonneesPersonnellesRoute =
   ProtectionDesDonneesPersonnellesRouteImport.update({
     id: '/protection-des-donnees-personnelles',
@@ -75,6 +81,7 @@ export interface FileRoutesByFullPath {
   '/mentions-legales': typeof MentionsLegalesRoute
   '/politique-de-confidentialite': typeof PolitiqueDeConfidentialiteRoute
   '/protection-des-donnees-personnelles': typeof ProtectionDesDonneesPersonnellesRoute
+  '/service-apres-vente': typeof ServiceApresVenteRoute
   '/categorie/$slug': typeof CategorieSlugRoute
   '/produit/$slug': typeof ProduitSlugRoute
 }
@@ -86,6 +93,7 @@ export interface FileRoutesByTo {
   '/mentions-legales': typeof MentionsLegalesRoute
   '/politique-de-confidentialite': typeof PolitiqueDeConfidentialiteRoute
   '/protection-des-donnees-personnelles': typeof ProtectionDesDonneesPersonnellesRoute
+  '/service-apres-vente': typeof ServiceApresVenteRoute
   '/categorie/$slug': typeof CategorieSlugRoute
   '/produit/$slug': typeof ProduitSlugRoute
 }
@@ -98,6 +106,7 @@ export interface FileRoutesById {
   '/mentions-legales': typeof MentionsLegalesRoute
   '/politique-de-confidentialite': typeof PolitiqueDeConfidentialiteRoute
   '/protection-des-donnees-personnelles': typeof ProtectionDesDonneesPersonnellesRoute
+  '/service-apres-vente': typeof ServiceApresVenteRoute
   '/categorie/$slug': typeof CategorieSlugRoute
   '/produit/$slug': typeof ProduitSlugRoute
 }
@@ -111,6 +120,7 @@ export interface FileRouteTypes {
     | '/mentions-legales'
     | '/politique-de-confidentialite'
     | '/protection-des-donnees-personnelles'
+    | '/service-apres-vente'
     | '/categorie/$slug'
     | '/produit/$slug'
   fileRoutesByTo: FileRoutesByTo
@@ -122,6 +132,7 @@ export interface FileRouteTypes {
     | '/mentions-legales'
     | '/politique-de-confidentialite'
     | '/protection-des-donnees-personnelles'
+    | '/service-apres-vente'
     | '/categorie/$slug'
     | '/produit/$slug'
   id:
@@ -133,6 +144,7 @@ export interface FileRouteTypes {
     | '/mentions-legales'
     | '/politique-de-confidentialite'
     | '/protection-des-donnees-personnelles'
+    | '/service-apres-vente'
     | '/categorie/$slug'
     | '/produit/$slug'
   fileRoutesById: FileRoutesById
@@ -145,12 +157,20 @@ export interface RootRouteChildren {
   MentionsLegalesRoute: typeof MentionsLegalesRoute
   PolitiqueDeConfidentialiteRoute: typeof PolitiqueDeConfidentialiteRoute
   ProtectionDesDonneesPersonnellesRoute: typeof ProtectionDesDonneesPersonnellesRoute
+  ServiceApresVenteRoute: typeof ServiceApresVenteRoute
   CategorieSlugRoute: typeof CategorieSlugRoute
   ProduitSlugRoute: typeof ProduitSlugRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/service-apres-vente': {
+      id: '/service-apres-vente'
+      path: '/service-apres-vente'
+      fullPath: '/service-apres-vente'
+      preLoaderRoute: typeof ServiceApresVenteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/protection-des-donnees-personnelles': {
       id: '/protection-des-donnees-personnelles'
       path: '/protection-des-donnees-personnelles'
@@ -225,6 +245,7 @@ const rootRouteChildren: RootRouteChildren = {
   MentionsLegalesRoute: MentionsLegalesRoute,
   PolitiqueDeConfidentialiteRoute: PolitiqueDeConfidentialiteRoute,
   ProtectionDesDonneesPersonnellesRoute: ProtectionDesDonneesPersonnellesRoute,
+  ServiceApresVenteRoute: ServiceApresVenteRoute,
   CategorieSlugRoute: CategorieSlugRoute,
   ProduitSlugRoute: ProduitSlugRoute,
 }
