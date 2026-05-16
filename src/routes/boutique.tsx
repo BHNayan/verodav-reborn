@@ -1,5 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+
+const PER_PAGE = 12;
 import { products, categories } from "@/lib/products";
 import { ProductCard } from "@/components/ProductCard";
 
