@@ -19,11 +19,13 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CompteRouteImport } from './routes/compte'
 import { Route as CommandesRouteImport } from './routes/commandes'
 import { Route as BoutiqueRouteImport } from './routes/boutique'
+import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AProposRouteImport } from './routes/a-propos'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProduitSlugRouteImport } from './routes/produit.$slug'
 import { Route as CategorieSlugRouteImport } from './routes/categorie.$slug'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 
 const ServiceApresVenteRoute = ServiceApresVenteRouteImport.update({
   id: '/service-apres-vente',
@@ -77,6 +79,11 @@ const BoutiqueRoute = BoutiqueRouteImport.update({
   path: '/boutique',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
@@ -102,11 +109,17 @@ const CategorieSlugRoute = CategorieSlugRouteImport.update({
   path: '/categorie/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => BlogRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/a-propos': typeof AProposRoute
   '/auth': typeof AuthRoute
+  '/blog': typeof BlogRouteWithChildren
   '/boutique': typeof BoutiqueRoute
   '/commandes': typeof CommandesRoute
   '/compte': typeof CompteRoute
@@ -117,6 +130,7 @@ export interface FileRoutesByFullPath {
   '/protection-des-donnees-personnelles': typeof ProtectionDesDonneesPersonnellesRoute
   '/reset-password': typeof ResetPasswordRoute
   '/service-apres-vente': typeof ServiceApresVenteRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/categorie/$slug': typeof CategorieSlugRoute
   '/produit/$slug': typeof ProduitSlugRoute
 }
@@ -124,6 +138,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/a-propos': typeof AProposRoute
   '/auth': typeof AuthRoute
+  '/blog': typeof BlogRouteWithChildren
   '/boutique': typeof BoutiqueRoute
   '/commandes': typeof CommandesRoute
   '/compte': typeof CompteRoute
@@ -134,6 +149,7 @@ export interface FileRoutesByTo {
   '/protection-des-donnees-personnelles': typeof ProtectionDesDonneesPersonnellesRoute
   '/reset-password': typeof ResetPasswordRoute
   '/service-apres-vente': typeof ServiceApresVenteRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/categorie/$slug': typeof CategorieSlugRoute
   '/produit/$slug': typeof ProduitSlugRoute
 }
@@ -142,6 +158,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/a-propos': typeof AProposRoute
   '/auth': typeof AuthRoute
+  '/blog': typeof BlogRouteWithChildren
   '/boutique': typeof BoutiqueRoute
   '/commandes': typeof CommandesRoute
   '/compte': typeof CompteRoute
@@ -152,6 +169,7 @@ export interface FileRoutesById {
   '/protection-des-donnees-personnelles': typeof ProtectionDesDonneesPersonnellesRoute
   '/reset-password': typeof ResetPasswordRoute
   '/service-apres-vente': typeof ServiceApresVenteRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/categorie/$slug': typeof CategorieSlugRoute
   '/produit/$slug': typeof ProduitSlugRoute
 }
@@ -161,6 +179,7 @@ export interface FileRouteTypes {
     | '/'
     | '/a-propos'
     | '/auth'
+    | '/blog'
     | '/boutique'
     | '/commandes'
     | '/compte'
@@ -171,6 +190,7 @@ export interface FileRouteTypes {
     | '/protection-des-donnees-personnelles'
     | '/reset-password'
     | '/service-apres-vente'
+    | '/blog/$slug'
     | '/categorie/$slug'
     | '/produit/$slug'
   fileRoutesByTo: FileRoutesByTo
@@ -178,6 +198,7 @@ export interface FileRouteTypes {
     | '/'
     | '/a-propos'
     | '/auth'
+    | '/blog'
     | '/boutique'
     | '/commandes'
     | '/compte'
@@ -188,6 +209,7 @@ export interface FileRouteTypes {
     | '/protection-des-donnees-personnelles'
     | '/reset-password'
     | '/service-apres-vente'
+    | '/blog/$slug'
     | '/categorie/$slug'
     | '/produit/$slug'
   id:
@@ -195,6 +217,7 @@ export interface FileRouteTypes {
     | '/'
     | '/a-propos'
     | '/auth'
+    | '/blog'
     | '/boutique'
     | '/commandes'
     | '/compte'
@@ -205,6 +228,7 @@ export interface FileRouteTypes {
     | '/protection-des-donnees-personnelles'
     | '/reset-password'
     | '/service-apres-vente'
+    | '/blog/$slug'
     | '/categorie/$slug'
     | '/produit/$slug'
   fileRoutesById: FileRoutesById
@@ -213,6 +237,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AProposRoute: typeof AProposRoute
   AuthRoute: typeof AuthRoute
+  BlogRoute: typeof BlogRouteWithChildren
   BoutiqueRoute: typeof BoutiqueRoute
   CommandesRoute: typeof CommandesRoute
   CompteRoute: typeof CompteRoute
@@ -299,6 +324,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BoutiqueRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/auth': {
       id: '/auth'
       path: '/auth'
@@ -334,13 +366,31 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CategorieSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof BlogRoute
+    }
   }
 }
+
+interface BlogRouteChildren {
+  BlogSlugRoute: typeof BlogSlugRoute
+}
+
+const BlogRouteChildren: BlogRouteChildren = {
+  BlogSlugRoute: BlogSlugRoute,
+}
+
+const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AProposRoute: AProposRoute,
   AuthRoute: AuthRoute,
+  BlogRoute: BlogRouteWithChildren,
   BoutiqueRoute: BoutiqueRoute,
   CommandesRoute: CommandesRoute,
   CompteRoute: CompteRoute,
