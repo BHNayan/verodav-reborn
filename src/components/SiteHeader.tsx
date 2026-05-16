@@ -207,6 +207,7 @@ export function SiteHeader() {
               </div>
             )}
             <Link to="/a-propos" onClick={close} className="block border-b border-border py-3 font-medium">À propos</Link>
+            <Link to="/blog" onClick={close} className="block border-b border-border py-3 font-medium">Blog</Link>
             <Link to="/contact" onClick={close} className="block border-b border-border py-3 font-medium">Contact</Link>
 
             {user ? (
