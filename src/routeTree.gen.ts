@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ProtectionDesDonneesPersonnellesRouteImport } from './routes/protection-des-donnees-personnelles'
 import { Route as PolitiqueDeConfidentialiteRouteImport } from './routes/politique-de-confidentialite'
 import { Route as MentionsLegalesRouteImport } from './routes/mentions-legales'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -18,6 +19,12 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProduitSlugRouteImport } from './routes/produit.$slug'
 import { Route as CategorieSlugRouteImport } from './routes/categorie.$slug'
 
+const ProtectionDesDonneesPersonnellesRoute =
+  ProtectionDesDonneesPersonnellesRouteImport.update({
+    id: '/protection-des-donnees-personnelles',
+    path: '/protection-des-donnees-personnelles',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const PolitiqueDeConfidentialiteRoute =
   PolitiqueDeConfidentialiteRouteImport.update({
     id: '/politique-de-confidentialite',
@@ -67,6 +74,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/mentions-legales': typeof MentionsLegalesRoute
   '/politique-de-confidentialite': typeof PolitiqueDeConfidentialiteRoute
+  '/protection-des-donnees-personnelles': typeof ProtectionDesDonneesPersonnellesRoute
   '/categorie/$slug': typeof CategorieSlugRoute
   '/produit/$slug': typeof ProduitSlugRoute
 }
@@ -77,6 +85,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/mentions-legales': typeof MentionsLegalesRoute
   '/politique-de-confidentialite': typeof PolitiqueDeConfidentialiteRoute
+  '/protection-des-donnees-personnelles': typeof ProtectionDesDonneesPersonnellesRoute
   '/categorie/$slug': typeof CategorieSlugRoute
   '/produit/$slug': typeof ProduitSlugRoute
 }
@@ -88,6 +97,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/mentions-legales': typeof MentionsLegalesRoute
   '/politique-de-confidentialite': typeof PolitiqueDeConfidentialiteRoute
+  '/protection-des-donnees-personnelles': typeof ProtectionDesDonneesPersonnellesRoute
   '/categorie/$slug': typeof CategorieSlugRoute
   '/produit/$slug': typeof ProduitSlugRoute
 }
@@ -100,6 +110,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/mentions-legales'
     | '/politique-de-confidentialite'
+    | '/protection-des-donnees-personnelles'
     | '/categorie/$slug'
     | '/produit/$slug'
   fileRoutesByTo: FileRoutesByTo
@@ -110,6 +121,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/mentions-legales'
     | '/politique-de-confidentialite'
+    | '/protection-des-donnees-personnelles'
     | '/categorie/$slug'
     | '/produit/$slug'
   id:
@@ -120,6 +132,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/mentions-legales'
     | '/politique-de-confidentialite'
+    | '/protection-des-donnees-personnelles'
     | '/categorie/$slug'
     | '/produit/$slug'
   fileRoutesById: FileRoutesById
@@ -131,12 +144,20 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   MentionsLegalesRoute: typeof MentionsLegalesRoute
   PolitiqueDeConfidentialiteRoute: typeof PolitiqueDeConfidentialiteRoute
+  ProtectionDesDonneesPersonnellesRoute: typeof ProtectionDesDonneesPersonnellesRoute
   CategorieSlugRoute: typeof CategorieSlugRoute
   ProduitSlugRoute: typeof ProduitSlugRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/protection-des-donnees-personnelles': {
+      id: '/protection-des-donnees-personnelles'
+      path: '/protection-des-donnees-personnelles'
+      fullPath: '/protection-des-donnees-personnelles'
+      preLoaderRoute: typeof ProtectionDesDonneesPersonnellesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/politique-de-confidentialite': {
       id: '/politique-de-confidentialite'
       path: '/politique-de-confidentialite'
@@ -203,6 +224,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   MentionsLegalesRoute: MentionsLegalesRoute,
   PolitiqueDeConfidentialiteRoute: PolitiqueDeConfidentialiteRoute,
+  ProtectionDesDonneesPersonnellesRoute: ProtectionDesDonneesPersonnellesRoute,
   CategorieSlugRoute: CategorieSlugRoute,
   ProduitSlugRoute: ProduitSlugRoute,
 }
