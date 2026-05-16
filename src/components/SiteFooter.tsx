@@ -54,10 +54,6 @@ export function SiteFooter() {
             <li><Link to="/boutique" className="hover:text-copper transition">Boutique</Link></li>
             <li><Link to="/a-propos" className="hover:text-copper transition">À propos</Link></li>
             <li><Link to="/contact" className="hover:text-copper transition">Contact</Link></li>
-            <li><Link to="/mentions-legales" className="hover:text-copper transition">Mentions légales</Link></li>
-            <li><Link to="/politique-de-confidentialite" className="hover:text-copper transition">Politique de confidentialité</Link></li>
-            <li><Link to="/protection-des-donnees-personnelles" className="hover:text-copper transition">Protection des données</Link></li>
-            <li><Link to="/service-apres-vente" className="hover:text-copper transition">Service Après-Vente</Link></li>
           </ul>
         </div>
 
