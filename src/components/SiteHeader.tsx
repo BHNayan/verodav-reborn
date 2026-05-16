@@ -3,6 +3,7 @@ import { Menu, X, Search } from "lucide-react";
 import { useState } from "react";
 import { categories } from "@/lib/products";
 import { SITE } from "@/lib/site";
+import logo from "@/assets/verodav-logo.png";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
