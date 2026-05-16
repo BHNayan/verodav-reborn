@@ -4,6 +4,7 @@ import { categories, products } from "@/lib/products";
 import { ProductCard } from "@/components/ProductCard";
 import { SITE } from "@/lib/site";
 import { Testimonials } from "@/components/Testimonials";
+import { CategoryCarousel } from "@/components/CategoryCarousel";
 
 export const Route = createFileRoute("/")({
   head: () => ({
