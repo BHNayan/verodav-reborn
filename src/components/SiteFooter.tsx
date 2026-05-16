@@ -3,8 +3,25 @@ import { Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react";
 import { SITE } from "@/lib/site";
 import { categories } from "@/lib/products";
 import logo from "@/assets/verodav-logo.png";
+import paypal from "@/assets/payments/paypal.svg";
+import visa from "@/assets/payments/visa.svg";
+import mastercard from "@/assets/payments/mastercard.svg";
+import amex from "@/assets/payments/amex.svg";
+import jcb from "@/assets/payments/jcb.svg";
+import applepay from "@/assets/payments/applepay.svg";
+import googlepay from "@/assets/payments/googlepay.svg";
+import amazonpay from "@/assets/payments/amazonpay.svg";
 
-const PAYMENTS = ["PayPal", "VISA", "Pay", "JCB", "amazon pay", "MC", "AMEX"];
+const PAYMENTS: { name: string; src: string }[] = [
+  { name: "PayPal", src: paypal },
+  { name: "Visa", src: visa },
+  { name: "Mastercard", src: mastercard },
+  { name: "American Express", src: amex },
+  { name: "JCB", src: jcb },
+  { name: "Apple Pay", src: applepay },
+  { name: "Google Pay", src: googlepay },
+  { name: "Amazon Pay", src: amazonpay },
+];
 
 export function SiteFooter() {
   return (
@@ -69,7 +86,9 @@ export function SiteFooter() {
             <p className="text-xs uppercase tracking-[0.2em] text-primary-foreground/60 mb-3">Paiements acceptés</p>
             <div className="flex flex-wrap gap-2">
               {PAYMENTS.map((p) => (
-                <span key={p} className="inline-flex items-center justify-center min-w-[52px] h-7 px-2 bg-white text-primary text-[10px] font-bold tracking-wider rounded-sm uppercase">{p}</span>
+                <span key={p.name} title={p.name} className="inline-flex items-center justify-center h-8 px-2 bg-white rounded-md shadow-sm ring-1 ring-black/5">
+                  <img src={p.src} alt={p.name} className="h-5 w-auto" loading="lazy" />
+                </span>
               ))}
             </div>
           </div>
