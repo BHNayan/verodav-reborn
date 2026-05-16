@@ -16,11 +16,11 @@ export function CategoryCarousel() {
 
   return (
     <section className="border-t border-border bg-background">
-      <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-20">
-        <div className="flex items-end justify-between mb-10 gap-6">
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10 py-12 md:py-20">
+        <div className="flex items-end justify-between mb-8 md:mb-10 gap-6">
           <div>
             <span className="text-[11px] uppercase tracking-[0.3em] text-copper">— Catégories</span>
-            <h2 className="mt-3 font-display font-light text-4xl md:text-5xl tracking-tight text-balance">
+            <h2 className="mt-3 font-display font-light text-3xl md:text-5xl tracking-tight text-balance">
               Toutes nos <em className="not-italic italic text-copper">familles</em>.
             </h2>
           </div>
@@ -44,7 +44,7 @@ export function CategoryCarousel() {
 
         <div
           ref={scrollerRef}
-          className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 -mx-6 px-6 lg:-mx-10 lg:px-10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="flex gap-4 sm:gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-10 lg:px-10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           {categories.map((c) => (
             <Link
@@ -52,7 +52,7 @@ export function CategoryCarousel() {
               to="/categorie/$slug"
               params={{ slug: c.slug }}
               data-cat-card
-              className="group relative shrink-0 snap-start w-[78%] sm:w-[46%] md:w-[34%] lg:w-[26%] xl:w-[22%]"
+              className="group relative shrink-0 snap-start w-[72%] sm:w-[46%] md:w-[34%] lg:w-[26%] xl:w-[22%]"
             >
               <div className="relative aspect-[4/5] overflow-hidden bg-secondary">
                 <img
