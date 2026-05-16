@@ -10,21 +10,21 @@ export function SiteFooter() {
   return (
     <footer className="mt-24 bg-primary text-primary-foreground">
       <div className="mx-auto max-w-7xl px-6 py-16 grid gap-12 md:grid-cols-12">
-        <div className="md:col-span-4">
-          <div className="bg-white inline-block px-4 py-3 rounded-md">
-            <img src={logo} alt="Verodav Home" className="h-9 w-auto" />
-          </div>
-          <p className="mt-5 text-sm text-primary-foreground/70 leading-relaxed">
+        <div className="md:col-span-4 flex flex-col items-center text-center md:items-start md:text-left">
+          <Link to="/" aria-label="Verodav Home" className="inline-flex items-center justify-center bg-white rounded-lg px-5 py-3 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.45)] ring-1 ring-white/10">
+            <img src={logo} alt="Verodav Home" className="h-11 md:h-12 w-auto" />
+          </Link>
+          <p className="mt-5 text-sm text-primary-foreground/70 leading-relaxed max-w-sm">
             {SITE.tagline} Une sélection d'ustensiles de cuisine professionnels conçus pour durer.
           </p>
-          <div className="mt-6 flex gap-3">
+          <div className="mt-6 flex gap-3 justify-center md:justify-start">
             <a href={SITE.socials.facebook} aria-label="Facebook" className="p-2 border border-primary-foreground/20 hover:bg-copper hover:border-copper transition"><Facebook className="h-4 w-4" /></a>
             <a href={SITE.socials.instagram} aria-label="Instagram" className="p-2 border border-primary-foreground/20 hover:bg-copper hover:border-copper transition"><Instagram className="h-4 w-4" /></a>
           </div>
 
-          <div className="mt-8">
+          <div className="mt-8 w-full">
             <p className="text-xs uppercase tracking-[0.2em] text-primary-foreground/60 mb-3">L'application mobile sera bientôt disponible</p>
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-3 justify-center md:justify-start">
               <a href="#" aria-label="Google Play" className="inline-flex items-center gap-2 bg-black text-white px-3 py-2 rounded-md hover:opacity-90 transition">
                 <svg viewBox="0 0 24 24" className="h-6 w-6" fill="currentColor"><path d="M3.6 2.3c-.3.3-.5.8-.5 1.4v16.6c0 .6.2 1.1.5 1.4l9.2-9.7L3.6 2.3zm10.2 10.4l2.7 2.8-11 6.3c-.4.2-.8.2-1.1.1l9.4-9.2zm0-1.4L4.4 2c.3-.1.7 0 1.1.2l11 6.3-2.7 2.8zm6.4-1.6c.9.5 1.3 1.2 1.3 1.9s-.5 1.4-1.3 1.9l-3.1 1.8-3.1-3.2 3.1-3.2 3.1.8z"/></svg>
                 <span className="text-left leading-tight"><span className="block text-[9px] uppercase opacity-80">Get it on</span><span className="block text-sm font-semibold">Google Play</span></span>
