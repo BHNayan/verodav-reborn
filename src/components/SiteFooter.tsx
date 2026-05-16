@@ -86,7 +86,9 @@ export function SiteFooter() {
             <p className="text-xs uppercase tracking-[0.2em] text-primary-foreground/60 mb-3">Paiements acceptés</p>
             <div className="flex flex-wrap gap-2">
               {PAYMENTS.map((p) => (
-                <span key={p} className="inline-flex items-center justify-center min-w-[52px] h-7 px-2 bg-white text-primary text-[10px] font-bold tracking-wider rounded-sm uppercase">{p}</span>
+                <span key={p.name} title={p.name} className="inline-flex items-center justify-center h-8 px-2 bg-white rounded-md shadow-sm ring-1 ring-black/5">
+                  <img src={p.src} alt={p.name} className="h-5 w-auto" loading="lazy" />
+                </span>
               ))}
             </div>
           </div>
