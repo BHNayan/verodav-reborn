@@ -166,7 +166,7 @@ export function SiteHeader() {
                 <User className="h-4 w-4" /> Se connecter
               </Link>
               <Link to="/boutique" onClick={close} className="inline-flex items-center justify-center gap-2 bg-primary px-4 py-3 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper transition">
-                <ShoppingBag className="h-4 w-4" /> Panier (0)
+                <ShoppingBag className="h-4 w-4" /> Panier ({cartCount})
               </Link>
             </div>
           </nav>
