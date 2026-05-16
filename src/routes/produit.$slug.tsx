@@ -95,10 +95,18 @@ function ProductPage() {
               <span className="px-5 py-3 font-medium min-w-12 text-center">{qty}</span>
               <button onClick={() => setQty(qty + 1)} className="px-4 py-3 hover:bg-secondary">+</button>
             </div>
-            <a href={`mailto:${SITE.email}?subject=Commande%20${encodeURIComponent(product.name)}&body=Bonjour,%0A%0AJe%20souhaite%20commander%20${qty}%20×%20${encodeURIComponent(product.name)}%20(${encodeURIComponent(formatPrice(product.price))}).%0A%0AMerci.`}
-              className="flex-1 inline-flex items-center justify-center gap-2 bg-primary px-6 py-4 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper transition-colors">
-              Commander par email
-            </a>
+            <button
+              onClick={() =>
+                cart.add(
+                  { id: product.id, name: product.name, price: product.price, image: product.image },
+                  qty,
+                )
+              }
+              disabled={!product.in_stock}
+              className="flex-1 inline-flex items-center justify-center gap-2 bg-primary px-6 py-4 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <ShoppingBag className="h-4 w-4" /> Ajouter au panier
+            </button>
           </div>
 
           <div className="mt-6 grid grid-cols-2 gap-3">
