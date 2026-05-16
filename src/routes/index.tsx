@@ -138,6 +138,9 @@ function HomePage() {
         </div>
       </section>
 
+      {/* CATEGORY CAROUSEL */}
+      <CategoryCarousel />
+
       {/* CATEGORIES — magazine grid */}
       <section className="mx-auto max-w-[1400px] px-6 lg:px-10 py-24">
         <div className="flex items-end justify-between mb-12 gap-6">
