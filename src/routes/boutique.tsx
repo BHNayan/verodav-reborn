@@ -1,11 +1,18 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
+import { zodValidator, fallback } from "@tanstack/zod-adapter";
+import { z } from "zod";
 
 const PER_PAGE = 12;
 import { products, categories } from "@/lib/products";
 import { ProductCard } from "@/components/ProductCard";
 
+const boutiqueSearchSchema = z.object({
+  page: fallback(z.number().int().min(1), 1).default(1),
+});
+
 export const Route = createFileRoute("/boutique")({
+  validateSearch: zodValidator(boutiqueSearchSchema),
   head: () => ({
     meta: [
       { title: "Boutique — Verodav Home" },
@@ -16,12 +23,19 @@ export const Route = createFileRoute("/boutique")({
 });
 
 function BoutiquePage() {
+  const { page } = Route.useSearch();
+  const navigate = useNavigate({ from: "/boutique" });
+  const setPage = (n: number) =>
+    navigate({ search: (prev) => ({ ...prev, page: n }) });
+
   const [cat, setCat] = useState<string>("all");
   const [q, setQ] = useState("");
   const [sort, setSort] = useState<"default" | "price-asc" | "price-desc">("default");
-  const [page, setPage] = useState(1);
 
-  useEffect(() => { setPage(1); }, [cat, q, sort]);
+  useEffect(() => {
+    navigate({ search: (prev) => ({ ...prev, page: 1 }), replace: true });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cat, q, sort]);
 
   const list = useMemo(() => {
     let out = products;
