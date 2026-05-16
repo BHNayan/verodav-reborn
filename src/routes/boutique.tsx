@@ -89,9 +89,48 @@ function BoutiquePage() {
               Aucun produit ne correspond à votre recherche.
             </div>
           ) : (
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-12">
-              {list.map((p) => <ProductCard key={p.id} p={p} />)}
-            </div>
+            <>
+              {(() => {
+                const totalPages = Math.max(1, Math.ceil(list.length / PER_PAGE));
+                const currentPage = Math.min(page, totalPages);
+                const start = (currentPage - 1) * PER_PAGE;
+                const pageItems = list.slice(start, start + PER_PAGE);
+                return (
+                  <>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-12">
+                      {pageItems.map((p) => <ProductCard key={p.id} p={p} />)}
+                    </div>
+                    {totalPages > 1 && (
+                      <div className="mt-12 flex items-center justify-center gap-2 flex-wrap">
+                        <button
+                          onClick={() => setPage(currentPage - 1)}
+                          disabled={currentPage === 1}
+                          className="text-xs uppercase tracking-widest border border-border px-4 py-2 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-primary hover:text-primary-foreground transition"
+                        >
+                          Précédent
+                        </button>
+                        {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
+                          <button
+                            key={n}
+                            onClick={() => setPage(n)}
+                            className={`text-xs w-10 h-10 border border-border transition ${n === currentPage ? "bg-primary text-primary-foreground" : "hover:bg-primary hover:text-primary-foreground"}`}
+                          >
+                            {n}
+                          </button>
+                        ))}
+                        <button
+                          onClick={() => setPage(currentPage + 1)}
+                          disabled={currentPage === totalPages}
+                          className="text-xs uppercase tracking-widest border border-border px-4 py-2 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-primary hover:text-primary-foreground transition"
+                        >
+                          Suivant
+                        </button>
+                      </div>
+                    )}
+                  </>
+                );
+              })()}
+            </>
           )}
           <div className="mt-12 flex flex-wrap gap-2">
             {categories.map(c => (
