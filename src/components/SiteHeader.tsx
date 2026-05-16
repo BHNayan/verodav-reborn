@@ -158,14 +158,14 @@ export function SiteHeader() {
         aria-hidden={!open}
       />
       <aside
-        className={`lg:hidden fixed inset-y-0 left-0 z-50 w-[86%] max-w-sm bg-background shadow-2xl transition-transform duration-300 ease-out ${
+        className={`lg:hidden fixed top-0 left-0 z-50 h-dvh w-[86%] max-w-sm bg-background shadow-2xl transition-transform duration-300 ease-out ${
           open ? "translate-x-0" : "-translate-x-full"
         }`}
         role="dialog"
         aria-modal="true"
         aria-label="Menu de navigation"
       >
-        <div className="flex h-full flex-col">
+        <div className="flex h-full min-h-0 flex-col">
           <div className="flex items-center justify-between border-b border-border px-5 py-4">
             <Link to="/" onClick={close} aria-label="Verodav Home">
               <img src={logo} alt="Verodav Home" className="h-9 w-auto" />
