@@ -20,9 +20,8 @@ export function SiteHeader() {
       </div>
 
       <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 lg:px-10 py-5">
-        <Link to="/" className="flex items-baseline gap-2">
-          <span className="font-display text-2xl tracking-tight">Verodav</span>
-          <span className="font-display text-2xl italic text-copper">Home</span>
+        <Link to="/" className="flex items-center" aria-label="Verodav Home">
+          <img src={logo} alt="Verodav Home — Better home, think us" className="h-9 md:h-10 w-auto" />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-8 text-sm">
