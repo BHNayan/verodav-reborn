@@ -1,6 +1,6 @@
 export const SITE = {
   name: "Verodav Home",
-  tagline: "Cuisine moderne. Ustensiles innovants.",
+  tagline: "Better home, think us.",
   email: "info@verodav-home.com",
   phone: "+33 7 58 34 76 62",
   phoneRaw: "+33758347662",
