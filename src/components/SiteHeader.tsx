@@ -3,11 +3,13 @@ import { Menu, X, Search, ShoppingBag, User, ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
 import { categories } from "@/lib/products";
 import { SITE } from "@/lib/site";
+import { useCartCount } from "@/lib/cart";
 import logo from "@/assets/verodav-logo.png";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [catOpen, setCatOpen] = useState(false);
+  const cartCount = useCartCount();
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -94,9 +96,11 @@ export function SiteHeader() {
             className="relative p-2 text-primary hover:text-copper transition"
           >
             <ShoppingBag className="h-5 w-5" />
-            <span className="absolute -right-0.5 -top-0.5 grid h-4 w-4 place-items-center rounded-full bg-copper text-[10px] font-semibold text-primary-foreground">
-              0
-            </span>
+            {cartCount > 0 && (
+              <span className="absolute -right-0.5 -top-0.5 grid h-4 min-w-4 place-items-center rounded-full bg-copper px-1 text-[10px] font-semibold text-primary-foreground">
+                {cartCount > 99 ? "99+" : cartCount}
+              </span>
+            )}
           </Link>
         </div>
       </div>
@@ -162,7 +166,7 @@ export function SiteHeader() {
                 <User className="h-4 w-4" /> Se connecter
               </Link>
               <Link to="/boutique" onClick={close} className="inline-flex items-center justify-center gap-2 bg-primary px-4 py-3 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper transition">
-                <ShoppingBag className="h-4 w-4" /> Panier (0)
+                <ShoppingBag className="h-4 w-4" /> Panier ({cartCount})
               </Link>
             </div>
           </nav>
