@@ -3,11 +3,13 @@ import { Menu, X, Search, ShoppingBag, User, ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
 import { categories } from "@/lib/products";
 import { SITE } from "@/lib/site";
+import { useCartCount } from "@/lib/cart";
 import logo from "@/assets/verodav-logo.png";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [catOpen, setCatOpen] = useState(false);
+  const cartCount = useCartCount();
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
