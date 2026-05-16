@@ -96,9 +96,11 @@ export function SiteHeader() {
             className="relative p-2 text-primary hover:text-copper transition"
           >
             <ShoppingBag className="h-5 w-5" />
-            <span className="absolute -right-0.5 -top-0.5 grid h-4 w-4 place-items-center rounded-full bg-copper text-[10px] font-semibold text-primary-foreground">
-              0
-            </span>
+            {cartCount > 0 && (
+              <span className="absolute -right-0.5 -top-0.5 grid h-4 min-w-4 place-items-center rounded-full bg-copper px-1 text-[10px] font-semibold text-primary-foreground">
+                {cartCount > 99 ? "99+" : cartCount}
+              </span>
+            )}
           </Link>
         </div>
       </div>
