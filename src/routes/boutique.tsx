@@ -100,33 +100,70 @@ function BoutiquePage() {
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-12">
                       {pageItems.map((p) => <ProductCard key={p.id} p={p} />)}
                     </div>
-                    {totalPages > 1 && (
-                      <div className="mt-12 flex items-center justify-center gap-2 flex-wrap">
-                        <button
-                          onClick={() => setPage(currentPage - 1)}
-                          disabled={currentPage === 1}
-                          className="text-xs uppercase tracking-widest border border-border px-4 py-2 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-primary hover:text-primary-foreground transition"
+                    {totalPages > 1 && (() => {
+                      const pages: (number | "…")[] = [];
+                      const add = (n: number | "…") => pages.push(n);
+                      const range = (a: number, b: number) => {
+                        for (let i = a; i <= b; i++) add(i);
+                      };
+                      if (totalPages <= 7) {
+                        range(1, totalPages);
+                      } else {
+                        add(1);
+                        if (currentPage > 4) add("…");
+                        const s = Math.max(2, currentPage - 1);
+                        const e = Math.min(totalPages - 1, currentPage + 1);
+                        range(s, e);
+                        if (currentPage < totalPages - 3) add("…");
+                        add(totalPages);
+                      }
+                      return (
+                        <nav
+                          aria-label="Pagination"
+                          className="mt-10 md:mt-12 flex items-center justify-center gap-1 sm:gap-2 flex-wrap"
                         >
-                          Précédent
-                        </button>
-                        {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
                           <button
-                            key={n}
-                            onClick={() => setPage(n)}
-                            className={`text-xs w-10 h-10 border border-border transition ${n === currentPage ? "bg-primary text-primary-foreground" : "hover:bg-primary hover:text-primary-foreground"}`}
+                            onClick={() => setPage(currentPage - 1)}
+                            disabled={currentPage === 1}
+                            aria-label="Page précédente"
+                            className="text-[10px] sm:text-xs uppercase tracking-widest border border-border px-2.5 sm:px-4 h-9 sm:h-10 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-primary hover:text-primary-foreground transition"
                           >
-                            {n}
+                            <span className="hidden sm:inline">Précédent</span>
+                            <span className="sm:hidden" aria-hidden>‹</span>
                           </button>
-                        ))}
-                        <button
-                          onClick={() => setPage(currentPage + 1)}
-                          disabled={currentPage === totalPages}
-                          className="text-xs uppercase tracking-widest border border-border px-4 py-2 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-primary hover:text-primary-foreground transition"
-                        >
-                          Suivant
-                        </button>
-                      </div>
-                    )}
+                          {pages.map((n, i) =>
+                            n === "…" ? (
+                              <span
+                                key={`e-${i}`}
+                                className="w-7 sm:w-10 h-9 sm:h-10 flex items-center justify-center text-xs text-muted-foreground"
+                                aria-hidden
+                              >
+                                …
+                              </span>
+                            ) : (
+                              <button
+                                key={n}
+                                onClick={() => setPage(n)}
+                                aria-current={n === currentPage ? "page" : undefined}
+                                aria-label={`Page ${n}`}
+                                className={`text-xs w-9 sm:w-10 h-9 sm:h-10 border border-border transition ${n === currentPage ? "bg-primary text-primary-foreground" : "hover:bg-primary hover:text-primary-foreground"}`}
+                              >
+                                {n}
+                              </button>
+                            ),
+                          )}
+                          <button
+                            onClick={() => setPage(currentPage + 1)}
+                            disabled={currentPage === totalPages}
+                            aria-label="Page suivante"
+                            className="text-[10px] sm:text-xs uppercase tracking-widest border border-border px-2.5 sm:px-4 h-9 sm:h-10 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-primary hover:text-primary-foreground transition"
+                          >
+                            <span className="hidden sm:inline">Suivant</span>
+                            <span className="sm:hidden" aria-hidden>›</span>
+                          </button>
+                        </nav>
+                      );
+                    })()}
                   </>
                 );
               })()}
