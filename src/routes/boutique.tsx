@@ -26,7 +26,7 @@ function BoutiquePage() {
   const { page } = Route.useSearch();
   const navigate = useNavigate({ from: "/boutique" });
   const setPage = (n: number) =>
-    navigate({ search: (prev) => ({ ...prev, page: n }) });
+    navigate({ search: (prev: { page: number }) => ({ ...prev, page: n }) });
 
   const [cat, setCat] = useState<string>("all");
   const [q, setQ] = useState("");
