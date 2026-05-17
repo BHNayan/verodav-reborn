@@ -40,7 +40,7 @@ function Page() {
 
   return (
     <div>
-      <h1 className="font-display text-3xl md:text-4xl">Commandes</h1>
+      <h1 className="font-display text-3xl md:text-4xl">{useI18n().t("admin.orders.title")}</h1>
       <div className="mt-4 flex flex-wrap gap-2">
         {["all", ...STATUSES].map((s) => (
           <button key={s} onClick={() => setFilter(s)} className={`border border-border px-3 py-1.5 text-xs uppercase tracking-widest ${filter === s ? "bg-primary text-primary-foreground" : "hover:bg-secondary"}`}>{s}</button>

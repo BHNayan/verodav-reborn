@@ -25,7 +25,7 @@ function Page() {
 
   return (
     <div>
-      <h1 className="font-display text-3xl md:text-4xl">Clients</h1>
+      <h1 className="font-display text-3xl md:text-4xl">{useI18n().t("admin.customers.title")}</h1>
       <div className="mt-6 overflow-x-auto border border-border bg-card">
         <table className="w-full text-sm">
           <thead className="bg-secondary/50 text-left text-xs uppercase tracking-widest">
