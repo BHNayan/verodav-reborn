@@ -2,6 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent } from "react";
 import { Plus, Pencil, Trash2, X } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { ExportImportBar } from "@/components/admin/ExportImportBar";
+import { ProductImageManager } from "@/components/admin/ProductImageManager";
 
 type Product = {
   id: string;
@@ -11,6 +13,7 @@ type Product = {
   stock: number;
   category_id: string | null;
   image_url: string | null;
+  images: string[];
   description: string | null;
   is_active: boolean;
   is_featured: boolean;
@@ -22,11 +25,24 @@ export const Route = createFileRoute("/admin/products")({
 });
 
 const empty: Omit<Product, "id"> = {
-  slug: "", name: "", price: 0, stock: 0, category_id: null, image_url: "", description: "", is_active: true, is_featured: false,
+  slug: "", name: "", price: 0, stock: 0, category_id: null, image_url: "", images: [], description: "", is_active: true, is_featured: false,
 };
 
 function slugify(s: string) {
   return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
+
+function normalizeImages(raw: unknown): string[] {
+  if (Array.isArray(raw)) return raw.filter((x): x is string => typeof x === "string");
+  if (typeof raw === "string" && raw.trim()) {
+    try {
+      const p = JSON.parse(raw);
+      if (Array.isArray(p)) return p.filter((x): x is string => typeof x === "string");
+    } catch {
+      return raw.split(/[,;|\n]/).map((s) => s.trim()).filter(Boolean);
+    }
+  }
+  return [];
 }
 
 function AdminProducts() {
@@ -38,7 +54,7 @@ function AdminProducts() {
 
   const load = async () => {
     const { data } = await supabase.from("products").select("*").order("created_at", { ascending: false });
-    setItems((data ?? []) as Product[]);
+    setItems(((data ?? []) as any[]).map((p) => ({ ...p, images: normalizeImages(p.images) })) as Product[]);
   };
   useEffect(() => { load(); supabase.from("categories").select("id,name").order("name").then(({ data }) => setCats((data ?? []) as Cat[])); }, []);
 
@@ -46,7 +62,13 @@ function AdminProducts() {
     e.preventDefault();
     if (!editing) return;
     setErr(null); setBusy(true);
-    const payload = { ...editing, slug: editing.slug || slugify(editing.name), price: Number(editing.price), stock: Number(editing.stock) };
+    const payload = {
+      ...editing,
+      slug: editing.slug || slugify(editing.name),
+      price: Number(editing.price),
+      stock: Number(editing.stock),
+      images: editing.images ?? [],
+    };
     const { id, ...rest } = payload;
     const { error } = id
       ? await supabase.from("products").update(rest).eq("id", id)
@@ -62,13 +84,64 @@ function AdminProducts() {
     if (error) alert(error.message); else load();
   };
 
+  const exportRows = () => {
+    const catName = new Map(cats.map((c) => [c.id, c.name]));
+    return items.map((p) => ({
+      id: p.id,
+      slug: p.slug,
+      name: p.name,
+      price: p.price,
+      stock: p.stock,
+      category: p.category_id ? catName.get(p.category_id) ?? "" : "",
+      image_url: p.image_url ?? "",
+      images: (p.images ?? []).join("|"),
+      description: p.description ?? "",
+      is_active: p.is_active,
+      is_featured: p.is_featured,
+    }));
+  };
+
+  const importRows = async (rows: Record<string, unknown>[]) => {
+    if (!rows.length) return alert("Fichier vide");
+    const catByName = new Map(cats.map((c) => [c.name.toLowerCase(), c.id]));
+    let ok = 0, fail = 0;
+    const errors: string[] = [];
+    for (const r of rows) {
+      const name = String(r.name ?? "").trim();
+      if (!name) { fail++; continue; }
+      const slug = String(r.slug || slugify(name));
+      const catRaw = (r.category ?? r.category_name ?? "") as string;
+      const category_id = catRaw ? catByName.get(String(catRaw).toLowerCase()) ?? null : (r.category_id as string ?? null);
+      const images = normalizeImages(r.images);
+      const payload = {
+        slug,
+        name,
+        price: Number(r.price ?? 0),
+        stock: Number(r.stock ?? 0),
+        category_id,
+        image_url: (r.image_url as string) || images[0] || null,
+        images,
+        description: (r.description as string) ?? null,
+        is_active: r.is_active === false || r.is_active === "false" || r.is_active === 0 ? false : true,
+        is_featured: r.is_featured === true || r.is_featured === "true" || r.is_featured === 1 ? true : false,
+      };
+      const { error } = await supabase.from("products").upsert(payload, { onConflict: "slug" });
+      if (error) { fail++; errors.push(`${slug}: ${error.message}`); } else ok++;
+    }
+    alert(`Import terminé. Réussis: ${ok}, échoués: ${fail}${errors.length ? "\n" + errors.slice(0, 5).join("\n") : ""}`);
+    load();
+  };
+
   return (
     <div>
-      <div className="flex items-center justify-between gap-3">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <h1 className="font-display text-3xl md:text-4xl">Produits</h1>
-        <button onClick={() => setEditing({ ...empty })} className="inline-flex items-center gap-2 bg-primary px-4 py-2.5 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper">
-          <Plus className="h-4 w-4" /> Nouveau
-        </button>
+        <div className="flex flex-wrap items-center gap-2">
+          <ExportImportBar filenameBase="produits" getRows={exportRows} onImport={importRows} />
+          <button onClick={() => setEditing({ ...empty })} className="inline-flex items-center gap-2 bg-primary px-4 py-2.5 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper">
+            <Plus className="h-4 w-4" /> Nouveau
+          </button>
+        </div>
       </div>
 
       <div className="mt-6 overflow-x-auto border border-border bg-card">
@@ -104,7 +177,7 @@ function AdminProducts() {
 
       {editing && (
         <div className="fixed inset-0 z-50 grid place-items-center bg-black/60 p-4">
-          <form onSubmit={save} className="w-full max-w-2xl max-h-[90vh] overflow-y-auto border border-border bg-background p-6">
+          <form onSubmit={save} className="w-full max-w-3xl max-h-[90vh] overflow-y-auto border border-border bg-background p-6">
             <div className="flex items-center justify-between"><h3 className="font-display text-2xl">{editing.id ? "Modifier" : "Nouveau"} produit</h3>
               <button type="button" onClick={() => setEditing(null)} className="p-1"><X className="h-5 w-5" /></button></div>
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
@@ -117,7 +190,16 @@ function AdminProducts() {
                   <option value="">—</option>{cats.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
                 </select>
               </Field>
-              <Field label="Image URL"><input value={editing.image_url ?? ""} onChange={(e) => setEditing({ ...editing, image_url: e.target.value })} className="inp" /></Field>
+              <div className="sm:col-span-2">
+                <span className="block text-xs uppercase tracking-widest text-muted-foreground">Images</span>
+                <div className="mt-2 border border-border bg-card p-3">
+                  <ProductImageManager
+                    mainImage={editing.image_url || null}
+                    gallery={editing.images ?? []}
+                    onChange={(main, gallery) => setEditing({ ...editing, image_url: main, images: gallery })}
+                  />
+                </div>
+              </div>
               <div className="sm:col-span-2"><Field label="Description"><textarea rows={4} value={editing.description ?? ""} onChange={(e) => setEditing({ ...editing, description: e.target.value })} className="inp" /></Field></div>
               <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={editing.is_active} onChange={(e) => setEditing({ ...editing, is_active: e.target.checked })} /> Actif</label>
               <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={editing.is_featured} onChange={(e) => setEditing({ ...editing, is_featured: e.target.checked })} /> Vedette</label>
