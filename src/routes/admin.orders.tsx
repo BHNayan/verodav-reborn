@@ -42,10 +42,11 @@ function Page() {
 
   const exportRows = async () => {
     const { data: items } = await supabase.from("order_items").select("order_id, product_name, unit_price, quantity");
-    const byOrder = new Map<string, Item[]>();
+    type ItemRow = { order_id: string; product_name: string; unit_price: number | string; quantity: number };
+    const byOrder = new Map<string, ItemRow[]>();
     (items ?? []).forEach((i) => {
       const arr = byOrder.get(i.order_id) ?? [];
-      arr.push(i as Item);
+      arr.push(i as ItemRow);
       byOrder.set(i.order_id, arr);
     });
     return orders.map((o) => ({
