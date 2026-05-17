@@ -133,7 +133,7 @@ function PanierPage() {
           <h2 className="text-lg font-semibold">Livraison</h2>
           {!userId && (
             <p className="text-sm text-muted-foreground">
-              Vous devez <Link to="/auth" className="underline">vous connecter</Link> pour valider la commande.
+              Vous devez <Link to="/auth" search={{ redirect: "/panier", mode: "signin" }} className="underline">vous connecter</Link> pour valider la commande.
             </p>
           )}
           <input required placeholder="Nom complet" value={address.full_name} onChange={(e) => setAddress({ ...address, full_name: e.target.value })} className="w-full border border-border px-3 py-2 text-sm" />
