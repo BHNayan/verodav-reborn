@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react";
 import { SITE } from "@/lib/site";
-import { categories } from "@/lib/products";
+import { useCategories } from "@/lib/products";
 import logo from "@/assets/verodav-logo.png";
 import paypal from "@/assets/payments/paypal.svg";
 import visa from "@/assets/payments/visa.svg";
