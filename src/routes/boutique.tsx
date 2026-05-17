@@ -68,15 +68,19 @@ function BoutiquePage() {
       <div className="mx-auto max-w-7xl px-6 py-10 grid lg:grid-cols-[240px_1fr] gap-10">
         <aside className="lg:sticky lg:top-32 self-start">
           <div className="mb-6">
+            <label htmlFor="boutique-search" className="sr-only">Rechercher un produit</label>
             <input
+              id="boutique-search"
+              type="search"
+              aria-label="Rechercher un produit"
               value={q} onChange={(e) => setQ(e.target.value)}
               placeholder="Rechercher…"
               className="w-full bg-card border border-border px-4 py-3 text-sm focus:outline-none focus:border-copper"
             />
           </div>
           <div className="mb-6">
-            <label className="text-[10px] uppercase tracking-widest text-muted-foreground">Trier par</label>
-            <select value={sort} onChange={(e) => setSort(e.target.value as "default" | "price-asc" | "price-desc")}
+            <label htmlFor="boutique-sort" className="text-[10px] uppercase tracking-widest text-muted-foreground">Trier par</label>
+            <select id="boutique-sort" aria-label="Trier les produits" value={sort} onChange={(e) => setSort(e.target.value as "default" | "price-asc" | "price-desc")}
               className="mt-2 w-full bg-card border border-border px-3 py-2 text-sm focus:outline-none focus:border-copper">
               <option value="default">Pertinence</option>
               <option value="price-asc">Prix croissant</option>

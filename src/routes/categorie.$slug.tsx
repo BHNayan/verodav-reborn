@@ -73,7 +73,7 @@ function CategoryPage() {
         </div>
 
         <div className="mt-20 pt-10 border-t border-border">
-          <h3 className="font-display text-2xl mb-6">Autres catégories</h3>
+          <h2 className="font-display text-2xl mb-6">Autres catégories</h2>
           <div className="flex flex-wrap gap-2">
             {categories.filter((c) => c.slug !== cat.slug).map((c) => (
               <Link key={c.slug} to="/categorie/$slug" params={{ slug: c.slug }}

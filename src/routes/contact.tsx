@@ -68,20 +68,20 @@ function ContactPage() {
           <h2 className="font-display text-2xl mb-6">{t("contact.write")}</h2>
           <div className="space-y-4">
             <div>
-              <label className="text-[10px] uppercase tracking-widest text-muted-foreground">{t("common.name")}</label>
-              <input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required className="mt-1 w-full bg-background border border-border px-4 py-3 text-sm focus:outline-none focus:border-copper" />
+              <label htmlFor="contact-name" className="text-[10px] uppercase tracking-widest text-muted-foreground">{t("common.name")}</label>
+              <input id="contact-name" name="name" autoComplete="name" aria-label={t("common.name")} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required className="mt-1 w-full bg-background border border-border px-4 py-3 text-sm focus:outline-none focus:border-copper" />
             </div>
             <div>
-              <label className="text-[10px] uppercase tracking-widest text-muted-foreground">{t("common.email")}</label>
-              <input value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} type="email" required className="mt-1 w-full bg-background border border-border px-4 py-3 text-sm focus:outline-none focus:border-copper" />
+              <label htmlFor="contact-email" className="text-[10px] uppercase tracking-widest text-muted-foreground">{t("common.email")}</label>
+              <input id="contact-email" name="email" autoComplete="email" aria-label={t("common.email")} value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} type="email" required className="mt-1 w-full bg-background border border-border px-4 py-3 text-sm focus:outline-none focus:border-copper" />
             </div>
             <div>
-              <label className="text-[10px] uppercase tracking-widest text-muted-foreground">{t("common.subject")}</label>
-              <input value={form.subject} onChange={(e) => setForm({ ...form, subject: e.target.value })} className="mt-1 w-full bg-background border border-border px-4 py-3 text-sm focus:outline-none focus:border-copper" />
+              <label htmlFor="contact-subject" className="text-[10px] uppercase tracking-widest text-muted-foreground">{t("common.subject")}</label>
+              <input id="contact-subject" name="subject" aria-label={t("common.subject")} value={form.subject} onChange={(e) => setForm({ ...form, subject: e.target.value })} className="mt-1 w-full bg-background border border-border px-4 py-3 text-sm focus:outline-none focus:border-copper" />
             </div>
             <div>
-              <label className="text-[10px] uppercase tracking-widest text-muted-foreground">{t("common.message")}</label>
-              <textarea value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} rows={6} required className="mt-1 w-full bg-background border border-border px-4 py-3 text-sm focus:outline-none focus:border-copper" />
+              <label htmlFor="contact-message" className="text-[10px] uppercase tracking-widest text-muted-foreground">{t("common.message")}</label>
+              <textarea id="contact-message" name="message" aria-label={t("common.message")} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} rows={6} required className="mt-1 w-full bg-background border border-border px-4 py-3 text-sm focus:outline-none focus:border-copper" />
             </div>
             {msg && <p className={`text-sm ${msg.kind === "ok" ? "text-emerald-700" : "text-destructive"}`}>{msg.text}</p>}
             <button type="submit" disabled={busy} className="w-full bg-primary px-6 py-4 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper transition-colors disabled:opacity-50">
