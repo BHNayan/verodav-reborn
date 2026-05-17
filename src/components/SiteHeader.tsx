@@ -94,10 +94,10 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-1 sm:gap-2">
           <LanguageSwitcher />
-          <Link to="/boutique" aria-label="Boutique" className="hidden md:inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-[11px] uppercase tracking-widest text-primary-foreground hover:bg-copper transition-colors">
-            <Search className="h-3.5 w-3.5" /> Boutique
+          <Link to="/boutique" aria-label={t("nav.shop")} className="hidden md:inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-[11px] uppercase tracking-widest text-primary-foreground hover:bg-copper transition-colors">
+            <Search className="h-3.5 w-3.5" /> {t("nav.shop")}
           </Link>
-          <Link to="/boutique" aria-label="Boutique" className="md:hidden p-2 text-primary hover:text-copper transition">
+          <Link to="/boutique" aria-label={t("nav.shop")} className="md:hidden p-2 text-primary hover:text-copper transition">
             <Search className="h-5 w-5" />
           </Link>
 
@@ -105,7 +105,7 @@ export function SiteHeader() {
             <div className="relative" ref={userMenuRef}>
               <button
                 onClick={() => setUserMenu((v) => !v)}
-                aria-label="Mon compte"
+                aria-label={t("nav.account")}
                 aria-expanded={userMenu}
                 className="flex items-center gap-2 p-2 text-primary hover:text-copper transition"
               >
@@ -118,25 +118,25 @@ export function SiteHeader() {
               {userMenu && (
                 <div className="absolute right-0 top-full mt-2 w-60 border border-border bg-card shadow-xl">
                   <div className="border-b border-border px-4 py-3">
-                    <div className="text-xs uppercase tracking-widest text-muted-foreground">Connecté</div>
+                    <div className="text-xs uppercase tracking-widest text-muted-foreground">{t("nav.connected")}</div>
                     <div className="truncate text-sm font-medium">{user.email}</div>
                   </div>
                   {isAdmin && (
                     <Link to="/admin" onClick={() => setUserMenu(false)} className="flex items-center gap-3 bg-copper/10 px-4 py-2.5 text-sm font-medium text-copper hover:bg-copper/20">
-                      <UserCircle className="h-4 w-4" /> Administration
+                      <UserCircle className="h-4 w-4" /> {t("nav.admin")}
                     </Link>
                   )}
                   <Link to="/compte" onClick={() => setUserMenu(false)} className="flex items-center gap-3 px-4 py-2.5 text-sm hover:bg-secondary">
-                    <User className="h-4 w-4" /> Mon compte
+                    <User className="h-4 w-4" /> {t("nav.account")}
                   </Link>
                   <Link to="/commandes" onClick={() => setUserMenu(false)} className="flex items-center gap-3 px-4 py-2.5 text-sm hover:bg-secondary">
-                    <Package className="h-4 w-4" /> Mes commandes
+                    <Package className="h-4 w-4" /> {t("nav.orders")}
                   </Link>
                   <Link to="/favoris" onClick={() => setUserMenu(false)} className="flex items-center gap-3 px-4 py-2.5 text-sm hover:bg-secondary">
-                    <Heart className="h-4 w-4" /> Mes favoris
+                    <Heart className="h-4 w-4" /> {t("nav.favorites")}
                   </Link>
                   <button onClick={handleSignOut} className="flex w-full items-center gap-3 border-t border-border px-4 py-2.5 text-sm text-destructive hover:bg-secondary">
-                    <LogOut className="h-4 w-4" /> Se déconnecter
+                    <LogOut className="h-4 w-4" /> {t("nav.signout")}
                   </button>
                 </div>
               )}
@@ -191,21 +191,21 @@ export function SiteHeader() {
 
           {user && (
             <div className="border-b border-border bg-secondary/40 px-5 py-4">
-              <div className="text-xs uppercase tracking-widest text-muted-foreground">Connecté</div>
+              <div className="text-xs uppercase tracking-widest text-muted-foreground">{t("nav.connected")}</div>
               <div className="mt-1 truncate text-sm font-medium">{displayNameOf(user)}</div>
               <div className="truncate text-xs text-muted-foreground">{user.email}</div>
             </div>
           )}
 
           <nav className="flex-1 overflow-y-auto px-5 py-4 text-sm">
-            <Link to="/" onClick={close} className="block border-b border-border py-3 font-medium">Accueil</Link>
-            <Link to="/boutique" onClick={close} className="block border-b border-border py-3 font-medium">Boutique</Link>
+            <Link to="/" onClick={close} className="block border-b border-border py-3 font-medium">{t("nav.home")}</Link>
+            <Link to="/boutique" onClick={close} className="block border-b border-border py-3 font-medium">{t("nav.shop")}</Link>
             <button
               onClick={() => setCatOpen((v) => !v)}
               className="flex w-full items-center justify-between border-b border-border py-3 font-medium"
               aria-expanded={catOpen}
             >
-              <span>Catégories</span>
+              <span>{t("nav.categories")}</span>
               <ChevronDown className={`h-4 w-4 transition-transform ${catOpen ? "rotate-180" : ""}`} />
             </button>
             {catOpen && (
@@ -219,34 +219,34 @@ export function SiteHeader() {
                 ))}
               </div>
             )}
-            <Link to="/a-propos" onClick={close} className="block border-b border-border py-3 font-medium">À propos</Link>
-            <Link to="/blog" onClick={close} className="block border-b border-border py-3 font-medium">Blog</Link>
-            <Link to="/contact" onClick={close} className="block border-b border-border py-3 font-medium">Contact</Link>
+            <Link to="/a-propos" onClick={close} className="block border-b border-border py-3 font-medium">{t("nav.about")}</Link>
+            <Link to="/blog" onClick={close} className="block border-b border-border py-3 font-medium">{t("nav.blog")}</Link>
+            <Link to="/contact" onClick={close} className="block border-b border-border py-3 font-medium">{t("nav.contact")}</Link>
 
             {user ? (
               <div className="mt-4 space-y-1">
                 <Link to="/compte" onClick={close} className="flex items-center gap-3 px-1 py-2.5 text-sm hover:text-copper">
-                  <User className="h-4 w-4" /> Mon compte
+                  <User className="h-4 w-4" /> {t("nav.account")}
                 </Link>
                 <Link to="/commandes" onClick={close} className="flex items-center gap-3 px-1 py-2.5 text-sm hover:text-copper">
-                  <Package className="h-4 w-4" /> Mes commandes
+                  <Package className="h-4 w-4" /> {t("nav.orders")}
                 </Link>
                 <Link to="/favoris" onClick={close} className="flex items-center gap-3 px-1 py-2.5 text-sm hover:text-copper">
-                  <Heart className="h-4 w-4" /> Mes favoris
+                  <Heart className="h-4 w-4" /> {t("nav.favorites")}
                 </Link>
                 <button onClick={handleSignOut} className="mt-2 flex w-full items-center justify-center gap-2 border border-border px-4 py-3 text-xs uppercase tracking-widest text-destructive hover:bg-secondary transition">
-                  <LogOut className="h-4 w-4" /> Se déconnecter
+                  <LogOut className="h-4 w-4" /> {t("nav.signout")}
                 </button>
               </div>
             ) : (
               <div className="mt-4 grid grid-cols-2 gap-2">
                 <Link to="/auth" search={{ redirect: "/", mode: "signin" }} onClick={close}
                   className="inline-flex items-center justify-center gap-2 border border-border px-4 py-3 text-xs uppercase tracking-widest hover:bg-secondary transition">
-                  <User className="h-4 w-4" /> Se connecter
+                  <User className="h-4 w-4" /> {t("nav.signin")}
                 </Link>
                 <Link to="/panier" onClick={close}
                   className="inline-flex items-center justify-center gap-2 bg-primary px-4 py-3 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper transition">
-                  <ShoppingBag className="h-4 w-4" /> Panier ({cartCount})
+                  <ShoppingBag className="h-4 w-4" /> {t("common.cart")} ({cartCount})
                 </Link>
               </div>
             )}
