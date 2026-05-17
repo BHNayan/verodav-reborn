@@ -199,6 +199,7 @@ function AboutPage() {
         </div>
       </section>
     </>
+    </PageCmsWrapper>
   );
 }
 
