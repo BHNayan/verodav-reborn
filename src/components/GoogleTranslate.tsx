@@ -82,8 +82,9 @@ export function GoogleTranslate() {
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (document.documentElement.getAttribute("data-gt") === "unavailable") return;
+    const timers: number[] = [];
     const retranslate = (delay = 0) => {
-      window.setTimeout(() => {
+      const id = window.setTimeout(() => {
         const select = document.querySelector<HTMLSelectElement>("select.goog-te-combo");
         if (!select) return;
         let target = select.value;
@@ -94,12 +95,16 @@ export function GoogleTranslate() {
         if (select.value !== target) select.value = target;
         select.dispatchEvent(new Event("change", { bubbles: true }));
       }, delay);
+      timers.push(id);
     };
     const tries = [80, 250, 800, 1800];
-    const timers = tries.map((t) => window.setTimeout(() => retranslate(), t));
+    tries.forEach(retranslate);
     const onLanguageChange = () => tries.forEach(retranslate);
     window.addEventListener("app-language-change", onLanguageChange);
-    return () => timers.forEach((id) => window.clearTimeout(id));
+    return () => {
+      window.removeEventListener("app-language-change", onLanguageChange);
+      timers.forEach((id) => window.clearTimeout(id));
+    };
   }, [pathname]);
 
   // No inline display:none — that breaks Translate's bootstrap. CSS in
