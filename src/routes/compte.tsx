@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { Trash2, Plus } from "lucide-react";
+import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/compte")({
   head: () => ({ meta: [{ title: "Mon compte — Verodav Home" }] }),
@@ -22,34 +23,35 @@ type FavRow = { id: string; product_id: string; products: { id: string; slug: st
 function ComptePage() {
   const { user, loading } = useAuth();
   const navigate = useNavigate();
+  const { t } = useI18n();
 
   useEffect(() => {
     if (!loading && !user) navigate({ to: "/auth", search: { redirect: "/compte", mode: "signin" } });
   }, [user, loading, navigate]);
 
-  if (loading || !user) return <div className="mx-auto max-w-3xl px-5 py-16 text-sm text-muted-foreground">Chargement…</div>;
+  if (loading || !user) return <div className="mx-auto max-w-3xl px-5 py-16 text-sm text-muted-foreground">{t("common.loading")}</div>;
 
   return (
     <div className="mx-auto max-w-4xl px-5 py-12 md:py-16">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <h1 className="font-display text-4xl md:text-5xl">Mon compte</h1>
-          <p className="mt-2 text-muted-foreground">Bonjour {displayNameOf(user)}.</p>
+          <h1 className="font-display text-4xl md:text-5xl">{t("account.title")}</h1>
+          <p className="mt-2 text-muted-foreground">{t("account.hello")} {displayNameOf(user)}.</p>
         </div>
         <button
           onClick={async () => { await signOut(); navigate({ to: "/" }); }}
           className="border border-border px-4 py-2 text-xs uppercase tracking-widest hover:bg-secondary transition"
         >
-          Se déconnecter
+          {t("nav.signout")}
         </button>
       </div>
 
       <Tabs defaultValue="profil" className="mt-10">
         <TabsList className="h-auto w-full justify-start gap-1 bg-transparent p-0 border-b border-border rounded-none">
-          <TabsTrigger value="profil" className="rounded-none border-b-2 border-transparent data-[state=active]:border-copper data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-3">Profil</TabsTrigger>
-          <TabsTrigger value="adresses" className="rounded-none border-b-2 border-transparent data-[state=active]:border-copper data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-3">Adresses</TabsTrigger>
-          <TabsTrigger value="favoris" className="rounded-none border-b-2 border-transparent data-[state=active]:border-copper data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-3">Favoris</TabsTrigger>
-          <TabsTrigger value="commandes" className="rounded-none border-b-2 border-transparent data-[state=active]:border-copper data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-3">Commandes</TabsTrigger>
+          <TabsTrigger value="profil" className="rounded-none border-b-2 border-transparent data-[state=active]:border-copper data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-3">{t("account.tab.profile")}</TabsTrigger>
+          <TabsTrigger value="adresses" className="rounded-none border-b-2 border-transparent data-[state=active]:border-copper data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-3">{t("account.tab.addresses")}</TabsTrigger>
+          <TabsTrigger value="favoris" className="rounded-none border-b-2 border-transparent data-[state=active]:border-copper data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-3">{t("account.tab.favorites")}</TabsTrigger>
+          <TabsTrigger value="commandes" className="rounded-none border-b-2 border-transparent data-[state=active]:border-copper data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-3">{t("account.tab.orders")}</TabsTrigger>
         </TabsList>
 
         <TabsContent value="profil" className="mt-8"><ProfileTab userId={user.id} email={user.email ?? ""} /></TabsContent>
