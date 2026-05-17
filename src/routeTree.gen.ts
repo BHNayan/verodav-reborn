@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ServiceApresVenteRouteImport } from './routes/service-apres-vente'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as ProtectionDesDonneesPersonnellesRouteImport } from './routes/protection-des-donnees-personnelles'
@@ -39,6 +40,11 @@ import { Route as AdminContactsRouteImport } from './routes/admin.contacts'
 import { Route as AdminCategoriesRouteImport } from './routes/admin.categories'
 import { Route as AdminBlogRouteImport } from './routes/admin.blog'
 
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServiceApresVenteRoute = ServiceApresVenteRouteImport.update({
   id: '/service-apres-vente',
   path: '/service-apres-vente',
@@ -204,6 +210,7 @@ export interface FileRoutesByFullPath {
   '/protection-des-donnees-personnelles': typeof ProtectionDesDonneesPersonnellesRoute
   '/reset-password': typeof ResetPasswordRoute
   '/service-apres-vente': typeof ServiceApresVenteRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/blog': typeof AdminBlogRoute
   '/admin/categories': typeof AdminCategoriesRoute
   '/admin/contacts': typeof AdminContactsRoute
@@ -234,6 +241,7 @@ export interface FileRoutesByTo {
   '/protection-des-donnees-personnelles': typeof ProtectionDesDonneesPersonnellesRoute
   '/reset-password': typeof ResetPasswordRoute
   '/service-apres-vente': typeof ServiceApresVenteRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/blog': typeof AdminBlogRoute
   '/admin/categories': typeof AdminCategoriesRoute
   '/admin/contacts': typeof AdminContactsRoute
@@ -266,6 +274,7 @@ export interface FileRoutesById {
   '/protection-des-donnees-personnelles': typeof ProtectionDesDonneesPersonnellesRoute
   '/reset-password': typeof ResetPasswordRoute
   '/service-apres-vente': typeof ServiceApresVenteRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/blog': typeof AdminBlogRoute
   '/admin/categories': typeof AdminCategoriesRoute
   '/admin/contacts': typeof AdminContactsRoute
@@ -299,6 +308,7 @@ export interface FileRouteTypes {
     | '/protection-des-donnees-personnelles'
     | '/reset-password'
     | '/service-apres-vente'
+    | '/sitemap.xml'
     | '/admin/blog'
     | '/admin/categories'
     | '/admin/contacts'
@@ -329,6 +339,7 @@ export interface FileRouteTypes {
     | '/protection-des-donnees-personnelles'
     | '/reset-password'
     | '/service-apres-vente'
+    | '/sitemap.xml'
     | '/admin/blog'
     | '/admin/categories'
     | '/admin/contacts'
@@ -360,6 +371,7 @@ export interface FileRouteTypes {
     | '/protection-des-donnees-personnelles'
     | '/reset-password'
     | '/service-apres-vente'
+    | '/sitemap.xml'
     | '/admin/blog'
     | '/admin/categories'
     | '/admin/contacts'
@@ -392,12 +404,20 @@ export interface RootRouteChildren {
   ProtectionDesDonneesPersonnellesRoute: typeof ProtectionDesDonneesPersonnellesRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
   ServiceApresVenteRoute: typeof ServiceApresVenteRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   CategorieSlugRoute: typeof CategorieSlugRoute
   ProduitSlugRoute: typeof ProduitSlugRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/service-apres-vente': {
       id: '/service-apres-vente'
       path: '/service-apres-vente'
@@ -659,6 +679,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProtectionDesDonneesPersonnellesRoute: ProtectionDesDonneesPersonnellesRoute,
   ResetPasswordRoute: ResetPasswordRoute,
   ServiceApresVenteRoute: ServiceApresVenteRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   CategorieSlugRoute: CategorieSlugRoute,
   ProduitSlugRoute: ProduitSlugRoute,
 }
