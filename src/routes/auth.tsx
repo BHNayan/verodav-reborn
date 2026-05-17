@@ -92,6 +92,26 @@ function AuthPage() {
           {mode === "signup" ? "Rejoignez Verodav Home." : "Accédez à votre compte Verodav Home."}
         </p>
 
+        {mode === "signin" && (
+          <div className="mt-6 border border-copper/40 bg-copper/5 p-4">
+            <div className="text-xs uppercase tracking-widest text-copper">Comptes de démonstration</div>
+            <div className="mt-3 space-y-2 text-xs">
+              {[
+                { label: "Admin", email: "admin@verodav.test", pw: "Admin1234!" },
+                { label: "Client", email: "customer@verodav.test", pw: "Customer1234!" },
+              ].map((d) => (
+                <div key={d.email} className="flex items-center justify-between gap-2 border border-border bg-background px-3 py-2">
+                  <div className="min-w-0">
+                    <div className="font-medium">{d.label}</div>
+                    <div className="truncate text-muted-foreground">{d.email} / {d.pw}</div>
+                  </div>
+                  <button type="button" onClick={() => { setEmail(d.email); setPassword(d.pw); }} className="shrink-0 bg-primary px-3 py-1.5 text-[10px] uppercase tracking-widest text-primary-foreground hover:bg-copper">Remplir</button>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         <button
           onClick={handleGoogle}
           disabled={busy}

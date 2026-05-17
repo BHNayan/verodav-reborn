@@ -5,6 +5,7 @@ import { categories } from "@/lib/products";
 import { SITE } from "@/lib/site";
 import { useCartCount } from "@/lib/cart";
 import { useAuth, displayNameOf, signOut } from "@/lib/auth";
+import { useUserRoles } from "@/lib/roles";
 import logo from "@/assets/verodav-logo.png";
 
 export function SiteHeader() {
