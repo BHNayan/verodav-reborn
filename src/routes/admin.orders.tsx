@@ -3,6 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import { ExportImportBar } from "@/components/admin/ExportImportBar";
 
 type Order = { id: string; user_id: string; status: string; total: number; created_at: string };
 type Item = { id: string; product_name: string; unit_price: number; quantity: number };
