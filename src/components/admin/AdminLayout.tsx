@@ -88,7 +88,7 @@ export function AdminLayout() {
           </>
         )}
 
-        <main className="flex-1 min-w-0 px-4 py-6 md:px-8 md:py-8">
+        <main className="flex-1 min-w-0 px-3 py-5 md:px-8 md:py-8">
           <Outlet />
         </main>
       </div>
