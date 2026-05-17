@@ -90,6 +90,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <I18nProvider>
         <ScrollRestoration />
+        <GoogleTranslate />
         {!isAdminArea && <SiteHeader />}
         <main className="min-h-[60vh]">
           <Outlet />
