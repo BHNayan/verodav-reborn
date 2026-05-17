@@ -77,7 +77,6 @@ function AboutPage() {
 
   return (
     <PageCmsWrapper slug="a-propos">
-      <>
     <>
       {/* HERO */}
       <header className="border-b border-border bg-secondary/40">
