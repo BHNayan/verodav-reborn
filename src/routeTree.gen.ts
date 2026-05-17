@@ -13,6 +13,7 @@ import { Route as ServiceApresVenteRouteImport } from './routes/service-apres-ve
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as ProtectionDesDonneesPersonnellesRouteImport } from './routes/protection-des-donnees-personnelles'
 import { Route as PolitiqueDeConfidentialiteRouteImport } from './routes/politique-de-confidentialite'
+import { Route as PanierRouteImport } from './routes/panier'
 import { Route as MentionsLegalesRouteImport } from './routes/mentions-legales'
 import { Route as FavorisRouteImport } from './routes/favoris'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -56,6 +57,11 @@ const PolitiqueDeConfidentialiteRoute =
     path: '/politique-de-confidentialite',
     getParentRoute: () => rootRouteImport,
   } as any)
+const PanierRoute = PanierRouteImport.update({
+  id: '/panier',
+  path: '/panier',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MentionsLegalesRoute = MentionsLegalesRouteImport.update({
   id: '/mentions-legales',
   path: '/mentions-legales',
@@ -169,6 +175,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/favoris': typeof FavorisRoute
   '/mentions-legales': typeof MentionsLegalesRoute
+  '/panier': typeof PanierRoute
   '/politique-de-confidentialite': typeof PolitiqueDeConfidentialiteRoute
   '/protection-des-donnees-personnelles': typeof ProtectionDesDonneesPersonnellesRoute
   '/reset-password': typeof ResetPasswordRoute
@@ -194,6 +201,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/favoris': typeof FavorisRoute
   '/mentions-legales': typeof MentionsLegalesRoute
+  '/panier': typeof PanierRoute
   '/politique-de-confidentialite': typeof PolitiqueDeConfidentialiteRoute
   '/protection-des-donnees-personnelles': typeof ProtectionDesDonneesPersonnellesRoute
   '/reset-password': typeof ResetPasswordRoute
@@ -221,6 +229,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/favoris': typeof FavorisRoute
   '/mentions-legales': typeof MentionsLegalesRoute
+  '/panier': typeof PanierRoute
   '/politique-de-confidentialite': typeof PolitiqueDeConfidentialiteRoute
   '/protection-des-donnees-personnelles': typeof ProtectionDesDonneesPersonnellesRoute
   '/reset-password': typeof ResetPasswordRoute
@@ -249,6 +258,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/favoris'
     | '/mentions-legales'
+    | '/panier'
     | '/politique-de-confidentialite'
     | '/protection-des-donnees-personnelles'
     | '/reset-password'
@@ -274,6 +284,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/favoris'
     | '/mentions-legales'
+    | '/panier'
     | '/politique-de-confidentialite'
     | '/protection-des-donnees-personnelles'
     | '/reset-password'
@@ -300,6 +311,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/favoris'
     | '/mentions-legales'
+    | '/panier'
     | '/politique-de-confidentialite'
     | '/protection-des-donnees-personnelles'
     | '/reset-password'
@@ -327,6 +339,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   FavorisRoute: typeof FavorisRoute
   MentionsLegalesRoute: typeof MentionsLegalesRoute
+  PanierRoute: typeof PanierRoute
   PolitiqueDeConfidentialiteRoute: typeof PolitiqueDeConfidentialiteRoute
   ProtectionDesDonneesPersonnellesRoute: typeof ProtectionDesDonneesPersonnellesRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
@@ -363,6 +376,13 @@ declare module '@tanstack/react-router' {
       path: '/politique-de-confidentialite'
       fullPath: '/politique-de-confidentialite'
       preLoaderRoute: typeof PolitiqueDeConfidentialiteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/panier': {
+      id: '/panier'
+      path: '/panier'
+      fullPath: '/panier'
+      preLoaderRoute: typeof PanierRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/mentions-legales': {
@@ -550,6 +570,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   FavorisRoute: FavorisRoute,
   MentionsLegalesRoute: MentionsLegalesRoute,
+  PanierRoute: PanierRoute,
   PolitiqueDeConfidentialiteRoute: PolitiqueDeConfidentialiteRoute,
   ProtectionDesDonneesPersonnellesRoute: ProtectionDesDonneesPersonnellesRoute,
   ResetPasswordRoute: ResetPasswordRoute,

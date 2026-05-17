@@ -147,7 +147,7 @@ export function SiteHeader() {
             </Link>
           )}
 
-          <Link to="/boutique" aria-label="Panier" className="relative p-2 text-primary hover:text-copper transition">
+          <Link to="/panier" aria-label="Panier" className="relative p-2 text-primary hover:text-copper transition">
             <ShoppingBag className="h-5 w-5" />
             {cartCount > 0 && (
               <span className="absolute -right-0.5 -top-0.5 grid h-4 min-w-4 place-items-center rounded-full bg-copper px-1 text-[10px] font-semibold text-primary-foreground">
@@ -239,7 +239,7 @@ export function SiteHeader() {
                   className="inline-flex items-center justify-center gap-2 border border-border px-4 py-3 text-xs uppercase tracking-widest hover:bg-secondary transition">
                   <User className="h-4 w-4" /> Se connecter
                 </Link>
-                <Link to="/boutique" onClick={close}
+                <Link to="/panier" onClick={close}
                   className="inline-flex items-center justify-center gap-2 bg-primary px-4 py-3 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper transition">
                   <ShoppingBag className="h-4 w-4" /> Panier ({cartCount})
                 </Link>
