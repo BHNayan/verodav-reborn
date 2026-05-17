@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { PageCmsWrapper } from "@/components/PageCmsWrapper";
 import { LegalLayout, Section } from "@/components/LegalLayout";
 import { SITE } from "@/lib/site";
 
@@ -14,6 +15,8 @@ export const Route = createFileRoute("/protection-des-donnees-personnelles")({
 
 function Page() {
   return (
+    <PageCmsWrapper slug="protection-des-donnees-personnelles">
+      <>
     <LegalLayout
       title="Protection des données personnelles"
       intro="Dernière mise à jour : 17 août 2025."
@@ -141,6 +144,7 @@ function Page() {
         <p>Le consentement préalable du Client est obligatoire pour l'installation de cookies non strictement nécessaires (publicité, personnalisation des offres). La durée de validité du consentement ainsi obtenu est de treize (13) mois maximum, à compter de leur dépôt sur le terminal de l'utilisateur.</p>
         <p>Le Client peut à tout moment paramétrer son logiciel de navigation pour accepter ou refuser ponctuellement les cookies, ou les refuser systématiquement. Dans cette dernière hypothèse, la Société décline toute responsabilité en cas de conséquences négatives sur le fonctionnement ralenti de ses services.</p>
       </Section>
-    </LegalLayout>
+    </LegalLayout></>
+    </PageCmsWrapper>
   );
 }

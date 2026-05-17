@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { PageCmsWrapper } from "@/components/PageCmsWrapper";
 import { useState } from "react";
 import { useCategories } from "@/lib/products";
 import { ChevronDown } from "lucide-react";
@@ -75,6 +76,7 @@ function AboutPage() {
   const categories = useCategories();
 
   return (
+    <PageCmsWrapper slug="a-propos">
     <>
       {/* HERO */}
       <header className="border-b border-border bg-secondary/40">
@@ -197,6 +199,7 @@ function AboutPage() {
         </div>
       </section>
     </>
+    </PageCmsWrapper>
   );
 }
 
