@@ -40,9 +40,44 @@ function Page() {
     if (error) alert(error.message); else load();
   };
 
+  const exportRows = async () => {
+    const { data: items } = await supabase.from("order_items").select("order_id, product_name, unit_price, quantity");
+    const byOrder = new Map<string, Item[]>();
+    (items ?? []).forEach((i) => {
+      const arr = byOrder.get(i.order_id) ?? [];
+      arr.push(i as Item);
+      byOrder.set(i.order_id, arr);
+    });
+    return orders.map((o) => ({
+      id: o.id,
+      user_id: o.user_id,
+      status: o.status,
+      total: Number(o.total),
+      created_at: o.created_at,
+      items: (byOrder.get(o.id) ?? []).map((i) => `${i.product_name} x${i.quantity} @ ${Number(i.unit_price).toFixed(2)}€`).join(" | "),
+      items_count: (byOrder.get(o.id) ?? []).reduce((s, i) => s + i.quantity, 0),
+    }));
+  };
+
+  const importRows = async (rows: Record<string, unknown>[]) => {
+    let ok = 0, fail = 0;
+    for (const r of rows) {
+      const id = String(r.id ?? "").trim();
+      const status = String(r.status ?? "").trim();
+      if (!id || !STATUSES.includes(status)) { fail++; continue; }
+      const { error } = await supabase.from("orders").update({ status }).eq("id", id);
+      if (error) fail++; else ok++;
+    }
+    alert(`Mise à jour commandes — Réussis: ${ok}, échoués: ${fail}`);
+    load();
+  };
+
   return (
     <div>
-      <h1 className="font-display text-3xl md:text-4xl">{useI18n().t("admin.orders.title")}</h1>
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <h1 className="font-display text-3xl md:text-4xl">{useI18n().t("admin.orders.title")}</h1>
+        <ExportImportBar filenameBase="commandes" getRows={exportRows} onImport={importRows} importLabel="Mettre à jour statuts" />
+      </div>
       <div className="mt-4 flex flex-wrap gap-2">
         {["all", ...STATUSES].map((s) => (
           <button key={s} onClick={() => setFilter(s)} className={`border border-border px-3 py-1.5 text-xs uppercase tracking-widest ${filter === s ? "bg-primary text-primary-foreground" : "hover:bg-secondary"}`}>{s}</button>
