@@ -76,22 +76,29 @@ export function GoogleTranslate() {
     return () => { if (timeoutId) window.clearTimeout(timeoutId); };
   }, []);
 
-  // On SPA route changes, nudge the widget to re-scan the new DOM. The
+  // On SPA route/language changes, nudge the widget to re-scan the current DOM. The
   // hidden Translate <select> emits translations when its `change` event
   // fires — re-dispatching it on the current value forces a fresh pass.
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (document.documentElement.getAttribute("data-gt") === "unavailable") return;
-    const tries = [80, 250, 800, 1800];
-    const timers = tries.map((t) =>
+    const retranslate = (delay = 0) => {
       window.setTimeout(() => {
         const select = document.querySelector<HTMLSelectElement>("select.goog-te-combo");
         if (!select) return;
-        const target = select.value;
+        let target = select.value;
+        try {
+          target = (localStorage.getItem("lang") || target) as string;
+        } catch {}
         if (!target) return;
+        if (select.value !== target) select.value = target;
         select.dispatchEvent(new Event("change", { bubbles: true }));
-      }, t),
-    );
+      }, delay);
+    };
+    const tries = [80, 250, 800, 1800];
+    const timers = tries.map((t) => window.setTimeout(() => retranslate(), t));
+    const onLanguageChange = () => tries.forEach(retranslate);
+    window.addEventListener("app-language-change", onLanguageChange);
     return () => timers.forEach((id) => window.clearTimeout(id));
   }, [pathname]);
 
