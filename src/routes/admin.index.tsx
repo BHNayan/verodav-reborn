@@ -10,6 +10,7 @@ export const Route = createFileRoute("/admin/")({
 
 function AdminHome() {
   const [stats, setStats] = useState({ products: 0, orders: 0, customers: 0, revenue: 0 });
+  const { t } = useI18n();
 
   useEffect(() => {
     (async () => {
@@ -25,16 +26,16 @@ function AdminHome() {
   }, []);
 
   const cards = [
-    { label: "Produits", value: stats.products, icon: Package },
-    { label: "Commandes", value: stats.orders, icon: ShoppingCart },
-    { label: "Clients", value: stats.customers, icon: Users },
-    { label: "Revenu (€)", value: stats.revenue.toFixed(2), icon: Euro },
+    { label: t("admin.products"), value: stats.products, icon: Package },
+    { label: t("admin.orders"), value: stats.orders, icon: ShoppingCart },
+    { label: t("admin.customers"), value: stats.customers, icon: Users },
+    { label: t("admin.revenue"), value: stats.revenue.toFixed(2), icon: Euro },
   ];
 
   return (
     <div>
-      <h1 className="font-display text-3xl md:text-4xl">Tableau de bord</h1>
-      <p className="mt-1 text-sm text-muted-foreground">Vue d'ensemble de votre boutique.</p>
+      <h1 className="font-display text-3xl md:text-4xl">{t("admin.dashboard")}</h1>
+      <p className="mt-1 text-sm text-muted-foreground">{t("admin.overview")}</p>
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {cards.map((c) => (
           <div key={c.label} className="border border-border bg-card p-5">
