@@ -1,27 +1,18 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft, Check, Mail, Phone, ShoppingBag, Star } from "lucide-react";
-import { getProduct, products, type Product } from "@/lib/products";
+import { productQueryOptions, useProducts, type Product } from "@/lib/products";
 import { ProductCard } from "@/components/ProductCard";
 import { formatPrice, SITE } from "@/lib/site";
 import { cart } from "@/lib/cart";
 
 export const Route = createFileRoute("/produit/$slug")({
-  loader: ({ params }) => {
-    const product = getProduct(params.slug);
-    if (!product) throw notFound();
-    const related = products
-      .filter((p) => p.id !== product.id && p.categories.some((c) => product.categories.includes(c)))
-      .slice(0, 4);
-    return { product, related };
-  },
-  head: ({ loaderData }) => ({
-    meta: loaderData ? [
-      { title: `${loaderData.product.name} — Verodav Home` },
-      { name: "description", content: loaderData.product.short || loaderData.product.description.slice(0, 160) },
-      { property: "og:title", content: loaderData.product.name },
-      { property: "og:image", content: loaderData.product.image || "" },
-    ] : [],
+  head: ({ params }) => ({
+    meta: [
+      { title: `${params.slug} — Verodav Home` },
+      { property: "og:title", content: params.slug },
+    ],
   }),
   notFoundComponent: () => (
     <div className="mx-auto max-w-7xl px-6 py-24 text-center">
@@ -33,8 +24,17 @@ export const Route = createFileRoute("/produit/$slug")({
 });
 
 function ProductPage() {
-  const { product, related } = Route.useLoaderData();
+  const { slug } = Route.useParams();
+  const { data: product, isLoading } = useQuery(productQueryOptions(slug));
+  const all = useProducts();
   const [qty, setQty] = useState(1);
+
+  if (isLoading) return <div className="mx-auto max-w-7xl px-6 py-16 text-sm text-muted-foreground">Chargement…</div>;
+  if (!product) throw notFound();
+
+  const related = all
+    .filter((p) => p.id !== product.id && p.categories.some((c) => product.categories.includes(c)))
+    .slice(0, 4);
 
   return (
     <>
