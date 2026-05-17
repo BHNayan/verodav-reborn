@@ -20,10 +20,24 @@ function AdminLogin() {
   useEffect(() => {
     if (loading || !session) return;
     (async () => {
-      const { data } = await supabase.from("user_roles").select("role").eq("user_id", session.user.id);
+      const { data, error: qErr } = await supabase
+        .from("user_roles")
+        .select("role")
+        .eq("user_id", session.user.id);
+      if (qErr) {
+        setError(`Erreur de vérification des droits : ${qErr.message}`);
+        return;
+      }
       const isAdmin = (data ?? []).some((r) => r.role === "admin");
-      if (isAdmin) navigate({ to: "/admin" });
-      else setError("Ce compte n'a pas les droits administrateur.");
+      if (isAdmin) {
+        navigate({ to: "/admin" });
+      } else {
+        setError(
+          `Ce compte n'a pas les droits administrateur. (rôles trouvés : ${
+            (data ?? []).map((r) => r.role).join(", ") || "aucun"
+          })`,
+        );
+      }
     })();
   }, [session, loading, navigate]);
 
