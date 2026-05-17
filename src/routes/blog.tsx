@@ -3,7 +3,7 @@ import { useMemo } from "react";
 import { Search, X } from "lucide-react";
 import { zodValidator, fallback } from "@tanstack/zod-adapter";
 import { z } from "zod";
-import { posts, formatDate } from "@/lib/blog";
+import { usePosts, formatDate } from "@/lib/blog";
 
 const PAGE_SIZE = 6;
 
