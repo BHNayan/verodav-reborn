@@ -149,10 +149,10 @@ function ProductPage() {
           )}
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
-            <div className="inline-flex items-center border border-border">
-              <button onClick={() => setQty(Math.max(1, qty - 1))} className="px-4 py-3 hover:bg-secondary">−</button>
-              <span className="px-5 py-3 font-medium min-w-12 text-center">{qty}</span>
-              <button onClick={() => setQty(qty + 1)} className="px-4 py-3 hover:bg-secondary">+</button>
+            <div className="inline-flex items-center border border-border" role="group" aria-label="Quantité">
+              <button type="button" aria-label="Diminuer la quantité" onClick={() => setQty(Math.max(1, qty - 1))} className="px-4 py-3 hover:bg-secondary">−</button>
+              <span aria-live="polite" aria-label={`Quantité : ${qty}`} className="px-5 py-3 font-medium min-w-12 text-center">{qty}</span>
+              <button type="button" aria-label="Augmenter la quantité" onClick={() => setQty(qty + 1)} className="px-4 py-3 hover:bg-secondary">+</button>
             </div>
             <button
               onClick={() =>
