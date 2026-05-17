@@ -149,3 +149,15 @@ export const productQueryOptions = (slug: string) =>
     queryFn: () => fetchProductBySlug(slug),
     staleTime: 60_000,
   });
+
+// Convenience hooks for components that need synchronous access patterns.
+// Returns empty arrays during the initial load so render code stays simple.
+import { useQuery } from "@tanstack/react-query";
+export function useProducts(): Product[] {
+  const { data } = useQuery(productsQueryOptions());
+  return data ?? [];
+}
+export function useCategories(): Category[] {
+  const { data } = useQuery(categoriesQueryOptions());
+  return data ?? [];
+}

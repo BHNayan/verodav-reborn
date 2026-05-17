@@ -122,3 +122,12 @@ export function formatDate(iso: string) {
     year: "numeric",
   });
 }
+
+import { useQuery } from "@tanstack/react-query";
+export function usePosts(): BlogPost[] {
+  const { data } = useQuery(postsQueryOptions());
+  return data ?? [];
+}
+export function getPostFromList(list: BlogPost[], slug: string) {
+  return list.find((p) => p.slug === slug);
+}
