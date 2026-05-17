@@ -4,14 +4,15 @@ import { LayoutDashboard, Package, FolderTree, ShoppingCart, Users, FileText, Ar
 import { useUserRoles } from "@/lib/roles";
 import { useAuth } from "@/lib/auth";
 
-const nav = [
+type NavItem = { to: string; label: string; icon: typeof LayoutDashboard; exact?: boolean };
+const nav: NavItem[] = [
   { to: "/admin", label: "Tableau de bord", icon: LayoutDashboard, exact: true },
   { to: "/admin/products", label: "Produits", icon: Package },
   { to: "/admin/categories", label: "Catégories", icon: FolderTree },
   { to: "/admin/orders", label: "Commandes", icon: ShoppingCart },
   { to: "/admin/customers", label: "Clients", icon: Users },
   { to: "/admin/blog", label: "Blog", icon: FileText },
-] as const;
+];
 
 export function AdminLayout() {
   const navigate = useNavigate();
