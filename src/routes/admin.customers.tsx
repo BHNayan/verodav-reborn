@@ -2,6 +2,7 @@ import { useI18n } from "@/lib/i18n";
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { ExportImportBar } from "@/components/admin/ExportImportBar";
 
 type Customer = { id: string; email: string | null; display_name: string | null; phone: string | null; created_at: string; orders_count: number; total_spent: number };
 
