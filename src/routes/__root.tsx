@@ -13,6 +13,7 @@ import {
 import appCss from "../styles.css?url";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { I18nProvider } from "@/lib/i18n";
 
 function NotFoundComponent() {
   return (
@@ -86,12 +87,14 @@ function RootComponent() {
   const isAdminArea = useRouterState({ select: (s) => s.location.pathname.startsWith("/admin") });
   return (
     <QueryClientProvider client={queryClient}>
-      <ScrollRestoration />
-      {!isAdminArea && <SiteHeader />}
-      <main className="min-h-[60vh]">
-        <Outlet />
-      </main>
-      {!isAdminArea && <SiteFooter />}
+      <I18nProvider>
+        <ScrollRestoration />
+        {!isAdminArea && <SiteHeader />}
+        <main className="min-h-[60vh]">
+          <Outlet />
+        </main>
+        {!isAdminArea && <SiteFooter />}
+      </I18nProvider>
     </QueryClientProvider>
   );
 }
