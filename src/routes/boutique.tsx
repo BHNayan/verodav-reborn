@@ -23,6 +23,8 @@ export const Route = createFileRoute("/boutique")({
 });
 
 function BoutiquePage() {
+  const products = useProducts();
+  const categories = useCategories();
   const { page } = Route.useSearch();
   const navigate = useNavigate({ from: "/boutique" });
   const setPage = (n: number) =>
