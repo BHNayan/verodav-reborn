@@ -77,7 +77,7 @@ function PanierPage() {
     const { data, error } = await supabase.rpc("place_order", {
       _items: items.map((i) => ({ id: i.id, qty: i.qty })),
       _shipping_address: address,
-      _notes: notes || null,
+      _notes: notes || undefined,
     });
     setSubmitting(false);
     if (error) {
