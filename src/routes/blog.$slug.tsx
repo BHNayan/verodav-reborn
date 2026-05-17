@@ -2,14 +2,56 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { postQueryOptions, usePosts, formatDate, type BlogPost, type BlogSection } from "@/lib/blog";
 
+const SITE_URL = "https://verodav-reborn.lovable.app";
+
 export const Route = createFileRoute("/blog/$slug")({
-  head: ({ params }) => ({
-    meta: [
-      { title: `${params.slug} — Verodav Home` },
-      { property: "og:title", content: params.slug },
+  loader: async ({ context, params }) => {
+    const post = await context.queryClient.ensureQueryData(postQueryOptions(params.slug));
+    return { post };
+  },
+  head: ({ params, loaderData }) => {
+    const post = loaderData?.post;
+    const url = `${SITE_URL}/blog/${params.slug}`;
+    const title = post ? `${post.title} — Verodav Home` : `${params.slug} — Verodav Home`;
+    const desc = (post?.excerpt || "Article du journal Verodav Home.").slice(0, 160);
+    const image = post?.image;
+    const meta: Array<Record<string, string>> = [
+      { title },
+      { name: "description", content: desc },
+      { property: "og:title", content: post?.title ?? params.slug },
+      { property: "og:description", content: desc },
       { property: "og:type", content: "article" },
-    ],
-  }),
+      { property: "og:url", content: url },
+      { name: "twitter:title", content: post?.title ?? params.slug },
+      { name: "twitter:description", content: desc },
+    ];
+    if (image) {
+      meta.push({ property: "og:image", content: image });
+      meta.push({ name: "twitter:image", content: image });
+    }
+    const scripts: Array<{ type: string; children: string }> = [];
+    if (post) {
+      scripts.push({
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: post.title,
+          description: post.excerpt,
+          image: image ? [image] : undefined,
+          datePublished: post.date,
+          author: { "@type": "Organization", name: "Verodav Home" },
+          publisher: {
+            "@type": "Organization",
+            name: "Verodav Home",
+            logo: { "@type": "ImageObject", url: `${SITE_URL}/favicon.ico` },
+          },
+          mainEntityOfPage: url,
+        }),
+      });
+    }
+    return { meta, links: [{ rel: "canonical", href: url }], scripts };
+  },
   notFoundComponent: () => (
     <div className="mx-auto max-w-3xl px-5 py-24 text-center">
       <h1 className="font-display text-5xl">Article introuvable</h1>

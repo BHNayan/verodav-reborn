@@ -1,0 +1,18 @@
+# Verodav Home
+
+> Boutique d'ustensiles, accessoires et pièces de cuisine et de maison, basée à Strasbourg. Sélection d'équipements pour la cuisson, les pâtes, les ventilateurs et plus encore.
+
+## Pages
+
+- [Accueil](/): Sélection et univers Verodav Home.
+- [Boutique](/boutique): Tous les produits (cuisson, pâtes, ventilateurs, accessoires, pièces).
+- [À propos](/a-propos): Histoire, valeurs et FAQ Verodav Home.
+- [Blog](/blog): Guides, conseils et inspirations cuisine et maison.
+- [Contact](/contact): Nous joindre depuis Strasbourg.
+- [Service après-vente](/service-apres-vente): Aide, retours, pièces de rechange.
+
+## Optional
+
+- [Mentions légales](/mentions-legales)
+- [Politique de confidentialité](/politique-de-confidentialite)
+- [Protection des données personnelles](/protection-des-donnees-personnelles)

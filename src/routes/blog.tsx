@@ -22,7 +22,9 @@ export const Route = createFileRoute("/blog")({
       { name: "description", content: "Conseils, guides et inspirations autour de la cuisine, des accessoires et du bricolage par Verodav Home." },
       { property: "og:title", content: "Blog — Verodav Home" },
       { property: "og:description", content: "Conseils et guides Verodav Home." },
+      { property: "og:url", content: "https://verodav-reborn.lovable.app/blog" },
     ],
+    links: [{ rel: "canonical", href: "https://verodav-reborn.lovable.app/blog" }],
   }),
   component: BlogIndex,
 });

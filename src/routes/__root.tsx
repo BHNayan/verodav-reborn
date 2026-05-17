@@ -62,8 +62,42 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/0d8ef9e7-2ec5-4f55-a618-8125d5f4e639/id-preview-5a69c9c5--483ff4e8-1c5a-48cb-9073-dbfce74d8d43.lovable.app-1778968249178.png" },
       { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/0d8ef9e7-2ec5-4f55-a618-8125d5f4e639/id-preview-5a69c9c5--483ff4e8-1c5a-48cb-9073-dbfce74d8d43.lovable.app-1778968249178.png" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:site_name", content: "Verodav Home" },
     ],
     links: [{ rel: "stylesheet", href: appCss }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Organization",
+              "@id": "https://verodav-reborn.lovable.app/#organization",
+              name: "Verodav Home",
+              url: "https://verodav-reborn.lovable.app",
+              logo: "https://verodav-reborn.lovable.app/favicon.ico",
+              email: "info@verodav-home.com",
+              telephone: "+33758347662",
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: "21 rue de Cherbourg",
+                postalCode: "67100",
+                addressLocality: "Strasbourg",
+                addressCountry: "FR",
+              },
+            },
+            {
+              "@type": "WebSite",
+              "@id": "https://verodav-reborn.lovable.app/#website",
+              url: "https://verodav-reborn.lovable.app",
+              name: "Verodav Home",
+              publisher: { "@id": "https://verodav-reborn.lovable.app/#organization" },
+            },
+          ],
+        }),
+      },
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,

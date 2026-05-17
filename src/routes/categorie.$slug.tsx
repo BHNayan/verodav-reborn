@@ -1,14 +1,39 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { useProducts, useCategories, type Product } from "@/lib/products";
+import { useProducts, useCategories, categoriesQueryOptions, type Product } from "@/lib/products";
 import { ProductCard } from "@/components/ProductCard";
 
+const SITE_URL = "https://verodav-reborn.lovable.app";
+
 export const Route = createFileRoute("/categorie/$slug")({
-  head: ({ params }) => ({
-    meta: [
-      { title: `${params.slug} — Verodav Home` },
-      { name: "description", content: `Produits de la catégorie ${params.slug}.` },
-    ],
-  }),
+  loader: async ({ context, params }) => {
+    const categories = await context.queryClient.ensureQueryData(categoriesQueryOptions());
+    const category = categories.find((c) => c.slug === params.slug) ?? null;
+    return { category };
+  },
+  head: ({ params, loaderData }) => {
+    const c = loaderData?.category;
+    const url = `${SITE_URL}/categorie/${params.slug}`;
+    const name = c?.name ?? params.slug;
+    const title = `${name} — Boutique Verodav Home`;
+    const desc = c
+      ? `Découvrez ${c.count} produits de la catégorie ${c.name} chez Verodav Home — ustensiles, accessoires et pièces sélectionnés à Strasbourg pour votre cuisine et votre maison.`
+      : `Découvrez la catégorie ${name} chez Verodav Home — ustensiles, accessoires et pièces de qualité pour votre cuisine et votre maison.`;
+    const meta: Array<Record<string, string>> = [
+      { title },
+      { name: "description", content: desc },
+      { property: "og:title", content: title },
+      { property: "og:description", content: desc },
+      { property: "og:url", content: url },
+      { property: "og:type", content: "website" },
+      { name: "twitter:title", content: title },
+      { name: "twitter:description", content: desc },
+    ];
+    if (c?.image) {
+      meta.push({ property: "og:image", content: c.image });
+      meta.push({ name: "twitter:image", content: c.image });
+    }
+    return { meta, links: [{ rel: "canonical", href: url }] };
+  },
   notFoundComponent: () => (
     <div className="mx-auto max-w-7xl px-6 py-24 text-center">
       <h1 className="font-display text-4xl">Catégorie introuvable</h1>

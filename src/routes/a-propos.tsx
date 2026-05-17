@@ -5,17 +5,58 @@ import { useCategories } from "@/lib/products";
 import { ChevronDown } from "lucide-react";
 import { Testimonials } from "@/components/Testimonials";
 
+const SITE_URL = "https://verodav-reborn.lovable.app";
+
 export const Route = createFileRoute("/a-propos")({
-  head: () => ({
-    meta: [
-      { title: "À propos — Verodav Home" },
-      {
-        name: "description",
-        content:
-          "Verodav Home, boutique d'équipements pour la cuisine, la maison et le travail. Fondée en 2014 à Strasbourg.",
-      },
-    ],
-  }),
+  head: () => {
+    const url = `${SITE_URL}/a-propos`;
+    const title = "À propos — Verodav Home";
+    const desc =
+      "Verodav Home, boutique d'équipements pour la cuisine, la maison et le travail. Fondée en 2014 à Strasbourg.";
+    return {
+      meta: [
+        { title },
+        { name: "description", content: desc },
+        { property: "og:title", content: title },
+        { property: "og:description", content: desc },
+        { property: "og:url", content: url },
+        { property: "og:type", content: "website" },
+      ],
+      links: [{ rel: "canonical", href: url }],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: FAQ.map((f) => ({
+              "@type": "Question",
+              name: f.q,
+              acceptedAnswer: { "@type": "Answer", text: f.a },
+            })),
+          }),
+        },
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Store",
+            name: "Verodav Home",
+            url: SITE_URL,
+            email: "info@verodav-home.com",
+            telephone: "+33758347662",
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: "21 rue de Cherbourg",
+              postalCode: "67100",
+              addressLocality: "Strasbourg",
+              addressCountry: "FR",
+            },
+          }),
+        },
+      ],
+    };
+  },
   component: AboutPage,
 });
 
