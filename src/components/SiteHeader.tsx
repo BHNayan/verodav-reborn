@@ -6,11 +6,14 @@ import { useSiteSettings } from "@/lib/site";
 import { useCartCount } from "@/lib/cart";
 import { useAuth, displayNameOf, signOut } from "@/lib/auth";
 import { useUserRoles } from "@/lib/roles";
+import { useI18n } from "@/lib/i18n";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import logo from "@/assets/verodav-logo.png";
 
 export function SiteHeader() {
   const categories = useCategories();
   const SITE = useSiteSettings();
+  const { t } = useI18n();
   const [open, setOpen] = useState(false);
   const [catOpen, setCatOpen] = useState(false);
   const [userMenu, setUserMenu] = useState(false);
