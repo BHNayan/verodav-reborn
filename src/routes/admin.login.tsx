@@ -17,33 +17,43 @@ function AdminLogin() {
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
+  const verifyAdmin = async (userId: string) => {
+    const { data, error: qErr } = await supabase
+      .from("user_roles")
+      .select("role")
+      .eq("user_id", userId);
+    if (qErr) throw qErr;
+    return (data ?? []).some((r) => r.role === "admin");
+  };
+
   useEffect(() => {
     if (loading || !session) return;
     (async () => {
-      const { data, error: qErr } = await supabase
-        .from("user_roles")
-        .select("role")
-        .eq("user_id", session.user.id);
-      if (qErr) {
-        setError(`Erreur de vérification des droits : ${qErr.message}`);
-        return;
-      }
-      const isAdmin = (data ?? []).some((r) => r.role === "admin");
-      if (isAdmin) {
-        navigate({ to: "/admin" });
-      } else {
-        setError(
-          `Ce compte n'a pas les droits administrateur. (rôles trouvés : ${
-            (data ?? []).map((r) => r.role).join(", ") || "aucun"
-          })`,
-        );
+      try {
+        if (await verifyAdmin(session.user.id)) navigate({ to: "/admin" });
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Vérification admin impossible.");
       }
     })();
   }, [session, loading, navigate]);
 
   const submit = async (e: FormEvent) => {
     e.preventDefault(); setError(null); setBusy(true);
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    await supabase.auth.signOut();
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    if (!error && data.user) {
+      try {
+        const isAdmin = await verifyAdmin(data.user.id);
+        if (isAdmin) {
+          navigate({ to: "/admin" });
+        } else {
+          await supabase.auth.signOut();
+          setError("Ce formulaire est réservé aux administrateurs. Utilisez la connexion client pour votre compte boutique.");
+        }
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Vérification admin impossible.");
+      }
+    }
     setBusy(false);
     if (error) setError(error.message);
   };

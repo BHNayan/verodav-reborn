@@ -4,6 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
   ScrollRestoration,
@@ -82,14 +83,15 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const isAdminArea = useRouterState({ select: (s) => s.location.pathname.startsWith("/admin") });
   return (
     <QueryClientProvider client={queryClient}>
       <ScrollRestoration />
-      <SiteHeader />
+      {!isAdminArea && <SiteHeader />}
       <main className="min-h-[60vh]">
         <Outlet />
       </main>
-      <SiteFooter />
+      {!isAdminArea && <SiteFooter />}
     </QueryClientProvider>
   );
 }
