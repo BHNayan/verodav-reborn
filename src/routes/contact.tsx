@@ -11,7 +11,11 @@ export const Route = createFileRoute("/contact")({
     meta: [
       { title: "Contact — Verodav Home" },
       { name: "description", content: "Contactez Verodav Home à Strasbourg. Conseils, commandes, service après-vente." },
+      { property: "og:title", content: "Contact — Verodav Home" },
+      { property: "og:description", content: "Contactez Verodav Home à Strasbourg. Conseils, commandes, service après-vente." },
+      { property: "og:url", content: "https://verodav-reborn.lovable.app/contact" },
     ],
+    links: [{ rel: "canonical", href: "https://verodav-reborn.lovable.app/contact" }],
   }),
   component: ContactPage,
 });

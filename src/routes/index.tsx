@@ -11,7 +11,9 @@ export const Route = createFileRoute("/")({
     meta: [
       { title: "Verodav Home — Cuisine moderne, ustensiles innovants" },
       { name: "description", content: "Découvrez nos ustensiles de cuisine professionnels : cuisson, pâtes, ventilateurs, accessoires. Livraison Strasbourg & France." },
+      { property: "og:url", content: "https://verodav-reborn.lovable.app/" },
     ],
+    links: [{ rel: "canonical", href: "https://verodav-reborn.lovable.app/" }],
   }),
   component: HomePage,
 });

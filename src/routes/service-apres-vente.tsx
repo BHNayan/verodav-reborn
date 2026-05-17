@@ -8,7 +8,11 @@ export const Route = createFileRoute("/service-apres-vente")({
     meta: [
       { title: "Service Après-Vente — Verodav Home" },
       { name: "description", content: "Garanties, conditions de retour, processus de réclamation et support client Verodav Home." },
+      { property: "og:title", content: "Service Après-Vente — Verodav Home" },
+      { property: "og:description", content: "Garanties, conditions de retour, processus de réclamation et support client Verodav Home." },
+      { property: "og:url", content: "https://verodav-reborn.lovable.app/service-apres-vente" },
     ],
+    links: [{ rel: "canonical", href: "https://verodav-reborn.lovable.app/service-apres-vente" }],
   }),
   component: Page,
 });

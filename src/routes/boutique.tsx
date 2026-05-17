@@ -17,7 +17,11 @@ export const Route = createFileRoute("/boutique")({
     meta: [
       { title: "Boutique — Verodav Home" },
       { name: "description", content: "Découvrez les 257 produits Verodav Home : cuisson, pâtes, ventilateurs, pièces de rechange, accessoires." },
+      { property: "og:title", content: "Boutique — Verodav Home" },
+      { property: "og:description", content: "Découvrez les 257 produits Verodav Home : cuisson, pâtes, ventilateurs, pièces de rechange, accessoires." },
+      { property: "og:url", content: "https://verodav-reborn.lovable.app/boutique" },
     ],
+    links: [{ rel: "canonical", href: "https://verodav-reborn.lovable.app/boutique" }],
   }),
   component: BoutiquePage,
 });
