@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight, Truck, ShieldCheck, Wrench, Sparkles, Quote } from "lucide-react";
-import { categories, products } from "@/lib/products";
+import { useCategories, useProducts } from "@/lib/products";
 import { ProductCard } from "@/components/ProductCard";
 import { SITE } from "@/lib/site";
 import { Testimonials } from "@/components/Testimonials";
@@ -24,6 +24,8 @@ const SLIDE_IMGS = [
 ];
 
 function HomePage() {
+  const products = useProducts();
+  const categories = useCategories();
   const featured = products.slice(0, 8);
   const fanCat = products.filter(p => p.categories.includes("ventilateurs")).slice(0, 4);
   const editorialCats = categories.slice(0, 6);

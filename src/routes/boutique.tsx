@@ -4,7 +4,7 @@ import { zodValidator, fallback } from "@tanstack/zod-adapter";
 import { z } from "zod";
 
 const PER_PAGE = 12;
-import { products, categories } from "@/lib/products";
+import { useProducts, useCategories } from "@/lib/products";
 import { ProductCard } from "@/components/ProductCard";
 
 const boutiqueSearchSchema = z.object({
@@ -23,6 +23,8 @@ export const Route = createFileRoute("/boutique")({
 });
 
 function BoutiquePage() {
+  const products = useProducts();
+  const categories = useCategories();
   const { page } = Route.useSearch();
   const navigate = useNavigate({ from: "/boutique" });
   const setPage = (n: number) =>

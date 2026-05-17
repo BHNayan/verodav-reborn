@@ -1,20 +1,13 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { getCategory, productsInCategory, categories, type Product } from "@/lib/products";
+import { useProducts, useCategories, type Product } from "@/lib/products";
 import { ProductCard } from "@/components/ProductCard";
 
 export const Route = createFileRoute("/categorie/$slug")({
-  loader: ({ params }) => {
-    const cat = getCategory(params.slug);
-    if (!cat) throw notFound();
-    return { cat, products: productsInCategory(params.slug) };
-  },
-  head: ({ loaderData }) => ({
-    meta: loaderData ? [
-      { title: `${loaderData.cat.name} — Verodav Home` },
-      { name: "description", content: `${loaderData.cat.count} produits dans la catégorie ${loaderData.cat.name}.` },
-      { property: "og:title", content: `${loaderData.cat.name} — Verodav Home` },
-      { property: "og:image", content: loaderData.cat.image },
-    ] : [],
+  head: ({ params }) => ({
+    meta: [
+      { title: `${params.slug} — Verodav Home` },
+      { name: "description", content: `Produits de la catégorie ${params.slug}.` },
+    ],
   }),
   notFoundComponent: () => (
     <div className="mx-auto max-w-7xl px-6 py-24 text-center">
@@ -26,7 +19,14 @@ export const Route = createFileRoute("/categorie/$slug")({
 });
 
 function CategoryPage() {
-  const { cat, products } = Route.useLoaderData();
+  const { slug } = Route.useParams();
+  const allProducts = useProducts();
+  const categories = useCategories();
+  const cat = categories.find((c) => c.slug === slug);
+  const products = allProducts.filter((p) => p.categories.includes(slug));
+
+  if (categories.length && !cat) throw notFound();
+  if (!cat) return <div className="mx-auto max-w-7xl px-6 py-16 text-sm text-muted-foreground">Chargement…</div>;
 
   return (
     <>
@@ -38,7 +38,7 @@ function CategoryPage() {
         <div className="relative mx-auto max-w-7xl px-6 py-20 lg:py-28">
           <Link to="/boutique" className="text-xs uppercase tracking-widest text-muted-foreground hover:text-copper">← Boutique</Link>
           <h1 className="mt-4 font-display text-5xl md:text-7xl text-balance">{cat.name}</h1>
-          <p className="mt-3 text-muted-foreground">{cat.count} produits</p>
+          <p className="mt-3 text-muted-foreground">{products.length} produits</p>
         </div>
       </header>
 
@@ -50,7 +50,7 @@ function CategoryPage() {
         <div className="mt-20 pt-10 border-t border-border">
           <h3 className="font-display text-2xl mb-6">Autres catégories</h3>
           <div className="flex flex-wrap gap-2">
-            {categories.filter(c => c.slug !== cat.slug).map(c => (
+            {categories.filter((c) => c.slug !== cat.slug).map((c) => (
               <Link key={c.slug} to="/categorie/$slug" params={{ slug: c.slug }}
                 className="text-xs uppercase tracking-widest border border-border px-3 py-2 hover:bg-primary hover:text-primary-foreground transition">
                 {c.name}

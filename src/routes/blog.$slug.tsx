@@ -1,37 +1,33 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { getPost, posts, formatDate } from "@/lib/blog";
+import { useQuery } from "@tanstack/react-query";
+import { postQueryOptions, usePosts, formatDate, type BlogPost, type BlogSection } from "@/lib/blog";
 
 export const Route = createFileRoute("/blog/$slug")({
-  loader: ({ params }) => {
-    const post = getPost(params.slug);
-    if (!post) throw notFound();
-    return post;
-  },
-  head: ({ loaderData }) =>
-    loaderData
-      ? {
-          meta: [
-            { title: `${loaderData.title} — Verodav Home` },
-            { name: "description", content: loaderData.excerpt },
-            { property: "og:title", content: loaderData.title },
-            { property: "og:description", content: loaderData.excerpt },
-            { property: "og:image", content: loaderData.image },
-            { property: "og:type", content: "article" },
-          ],
-        }
-      : {},
+  head: ({ params }) => ({
+    meta: [
+      { title: `${params.slug} — Verodav Home` },
+      { property: "og:title", content: params.slug },
+      { property: "og:type", content: "article" },
+    ],
+  }),
   notFoundComponent: () => (
     <div className="mx-auto max-w-3xl px-5 py-24 text-center">
       <h1 className="font-display text-5xl">Article introuvable</h1>
       <Link to="/blog" className="mt-6 inline-block text-copper">← Retour au blog</Link>
     </div>
   ),
-  component: BlogPost,
+  component: BlogPostPage,
 });
 
-function BlogPost() {
-  const post = Route.useLoaderData() as NonNullable<ReturnType<typeof getPost>>;
-  const related = posts.filter((p) => p.slug !== post.slug).slice(0, 3);
+function BlogPostPage() {
+  const { slug } = Route.useParams();
+  const { data: post, isLoading } = useQuery(postQueryOptions(slug));
+  const all = usePosts();
+
+  if (isLoading) return <div className="mx-auto max-w-3xl px-5 py-16 text-sm text-muted-foreground">Chargement…</div>;
+  if (!post) throw notFound();
+
+  const related = all.filter((p: BlogPost) => p.slug !== post.slug).slice(0, 3);
 
   return (
     <article className="mx-auto max-w-[1400px] px-5 lg:px-10 py-12 md:py-20">
@@ -56,19 +52,19 @@ function BlogPost() {
 
       <div className="mt-12 grid lg:grid-cols-12 gap-12">
         <div className="lg:col-span-8 lg:col-start-3 space-y-10">
-          {post.sections.map((s, i) => (
+          {post.sections.map((s: BlogSection, i: number) => (
             <section key={i}>
               {s.heading && (
                 <h2 className="font-display text-2xl md:text-3xl mb-4">{s.heading}</h2>
               )}
-              {s.paragraphs.map((p, j) => (
+              {s.paragraphs.map((p: string, j: number) => (
                 <p key={j} className="text-base md:text-lg leading-relaxed text-foreground/85 mb-4">
                   {p}
                 </p>
               ))}
               {s.bullets && (
                 <ul className="mt-2 space-y-2">
-                  {s.bullets.map((b, k) => (
+                  {s.bullets.map((b: string, k: number) => (
                     <li key={k} className="flex gap-3 text-foreground/85">
                       <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-copper" />
                       <span>{b}</span>
@@ -85,7 +81,6 @@ function BlogPost() {
         </div>
       </div>
 
-      {/* Related */}
       <div className="mt-24">
         <div className="flex items-end justify-between">
           <h2 className="font-display text-3xl md:text-4xl">À lire aussi</h2>
@@ -94,7 +89,7 @@ function BlogPost() {
           </Link>
         </div>
         <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {related.map((p) => (
+          {related.map((p: BlogPost) => (
             <Link key={p.slug} to="/blog/$slug" params={{ slug: p.slug }} className="group">
               <div className="aspect-[4/3] overflow-hidden bg-secondary">
                 <img src={p.image} alt={p.title} loading="lazy"

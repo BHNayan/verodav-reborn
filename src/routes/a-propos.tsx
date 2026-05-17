@@ -72,6 +72,8 @@ const FAQ = [
 ];
 
 function AboutPage() {
+  const categories = useCategories();
+
   return (
     <>
       {/* HERO */}
