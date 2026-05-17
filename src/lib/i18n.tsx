@@ -326,10 +326,16 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   const setLang = (l: Lang) => {
     setLangState(l);
     try { localStorage.setItem("lang", l); } catch {}
-    writeGoogTransCookie(l);
-    // Google Translate only re-translates the page on reload, so we trigger
-    // a navigation refresh to apply the new target language site-wide.
-    if (typeof window !== "undefined") window.location.reload();
+    try { writeGoogTransCookie(l); } catch {}
+
+    // If Google Translate is available, reload so it re-translates the DOM.
+    // If it failed to load (ad-blocker, offline, CSP), skip the reload — the
+    // dictionary-driven `t()` strings above still update via state, so the
+    // app stays usable without auto-translation of free-form content.
+    if (typeof window === "undefined") return;
+    const gtUnavailable = document.documentElement.getAttribute("data-gt") === "unavailable";
+    if (gtUnavailable) return;
+    window.location.reload();
   };
 
   const t = (key: string) => DICT[lang][key] ?? DICT.en[key] ?? key;
