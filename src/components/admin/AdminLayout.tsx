@@ -1,6 +1,6 @@
 import { Link, Outlet, useNavigate } from "@tanstack/react-router";
 import { useEffect } from "react";
-import { LayoutDashboard, Package, FolderTree, ShoppingCart, Users, FileText, ArrowLeft } from "lucide-react";
+import { LayoutDashboard, Package, FolderTree, ShoppingCart, Users, FileText, FileEdit, ArrowLeft } from "lucide-react";
 import { useUserRoles } from "@/lib/roles";
 import { useAuth } from "@/lib/auth";
 
@@ -12,6 +12,7 @@ const nav: NavItem[] = [
   { to: "/admin/orders", label: "Commandes", icon: ShoppingCart },
   { to: "/admin/customers", label: "Clients", icon: Users },
   { to: "/admin/blog", label: "Blog", icon: FileText },
+  { to: "/admin/pages", label: "Pages", icon: FileEdit },
 ];
 
 export function AdminLayout() {
