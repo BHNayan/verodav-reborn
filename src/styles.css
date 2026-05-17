@@ -121,3 +121,15 @@
   }
   .animate-marquee { animation: marquee 38s linear infinite; }
 }
+
+/* Google Translate widget — hide banner & tooltips so it stays invisible */
+.goog-te-banner-frame.skiptranslate,
+.goog-te-gadget,
+.VIpgJd-ZVi9od-aZ2wEe-wOHMyf,
+.VIpgJd-ZVi9od-l4eHX-hSRGPd,
+iframe.goog-te-banner-frame { display: none !important; }
+body { top: 0 !important; position: static !important; }
+.goog-tooltip, .goog-tooltip:hover, .goog-text-highlight {
+  display: none !important; background: transparent !important; box-shadow: none !important;
+}
+font[style*="background-color"] { background: transparent !important; box-shadow: none !important; }
