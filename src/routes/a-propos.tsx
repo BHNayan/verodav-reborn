@@ -234,7 +234,6 @@ function FaqList() {
           </li>
         );
       })}
-    </ul></>
-    </PageCmsWrapper>
+    </ul>
   );
 }
