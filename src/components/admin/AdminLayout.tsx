@@ -23,6 +23,7 @@ export function AdminLayout() {
   const { user, loading: authLoading } = useAuth();
   const { isAdmin, loading: roleLoading } = useUserRoles();
   const isLoginRoute = pathname === "/admin/login";
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     if (isLoginRoute) return;
