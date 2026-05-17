@@ -7,13 +7,72 @@ import { ProductCard } from "@/components/ProductCard";
 import { formatPrice, SITE } from "@/lib/site";
 import { cart } from "@/lib/cart";
 
+const SITE_URL = "https://verodav-reborn.lovable.app";
+
 export const Route = createFileRoute("/produit/$slug")({
-  head: ({ params }) => ({
-    meta: [
-      { title: `${params.slug} — Verodav Home` },
-      { property: "og:title", content: params.slug },
-    ],
-  }),
+  loader: async ({ context, params }) => {
+    const product = await context.queryClient.ensureQueryData(productQueryOptions(params.slug));
+    return { product };
+  },
+  head: ({ params, loaderData }) => {
+    const p = loaderData?.product;
+    const url = `${SITE_URL}/produit/${params.slug}`;
+    const title = p ? `${p.name} — Verodav Home` : `${params.slug} — Verodav Home`;
+    const rawDesc = (p?.short || p?.description || "").trim();
+    const desc = rawDesc
+      ? rawDesc.slice(0, 157) + (rawDesc.length > 157 ? "…" : "")
+      : p
+      ? `Découvrez ${p.name} chez Verodav Home — ${formatPrice(p.price)}. Livraison et conseils par notre équipe à Strasbourg.`
+      : "Produit Verodav Home — ustensiles et accessoires de cuisine.";
+    const image = p?.image || undefined;
+    const meta: Array<Record<string, string>> = [
+      { title },
+      { name: "description", content: desc },
+      { property: "og:title", content: title },
+      { property: "og:description", content: desc },
+      { property: "og:type", content: "product" },
+      { property: "og:url", content: url },
+      { name: "twitter:title", content: title },
+      { name: "twitter:description", content: desc },
+    ];
+    if (image) {
+      meta.push({ property: "og:image", content: image });
+      meta.push({ name: "twitter:image", content: image });
+    }
+    const scripts: Array<{ type: string; children: string }> = [];
+    if (p) {
+      scripts.push({
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Product",
+          name: p.name,
+          description: rawDesc || title,
+          image: image ? [image] : undefined,
+          sku: p.id,
+          offers: {
+            "@type": "Offer",
+            url,
+            priceCurrency: "EUR",
+            price: p.price,
+            availability: p.in_stock
+              ? "https://schema.org/InStock"
+              : "https://schema.org/OutOfStock",
+          },
+          ...(p.rating > 0
+            ? {
+                aggregateRating: {
+                  "@type": "AggregateRating",
+                  ratingValue: p.rating,
+                  reviewCount: p.reviews || 1,
+                },
+              }
+            : {}),
+        }),
+      });
+    }
+    return { meta, links: [{ rel: "canonical", href: url }], scripts };
+  },
   notFoundComponent: () => (
     <div className="mx-auto max-w-7xl px-6 py-24 text-center">
       <h1 className="font-display text-4xl">Produit introuvable</h1>
