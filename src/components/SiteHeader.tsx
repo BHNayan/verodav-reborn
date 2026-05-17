@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { Menu, X, Search, ShoppingBag, User, ChevronDown, LogOut, Package, Heart, UserCircle } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { categories } from "@/lib/products";
+import { useCategories } from "@/lib/products";
 import { SITE } from "@/lib/site";
 import { useCartCount } from "@/lib/cart";
 import { useAuth, displayNameOf, signOut } from "@/lib/auth";
@@ -9,6 +9,7 @@ import { useUserRoles } from "@/lib/roles";
 import logo from "@/assets/verodav-logo.png";
 
 export function SiteHeader() {
+  const categories = useCategories();
   const [open, setOpen] = useState(false);
   const [catOpen, setCatOpen] = useState(false);
   const [userMenu, setUserMenu] = useState(false);

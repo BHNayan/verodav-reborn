@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { categories } from "@/lib/products";
+import { useCategories } from "@/lib/products";
 import { ChevronDown } from "lucide-react";
 import { Testimonials } from "@/components/Testimonials";
 

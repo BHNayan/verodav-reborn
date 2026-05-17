@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react";
 import { SITE } from "@/lib/site";
-import { categories } from "@/lib/products";
+import { useCategories } from "@/lib/products";
 import logo from "@/assets/verodav-logo.png";
 import paypal from "@/assets/payments/paypal.svg";
 import visa from "@/assets/payments/visa.svg";
@@ -24,6 +24,7 @@ const PAYMENTS: { name: string; src: string }[] = [
 ];
 
 export function SiteFooter() {
+  const categories = useCategories();
   return (
     <footer className="mt-24 bg-primary text-primary-foreground">
       <div className="mx-auto max-w-7xl px-6 py-16 grid gap-12 md:grid-cols-12">

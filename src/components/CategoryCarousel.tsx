@@ -1,9 +1,10 @@
 import { useRef } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
-import { categories } from "@/lib/products";
+import { useCategories } from "@/lib/products";
 
 export function CategoryCarousel() {
+  const categories = useCategories();
   const scrollerRef = useRef<HTMLDivElement>(null);
 
   const scrollBy = (dir: 1 | -1) => {
