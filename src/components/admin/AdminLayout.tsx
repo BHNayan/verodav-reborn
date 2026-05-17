@@ -1,6 +1,6 @@
-import { Link, Outlet, useNavigate } from "@tanstack/react-router";
+import { Link, Outlet, useNavigate, useRouterState } from "@tanstack/react-router";
 import { useEffect } from "react";
-import { LayoutDashboard, Package, FolderTree, ShoppingCart, Users, FileText, FileEdit, ArrowLeft } from "lucide-react";
+import { LayoutDashboard, Package, FolderTree, ShoppingCart, Users, FileText, FileEdit, Settings, ArrowLeft } from "lucide-react";
 import { useUserRoles } from "@/lib/roles";
 import { useAuth } from "@/lib/auth";
 
@@ -13,21 +13,27 @@ const nav: NavItem[] = [
   { to: "/admin/customers", label: "Clients", icon: Users },
   { to: "/admin/blog", label: "Blog", icon: FileText },
   { to: "/admin/pages", label: "Pages", icon: FileEdit },
+  { to: "/admin/settings", label: "Paramètres", icon: Settings },
 ];
 
 export function AdminLayout() {
   const navigate = useNavigate();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
   const { user, loading: authLoading } = useAuth();
   const { isAdmin, loading: roleLoading } = useUserRoles();
+  const isLoginRoute = pathname === "/admin/login";
 
   useEffect(() => {
+    if (isLoginRoute) return;
     if (authLoading || roleLoading) return;
     if (!user) {
-      navigate({ to: "/auth", search: { redirect: "/admin", mode: "signin" } });
+      navigate({ to: "/admin/login" });
       return;
     }
     if (!isAdmin) navigate({ to: "/" });
-  }, [user, isAdmin, authLoading, roleLoading, navigate]);
+  }, [user, isAdmin, authLoading, roleLoading, navigate, isLoginRoute]);
+
+  if (isLoginRoute) return <Outlet />;
 
   if (authLoading || roleLoading || !user || !isAdmin) {
     return <div className="mx-auto max-w-5xl px-5 py-16 text-sm text-muted-foreground">Vérification de l'accès admin…</div>;
