@@ -5,6 +5,7 @@ import { categories } from "@/lib/products";
 import { SITE } from "@/lib/site";
 import { useCartCount } from "@/lib/cart";
 import { useAuth, displayNameOf, signOut } from "@/lib/auth";
+import { useUserRoles } from "@/lib/roles";
 import logo from "@/assets/verodav-logo.png";
 
 export function SiteHeader() {
@@ -14,6 +15,7 @@ export function SiteHeader() {
   const userMenuRef = useRef<HTMLDivElement>(null);
   const cartCount = useCartCount();
   const { user } = useAuth();
+  const { isAdmin } = useUserRoles();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -113,6 +115,11 @@ export function SiteHeader() {
                     <div className="text-xs uppercase tracking-widest text-muted-foreground">Connecté</div>
                     <div className="truncate text-sm font-medium">{user.email}</div>
                   </div>
+                  {isAdmin && (
+                    <Link to="/admin" onClick={() => setUserMenu(false)} className="flex items-center gap-3 bg-copper/10 px-4 py-2.5 text-sm font-medium text-copper hover:bg-copper/20">
+                      <UserCircle className="h-4 w-4" /> Administration
+                    </Link>
+                  )}
                   <Link to="/compte" onClick={() => setUserMenu(false)} className="flex items-center gap-3 px-4 py-2.5 text-sm hover:bg-secondary">
                     <User className="h-4 w-4" /> Mon compte
                   </Link>
