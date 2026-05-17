@@ -98,7 +98,7 @@ function ProductPage() {
             <button
               onClick={() =>
                 cart.add(
-                  { id: product.id, name: product.name, price: product.price, image: product.image },
+                  { id: product.id, name: product.name, price: product.price, image: product.image ?? undefined },
                   qty,
                 )
               }
