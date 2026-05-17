@@ -15,6 +15,7 @@ export function SiteHeader() {
   const userMenuRef = useRef<HTMLDivElement>(null);
   const cartCount = useCartCount();
   const { user } = useAuth();
+  const { isAdmin } = useUserRoles();
   const navigate = useNavigate();
 
   useEffect(() => {
