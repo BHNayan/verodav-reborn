@@ -19,7 +19,7 @@ function Page() {
 
   const save = async (e: FormEvent) => {
     e.preventDefault(); setBusy(true); setMsg(null);
-    const { error } = await supabase.from("site_settings").upsert({ key: "site", value: form as unknown as Record<string, unknown> });
+    const { error } = await supabase.from("site_settings").upsert({ key: "site", value: form as never });
     setBusy(false);
     setMsg(error ? error.message : "Enregistré ✓");
   };
