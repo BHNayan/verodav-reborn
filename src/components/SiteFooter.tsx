@@ -24,6 +24,7 @@ const PAYMENTS: { name: string; src: string }[] = [
 ];
 
 export function SiteFooter() {
+  const categories = useCategories();
   return (
     <footer className="mt-24 bg-primary text-primary-foreground">
       <div className="mx-auto max-w-7xl px-6 py-16 grid gap-12 md:grid-cols-12">
