@@ -28,6 +28,7 @@ export const Route = createFileRoute("/blog")({
 });
 
 function BlogIndex() {
+  const posts = usePosts();
   const { q, n } = Route.useSearch();
   const navigate = Route.useNavigate();
 
