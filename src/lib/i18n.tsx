@@ -286,18 +286,52 @@ const DICT: Record<Lang, Dict> = { en, fr, de };
 type Ctx = { lang: Lang; setLang: (l: Lang) => void; t: (key: string) => string };
 const I18nContext = createContext<Ctx>({ lang: "en", setLang: () => {}, t: (k) => k });
 
+// Source language of authored site content. Google Translate uses this
+// as the "from" language when re-rendering the DOM into the chosen target.
+const SOURCE_LANG: Lang = "fr";
+
+function writeGoogTransCookie(target: Lang) {
+  if (typeof document === "undefined") return;
+  const value = `/${SOURCE_LANG}/${target}`;
+  const host = window.location.hostname;
+  // Set on current host and on the parent domain (Google Translate reads
+  // the cookie from the registered domain — `.example.com`).
+  const variants = [
+    `googtrans=${value};path=/`,
+    `googtrans=${value};path=/;domain=${host}`,
+    `googtrans=${value};path=/;domain=.${host}`,
+  ];
+  const parts = host.split(".");
+  if (parts.length > 2) {
+    variants.push(`googtrans=${value};path=/;domain=.${parts.slice(-2).join(".")}`);
+  }
+  for (const v of variants) document.cookie = v;
+}
+
 export function I18nProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Lang>("en");
+
   useEffect(() => {
     try {
-      const saved = localStorage.getItem("lang") as Lang | null;
-      if (saved && DICT[saved]) setLangState(saved);
+      const saved = (localStorage.getItem("lang") as Lang | null) ?? "en";
+      if (DICT[saved]) {
+        setLangState(saved);
+        // Ensure the Google Translate cookie matches the saved preference on
+        // every page load so the DOM is translated before the user interacts.
+        writeGoogTransCookie(saved);
+      }
     } catch {}
   }, []);
+
   const setLang = (l: Lang) => {
     setLangState(l);
     try { localStorage.setItem("lang", l); } catch {}
+    writeGoogTransCookie(l);
+    // Google Translate only re-translates the page on reload, so we trigger
+    // a navigation refresh to apply the new target language site-wide.
+    if (typeof window !== "undefined") window.location.reload();
   };
+
   const t = (key: string) => DICT[lang][key] ?? DICT.en[key] ?? key;
   return <I18nContext.Provider value={{ lang, setLang, t }}>{children}</I18nContext.Provider>;
 }
