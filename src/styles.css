@@ -122,14 +122,69 @@
   .animate-marquee { animation: marquee 38s linear infinite; }
 }
 
-/* Google Translate widget — hide banner & tooltips so it stays invisible */
+/* Google Translate widget — fully hidden, no banner, no tooltip, no flicker.
+ * Rules cover: top banner iframe, gadget container, hover tooltip, inline
+ * highlight, and the yellow/blue background Translate injects on <font> tags.
+ * `body { top: 0 }` cancels the offset Translate adds when its banner mounts,
+ * which is the main source of layout flicker on language change. */
+.skiptranslate,
+.goog-te-banner-frame,
 .goog-te-banner-frame.skiptranslate,
 .goog-te-gadget,
+.goog-te-gadget-simple,
+.goog-te-gadget-icon,
+.goog-te-menu-value,
+.goog-te-menu-frame,
+.goog-te-balloon-frame,
+.goog-te-spinner-pos,
 .VIpgJd-ZVi9od-aZ2wEe-wOHMyf,
 .VIpgJd-ZVi9od-l4eHX-hSRGPd,
-iframe.goog-te-banner-frame { display: none !important; }
-body { top: 0 !important; position: static !important; }
-.goog-tooltip, .goog-tooltip:hover, .goog-text-highlight {
-  display: none !important; background: transparent !important; box-shadow: none !important;
+.VIpgJd-ZVi9od-ORHb-OEVmcd,
+iframe.goog-te-banner-frame,
+iframe.skiptranslate,
+#goog-gt-tt,
+.goog-tooltip,
+.goog-tooltip:hover,
+.goog-text-highlight {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  width: 0 !important;
+  pointer-events: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border: 0 !important;
 }
-font[style*="background-color"] { background: transparent !important; box-shadow: none !important; }
+
+/* Translate forces `body { top: 40px }` when its banner mounts — neutralise it
+ * so the page never shifts down (the main flicker on first translation). */
+html,
+body {
+  top: 0 !important;
+  position: static !important;
+  min-height: 100vh;
+}
+
+/* Translate wraps every translated text node in <font> with an inline
+ * background-color — strip it so colours/contrast don't flash. */
+font[style*="background-color"],
+font[style*="vertical-align"] {
+  background: transparent !important;
+  box-shadow: none !important;
+  vertical-align: baseline !important;
+}
+
+/* Keep the hidden mount-point off-screen instead of `display:none`, so the
+ * Translate script can still initialise without flashing a visible element. */
+#google_translate_element {
+  position: absolute !important;
+  left: -10000px !important;
+  top: -10000px !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
