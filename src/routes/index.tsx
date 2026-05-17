@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight, Truck, ShieldCheck, Wrench, Sparkles, Quote } from "lucide-react";
-import { categories, products } from "@/lib/products";
+import { useCategories, useProducts } from "@/lib/products";
 import { ProductCard } from "@/components/ProductCard";
 import { SITE } from "@/lib/site";
 import { Testimonials } from "@/components/Testimonials";
