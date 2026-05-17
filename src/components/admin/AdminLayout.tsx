@@ -45,7 +45,7 @@ export function AdminLayout() {
           {nav.map((n) => (
             <Link
               key={n.to}
-              to={n.to}
+              to={n.to as string}
               activeOptions={n.exact ? { exact: true } : undefined}
               activeProps={{ className: "bg-primary text-primary-foreground" }}
               className="flex items-center gap-2 border border-border px-3 py-2.5 text-sm hover:bg-secondary transition"
