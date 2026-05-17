@@ -45,7 +45,7 @@ function Page() {
       if (r.display_name !== undefined) patch.display_name = r.display_name || null;
       if (r.phone !== undefined) patch.phone = r.phone || null;
       if (Object.keys(patch).length === 0) { fail++; continue; }
-      const { error } = await supabase.from("profiles").update(patch).eq("id", id);
+      const { error } = await supabase.from("profiles").update(patch as never).eq("id", id);
       if (error) fail++; else ok++;
     }
     alert(`Mise à jour clients — Réussis: ${ok}, échoués: ${fail}`);
