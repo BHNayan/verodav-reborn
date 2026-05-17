@@ -31,7 +31,13 @@ function AuthPage() {
   const [info, setInfo] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!loading && session) navigate({ to: redirect });
+    if (loading || !session) return;
+    (async () => {
+      const { data } = await supabase.from("user_roles").select("role").eq("user_id", session.user.id);
+      const isAdmin = (data ?? []).some((r) => r.role === "admin");
+      const target = redirect && redirect !== "/" ? redirect : (isAdmin ? "/admin" : "/compte");
+      navigate({ to: target });
+    })();
   }, [session, loading, redirect, navigate]);
 
   const handleEmail = async (e: FormEvent) => {
