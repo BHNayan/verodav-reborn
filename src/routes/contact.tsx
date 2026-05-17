@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { PageCmsWrapper } from "@/components/PageCmsWrapper";
 import { Mail, MapPin, Phone, Clock } from "lucide-react";
 import { SITE } from "@/lib/site";
 
@@ -14,6 +15,8 @@ export const Route = createFileRoute("/contact")({
 
 function ContactPage() {
   return (
+    <PageCmsWrapper slug="contact">
+      <>
     <>
       <header className="border-b border-border">
         <div className="mx-auto max-w-7xl px-6 py-16">
@@ -100,6 +103,7 @@ function ContactPage() {
           </div>
         </form>
       </div>
-    </>
+    </></>
+    </PageCmsWrapper>
   );
 }

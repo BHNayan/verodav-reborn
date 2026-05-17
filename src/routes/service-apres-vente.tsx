@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { PageCmsWrapper } from "@/components/PageCmsWrapper";
 import { LegalLayout, Section } from "@/components/LegalLayout";
 import { SITE } from "@/lib/site";
 
@@ -14,6 +15,8 @@ export const Route = createFileRoute("/service-apres-vente")({
 
 function Page() {
   return (
+    <PageCmsWrapper slug="service-apres-vente">
+      <>
     <LegalLayout
       title="Service Après-Vente"
       intro="Chez Verodav Home, notre objectif est de garantir la satisfaction de nos clients en offrant un service après-vente rapide, efficace et transparent."
@@ -86,6 +89,7 @@ function Page() {
         </div>
         <p className="mt-4 text-sm">Chez Verodav Home, nous nous engageons à vous offrir une expérience client de qualité, même après l'achat. N'hésitez pas à nous contacter pour toute demande d'assistance !</p>
       </Section>
-    </LegalLayout>
+    </LegalLayout></>
+    </PageCmsWrapper>
   );
 }

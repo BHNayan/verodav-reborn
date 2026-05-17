@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { PageCmsWrapper } from "@/components/PageCmsWrapper";
 import { LegalLayout, Section } from "@/components/LegalLayout";
 
 export const Route = createFileRoute("/mentions-legales")({
@@ -13,6 +14,8 @@ export const Route = createFileRoute("/mentions-legales")({
 
 function Page() {
   return (
+    <PageCmsWrapper slug="mentions-legales">
+      <>
     <LegalLayout
       title="Mentions légales"
       intro="Mises à jour le 19 juillet 2024. Conditions d'utilisation du site verodav-home.com."
@@ -56,6 +59,7 @@ function Page() {
         <p>Le Site est créé, contrôlé et exploité par VERODAV HOME depuis la France. Les présentes CGU sont régies et soumises au droit français, sans égard pour les règles de conflit de lois. Elles sont rédigées en langue française. Dans le cas où elles seraient traduites en une ou plusieurs autres langues, seul le texte français ferait foi en cas de litige.</p>
         <p>Tous les litiges auxquels les présentes CGU pourraient donner lieu, concernant tant leur validité, leur interprétation, leur exécution, leur résiliation, leurs conséquences et leurs suites seront soumis aux tribunaux français. Toute action liée aux CGU se prescrit par un an.</p>
       </Section>
-    </LegalLayout>
+    </LegalLayout></>
+    </PageCmsWrapper>
   );
 }

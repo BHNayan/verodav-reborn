@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { PageCmsWrapper } from "@/components/PageCmsWrapper";
 import { LegalLayout, Section } from "@/components/LegalLayout";
 import { SITE } from "@/lib/site";
 
@@ -24,6 +25,8 @@ const RIGHTS = [
 
 function Page() {
   return (
+    <PageCmsWrapper slug="politique-de-confidentialite">
+      <>
     <LegalLayout
       title="Politique de confidentialité"
       intro="Informations sur la collecte et le traitement de vos données personnelles."
@@ -67,6 +70,7 @@ function Page() {
           3 Place de Fontenoy, TSA 80715, 75334 PARIS CEDEX 07, France
         </p>
       </Section>
-    </LegalLayout>
+    </LegalLayout></>
+    </PageCmsWrapper>
   );
 }
