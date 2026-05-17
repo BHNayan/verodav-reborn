@@ -14,6 +14,7 @@ import appCss from "../styles.css?url";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { I18nProvider } from "@/lib/i18n";
+import { GoogleTranslate } from "@/components/GoogleTranslate";
 
 function NotFoundComponent() {
   return (
@@ -89,6 +90,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <I18nProvider>
         <ScrollRestoration />
+        <GoogleTranslate />
         {!isAdminArea && <SiteHeader />}
         <main className="min-h-[60vh]">
           <Outlet />
