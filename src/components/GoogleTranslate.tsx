@@ -60,6 +60,9 @@ export function GoogleTranslate() {
         );
         window.__gt_ready = true;
         try { document.documentElement.setAttribute("data-gt", "ready"); } catch {}
+        window.dispatchEvent(new CustomEvent("app-language-change", {
+          detail: { lang: localStorage.getItem("lang") || "en" },
+        }));
         if (timeoutId) window.clearTimeout(timeoutId);
       } catch (e) {
         markFailed(`init threw: ${(e as Error)?.message ?? e}`);
@@ -83,26 +86,39 @@ export function GoogleTranslate() {
     if (typeof window === "undefined") return;
     if (document.documentElement.getAttribute("data-gt") === "unavailable") return;
     const timers: number[] = [];
+    let observerTimer: number | undefined;
+    let ignoreTranslateMutationsUntil = 0;
+    const getTargetLang = () => {
+      try { return localStorage.getItem("lang") || "en"; } catch { return "en"; }
+    };
     const retranslate = (delay = 0) => {
       const id = window.setTimeout(() => {
         const select = document.querySelector<HTMLSelectElement>("select.goog-te-combo");
         if (!select) return;
-        let target = select.value;
-        try {
-          target = (localStorage.getItem("lang") || target) as string;
-        } catch {}
+        const target = getTargetLang();
         if (!target) return;
         if (select.value !== target) select.value = target;
+        ignoreTranslateMutationsUntil = Date.now() + 900;
+        select.dispatchEvent(new Event("input", { bubbles: true }));
         select.dispatchEvent(new Event("change", { bubbles: true }));
       }, delay);
       timers.push(id);
     };
-    const tries = [80, 250, 800, 1800];
+    const tries = [0, 40, 140, 360, 900];
     tries.forEach(retranslate);
     const onLanguageChange = () => tries.forEach(retranslate);
     window.addEventListener("app-language-change", onLanguageChange);
+    const observer = new MutationObserver(() => {
+      if (Date.now() < ignoreTranslateMutationsUntil) return;
+      if (getTargetLang() === "fr") return;
+      if (observerTimer) window.clearTimeout(observerTimer);
+      observerTimer = window.setTimeout(() => retranslate(0), 35);
+    });
+    observer.observe(document.body, { childList: true, subtree: true, characterData: true });
     return () => {
       window.removeEventListener("app-language-change", onLanguageChange);
+      observer.disconnect();
+      if (observerTimer) window.clearTimeout(observerTimer);
       timers.forEach((id) => window.clearTimeout(id));
     };
   }, [pathname]);
