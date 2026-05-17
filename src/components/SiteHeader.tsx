@@ -69,11 +69,11 @@ export function SiteHeader() {
         </Link>
 
         <nav className="hidden lg:flex items-center gap-8 text-sm">
-          <Link to="/" className="hover:text-copper transition" activeOptions={{ exact: true }} activeProps={{ className: "text-copper" }}>Accueil</Link>
-          <Link to="/boutique" className="hover:text-copper transition" activeProps={{ className: "text-copper" }}>Boutique</Link>
+          <Link to="/" className="hover:text-copper transition" activeOptions={{ exact: true }} activeProps={{ className: "text-copper" }}>{t("nav.home")}</Link>
+          <Link to="/boutique" className="hover:text-copper transition" activeProps={{ className: "text-copper" }}>{t("nav.shop")}</Link>
           <div className="relative group">
             <button className="hover:text-copper transition inline-flex items-center gap-1">
-              Catégories <ChevronDown className="h-3.5 w-3.5" />
+              {t("nav.categories")} <ChevronDown className="h-3.5 w-3.5" />
             </button>
             <div className="absolute left-1/2 top-full hidden -translate-x-1/2 pt-3 group-hover:block">
               <div className="w-72 border border-border bg-card p-2 shadow-xl">
@@ -87,12 +87,13 @@ export function SiteHeader() {
               </div>
             </div>
           </div>
-          <Link to="/a-propos" className="hover:text-copper transition" activeProps={{ className: "text-copper" }}>À propos</Link>
-          <Link to="/blog" className="hover:text-copper transition" activeProps={{ className: "text-copper" }}>Blog</Link>
-          <Link to="/contact" className="hover:text-copper transition" activeProps={{ className: "text-copper" }}>Contact</Link>
+          <Link to="/a-propos" className="hover:text-copper transition" activeProps={{ className: "text-copper" }}>{t("nav.about")}</Link>
+          <Link to="/blog" className="hover:text-copper transition" activeProps={{ className: "text-copper" }}>{t("nav.blog")}</Link>
+          <Link to="/contact" className="hover:text-copper transition" activeProps={{ className: "text-copper" }}>{t("nav.contact")}</Link>
         </nav>
 
         <div className="flex items-center gap-1 sm:gap-2">
+          <LanguageSwitcher />
           <Link to="/boutique" aria-label="Boutique" className="hidden md:inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-[11px] uppercase tracking-widest text-primary-foreground hover:bg-copper transition-colors">
             <Search className="h-3.5 w-3.5" /> Boutique
           </Link>
