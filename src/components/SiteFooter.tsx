@@ -25,6 +25,8 @@ const PAYMENTS: { name: string; src: string }[] = [
 
 export function SiteFooter() {
   const categories = useCategories();
+  const SITE = useSiteSettings();
+  const socials = { facebook: SITE.facebook, instagram: SITE.instagram };
   return (
     <footer className="mt-24 bg-primary text-primary-foreground">
       <div className="mx-auto max-w-7xl px-6 py-16 grid gap-12 md:grid-cols-12">
@@ -36,8 +38,8 @@ export function SiteFooter() {
             {SITE.tagline} Une sélection d'ustensiles de cuisine professionnels conçus pour durer.
           </p>
           <div className="mt-6 flex gap-3 justify-center md:justify-start">
-            <a href={SITE.socials.facebook} aria-label="Facebook" className="p-2 border border-primary-foreground/20 hover:bg-copper hover:border-copper transition"><Facebook className="h-4 w-4" /></a>
-            <a href={SITE.socials.instagram} aria-label="Instagram" className="p-2 border border-primary-foreground/20 hover:bg-copper hover:border-copper transition"><Instagram className="h-4 w-4" /></a>
+            <a href={socials.facebook} aria-label="Facebook" className="p-2 border border-primary-foreground/20 hover:bg-copper hover:border-copper transition"><Facebook className="h-4 w-4" /></a>
+            <a href={socials.instagram} aria-label="Instagram" className="p-2 border border-primary-foreground/20 hover:bg-copper hover:border-copper transition"><Instagram className="h-4 w-4" /></a>
           </div>
 
           <div className="mt-8 w-full">
