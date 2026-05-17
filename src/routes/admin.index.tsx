@@ -34,7 +34,7 @@ function AdminHome() {
 
   return (
     <div>
-      <h1 className="font-display text-3xl md:text-4xl">{t("admin.dashboard")}</h1>
+      <h1 className="font-display text-2xl md:text-4xl">{t("admin.dashboard")}</h1>
       <p className="mt-1 text-sm text-muted-foreground">{t("admin.overview")}</p>
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {cards.map((c) => (

@@ -60,7 +60,7 @@ function AdminPages() {
     <div>
       <div className="flex items-center justify-between gap-3">
         <div>
-          <h1 className="font-display text-3xl md:text-4xl">Pages du site</h1>
+          <h1 className="font-display text-2xl md:text-4xl">Pages du site</h1>
           <p className="mt-1 text-sm text-muted-foreground">Modifiez le titre et le contenu HTML de chaque page publique.</p>
         </div>
         <button onClick={createNew} className="inline-flex items-center gap-2 bg-primary px-4 py-2.5 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper">

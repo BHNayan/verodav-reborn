@@ -76,7 +76,7 @@ function Page() {
   return (
     <div>
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="font-display text-3xl md:text-4xl">{useI18n().t("admin.orders.title")}</h1>
+        <h1 className="font-display text-2xl md:text-4xl">{useI18n().t("admin.orders.title")}</h1>
         <ExportImportBar filenameBase="commandes" getRows={exportRows} onImport={importRows} importLabel="Mettre à jour statuts" />
       </div>
       <div className="mt-4 flex flex-wrap gap-2">

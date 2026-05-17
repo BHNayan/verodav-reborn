@@ -135,7 +135,7 @@ function AdminProducts() {
   return (
     <div>
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="font-display text-3xl md:text-4xl">Produits</h1>
+        <h1 className="font-display text-2xl md:text-4xl">Produits</h1>
         <div className="flex flex-wrap items-center gap-2">
           <ExportImportBar filenameBase="produits" getRows={exportRows} onImport={importRows} />
           <button onClick={() => setEditing({ ...empty })} className="inline-flex items-center gap-2 bg-primary px-4 py-2.5 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper">

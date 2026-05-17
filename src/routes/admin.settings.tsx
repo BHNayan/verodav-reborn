@@ -39,7 +39,7 @@ function Page() {
 
   return (
     <div>
-      <h1 className="font-display text-3xl md:text-4xl">{useI18n().t("admin.settings.title")}</h1>
+      <h1 className="font-display text-2xl md:text-4xl">{useI18n().t("admin.settings.title")}</h1>
       <p className="mt-1 text-sm text-muted-foreground">{useI18n().t("admin.settings.intro")}</p>
       <form onSubmit={save} className="mt-6 max-w-2xl border border-border bg-card p-5 space-y-4">
         {fields.map(({ k, label }) => (

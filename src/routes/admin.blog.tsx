@@ -32,7 +32,7 @@ function Page() {
 
   return (
     <div>
-      <div className="flex items-center justify-between"><h1 className="font-display text-3xl md:text-4xl">Blog</h1>
+      <div className="flex items-center justify-between"><h1 className="font-display text-2xl md:text-4xl">Blog</h1>
         <button onClick={() => setEditing({ ...empty })} className="inline-flex items-center gap-2 bg-primary px-4 py-2.5 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper"><Plus className="h-4 w-4" /> Nouvel article</button></div>
       <div className="mt-6 grid gap-3">
         {items.map((p) => (
