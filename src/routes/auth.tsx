@@ -32,12 +32,8 @@ function AuthPage() {
 
   useEffect(() => {
     if (loading || !session) return;
-    (async () => {
-      const { data } = await supabase.from("user_roles").select("role").eq("user_id", session.user.id);
-      const isAdmin = (data ?? []).some((r) => r.role === "admin");
-      const target = redirect && redirect !== "/" ? redirect : (isAdmin ? "/admin" : "/compte");
-      navigate({ to: target });
-    })();
+    const target = redirect && redirect !== "/" ? redirect : "/compte";
+    navigate({ to: target });
   }, [session, loading, redirect, navigate]);
 
   const handleEmail = async (e: FormEvent) => {
@@ -100,20 +96,13 @@ function AuthPage() {
 
         {mode === "signin" && (
           <div className="mt-6 border border-copper/40 bg-copper/5 p-4">
-            <div className="text-xs uppercase tracking-widest text-copper">Comptes de démonstration</div>
-            <div className="mt-3 space-y-2 text-xs">
-              {[
-                { label: "Admin", email: "admin@verodav.test", pw: "Admin1234!" },
-                { label: "Client", email: "customer@verodav.test", pw: "Customer1234!" },
-              ].map((d) => (
-                <div key={d.email} className="flex items-center justify-between gap-2 border border-border bg-background px-3 py-2">
-                  <div className="min-w-0">
-                    <div className="font-medium">{d.label}</div>
-                    <div className="truncate text-muted-foreground">{d.email} / {d.pw}</div>
-                  </div>
-                  <button type="button" onClick={() => { setEmail(d.email); setPassword(d.pw); }} className="shrink-0 bg-primary px-3 py-1.5 text-[10px] uppercase tracking-widest text-primary-foreground hover:bg-copper">Remplir</button>
-                </div>
-              ))}
+            <div className="text-xs uppercase tracking-widest text-copper">Compte client de démonstration</div>
+            <div className="mt-3 flex items-center justify-between gap-2 border border-border bg-background px-3 py-2 text-xs">
+              <div className="min-w-0">
+                <div className="font-medium">Client</div>
+                <div className="truncate text-muted-foreground">customer@verodav.test / Customer1234!</div>
+              </div>
+              <button type="button" onClick={() => { setEmail("customer@verodav.test"); setPassword("Customer1234!"); }} className="shrink-0 bg-primary px-3 py-1.5 text-[10px] uppercase tracking-widest text-primary-foreground hover:bg-copper">Remplir</button>
             </div>
           </div>
         )}
