@@ -328,14 +328,16 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     try { localStorage.setItem("lang", l); } catch {}
     try { writeGoogTransCookie(l); } catch {}
 
-    // If Google Translate is available, reload so it re-translates the DOM.
-    // If it failed to load (ad-blocker, offline, CSP), skip the reload — the
-    // dictionary-driven `t()` strings above still update via state, so the
-    // app stays usable without auto-translation of free-form content.
     if (typeof window === "undefined") return;
+    try { document.documentElement.lang = l; } catch {}
+
+    // Never reload on language changes: reloads remount the admin/customer
+    // dashboards and show the "checking access" screen again. GoogleTranslate
+    // listens for this event and re-translates the current SPA DOM in-place;
+    // if it is unavailable, the dictionary strings above still update.
     const gtUnavailable = document.documentElement.getAttribute("data-gt") === "unavailable";
     if (gtUnavailable) return;
-    window.location.reload();
+    window.dispatchEvent(new CustomEvent("app-language-change", { detail: { lang: l } }));
   };
 
   const t = (key: string) => DICT[lang][key] ?? DICT.en[key] ?? key;
