@@ -5,6 +5,7 @@ import { ProductCard } from "@/components/ProductCard";
 import { SITE } from "@/lib/site";
 import { Testimonials } from "@/components/Testimonials";
 import { CategoryCarousel } from "@/components/CategoryCarousel";
+import { HomeSearchBar } from "@/components/HomeSearchBar";
 
 export const Route = createFileRoute("/")({
   head: () => ({
