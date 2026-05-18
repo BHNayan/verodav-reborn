@@ -33,7 +33,7 @@ function BoutiquePage() {
   const { page, q: urlQ } = Route.useSearch();
   const navigate = useNavigate({ from: "/boutique" });
   const setPage = (n: number) =>
-    navigate({ search: (prev) => ({ ...prev, page: n }) });
+    navigate({ search: (prev: { page: number; q: string }) => ({ ...prev, page: n }) });
 
   const [cat, setCat] = useState<string>("all");
   const [q, setQ] = useState(urlQ ?? "");
@@ -43,7 +43,7 @@ function BoutiquePage() {
   useEffect(() => { setQ(urlQ ?? ""); }, [urlQ]);
 
   useEffect(() => {
-    navigate({ search: (prev) => ({ ...prev, page: 1 }), replace: true });
+    navigate({ search: (prev: { page: number; q: string }) => ({ ...prev, page: 1 }), replace: true });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cat, q, sort]);
 
