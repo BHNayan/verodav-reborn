@@ -8,6 +8,7 @@ import { useAuth, displayNameOf, signOut } from "@/lib/auth";
 import { useUserRoles } from "@/lib/roles";
 import { useI18n } from "@/lib/i18n";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { SearchModal } from "@/components/SearchModal";
 import logo from "@/assets/verodav-logo.png";
 
 export function SiteHeader() {
@@ -15,6 +16,7 @@ export function SiteHeader() {
   const SITE = useSiteSettings();
   const { t } = useI18n();
   const [open, setOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const [catOpen, setCatOpen] = useState(false);
   const [userMenu, setUserMenu] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
@@ -196,9 +198,13 @@ export function SiteHeader() {
 
           <nav className="flex-1 overflow-y-auto px-5 py-4 text-sm">
             <Link to="/" onClick={close} className="block border-b border-border py-3 font-medium">{t("nav.home")}</Link>
-            <Link to="/boutique" onClick={close} className="flex items-center gap-2 border-b border-border py-3 font-medium">
+            <button
+              type="button"
+              onClick={() => { close(); setSearchOpen(true); }}
+              className="flex w-full items-center gap-2 border-b border-border py-3 text-left font-medium"
+            >
               <Search className="h-4 w-4" /> {t("nav.shop")}
-            </Link>
+            </button>
             <button
               onClick={() => setCatOpen((v) => !v)}
               className="flex w-full items-center justify-between border-b border-border py-3 font-medium"
@@ -258,6 +264,8 @@ export function SiteHeader() {
           </div>
         </div>
       </aside>
+
+      <SearchModal open={searchOpen} onClose={() => setSearchOpen(false)} />
     </header>
   );
 }
