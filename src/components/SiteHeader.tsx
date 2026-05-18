@@ -110,9 +110,24 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-1 sm:gap-2">
           <LanguageSwitcher />
-          <Link to="/boutique" aria-label={t("nav.shop")} className="hidden md:inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-[11px] uppercase tracking-widest text-primary-foreground hover:bg-copper transition-colors">
-            <Search className="h-3.5 w-3.5" /> {t("nav.shop")}
-          </Link>
+          <form
+            role="search"
+            onSubmit={(e) => {
+              e.preventDefault();
+              const q = (new FormData(e.currentTarget).get("q") as string | null)?.trim() ?? "";
+              navigate({ to: "/boutique", search: { page: 1, q } });
+            }}
+            className="hidden md:flex items-center gap-2 border border-border bg-secondary/40 px-3 py-2 rounded-full focus-within:border-copper transition-colors w-56 lg:w-72"
+          >
+            <Search className="h-4 w-4 shrink-0 text-muted-foreground" />
+            <input
+              name="q"
+              type="search"
+              placeholder={t("common.search")}
+              aria-label={t("common.search")}
+              className="min-w-0 flex-1 bg-transparent text-xs uppercase tracking-widest outline-none placeholder:text-muted-foreground"
+            />
+          </form>
 
           {user ? (
             <div className="relative" ref={userMenuRef}>
