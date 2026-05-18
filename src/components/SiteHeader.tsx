@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { Menu, X, Search, ShoppingBag, User, ChevronDown, LogOut, Package, Heart, UserCircle } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { useProducts } from "@/lib/products";
 import { useCategories } from "@/lib/products";
 import { useSiteSettings } from "@/lib/site";
 import { useCartCount } from "@/lib/cart";
