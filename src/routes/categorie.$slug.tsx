@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { useProducts, useCategories, categoriesQueryOptions, type Product } from "@/lib/products";
 import { ProductCard } from "@/components/ProductCard";
@@ -83,6 +83,7 @@ function CategoryPage() {
 function OtherCategoriesCarousel({ currentSlug }: { currentSlug: string }) {
   const categories = useCategories();
   const scrollerRef = useRef<HTMLDivElement>(null);
+  const pausedRef = useRef(false);
   const others = categories.filter((c) => c.slug !== currentSlug);
 
   const scrollBy = (dir: 1 | -1) => {
@@ -92,6 +93,24 @@ function OtherCategoriesCarousel({ currentSlug }: { currentSlug: string }) {
     const step = card ? card.offsetWidth + 16 : el.clientWidth * 0.8;
     el.scrollBy({ left: step * dir, behavior: "smooth" });
   };
+
+  useEffect(() => {
+    const el = scrollerRef.current;
+    if (!el || others.length < 2) return;
+    const id = window.setInterval(() => {
+      if (pausedRef.current) return;
+      const maxScroll = el.scrollWidth - el.clientWidth;
+      if (el.scrollLeft >= maxScroll - 4) {
+        el.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        scrollBy(1);
+      }
+    }, 3500);
+    return () => window.clearInterval(id);
+  }, [others.length]);
+
+  const pause = () => { pausedRef.current = true; };
+  const resume = () => { pausedRef.current = false; };
 
   if (!others.length) return null;
 
@@ -111,6 +130,8 @@ function OtherCategoriesCarousel({ currentSlug }: { currentSlug: string }) {
         </div>
       </div>
       <div ref={scrollerRef}
+        onMouseEnter={pause} onMouseLeave={resume}
+        onTouchStart={pause} onTouchEnd={resume}
         className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 -mx-6 px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {others.map((c) => (
           <Link key={c.slug} to="/categorie/$slug" params={{ slug: c.slug }} data-other-cat
