@@ -97,9 +97,6 @@ export function SiteHeader() {
           <Link to="/boutique" aria-label={t("nav.shop")} className="hidden md:inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-[11px] uppercase tracking-widest text-primary-foreground hover:bg-copper transition-colors">
             <Search className="h-3.5 w-3.5" /> {t("nav.shop")}
           </Link>
-          <Link to="/boutique" aria-label={t("nav.shop")} className="md:hidden p-2 text-primary hover:text-copper transition">
-            <Search className="h-5 w-5" />
-          </Link>
 
           {user ? (
             <div className="relative" ref={userMenuRef}>
