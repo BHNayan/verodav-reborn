@@ -130,6 +130,8 @@ function OtherCategoriesCarousel({ currentSlug }: { currentSlug: string }) {
         </div>
       </div>
       <div ref={scrollerRef}
+        onMouseEnter={pause} onMouseLeave={resume}
+        onTouchStart={pause} onTouchEnd={resume}
         className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 -mx-6 px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {others.map((c) => (
           <Link key={c.slug} to="/categorie/$slug" params={{ slug: c.slug }} data-other-cat
