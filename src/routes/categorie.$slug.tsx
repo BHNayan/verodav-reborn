@@ -83,6 +83,7 @@ function CategoryPage() {
 function OtherCategoriesCarousel({ currentSlug }: { currentSlug: string }) {
   const categories = useCategories();
   const scrollerRef = useRef<HTMLDivElement>(null);
+  const pausedRef = useRef(false);
   const others = categories.filter((c) => c.slug !== currentSlug);
 
   const scrollBy = (dir: 1 | -1) => {
@@ -92,6 +93,24 @@ function OtherCategoriesCarousel({ currentSlug }: { currentSlug: string }) {
     const step = card ? card.offsetWidth + 16 : el.clientWidth * 0.8;
     el.scrollBy({ left: step * dir, behavior: "smooth" });
   };
+
+  useEffect(() => {
+    const el = scrollerRef.current;
+    if (!el || others.length < 2) return;
+    const id = window.setInterval(() => {
+      if (pausedRef.current) return;
+      const maxScroll = el.scrollWidth - el.clientWidth;
+      if (el.scrollLeft >= maxScroll - 4) {
+        el.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        scrollBy(1);
+      }
+    }, 3500);
+    return () => window.clearInterval(id);
+  }, [others.length]);
+
+  const pause = () => { pausedRef.current = true; };
+  const resume = () => { pausedRef.current = false; };
 
   if (!others.length) return null;
 
