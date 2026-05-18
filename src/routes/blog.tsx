@@ -3,7 +3,7 @@ import { useMemo } from "react";
 import { Search, X } from "lucide-react";
 import { zodValidator, fallback } from "@tanstack/zod-adapter";
 import { z } from "zod";
-import { usePosts, formatDate } from "@/lib/blog";
+import { usePosts, formatDate, postsQueryOptions } from "@/lib/blog";
 
 const PAGE_SIZE = 6;
 
@@ -16,6 +16,7 @@ type BlogSearch = { q: string; n: number };
 
 export const Route = createFileRoute("/blog")({
   validateSearch: zodValidator(searchSchema),
+  loader: ({ context }) => context.queryClient.ensureQueryData(postsQueryOptions()),
   head: () => ({
     meta: [
       { title: "Blog — Verodav Home" },
