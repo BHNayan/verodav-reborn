@@ -274,7 +274,81 @@ function HomePage() {
       {/* TESTIMONIALS */}
       <Testimonials variant="light" />
 
-      {/* CONTACT CTA — full bleed */}
+      {/* BLOG — editorial 1 large + 2 small */}
+      {blogFeatured && (
+        <section className="bg-card border-y border-border">
+          <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-24">
+            <div className="flex items-end justify-between mb-12 gap-6">
+              <div>
+                <span className="text-[11px] uppercase tracking-[0.3em] text-copper">— Le journal</span>
+                <h2 className="mt-3 font-display font-light text-5xl md:text-6xl tracking-tight text-balance">
+                  Conseils & <em className="not-italic italic text-copper">inspirations</em>.
+                </h2>
+              </div>
+              <Link to="/blog" className="hidden md:inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] hover:text-copper transition group">
+                Tous les articles <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </Link>
+            </div>
+
+            <div className="grid lg:grid-cols-12 gap-6 md:gap-8">
+              {/* Featured large */}
+              <Link to="/blog/$slug" params={{ slug: blogFeatured.slug }}
+                className="group lg:col-span-7 flex flex-col">
+                <div className="aspect-[16/10] overflow-hidden bg-secondary">
+                  {blogFeatured.image && (
+                    <img src={blogFeatured.image} alt={blogFeatured.title} loading="lazy"
+                      className="h-full w-full object-cover transition-transform duration-[1100ms] group-hover:scale-105" />
+                  )}
+                </div>
+                <div className="mt-5 flex items-center gap-3 text-[11px] uppercase tracking-widest text-muted-foreground">
+                  <span className="text-copper">{blogFeatured.category}</span>
+                  <span>{formatDate(blogFeatured.date)}</span>
+                  <span>· {blogFeatured.readTime}</span>
+                </div>
+                <h3 className="mt-3 font-display text-3xl md:text-4xl leading-tight group-hover:text-copper transition">
+                  {blogFeatured.title}
+                </h3>
+                <p className="mt-3 text-muted-foreground line-clamp-3 max-w-2xl">{blogFeatured.excerpt}</p>
+              </Link>
+
+              {/* Two smaller */}
+              <div className="lg:col-span-5 flex flex-col gap-6 md:gap-8">
+                {blogSide.map((p) => (
+                  <Link key={p.slug} to="/blog/$slug" params={{ slug: p.slug }}
+                    className="group grid grid-cols-5 gap-4">
+                    <div className="col-span-2 aspect-square overflow-hidden bg-secondary">
+                      {p.image && (
+                        <img src={p.image} alt={p.title} loading="lazy"
+                          className="h-full w-full object-cover transition-transform duration-[1100ms] group-hover:scale-105" />
+                      )}
+                    </div>
+                    <div className="col-span-3 flex flex-col justify-center">
+                      <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-muted-foreground">
+                        <span className="text-copper">{p.category}</span>
+                        <span>· {p.readTime}</span>
+                      </div>
+                      <h4 className="mt-2 font-display text-lg md:text-xl leading-snug group-hover:text-copper transition line-clamp-3">
+                        {p.title}
+                      </h4>
+                      <span className="mt-2 text-[10px] uppercase tracking-widest text-muted-foreground">
+                        {formatDate(p.date)}
+                      </span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-12 flex justify-center md:hidden">
+              <Link to="/blog" className="inline-flex items-center gap-3 border border-foreground px-7 py-4 text-[11px] uppercase tracking-[0.25em] hover:bg-foreground hover:text-background transition">
+                Tous les articles <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
+
+
       <section className="relative overflow-hidden bg-primary text-primary-foreground">
         <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: "radial-gradient(circle at 20% 20%, var(--copper) 0, transparent 40%), radial-gradient(circle at 80% 80%, var(--copper) 0, transparent 50%)" }} />
         <div className="relative mx-auto max-w-[1400px] px-6 lg:px-10 py-24 grid md:grid-cols-12 gap-10 items-center">
