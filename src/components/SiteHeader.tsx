@@ -265,6 +265,7 @@ export function SiteHeader() {
                 </div>
               )}
             </div>
+            <Link to="/" onClick={close} className="block border-b border-border py-3 font-medium">{t("nav.home")}</Link>
             <button
               onClick={() => setCatOpen((v) => !v)}
               className="flex w-full items-center justify-between border-b border-border py-3 font-medium"
