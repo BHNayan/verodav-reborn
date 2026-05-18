@@ -118,7 +118,7 @@ function OtherCategoriesCarousel({ currentSlug }: { currentSlug: string }) {
     <div className="mt-20 pt-10 border-t border-border">
       <div className="flex items-end justify-between mb-6 gap-6">
         <h2 className="font-display text-2xl md:text-3xl">Autres catégories</h2>
-        <div className="hidden md:flex items-center gap-2">
+        <div className="flex items-center gap-2">
           <button onClick={() => scrollBy(-1)} aria-label="Précédent"
             className="h-10 w-10 inline-flex items-center justify-center border border-border hover:bg-primary hover:text-primary-foreground hover:border-primary transition">
             <ArrowLeft className="h-4 w-4" />
