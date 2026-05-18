@@ -30,6 +30,9 @@ const SLIDE_IMGS = [
 function HomePage() {
   const products = useProducts();
   const categories = useCategories();
+  const posts = usePosts();
+  const blogFeatured = posts[0];
+  const blogSide = posts.slice(1, 3);
   const featured = products.slice(0, 8);
   const fanCat = products.filter(p => p.categories.includes("ventilateurs")).slice(0, 4);
   const editorialCats = categories.slice(0, 6);
