@@ -135,7 +135,3 @@ function OtherCategoriesCarousel({ currentSlug }: { currentSlug: string }) {
     </div>
   );
 }
-      </div>
-    </>
-  );
-}
