@@ -30,7 +30,7 @@ export function SiteFooter() {
   const { t } = useI18n();
   const socials = { facebook: SITE.facebook, instagram: SITE.instagram };
   return (
-    <footer className="mt-24 bg-primary text-primary-foreground">
+    <footer className="bg-primary text-primary-foreground">
       <div className="mx-auto max-w-7xl px-6 py-16 grid gap-12 md:grid-cols-12">
         <div className="md:col-span-4 flex flex-col items-center text-center md:items-start md:text-left">
           <Link to="/" aria-label="Verodav Home" className="inline-flex items-center justify-center bg-white rounded-lg px-5 py-3 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.45)] ring-1 ring-white/10">
