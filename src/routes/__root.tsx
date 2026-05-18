@@ -105,10 +105,29 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   errorComponent: ErrorComponent,
 });
 
+const BOOT_LANG_SCRIPT = `(function(){try{
+  var SRC='fr';
+  var saved=null;try{saved=localStorage.getItem('lang');}catch(e){}
+  var lang=(saved==='en'||saved==='fr'||saved==='de')?saved:'en';
+  if(!saved){try{localStorage.setItem('lang',lang);}catch(e){}}
+  var val='/'+SRC+'/'+lang;
+  var host=location.hostname;
+  var parts=host.split('.');
+  var domains=[null,host,'.'+host];
+  if(parts.length>2)domains.push('.'+parts.slice(-2).join('.'));
+  for(var i=0;i<domains.length;i++){
+    document.cookie='googtrans='+val+';path=/'+(domains[i]?';domain='+domains[i]:'');
+  }
+  document.documentElement.lang=lang;
+}catch(e){}})();`;
+
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fr">
-      <head><HeadContent /></head>
+      <head>
+        <HeadContent />
+        <script dangerouslySetInnerHTML={{ __html: BOOT_LANG_SCRIPT }} />
+      </head>
       <body>
         {children}
         <Scripts />
