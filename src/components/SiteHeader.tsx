@@ -196,7 +196,9 @@ export function SiteHeader() {
 
           <nav className="flex-1 overflow-y-auto px-5 py-4 text-sm">
             <Link to="/" onClick={close} className="block border-b border-border py-3 font-medium">{t("nav.home")}</Link>
-            <Link to="/boutique" onClick={close} className="block border-b border-border py-3 font-medium">{t("nav.shop")}</Link>
+            <Link to="/boutique" onClick={close} className="flex items-center gap-2 border-b border-border py-3 font-medium">
+              <Search className="h-4 w-4" /> {t("nav.shop")}
+            </Link>
             <button
               onClick={() => setCatOpen((v) => !v)}
               className="flex w-full items-center justify-between border-b border-border py-3 font-medium"
