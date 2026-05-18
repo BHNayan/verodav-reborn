@@ -35,6 +35,7 @@ function HomePage() {
 
   return (
     <>
+      <HomeSearchBar />
       {/* HERO — editorial split with oversized type */}
       <section className="relative overflow-hidden">
         {/* decorative copper line */}
