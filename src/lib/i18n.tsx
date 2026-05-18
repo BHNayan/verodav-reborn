@@ -334,11 +334,36 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     if (typeof window === "undefined") return;
     try { document.documentElement.lang = l; } catch {}
 
-    // Explicit language switches are rare (only via the switcher), so a hard
-    // reload is acceptable and is the only reliable way to make Google
-    // Translate re-translate the ENTIRE DOM (hero, product cards, footer,
-    // dashboards, dynamic content) with the new target language. Without
-    // this, the in-place retranslate trick only covers part of the page.
+    // Show a full-screen overlay so users see immediate feedback while the
+    // page reloads to let Google Translate re-render the whole DOM.
+    try {
+      const labelMap: Record<Lang, string> = {
+        en: "Switching language…",
+        fr: "Changement de langue…",
+        de: "Sprache wird gewechselt…",
+      };
+      const existing = document.getElementById("lang-switch-overlay");
+      existing?.remove();
+      const overlay = document.createElement("div");
+      overlay.id = "lang-switch-overlay";
+      overlay.setAttribute("role", "status");
+      overlay.setAttribute("aria-live", "polite");
+      overlay.style.cssText = [
+        "position:fixed", "inset:0", "z-index:2147483647",
+        "display:flex", "flex-direction:column", "align-items:center", "justify-content:center",
+        "gap:18px",
+        "background:rgba(10,12,20,0.78)", "backdrop-filter:blur(6px)", "-webkit-backdrop-filter:blur(6px)",
+        "color:#fff", "font-family:system-ui,-apple-system,sans-serif",
+        "font-size:13px", "letter-spacing:0.18em", "text-transform:uppercase",
+      ].join(";");
+      overlay.innerHTML = `
+        <style>@keyframes lang-spin{to{transform:rotate(360deg)}}</style>
+        <div style="width:42px;height:42px;border:2px solid rgba(255,255,255,0.22);border-top-color:#fff;border-radius:50%;animation:lang-spin 0.8s linear infinite"></div>
+        <div>${labelMap[l]}</div>
+      `;
+      document.body.appendChild(overlay);
+    } catch {}
+
     try { window.location.reload(); } catch {}
   };
 
