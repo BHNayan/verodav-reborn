@@ -9,6 +9,7 @@ import { ProductCard } from "@/components/ProductCard";
 
 const boutiqueSearchSchema = z.object({
   page: fallback(z.number().int().min(1), 1).default(1),
+  q: fallback(z.string(), "").default(""),
 });
 
 export const Route = createFileRoute("/boutique")({
@@ -29,17 +30,20 @@ export const Route = createFileRoute("/boutique")({
 function BoutiquePage() {
   const products = useProducts();
   const categories = useCategories();
-  const { page } = Route.useSearch();
+  const { page, q: urlQ } = Route.useSearch();
   const navigate = useNavigate({ from: "/boutique" });
   const setPage = (n: number) =>
-    navigate({ search: (prev: { page: number }) => ({ ...prev, page: n }) });
+    navigate({ search: (prev) => ({ ...prev, page: n }) });
 
   const [cat, setCat] = useState<string>("all");
-  const [q, setQ] = useState("");
+  const [q, setQ] = useState(urlQ ?? "");
   const [sort, setSort] = useState<"default" | "price-asc" | "price-desc">("default");
 
+  // Keep local input synced when the URL ?q= changes (e.g. header search).
+  useEffect(() => { setQ(urlQ ?? ""); }, [urlQ]);
+
   useEffect(() => {
-    navigate({ search: (prev: { page: number }) => ({ ...prev, page: 1 }), replace: true });
+    navigate({ search: (prev) => ({ ...prev, page: 1 }), replace: true });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cat, q, sort]);
 
