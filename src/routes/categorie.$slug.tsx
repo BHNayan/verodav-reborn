@@ -114,8 +114,8 @@ function OtherCategoriesCarousel({ currentSlug }: { currentSlug: string }) {
         className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 -mx-6 px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {others.map((c) => (
           <Link key={c.slug} to="/categorie/$slug" params={{ slug: c.slug }} data-other-cat
-            className="group relative shrink-0 snap-start w-[60%] sm:w-[38%] md:w-[28%] lg:w-[22%] xl:w-[18%]">
-            <div className="relative aspect-[4/5] overflow-hidden bg-secondary">
+            className="group relative shrink-0 snap-start w-[45%] sm:w-[32%] md:w-[24%] lg:w-[19%] xl:w-[16%]">
+            <div className="relative aspect-square md:aspect-[4/5] overflow-hidden bg-secondary">
               {c.image && (
                 <img src={c.image} alt={c.name} loading="lazy"
                   className="h-full w-full object-cover transition-transform duration-[1100ms] group-hover:scale-105" />
