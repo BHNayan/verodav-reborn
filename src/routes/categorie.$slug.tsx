@@ -1,4 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { useRef } from "react";
+import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { useProducts, useCategories, categoriesQueryOptions, type Product } from "@/lib/products";
 import { ProductCard } from "@/components/ProductCard";
 
