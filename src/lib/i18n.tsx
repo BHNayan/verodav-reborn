@@ -313,13 +313,16 @@ export function I18nProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     try {
-      const saved = (localStorage.getItem("lang") as Lang | null) ?? "en";
-      if (DICT[saved]) {
-        setLangState(saved);
-        // Ensure the Google Translate cookie matches the saved preference on
-        // every page load so the DOM is translated before the user interacts.
-        writeGoogTransCookie(saved);
+      const saved = (localStorage.getItem("lang") as Lang | null);
+      const initial: Lang = saved && DICT[saved] ? saved : "en";
+      if (!saved) {
+        // First-time visitor: persist English as the default so the Google
+        // Translate cookie is set before any subsequent navigation.
+        try { localStorage.setItem("lang", initial); } catch {}
       }
+      setLangState(initial);
+      writeGoogTransCookie(initial);
+      try { document.documentElement.lang = initial; } catch {}
     } catch {}
   }, []);
 
@@ -331,13 +334,12 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     if (typeof window === "undefined") return;
     try { document.documentElement.lang = l; } catch {}
 
-    // Never reload on language changes: reloads remount the admin/customer
-    // dashboards and show the "checking access" screen again. GoogleTranslate
-    // listens for this event and re-translates the current SPA DOM in-place;
-    // if it is unavailable, the dictionary strings above still update.
-    const gtUnavailable = document.documentElement.getAttribute("data-gt") === "unavailable";
-    if (gtUnavailable) return;
-    window.dispatchEvent(new CustomEvent("app-language-change", { detail: { lang: l } }));
+    // Explicit language switches are rare (only via the switcher), so a hard
+    // reload is acceptable and is the only reliable way to make Google
+    // Translate re-translate the ENTIRE DOM (hero, product cards, footer,
+    // dashboards, dynamic content) with the new target language. Without
+    // this, the in-place retranslate trick only covers part of the page.
+    try { window.location.reload(); } catch {}
   };
 
   const t = (key: string) => DICT[lang][key] ?? DICT.en[key] ?? key;
