@@ -1,4 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { useRef } from "react";
+import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { useProducts, useCategories, categoriesQueryOptions, type Product } from "@/lib/products";
 import { ProductCard } from "@/components/ProductCard";
 
@@ -72,18 +74,64 @@ function CategoryPage() {
           {products.map((p: Product) => <ProductCard key={p.id} p={p} />)}
         </div>
 
-        <div className="mt-20 pt-10 border-t border-border">
-          <h2 className="font-display text-2xl mb-6">Autres catégories</h2>
-          <div className="flex flex-wrap gap-2">
-            {categories.filter((c) => c.slug !== cat.slug).map((c) => (
-              <Link key={c.slug} to="/categorie/$slug" params={{ slug: c.slug }}
-                className="text-xs uppercase tracking-widest border border-border px-3 py-2 hover:bg-primary hover:text-primary-foreground transition">
-                {c.name}
-              </Link>
-            ))}
-          </div>
-        </div>
+        <OtherCategoriesCarousel currentSlug={cat.slug} />
       </div>
     </>
+  );
+}
+
+function OtherCategoriesCarousel({ currentSlug }: { currentSlug: string }) {
+  const categories = useCategories();
+  const scrollerRef = useRef<HTMLDivElement>(null);
+  const others = categories.filter((c) => c.slug !== currentSlug);
+
+  const scrollBy = (dir: 1 | -1) => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const card = el.querySelector<HTMLElement>("[data-other-cat]");
+    const step = card ? card.offsetWidth + 16 : el.clientWidth * 0.8;
+    el.scrollBy({ left: step * dir, behavior: "smooth" });
+  };
+
+  if (!others.length) return null;
+
+  return (
+    <div className="mt-20 pt-10 border-t border-border">
+      <div className="flex items-end justify-between mb-6 gap-6">
+        <h2 className="font-display text-2xl md:text-3xl">Autres catégories</h2>
+        <div className="hidden md:flex items-center gap-2">
+          <button onClick={() => scrollBy(-1)} aria-label="Précédent"
+            className="h-10 w-10 inline-flex items-center justify-center border border-border hover:bg-primary hover:text-primary-foreground hover:border-primary transition">
+            <ArrowLeft className="h-4 w-4" />
+          </button>
+          <button onClick={() => scrollBy(1)} aria-label="Suivant"
+            className="h-10 w-10 inline-flex items-center justify-center border border-border hover:bg-primary hover:text-primary-foreground hover:border-primary transition">
+            <ArrowRight className="h-4 w-4" />
+          </button>
+        </div>
+      </div>
+      <div ref={scrollerRef}
+        className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 -mx-6 px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        {others.map((c) => (
+          <Link key={c.slug} to="/categorie/$slug" params={{ slug: c.slug }} data-other-cat
+            className="group relative shrink-0 snap-start w-[60%] sm:w-[38%] md:w-[28%] lg:w-[22%] xl:w-[18%]">
+            <div className="relative aspect-[4/5] overflow-hidden bg-secondary">
+              {c.image && (
+                <img src={c.image} alt={c.name} loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-[1100ms] group-hover:scale-105" />
+              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/10 to-transparent" />
+              <div className="absolute top-3 left-3 text-[10px] uppercase tracking-[0.28em] text-primary-foreground/90 bg-primary/40 backdrop-blur px-2 py-1">
+                {c.count} produits
+              </div>
+              <div className="absolute inset-x-0 bottom-0 p-4 text-primary-foreground flex items-end justify-between gap-2">
+                <h3 className="font-display text-lg leading-tight">{c.name}</h3>
+                <ArrowUpRight className="h-4 w-4 text-copper translate-y-1 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition shrink-0" />
+              </div>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </div>
   );
 }
