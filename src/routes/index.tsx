@@ -5,6 +5,7 @@ import { ProductCard } from "@/components/ProductCard";
 import { SITE } from "@/lib/site";
 import { Testimonials } from "@/components/Testimonials";
 import { CategoryCarousel } from "@/components/CategoryCarousel";
+import { HomeSearchBar } from "@/components/HomeSearchBar";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -34,6 +35,7 @@ function HomePage() {
 
   return (
     <>
+      <HomeSearchBar />
       {/* HERO — editorial split with oversized type */}
       <section className="relative overflow-hidden">
         {/* decorative copper line */}
