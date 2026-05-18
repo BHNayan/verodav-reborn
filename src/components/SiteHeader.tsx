@@ -25,6 +25,19 @@ export function SiteHeader() {
   const { user } = useAuth();
   const { isAdmin } = useUserRoles();
   const navigate = useNavigate();
+  const products = useProducts();
+  const [drawerQ, setDrawerQ] = useState("");
+  const drawerResults = useMemo(() => {
+    const term = drawerQ.trim().toLowerCase();
+    if (!term) return [];
+    return products
+      .filter((p) =>
+        p.name.toLowerCase().includes(term) ||
+        p.short.toLowerCase().includes(term) ||
+        p.category_names.some((c) => c.toLowerCase().includes(term))
+      )
+      .slice(0, 8);
+  }, [drawerQ, products]);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
