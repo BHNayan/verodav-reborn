@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { Menu, X, Search, ShoppingBag, User, ChevronDown, LogOut, Package, Heart, UserCircle } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { useProducts } from "@/lib/products";
 import { useCategories } from "@/lib/products";
 import { useSiteSettings } from "@/lib/site";
 import { useCartCount } from "@/lib/cart";
@@ -24,6 +25,19 @@ export function SiteHeader() {
   const { user } = useAuth();
   const { isAdmin } = useUserRoles();
   const navigate = useNavigate();
+  const products = useProducts();
+  const [drawerQ, setDrawerQ] = useState("");
+  const drawerResults = useMemo(() => {
+    const term = drawerQ.trim().toLowerCase();
+    if (!term) return [];
+    return products
+      .filter((p) =>
+        p.name.toLowerCase().includes(term) ||
+        p.short.toLowerCase().includes(term) ||
+        p.category_names.some((c) => c.toLowerCase().includes(term))
+      )
+      .slice(0, 8);
+  }, [drawerQ, products]);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -198,13 +212,60 @@ export function SiteHeader() {
 
           <nav className="flex-1 overflow-y-auto px-5 py-4 text-sm">
             <Link to="/" onClick={close} className="block border-b border-border py-3 font-medium">{t("nav.home")}</Link>
-            <button
-              type="button"
-              onClick={() => { close(); setSearchOpen(true); }}
-              className="flex w-full items-center gap-2 border-b border-border py-3 text-left font-medium"
-            >
-              <Search className="h-4 w-4" /> {t("nav.shop")}
-            </button>
+            <div className="border-b border-border py-3">
+              <div className="flex items-center gap-2 rounded-md border border-border bg-secondary/40 px-3 py-2">
+                <Search className="h-4 w-4 shrink-0 text-muted-foreground" />
+                <input
+                  value={drawerQ}
+                  onChange={(e) => setDrawerQ(e.target.value)}
+                  placeholder={t("nav.shop") + "…"}
+                  aria-label={t("nav.shop")}
+                  className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground"
+                />
+                {drawerQ && (
+                  <button onClick={() => setDrawerQ("")} aria-label="Clear" className="shrink-0 text-muted-foreground hover:text-primary">
+                    <X className="h-4 w-4" />
+                  </button>
+                )}
+              </div>
+              {drawerQ.trim() !== "" && (
+                <div className="mt-2 max-h-72 overflow-y-auto overscroll-contain rounded-md border border-border">
+                  {drawerResults.length === 0 ? (
+                    <div className="break-words px-3 py-4 text-center text-xs text-muted-foreground">
+                      No products found for "{drawerQ}".
+                    </div>
+                  ) : (
+                    <ul className="divide-y divide-border">
+                      {drawerResults.map((p) => (
+                        <li key={p.id}>
+                          <Link
+                            to="/produit/$slug"
+                            params={{ slug: p.slug }}
+                            onClick={() => { setDrawerQ(""); close(); }}
+                            className="flex items-center gap-2.5 px-3 py-2 hover:bg-secondary"
+                          >
+                            {p.image ? (
+                              <img src={p.image} alt={p.name} className="h-10 w-10 shrink-0 object-cover" loading="lazy" />
+                            ) : (
+                              <div className="h-10 w-10 shrink-0 bg-secondary" />
+                            )}
+                            <div className="min-w-0 flex-1">
+                              <div className="truncate text-sm font-medium">{p.name}</div>
+                              {p.category_names[0] && (
+                                <div className="truncate text-[11px] text-muted-foreground">{p.category_names[0]}</div>
+                              )}
+                            </div>
+                            <div className="shrink-0 whitespace-nowrap text-xs font-semibold text-copper">
+                              {p.price.toFixed(2)} €
+                            </div>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              )}
+            </div>
             <button
               onClick={() => setCatOpen((v) => !v)}
               className="flex w-full items-center justify-between border-b border-border py-3 font-medium"
