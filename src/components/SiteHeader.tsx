@@ -264,6 +264,8 @@ export function SiteHeader() {
           </div>
         </div>
       </aside>
+
+      <SearchModal open={searchOpen} onClose={() => setSearchOpen(false)} />
     </header>
   );
 }
