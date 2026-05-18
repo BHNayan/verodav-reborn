@@ -8,6 +8,7 @@ import { useAuth, displayNameOf, signOut } from "@/lib/auth";
 import { useUserRoles } from "@/lib/roles";
 import { useI18n } from "@/lib/i18n";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { SearchModal } from "@/components/SearchModal";
 import logo from "@/assets/verodav-logo.png";
 
 export function SiteHeader() {
