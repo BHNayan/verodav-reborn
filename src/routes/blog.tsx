@@ -16,6 +16,7 @@ type BlogSearch = { q: string; n: number };
 
 export const Route = createFileRoute("/blog")({
   validateSearch: zodValidator(searchSchema),
+  loader: ({ context }) => context.queryClient.ensureQueryData(postsQueryOptions()),
   head: () => ({
     meta: [
       { title: "Blog — Verodav Home" },
