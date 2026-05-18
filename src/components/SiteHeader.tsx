@@ -211,15 +211,14 @@ export function SiteHeader() {
           )}
 
           <nav className="flex-1 overflow-y-auto px-5 py-4 text-sm">
-            <Link to="/" onClick={close} className="block border-b border-border py-3 font-medium">{t("nav.home")}</Link>
             <div className="border-b border-border py-3">
               <div className="flex items-center gap-2 rounded-md border border-border bg-secondary/40 px-3 py-2">
                 <Search className="h-4 w-4 shrink-0 text-muted-foreground" />
                 <input
                   value={drawerQ}
                   onChange={(e) => setDrawerQ(e.target.value)}
-                  placeholder={t("nav.shop") + "…"}
-                  aria-label={t("nav.shop")}
+                  placeholder={t("common.search")}
+                  aria-label={t("common.search")}
                   className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground"
                 />
                 {drawerQ && (
@@ -266,6 +265,7 @@ export function SiteHeader() {
                 </div>
               )}
             </div>
+            <Link to="/" onClick={close} className="block border-b border-border py-3 font-medium">{t("nav.home")}</Link>
             <button
               onClick={() => setCatOpen((v) => !v)}
               className="flex w-full items-center justify-between border-b border-border py-3 font-medium"
