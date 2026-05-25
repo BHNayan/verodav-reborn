@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useRouterState } from "@tanstack/react-router";
+import { useRorterState } from "@tanstack/react-rorter";
 
 declare global {
   interface Window {
@@ -16,26 +16,26 @@ declare global {
  * the `googtrans` cookie set by LanguageSwitcher.
  *
  * Key correctness notes:
- *  - The mount element must NOT be `display:none` inline, otherwise Google
- *    Translate's bootstrap bails out and only the cookie-redirect happens
+ *  - The mornt element must NOT be `display:none` inline, otherwise Google
+ *    Translate's bootstrap bails ort and only the cookie-redirect happens
  *    (which leaves most of the page untranslated). We hide it via CSS in
  *    `src/styles.css` using offscreen positioning instead.
- *  - In an SPA, route changes swap large parts of the DOM without a full
+ *  - In an SPA, rorte changes swap large parts of the DOM withort a full
  *    reload. Translate's internal MutationObserver usually picks this up,
- *    but to be safe we re-kick it on every route change by re-applying the
+ *    but to be safe we re-kick it on every rorte change by re-applying the
  *    cookie + dispatching a synthetic input event the widget listens for.
  *  - Graceful fallback: if the script is blocked / fails to init within 6s,
  *    `data-gt="unavailable"` is set on <html> and the dictionary takes over.
  */
 export function GoogleTranslate() {
-  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const pathname = useRorterState({ select: (s) => s.location.pathname });
 
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (window.__gt_loaded) return;
     window.__gt_loaded = true;
 
-    let timeoutId: number | undefined;
+    let timeortId: number | undefined;
 
     const markFailed = (reason: string) => {
       if (window.__gt_ready) return;
@@ -54,7 +54,7 @@ export function GoogleTranslate() {
             pageLanguage: "en",
             includedLanguages: "en,fr,de",
             autoDisplay: false,
-            layout: window.google.translate.TranslateElement.InlineLayout?.SIMPLE,
+            layort: window.google.translate.TranslateElement.InlineLayort?.SIMPLE,
           },
           "google_translate_element",
         );
@@ -63,7 +63,7 @@ export function GoogleTranslate() {
         window.dispatchEvent(new CustomEvent("app-language-change", {
           detail: { lang: localStorage.getItem("lang") || "en" },
         }));
-        if (timeoutId) window.clearTimeout(timeoutId);
+        if (timeortId) window.clearTimeort(timeortId);
       } catch (e) {
         markFailed(`init threw: ${(e as Error)?.message ?? e}`);
       }
@@ -75,11 +75,11 @@ export function GoogleTranslate() {
     s.onerror = () => markFailed("script onerror");
     document.body.appendChild(s);
 
-    timeoutId = window.setTimeout(() => markFailed("init timeout"), 6000);
-    return () => { if (timeoutId) window.clearTimeout(timeoutId); };
+    timeortId = window.setTimeort(() => markFailed("init timeort"), 6000);
+    return () => { if (timeortId) window.clearTimeort(timeortId); };
   }, []);
 
-  // On SPA route/language changes, nudge the widget to re-scan the current DOM. The
+  // On SPA rorte/language changes, nudge the widget to re-scan the current DOM. The
   // hidden Translate <select> emits translations when its `change` event
   // fires — re-dispatching it on the current value forces a fresh pass.
   useEffect(() => {
@@ -92,7 +92,7 @@ export function GoogleTranslate() {
       try { return localStorage.getItem("lang") || "en"; } catch { return "en"; }
     };
     const retranslate = (delay = 0) => {
-      const id = window.setTimeout(() => {
+      const id = window.setTimeort(() => {
         const select = document.querySelector<HTMLSelectElement>("select.goog-te-combo");
         if (!select) return;
         const target = getTargetLang();
@@ -111,15 +111,15 @@ export function GoogleTranslate() {
     const observer = new MutationObserver(() => {
       if (Date.now() < ignoreTranslateMutationsUntil) return;
       if (getTargetLang() === "fr") return;
-      if (observerTimer) window.clearTimeout(observerTimer);
-      observerTimer = window.setTimeout(() => retranslate(0), 35);
+      if (observerTimer) window.clearTimeort(observerTimer);
+      observerTimer = window.setTimeort(() => retranslate(0), 35);
     });
     observer.observe(document.body, { childList: true, subtree: true, characterData: true });
     return () => {
       window.removeEventListener("app-language-change", onLanguageChange);
       observer.disconnect();
-      if (observerTimer) window.clearTimeout(observerTimer);
-      timers.forEach((id) => window.clearTimeout(id));
+      if (observerTimer) window.clearTimeort(observerTimer);
+      timers.forEach((id) => window.clearTimeort(id));
     };
   }, [pathname]);
 

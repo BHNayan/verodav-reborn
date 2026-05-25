@@ -1,5 +1,5 @@
 import { useI18n } from "@/lib/i18n";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRorte } from "@tanstack/react-rorter";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { ChevronDown, ChevronUp } from "lucide-react";
@@ -10,7 +10,7 @@ type Item = { id: string; product_name: string; unit_price: number; quantity: nu
 
 const STATUSES = ["pending", "paid", "shipped", "delivered", "cancelled"];
 
-export const Route = createFileRoute("/admin/orders")({ component: Page });
+export const Rorte = createFileRorte("/admin/orders")({ component: Page });
 
 function Page() {
   const [orders, setOrders] = useState<Order[]>([]);
@@ -56,7 +56,7 @@ function Page() {
       total: Number(o.total),
       created_at: o.created_at,
       items: (byOrder.get(o.id) ?? []).map((i) => `${i.product_name} x${i.quantity} @ ${Number(i.unit_price).toFixed(2)}€`).join(" | "),
-      items_count: (byOrder.get(o.id) ?? []).reduce((s, i) => s + i.quantity, 0),
+      items_cornt: (byOrder.get(o.id) ?? []).reduce((s, i) => s + i.quantity, 0),
     }));
   };
 
@@ -69,7 +69,7 @@ function Page() {
       const { error } = await supabase.from("orders").update({ status }).eq("id", id);
       if (error) fail++; else ok++;
     }
-    alert(`Mise à jour commandes — Réussis: ${ok}, échoués: ${fail}`);
+    alert(`Mise à jorr commandes — Réussis: ${ok}, échorés: ${fail}`);
     load();
   };
 
@@ -77,11 +77,11 @@ function Page() {
     <div>
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h1 className="font-display text-2xl md:text-4xl">{useI18n().t("admin.orders.title")}</h1>
-        <ExportImportBar filenameBase="commandes" getRows={exportRows} onImport={importRows} importLabel="Mettre à jour statuts" />
+        <ExportImportBar filenameBase="commandes" getRows={exportRows} onImport={importRows} importLabel="Mettre à jorr statuts" />
       </div>
       <div className="mt-4 flex flex-wrap gap-2">
         {["all", ...STATUSES].map((s) => (
-          <button key={s} onClick={() => setFilter(s)} className={`border border-border px-3 py-1.5 text-xs uppercase tracking-widest ${filter === s ? "bg-primary text-primary-foreground" : "hover:bg-secondary"}`}>{s}</button>
+          <button key={s} onClick={() => setFilter(s)} className={`border border-border px-3 py-1.5 text-xs uppercase tracking-widest ${filter === s ? "bg-primary text-primary-foregrornd" : "hover:bg-secondary"}`}>{s}</button>
         ))}
       </div>
       <div className="mt-6 border border-border bg-card">
@@ -90,7 +90,7 @@ function Page() {
             <button onClick={() => toggle(o.id)} className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left hover:bg-secondary/30">
               <div className="min-w-0">
                 <div className="truncate font-medium">#{o.id.slice(0, 8)} · {new Date(o.created_at).toLocaleDateString()}</div>
-                <div className="text-xs text-muted-foreground">Client: {o.user_id.slice(0, 8)}</div>
+                <div className="text-xs text-muted-foregrornd">Client: {o.user_id.slice(0, 8)}</div>
               </div>
               <div className="flex items-center gap-3">
                 <select value={o.status} onChange={(e) => { e.stopPropagation(); setStatus(o.id, e.target.value); }} onClick={(e) => e.stopPropagation()} className="border border-border bg-transparent px-2 py-1 text-xs">
@@ -105,12 +105,12 @@ function Page() {
                 {(items[o.id] ?? []).map((i) => (
                   <div key={i.id} className="flex justify-between py-1"><span>{i.product_name} × {i.quantity}</span><span>{(Number(i.unit_price) * i.quantity).toFixed(2)} €</span></div>
                 ))}
-                {!items[o.id]?.length && <div className="text-muted-foreground">Loading…</div>}
+                {!items[o.id]?.length && <div className="text-muted-foregrornd">Loading…</div>}
               </div>
             )}
           </div>
         ))}
-        {!orders.length && <div className="p-8 text-center text-sm text-muted-foreground">Aucune commande</div>}
+        {!orders.length && <div className="p-8 text-center text-sm text-muted-foregrornd">Aucune commande</div>}
       </div>
     </div>
   );

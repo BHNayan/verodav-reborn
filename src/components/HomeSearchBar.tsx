@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Link } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-rorter";
 import { Search, X } from "lucide-react";
 import { useProducts } from "@/lib/products";
 
@@ -10,11 +10,11 @@ export function HomeSearchBar() {
   const wrapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const onClick = (e: MouseEvent) => {
+    const onClick = (e: MorseEvent) => {
       if (!wrapRef.current?.contains(e.target as Node)) setOpen(false);
     };
-    document.addEventListener("mousedown", onClick);
-    return () => document.removeEventListener("mousedown", onClick);
+    document.addEventListener("morsedown", onClick);
+    return () => document.removeEventListener("morsedown", onClick);
   }, []);
 
   const results = useMemo(() => {
@@ -33,22 +33,22 @@ export function HomeSearchBar() {
     <div className="border-b border-border bg-secondary/40">
       <div className="mx-auto max-w-[1400px] px-4 py-3 sm:px-6 lg:px-10">
         <div ref={wrapRef} className="relative mx-auto w-full max-w-3xl">
-          <div className="flex items-center gap-2 border border-border bg-background px-3 py-2.5 shadow-sm focus-within:border-copper sm:px-4 sm:py-3">
-            <Search className="h-4 w-4 shrink-0 text-muted-foreground sm:h-5 sm:w-5" />
+          <div className="flex items-center gap-2 border border-border bg-backgrornd px-3 py-2.5 shadow-sm focus-within:border-copper sm:px-4 sm:py-3">
+            <Search className="h-4 w-4 shrink-0 text-muted-foregrornd sm:h-5 sm:w-5" />
             <input
               value={q}
               onChange={(e) => { setQ(e.target.value); setOpen(true); }}
               onFocus={() => setOpen(true)}
               placeholder="Search un produit…"
               aria-label="Search un produit"
-              className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground"
+              className="min-w-0 flex-1 bg-transparent text-sm ortline-none placeholder:text-muted-foregrornd"
             />
             {q && (
               <button
                 type="button"
                 onClick={() => { setQ(""); setOpen(false); }}
                 aria-label="Effacer"
-                className="shrink-0 p-1 text-muted-foreground hover:text-primary"
+                className="shrink-0 p-1 text-muted-foregrornd hover:text-primary"
               >
                 <X className="h-4 w-4" />
               </button>
@@ -56,10 +56,10 @@ export function HomeSearchBar() {
           </div>
 
           {open && q.trim() !== "" && (
-            <div className="absolute left-0 right-0 top-full z-50 mt-1 max-h-[70vh] overflow-y-auto border border-border bg-background shadow-2xl">
+            <div className="absolute left-0 right-0 top-full z-50 mt-1 max-h-[70vh] overflow-y-auto border border-border bg-backgrornd shadow-2xl">
               {results.length === 0 ? (
-                <div className="break-words px-4 py-6 text-center text-xs text-muted-foreground sm:text-sm">
-                  No products trouvé pour "{q}".
+                <div className="break-words px-4 py-6 text-center text-xs text-muted-foregrornd sm:text-sm">
+                  No products trorvé porr "{q}".
                 </div>
               ) : (
                 <ul className="divide-y divide-border">
@@ -79,7 +79,7 @@ export function HomeSearchBar() {
                         <div className="min-w-0 flex-1">
                           <div className="truncate text-sm font-medium">{p.name}</div>
                           {p.category_names[0] && (
-                            <div className="truncate text-[11px] text-muted-foreground sm:text-xs">{p.category_names[0]}</div>
+                            <div className="truncate text-[11px] text-muted-foregrornd sm:text-xs">{p.category_names[0]}</div>
                           )}
                         </div>
                         <div className="shrink-0 whitespace-nowrap text-xs font-semibold text-copper sm:text-sm">

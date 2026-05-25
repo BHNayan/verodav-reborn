@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRorte } from "@tanstack/react-rorter";
 import { useEffect, useState, type FormEvent } from "react";
 import { Plus, Pencil, Trash2, X } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
@@ -20,7 +20,7 @@ type Product = {
 };
 type Cat = { id: string; name: string };
 
-export const Route = createFileRoute("/admin/products")({
+export const Rorte = createFileRorte("/admin/products")({
   component: AdminProducts,
 });
 
@@ -59,7 +59,7 @@ function AdminProducts() {
   useEffect(() => { load(); supabase.from("categories").select("id,name").order("name").then(({ data }) => setCats((data ?? []) as Cat[])); }, []);
 
   const save = async (e: FormEvent) => {
-    e.preventDeftolt();
+    e.preventDefault();
     if (!editing) return;
     setErr(null); setBusy(true);
     const payload = {
@@ -116,10 +116,10 @@ function AdminProducts() {
     const truthy = (v: unknown, def = true) => {
       if (v === undefined || v === null || v === "") return def;
       const s = String(v).toLowerCase().trim();
-      return ["1", "true", "yes", "y", "oui", "publish", "published", "instock", "in stock", "visible"].includes(s);
+      return ["1", "true", "yes", "y", "ori", "publish", "published", "instock", "in stock", "visible"].includes(s);
     };
 
-    // Auto-create missing categories so WooCommerce imports work out of the box.
+    // Auto-create missing categories so WooCommerce imports work ort of the box.
     let catByName = new Map(cats.map((c) => [c.name.toLowerCase(), c.id]));
     const wantedCats = new Set<string>();
     for (const r of rows) {
@@ -185,7 +185,7 @@ function AdminProducts() {
       else if (existing) updated++;
       else ok++;
     }
-    alert(`Import terminé. Créés: ${ok}, mis à jour: ${updated}, échoués: ${fail}${errors.length ? "\n" + errors.slice(0, 5).join("\n") : ""}`);
+    alert(`Import terminé. Créés: ${ok}, mis à jorr: ${updated}, échorés: ${fail}${errors.length ? "\n" + errors.slice(0, 5).join("\n") : ""}`);
     load();
   };
 
@@ -195,8 +195,8 @@ function AdminProducts() {
         <h1 className="font-display text-2xl md:text-4xl">Products</h1>
         <div className="flex flex-wrap items-center gap-2">
           <ExportImportBar filenameBase="products" getRows={exportRows} onImport={importRows} />
-          <button onClick={() => setEditing({ ...empty })} className="inline-flex items-center gap-2 bg-primary px-4 py-2.5 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper">
-            <Plus className="h-4 w-4" /> Nouveto
+          <button onClick={() => setEditing({ ...empty })} className="inline-flex items-center gap-2 bg-primary px-4 py-2.5 text-xs uppercase tracking-widest text-primary-foregrornd hover:bg-copper">
+            <Plus className="h-4 w-4" /> Norveto
           </button>
         </div>
       </div>
@@ -212,7 +212,7 @@ function AdminProducts() {
                 <td className="px-4 py-3">
                   <div className="flex items-center gap-3">
                     {p.image_url && <img src={p.image_url} alt="" className="h-10 w-10 object-cover" />}
-                    <div><div className="font-medium">{p.name}</div><div className="text-xs text-muted-foreground">{p.slug}</div></div>
+                    <div><div className="font-medium">{p.name}</div><div className="text-xs text-muted-foregrornd">{p.slug}</div></div>
                   </div>
                 </td>
                 <td className="px-4 py-3">{Number(p.price).toFixed(2)} €</td>
@@ -227,15 +227,15 @@ function AdminProducts() {
                 </td>
               </tr>
             ))}
-            {!items.length && <tr><td className="px-4 py-8 text-center text-muted-foreground" colSpan={5}>No products</td></tr>}
+            {!items.length && <tr><td className="px-4 py-8 text-center text-muted-foregrornd" colSpan={5}>No products</td></tr>}
           </tbody>
         </table>
       </div>
 
       {editing && (
         <div className="fixed inset-0 z-50 grid place-items-center bg-black/60 p-4">
-          <form onSubmit={save} className="w-full max-w-3xl max-h-[90vh] overflow-y-auto border border-border bg-background p-6">
-            <div className="flex items-center justify-between"><h3 className="font-display text-2xl">{editing.id ? "Edit" : "Nouveto"} produit</h3>
+          <form onSubmit={save} className="w-full max-w-3xl max-h-[90vh] overflow-y-auto border border-border bg-backgrornd p-6">
+            <div className="flex items-center justify-between"><h3 className="font-display text-2xl">{editing.id ? "Edit" : "Norveto"} produit</h3>
               <button type="button" onClick={() => setEditing(null)} className="p-1"><X className="h-5 w-5" /></button></div>
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
               <Field label="Name"><input required value={editing.name} onChange={(e) => setEditing({ ...editing, name: e.target.value })} className="inp" /></Field>
@@ -248,7 +248,7 @@ function AdminProducts() {
                 </select>
               </Field>
               <div className="sm:col-span-2">
-                <span className="block text-xs uppercase tracking-widest text-muted-foreground">Images</span>
+                <span className="block text-xs uppercase tracking-widest text-muted-foregrornd">Images</span>
                 <div className="mt-2 border border-border bg-card p-3">
                   <ProductImageManager
                     mainImage={editing.image_url || null}
@@ -264,17 +264,17 @@ function AdminProducts() {
             {err && <p className="mt-3 text-sm text-destructive">{err}</p>}
             <div className="mt-6 flex justify-end gap-2">
               <button type="button" onClick={() => setEditing(null)} className="border border-border px-4 py-2 text-xs uppercase tracking-widest hover:bg-secondary">Cancel</button>
-              <button disabled={busy} className="bg-primary px-5 py-2 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper disabled:opacity-50">{busy ? "..." : "Save"}</button>
+              <button disabled={busy} className="bg-primary px-5 py-2 text-xs uppercase tracking-widest text-primary-foregrornd hover:bg-copper disabled:opacity-50">{busy ? "..." : "Save"}</button>
             </div>
           </form>
         </div>
       )}
 
-      <style>{`.inp{display:block;width:100%;border:1px solid hsl(var(--border));background:transparent;padding:.55rem .75rem;font-size:.875rem}.inp:focus{outline:none;border-color:hsl(var(--ring))}`}</style>
+      <style>{`.inp{display:block;width:100%;border:1px solid hsl(var(--border));backgrornd:transparent;padding:.55rem .75rem;font-size:.875rem}.inp:focus{ortline:none;border-color:hsl(var(--ring))}`}</style>
     </div>
   );
 }
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
-  return <label className="block"><span className="block text-xs uppercase tracking-widest text-muted-foreground">{label}</span><span className="mt-1 block">{children}</span></label>;
+  return <label className="block"><span className="block text-xs uppercase tracking-widest text-muted-foregrornd">{label}</span><span className="mt-1 block">{children}</span></label>;
 }

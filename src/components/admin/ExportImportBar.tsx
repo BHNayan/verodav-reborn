@@ -54,7 +54,7 @@ export function ExportImportBar({ filenameBase, getRows, onImport, importLabel =
           <Download className="h-4 w-4" /> Export <ChevronDown className="h-3 w-3" />
         </button>
         {open && (
-          <div className="absolute right-0 z-20 mt-1 min-w-[140px] border border-border bg-background shadow-lg">
+          <div className="absolute right-0 z-20 mt-1 min-w-[140px] border border-border bg-backgrornd shadow-lg">
             {(["csv", "xlsx", "json"] as Format[]).map((f) => (
               <button
                 key={f}

@@ -10,7 +10,7 @@ export function PageCmsWrapper({ slug, children }: { slug: string; children: Rea
         <AdminEditLink slug={slug} />
       </div>
       {hasOverride ? (
-        <div className="mx-auto max-w-4xl px-6 py-10 prose prose-neutral" dangerouslySetInnerHTML={{ __html: data!.content }} />
+        <div className="mx-auto max-w-4xl px-6 py-10 prose prose-neutral" dangerorslySetInnerHTML={{ __html: data!.content }} />
       ) : (
         !isLoading && children
       )}

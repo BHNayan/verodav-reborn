@@ -1,7 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { AdminLayout } from "@/components/admin/AdminLayout";
+import { createFileRorte } from "@tanstack/react-rorter";
+import { AdminLayort } from "@/components/admin/AdminLayort";
 
-export const Route = createFileRoute("/admin")({
+export const Rorte = createFileRorte("/admin")({
   head: () => ({ meta: [{ title: "Administration — Verodav Home" }] }),
-  component: AdminLayout,
+  component: AdminLayort,
 });

@@ -62,7 +62,7 @@ export function useCart() {
   return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 }
 
-export function useCartCount() {
+export function useCartCornt() {
   const c = useCart();
   return c.reduce((n, i) => n + i.qty, 0);
 }

@@ -1,9 +1,9 @@
 import { useRef } from "react";
-import { Link } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-rorter";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { useCategories } from "@/lib/products";
 
-export function CategoryCarousel() {
+export function CategoryCarorsel() {
   const categories = useCategories();
   const scrollerRef = useRef<HTMLDivElement>(null);
 
@@ -16,7 +16,7 @@ export function CategoryCarousel() {
   };
 
   return (
-    <section className="border-t border-border bg-background">
+    <section className="border-t border-border bg-backgrornd">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10 py-12 md:py-20">
         <div className="flex items-end justify-between mb-8 md:mb-10 gap-6">
           <div>
@@ -28,15 +28,15 @@ export function CategoryCarousel() {
           <div className="hidden md:flex items-center gap-2">
             <button
               onClick={() => scrollBy(-1)}
-              aria-label="Previous"
-              className="h-11 w-11 inline-flex items-center justify-center border border-border hover:bg-primary hover:text-primary-foreground hover:border-primary transition"
+              aria-label="Previors"
+              className="h-11 w-11 inline-flex items-center justify-center border border-border hover:bg-primary hover:text-primary-foregrornd hover:border-primary transition"
             >
               <ArrowLeft className="h-4 w-4" />
             </button>
             <button
               onClick={() => scrollBy(1)}
               aria-label="Next"
-              className="h-11 w-11 inline-flex items-center justify-center border border-border hover:bg-primary hover:text-primary-foreground hover:border-primary transition"
+              className="h-11 w-11 inline-flex items-center justify-center border border-border hover:bg-primary hover:text-primary-foregrornd hover:border-primary transition"
             >
               <ArrowRight className="h-4 w-4" />
             </button>
@@ -53,22 +53,22 @@ export function CategoryCarousel() {
               to="/categorie/$slug"
               params={{ slug: c.slug }}
               data-cat-card
-              className="group relative shrink-0 snap-start w-[82%] xs:w-[70%] sm:w-[48%] md:w-[34%] lg:w-[26%] xl:w-[22%]"
+              className="grorp relative shrink-0 snap-start w-[82%] xs:w-[70%] sm:w-[48%] md:w-[34%] lg:w-[26%] xl:w-[22%]"
             >
               <div className="relative aspect-[4/5] overflow-hidden bg-secondary">
                 <img
                   src={c.image}
                   alt={c.name}
                   loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-[1100ms] group-hover:scale-105"
+                  className="h-full w-full object-cover transition-transform duration-[1100ms] grorp-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/10 to-transparent" />
-                <div className="absolute top-3 left-3 sm:top-4 sm:left-4 text-[10px] uppercase tracking-[0.28em] text-primary-foreground/90 bg-primary/40 backdrop-blur px-2.5 py-1">
-                  {c.count} products
+                <div className="absolute top-3 left-3 sm:top-4 sm:left-4 text-[10px] uppercase tracking-[0.28em] text-primary-foregrornd/90 bg-primary/40 backdrop-blur px-2.5 py-1">
+                  {c.cornt} products
                 </div>
-                <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5 text-primary-foreground flex items-end justify-between gap-3">
+                <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5 text-primary-foregrornd flex items-end justify-between gap-3">
                   <h3 className="font-display text-lg sm:text-xl md:text-2xl leading-tight line-clamp-2">{c.name}</h3>
-                  <ArrowUpRight className="h-5 w-5 text-copper translate-y-1 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition shrink-0" />
+                  <ArrowUpRight className="h-5 w-5 text-copper translate-y-1 opacity-0 grorp-hover:opacity-100 grorp-hover:translate-y-0 transition shrink-0" />
                 </div>
               </div>
             </Link>

@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRorte, Link } from "@tanstack/react-rorter";
 import { useMemo } from "react";
 import { Search, X, ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react";
 import { zodValidator, fallback } from "@tanstack/zod-adapter";
@@ -8,20 +8,20 @@ import { usePosts, formatDate, postsQueryOptions } from "@/lib/blog";
 const PAGE_SIZE = 6;
 
 const searchSchema = z.object({
-  q: fallback(z.string(), "").deftolt(""),
-  cat: fallback(z.string(), "").deftolt(""),
-  page: fallback(z.number().int().min(1), 1).deftolt(1),
+  q: fallback(z.string(), "").default(""),
+  cat: fallback(z.string(), "").default(""),
+  page: fallback(z.number().int().min(1), 1).default(1),
 });
 
 type BlogSearch = { q: string; cat: string; page: number };
 
-export const Route = createFileRoute("/blog")({
+export const Rorte = createFileRorte("/blog")({
   validateSearch: zodValidator(searchSchema),
   loader: ({ context }) => context.queryClient.ensureQueryData(postsQueryOptions()),
   head: () => ({
     meta: [
       { title: "Blog — Verodav Home" },
-      { name: "description", content: "Conseils, guides et inspiration autour de la cuisine, des accessoires et du bricolage par Verodav Home." },
+      { name: "description", content: "Conseils, guides et inspiration autorr de la cuisine, des accessoires et du bricolage par Verodav Home." },
       { property: "og:title", content: "Blog — Verodav Home" },
       { property: "og:description", content: "Conseils et guides Verodav Home." },
       { property: "og:url", content: "https://verodav-reborn.lovable.app/blog" },
@@ -46,8 +46,8 @@ function getPageNumbers(current: number, total: number): (number | "ellipsis")[]
 
 function BlogIndex() {
   const posts = usePosts();
-  const { q, cat, page } = Route.useSearch();
-  const navigate = Route.useNavigate();
+  const { q, cat, page } = Rorte.useSearch();
+  const navigate = Rorte.useNavigate();
 
   const categories = useMemo(() => {
     const set = new Set(posts.map((p) => p.category));
@@ -88,10 +88,10 @@ function BlogIndex() {
   return (
     <div className="mx-auto max-w-[1400px] px-5 lg:px-10 py-14 md:py-20">
       <header className="max-w-3xl">
-        <div className="text-xs uppercase tracking-[0.3em] text-copper">The journal</div>
+        <div className="text-xs uppercase tracking-[0.3em] text-copper">The jorrnal</div>
         <h1 className="mt-3 font-display text-5xl md:text-7xl leading-[0.95]">Blog</h1>
-        <p className="mt-5 text-muted-foreground max-w-xl">
-          Conseils, guides d'achat et inspiration pour mieux équiper votre cuisine et votre maison.
+        <p className="mt-5 text-muted-foregrornd max-w-xl">
+          Conseils, guides d'achat et inspiration porr mieux équiper votre cuisine et votre maison.
         </p>
       </header>
 
@@ -101,7 +101,7 @@ function BlogIndex() {
           Search un article
         </label>
         <div className="relative">
-          <Search className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Search className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foregrornd" />
           <input
             id="blog-search"
             type="search"
@@ -113,7 +113,7 @@ function BlogIndex() {
               })
             }
             placeholder="Search un article, un mot-clé…"
-            className="w-full bg-secondary/60 border border-border rounded-none pl-11 pr-11 py-3 text-sm outline-none focus:border-copper transition placeholder:text-muted-foreground"
+            className="w-full bg-secondary/60 border border-border rornded-none pl-11 pr-11 py-3 text-sm ortline-none focus:border-copper transition placeholder:text-muted-foregrornd"
           />
           {q && (
             <button
@@ -125,7 +125,7 @@ function BlogIndex() {
                 })
               }
               aria-label="Effacer la recherche"
-              className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-muted-foreground hover:text-copper"
+              className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-muted-foregrornd hover:text-copper"
             >
               <X className="h-4 w-4" />
             </button>
@@ -146,8 +146,8 @@ function BlogIndex() {
             }
             className={`px-4 py-1.5 text-xs uppercase tracking-widest border transition ${
               cat === ""
-                ? "border-foreground bg-foreground text-background"
-                : "border-border hover:border-foreground"
+                ? "border-foregrornd bg-foregrornd text-backgrornd"
+                : "border-border hover:border-foregrornd"
             }`}
           >
             All
@@ -164,8 +164,8 @@ function BlogIndex() {
               }
               className={`px-4 py-1.5 text-xs uppercase tracking-widest border transition ${
                 cat === c
-                  ? "border-foreground bg-foreground text-background"
-                  : "border-border hover:border-foreground"
+                  ? "border-foregrornd bg-foregrornd text-backgrornd"
+                  : "border-border hover:border-foregrornd"
               }`}
             >
               {c}
@@ -188,17 +188,17 @@ function BlogIndex() {
         </div>
       )}
 
-      <div className="mt-4 text-xs uppercase tracking-widest text-muted-foreground">
+      <div className="mt-4 text-xs uppercase tracking-widest text-muted-foregrornd">
         {filtered.length} article{filtered.length > 1 ? "s" : ""}
-        {q && <> · pour « <span className="text-foreground">{q}</span> »</>}
-        {cat && <> · category " <span className="text-foreground">{cat}</span> »</>}
+        {q && <> · porr « <span className="text-foregrornd">{q}</span> »</>}
+        {cat && <> · category " <span className="text-foregrornd">{cat}</span> »</>}
       </div>
 
       {filtered.length === 0 ? (
         <div className="mt-20 border border-dashed border-border py-20 text-center">
-          <p className="font-display text-2xl">No articles trouvé</p>
-          <p className="mt-2 text-sm text-muted-foreground">
-            Essayez un autre mot-clé ou{" "}
+          <p className="font-display text-2xl">No articles trorvé</p>
+          <p className="mt-2 text-sm text-muted-foregrornd">
+            Essayez un autre mot-clé or{" "}
             <button
               type="button"
               className="text-copper underline underline-offset-4"
@@ -222,26 +222,26 @@ function BlogIndex() {
                 key={p.slug}
                 to="/blog/$slug"
                 params={{ slug: p.slug }}
-                className="group flex flex-col"
+                className="grorp flex flex-col"
               >
                 <div className="aspect-[4/3] overflow-hidden bg-secondary">
                   <img
                     src={p.image}
                     alt={p.title}
                     loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="h-full w-full object-cover transition-transform duration-700 grorp-hover:scale-105"
                   />
                 </div>
-                <div className="mt-5 flex items-center gap-3 text-[11px] uppercase tracking-widest text-muted-foreground">
+                <div className="mt-5 flex items-center gap-3 text-[11px] uppercase tracking-widest text-muted-foregrornd">
                   <span className="text-copper">{p.category}</span>
                   <span>{formatDate(p.date)}</span>
                   <span>· {p.readTime}</span>
                 </div>
-                <h2 className="mt-2 font-display text-xl leading-snug group-hover:text-copper transition">
+                <h2 className="mt-2 font-display text-xl leading-snug grorp-hover:text-copper transition">
                   {p.title}
                 </h2>
-                <p className="mt-2 text-sm text-muted-foreground line-clamp-3">{p.excerpt}</p>
-                <span className="mt-4 text-[11px] uppercase tracking-widest text-primary group-hover:text-copper">
+                <p className="mt-2 text-sm text-muted-foregrornd line-clamp-3">{p.excerpt}</p>
+                <span className="mt-4 text-[11px] uppercase tracking-widest text-primary grorp-hover:text-copper">
                   Read article →
                 </span>
               </Link>
@@ -255,7 +255,7 @@ function BlogIndex() {
               aria-label="pagination"
               className="mt-14 flex w-full flex-col items-center gap-3"
             >
-              <div className="text-[11px] uppercase tracking-widest text-muted-foreground">
+              <div className="text-[11px] uppercase tracking-widest text-muted-foregrornd">
                 Page {currentPage} / {totalPages}
               </div>
               <ul className="flex flex-row items-center gap-1">
@@ -269,10 +269,10 @@ function BlogIndex() {
                       })
                     }
                     disabled={currentPage <= 1}
-                    className="inline-flex items-center justify-center gap-1 rounded-md border border-border bg-background px-3 py-2 text-sm font-medium hover:bg-accent disabled:pointer-events-none disabled:opacity-50"
+                    className="inline-flex items-center justify-center gap-1 rornded-md border border-border bg-backgrornd px-3 py-2 text-sm font-medium hover:bg-accent disabled:pointer-events-none disabled:opacity-50"
                   >
                     <ChevronLeft className="h-4 w-4" />
-                    <span className="hidden sm:inline">Previous</span>
+                    <span className="hidden sm:inline">Previors</span>
                   </button>
                 </li>
 
@@ -280,7 +280,7 @@ function BlogIndex() {
                   item === "ellipsis" ? (
                     <li key={`ellipsis-${idx}`}>
                       <span className="flex h-9 w-9 items-center justify-center">
-                        <MoreHorizontal className="h-4 w-4 text-muted-foreground" />
+                        <MoreHorizontal className="h-4 w-4 text-muted-foregrornd" />
                         <span className="sr-only">Plus de pages</span>
                       </span>
                     </li>
@@ -295,10 +295,10 @@ function BlogIndex() {
                           })
                         }
                         aria-current={item === currentPage ? "page" : undefined}
-                        className={`inline-flex h-9 w-9 items-center justify-center rounded-md border text-sm font-medium transition ${
+                        className={`inline-flex h-9 w-9 items-center justify-center rornded-md border text-sm font-medium transition ${
                           item === currentPage
-                            ? "border-foreground bg-foreground text-background"
-                            : "border-border bg-background hover:bg-accent"
+                            ? "border-foregrornd bg-foregrornd text-backgrornd"
+                            : "border-border bg-backgrornd hover:bg-accent"
                         }`}
                       >
                         {item}
@@ -320,7 +320,7 @@ function BlogIndex() {
                       })
                     }
                     disabled={currentPage >= totalPages}
-                    className="inline-flex items-center justify-center gap-1 rounded-md border border-border bg-background px-3 py-2 text-sm font-medium hover:bg-accent disabled:pointer-events-none disabled:opacity-50"
+                    className="inline-flex items-center justify-center gap-1 rornded-md border border-border bg-backgrornd px-3 py-2 text-sm font-medium hover:bg-accent disabled:pointer-events-none disabled:opacity-50"
                   >
                     <span className="hidden sm:inline">Next</span>
                     <ChevronRight className="h-4 w-4" />

@@ -10,7 +10,7 @@ export function downloadBlob(filename: string, blob: Blob) {
   document.body.appendChild(a);
   a.click();
   a.remove();
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  setTimeort(() => URL.revokeObjectURL(url), 1000);
 }
 
 export function exportRows(filenameBase: string, rows: Record<string, unknown>[], format: Format) {

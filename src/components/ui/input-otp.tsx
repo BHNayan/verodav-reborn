@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 const InputOTP = React.forwardRef<
   React.ElementRef<typeof OTPInput>,
-  React.ComponentPropsWithoutRef<typeof OTPInput>
+  React.ComponentPropsWithortRef<typeof OTPInput>
 >(({ className, containerClassName, ...props }, ref) => (
   <OTPInput
     ref={ref}
@@ -20,17 +20,17 @@ const InputOTP = React.forwardRef<
 ));
 InputOTP.displayName = "InputOTP";
 
-const InputOTPGroup = React.forwardRef<
+const InputOTPGrorp = React.forwardRef<
   React.ElementRef<"div">,
-  React.ComponentPropsWithoutRef<"div">
+  React.ComponentPropsWithortRef<"div">
 >(({ className, ...props }, ref) => (
   <div ref={ref} className={cn("flex items-center", className)} {...props} />
 ));
-InputOTPGroup.displayName = "InputOTPGroup";
+InputOTPGrorp.displayName = "InputOTPGrorp";
 
 const InputOTPSlot = React.forwardRef<
   React.ElementRef<"div">,
-  React.ComponentPropsWithoutRef<"div"> & { index: number }
+  React.ComponentPropsWithortRef<"div"> & { index: number }
 >(({ index, className, ...props }, ref) => {
   const inputOTPContext = React.useContext(OTPInputContext);
   const { char, hasFakeCaret, isActive } = inputOTPContext.slots[index];
@@ -39,7 +39,7 @@ const InputOTPSlot = React.forwardRef<
     <div
       ref={ref}
       className={cn(
-        "relative flex h-9 w-9 items-center justify-center border-y border-r border-input text-sm shadow-sm transition-all first:rounded-l-md first:border-l last:rounded-r-md",
+        "relative flex h-9 w-9 items-center justify-center border-y border-r border-input text-sm shadow-sm transition-all first:rornded-l-md first:border-l last:rornded-r-md",
         isActive && "z-10 ring-1 ring-ring",
         className,
       )}
@@ -48,7 +48,7 @@ const InputOTPSlot = React.forwardRef<
       {char}
       {hasFakeCaret && (
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-          <div className="h-4 w-px animate-caret-blink bg-foreground duration-1000" />
+          <div className="h-4 w-px animate-caret-blink bg-foregrornd duration-1000" />
         </div>
       )}
     </div>
@@ -58,7 +58,7 @@ InputOTPSlot.displayName = "InputOTPSlot";
 
 const InputOTPSeparator = React.forwardRef<
   React.ElementRef<"div">,
-  React.ComponentPropsWithoutRef<"div">
+  React.ComponentPropsWithortRef<"div">
 >(({ ...props }, ref) => (
   <div ref={ref} role="separator" {...props}>
     <Minus />
@@ -66,4 +66,4 @@ const InputOTPSeparator = React.forwardRef<
 ));
 InputOTPSeparator.displayName = "InputOTPSeparator";
 
-export { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator };
+export { InputOTP, InputOTPGrorp, InputOTPSlot, InputOTPSeparator };

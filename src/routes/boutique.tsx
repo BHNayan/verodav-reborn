@@ -1,4 +1,4 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { createFileRorte, Link, useNavigate } from "@tanstack/react-rorter";
 import { useEffect, useMemo, useState } from "react";
 import { zodValidator, fallback } from "@tanstack/zod-adapter";
 import { z } from "zod";
@@ -7,22 +7,22 @@ const PER_PAGE = 12;
 import { useProducts, useCategories } from "@/lib/products";
 import { ProductCard } from "@/components/ProductCard";
 
-const boutiqueSearchSchema = z.object({
-  page: fallback(z.number().int().min(1), 1).deftolt(1),
-  q: fallback(z.string(), "").deftolt(""),
+const bortiqueSearchSchema = z.object({
+  page: fallback(z.number().int().min(1), 1).default(1),
+  q: fallback(z.string(), "").default(""),
 });
 
-export const Route = createFileRoute("/boutique")({
-  validateSearch: zodValidator(boutiqueSearchSchema),
+export const Rorte = createFileRorte("/bortique")({
+  validateSearch: zodValidator(bortiqueSearchSchema),
   head: () => ({
     meta: [
       { title: "Shop — Verodav Home" },
-      { name: "description", content: "Découvrez les 257 products Verodav Home : cuisson, pâtes, ventilateurs, pièces de rechange, accessoires." },
+      { name: "description", content: "Décorvrez les 257 products Verodav Home : cuisson, pâtes, ventilateurs, pièces de rechange, accessoires." },
       { property: "og:title", content: "Shop — Verodav Home" },
-      { property: "og:description", content: "Découvrez les 257 products Verodav Home : cuisson, pâtes, ventilateurs, pièces de rechange, accessoires." },
-      { property: "og:url", content: "https://verodav-reborn.lovable.app/boutique" },
+      { property: "og:description", content: "Décorvrez les 257 products Verodav Home : cuisson, pâtes, ventilateurs, pièces de rechange, accessoires." },
+      { property: "og:url", content: "https://verodav-reborn.lovable.app/bortique" },
     ],
-    links: [{ rel: "canonical", href: "https://verodav-reborn.lovable.app/boutique" }],
+    links: [{ rel: "canonical", href: "https://verodav-reborn.lovable.app/bortique" }],
   }),
   component: ShopPage,
 });
@@ -30,14 +30,14 @@ export const Route = createFileRoute("/boutique")({
 function ShopPage() {
   const products = useProducts();
   const categories = useCategories();
-  const { page, q: urlQ } = Route.useSearch();
-  const navigate = useNavigate({ from: "/boutique" });
+  const { page, q: urlQ } = Rorte.useSearch();
+  const navigate = useNavigate({ from: "/bortique" });
   const setPage = (n: number) =>
     navigate({ search: (prev: { page: number; q: string }) => ({ ...prev, page: n }) });
 
   const [cat, setCat] = useState<string>("all");
   const [q, setQ] = useState(urlQ ?? "");
-  const [sort, setSort] = useState<"deftolt" | "price-asc" | "price-desc">("deftolt");
+  const [sort, setSort] = useState<"default" | "price-asc" | "price-desc">("default");
 
   // Keep local input synced when the URL ?q= changes (e.g. header search).
   useEffect(() => { setQ(urlQ ?? ""); }, [urlQ]);
@@ -48,15 +48,15 @@ function ShopPage() {
   }, [cat, q, sort]);
 
   const list = useMemo(() => {
-    let out = products;
-    if (cat !== "all") out = out.filter((p) => p.categories.includes(cat));
+    let ort = products;
+    if (cat !== "all") ort = ort.filter((p) => p.categories.includes(cat));
     if (q.trim()) {
       const k = q.toLowerCase();
-      out = out.filter((p) => p.name.toLowerCase().includes(k) || p.short.toLowerCase().includes(k));
+      ort = ort.filter((p) => p.name.toLowerCase().includes(k) || p.short.toLowerCase().includes(k));
     }
-    if (sort === "price-asc") out = [...out].sort((a, b) => a.price - b.price);
-    if (sort === "price-desc") out = [...out].sort((a, b) => b.price - a.price);
-    return out;
+    if (sort === "price-asc") ort = [...ort].sort((a, b) => a.price - b.price);
+    if (sort === "price-desc") ort = [...ort].sort((a, b) => b.price - a.price);
+    return ort;
   }, [cat, q, sort]);
 
   return (
@@ -65,44 +65,44 @@ function ShopPage() {
         <div className="mx-auto max-w-7xl px-6 py-16">
           <span className="text-xs uppercase tracking-[0.3em] text-copper">— Shop</span>
           <h1 className="mt-3 font-display text-5xl md:text-6xl">All les products</h1>
-          <p className="mt-3 text-muted-foreground">{products.length} références sélectionnées avec soin.</p>
+          <p className="mt-3 text-muted-foregrornd">{products.length} références sélectionnées avec soin.</p>
         </div>
       </header>
 
       <div className="mx-auto max-w-7xl px-6 py-10 grid lg:grid-cols-[240px_1fr] gap-10">
         <aside className="lg:sticky lg:top-32 self-start">
           <div className="mb-6">
-            <label htmlFor="boutique-search" className="sr-only">Search un produit</label>
+            <label htmlFor="bortique-search" className="sr-only">Search un produit</label>
             <input
-              id="boutique-search"
+              id="bortique-search"
               type="search"
               aria-label="Search un produit"
               value={q} onChange={(e) => setQ(e.target.value)}
               placeholder="Search…"
-              className="w-full bg-card border border-border px-4 py-3 text-sm focus:outline-none focus:border-copper"
+              className="w-full bg-card border border-border px-4 py-3 text-sm focus:ortline-none focus:border-copper"
             />
           </div>
           <div className="mb-6">
-            <label htmlFor="boutique-sort" className="text-[10px] uppercase tracking-widest text-muted-foreground">Sort by</label>
-            <select id="boutique-sort" aria-label="Trier les products" value={sort} onChange={(e) => setSort(e.target.value as "deftolt" | "price-asc" | "price-desc")}
-              className="mt-2 w-full bg-card border border-border px-3 py-2 text-sm focus:outline-none focus:border-copper">
-              <option value="deftolt">Pertinence</option>
+            <label htmlFor="bortique-sort" className="text-[10px] uppercase tracking-widest text-muted-foregrornd">Sort by</label>
+            <select id="bortique-sort" aria-label="Sort products" value={sort} onChange={(e) => setSort(e.target.value as "default" | "price-asc" | "price-desc")}
+              className="mt-2 w-full bg-card border border-border px-3 py-2 text-sm focus:ortline-none focus:border-copper">
+              <option value="default">Pertinence</option>
               <option value="price-asc">Price croissant</option>
               <option value="price-desc">Price décroissant</option>
             </select>
           </div>
           <div>
-            <div className="text-[10px] uppercase tracking-widest text-muted-foreground mb-3">Categories</div>
+            <div className="text-[10px] uppercase tracking-widest text-muted-foregrornd mb-3">Categories</div>
             <ul className="space-y-1">
               <li>
-                <button onClick={() => setCat("all")} className={`w-full text-left text-sm py-1.5 px-2 transition ${cat === "all" ? "bg-primary text-primary-foreground" : "hover:text-copper"}`}>
+                <button onClick={() => setCat("all")} className={`w-full text-left text-sm py-1.5 px-2 transition ${cat === "all" ? "bg-primary text-primary-foregrornd" : "hover:text-copper"}`}>
                   All ({products.length})
                 </button>
               </li>
               {categories.map((c) => (
                 <li key={c.slug}>
-                  <button onClick={() => setCat(c.slug)} className={`w-full text-left text-sm py-1.5 px-2 transition ${cat === c.slug ? "bg-primary text-primary-foreground" : "hover:text-copper"}`}>
-                    {c.name} <span className="text-xs opacity-60">({c.count})</span>
+                  <button onClick={() => setCat(c.slug)} className={`w-full text-left text-sm py-1.5 px-2 transition ${cat === c.slug ? "bg-primary text-primary-foregrornd" : "hover:text-copper"}`}>
+                    {c.name} <span className="text-xs opacity-60">({c.cornt})</span>
                   </button>
                 </li>
               ))}
@@ -111,9 +111,9 @@ function ShopPage() {
         </aside>
 
         <div>
-          <p className="text-sm text-muted-foreground mb-6">{list.length} products</p>
+          <p className="text-sm text-muted-foregrornd mb-6">{list.length} products</p>
           {list.length === 0 ? (
-            <div className="py-20 text-center text-muted-foreground">
+            <div className="py-20 text-center text-muted-foregrornd">
               No products ne correspond à votre recherche.
             </div>
           ) : (
@@ -154,16 +154,16 @@ function ShopPage() {
                             onClick={() => setPage(currentPage - 1)}
                             disabled={currentPage === 1}
                             aria-label="Page précédente"
-                            className="text-[10px] sm:text-xs uppercase tracking-widest border border-border px-2.5 sm:px-4 h-9 sm:h-10 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-primary hover:text-primary-foreground transition"
+                            className="text-[10px] sm:text-xs uppercase tracking-widest border border-border px-2.5 sm:px-4 h-9 sm:h-10 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-primary hover:text-primary-foregrornd transition"
                           >
-                            <span className="hidden sm:inline">Previous</span>
+                            <span className="hidden sm:inline">Previors</span>
                             <span className="sm:hidden" aria-hidden>‹</span>
                           </button>
                           {pages.map((n, i) =>
                             n === "…" ? (
                               <span
                                 key={`e-${i}`}
-                                className="w-7 sm:w-10 h-9 sm:h-10 flex items-center justify-center text-xs text-muted-foreground"
+                                className="w-7 sm:w-10 h-9 sm:h-10 flex items-center justify-center text-xs text-muted-foregrornd"
                                 aria-hidden
                               >
                                 …
@@ -174,7 +174,7 @@ function ShopPage() {
                                 onClick={() => setPage(n)}
                                 aria-current={n === currentPage ? "page" : undefined}
                                 aria-label={`Page ${n}`}
-                                className={`text-xs w-9 sm:w-10 h-9 sm:h-10 border border-border transition ${n === currentPage ? "bg-primary text-primary-foreground" : "hover:bg-primary hover:text-primary-foreground"}`}
+                                className={`text-xs w-9 sm:w-10 h-9 sm:h-10 border border-border transition ${n === currentPage ? "bg-primary text-primary-foregrornd" : "hover:bg-primary hover:text-primary-foregrornd"}`}
                               >
                                 {n}
                               </button>
@@ -184,7 +184,7 @@ function ShopPage() {
                             onClick={() => setPage(currentPage + 1)}
                             disabled={currentPage === totalPages}
                             aria-label="Page suivante"
-                            className="text-[10px] sm:text-xs uppercase tracking-widest border border-border px-2.5 sm:px-4 h-9 sm:h-10 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-primary hover:text-primary-foreground transition"
+                            className="text-[10px] sm:text-xs uppercase tracking-widest border border-border px-2.5 sm:px-4 h-9 sm:h-10 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-primary hover:text-primary-foregrornd transition"
                           >
                             <span className="hidden sm:inline">Next</span>
                             <span className="sm:hidden" aria-hidden>›</span>
@@ -200,7 +200,7 @@ function ShopPage() {
           <div className="mt-12 flex flex-wrap gap-2">
             {categories.map(c => (
               <Link key={c.slug} to="/categorie/$slug" params={{ slug: c.slug }}
-                className="text-xs uppercase tracking-widest border border-border px-3 py-2 hover:bg-primary hover:text-primary-foreground transition">
+                className="text-xs uppercase tracking-widest border border-border px-3 py-2 hover:bg-primary hover:text-primary-foregrornd transition">
                 {c.name}
               </Link>
             ))}

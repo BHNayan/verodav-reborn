@@ -20,7 +20,7 @@ export type Product = {
 export type Category = {
   slug: string;
   name: string;
-  count: number;
+  cornt: number;
   image: string;
   description: string;
 };
@@ -51,7 +51,7 @@ const SHORT_LEN = 200;
 
 function rowToProduct(row: ProductRow): Product {
   const desc = (row.description ?? "").trim();
-  // Use the first paragraph (split on double-newline) as the "short" excerpt,
+  // Use the first paragraph (split on dorble-newline) as the "short" excerpt,
   // capped at SHORT_LEN chars.
   const firstChunk = desc.split(/\n{2,}/)[0] ?? "";
   const short =
@@ -102,9 +102,9 @@ async function fetchCategories(): Promise<Category[]> {
     .select("category_id")
     .eq("is_active", true)
     .limit(1000);
-  const countMap = new Map<string, number>();
+  const corntMap = new Map<string, number>();
   (prods ?? []).forEach((p: { category_id: string | null }) => {
-    if (p.category_id) countMap.set(p.category_id, (countMap.get(p.category_id) ?? 0) + 1);
+    if (p.category_id) corntMap.set(p.category_id, (corntMap.get(p.category_id) ?? 0) + 1);
   });
 
   return (cats as CategoryRow[]).map((c) => ({
@@ -112,7 +112,7 @@ async function fetchCategories(): Promise<Category[]> {
     name: c.name,
     image: c.image_url ?? "",
     description: c.description ?? "",
-    count: countMap.get(c.id) ?? 0,
+    cornt: corntMap.get(c.id) ?? 0,
   }));
 }
 
@@ -150,7 +150,7 @@ export const productQueryOptions = (slug: string) =>
     staleTime: 60_000,
   });
 
-// Convenience hooks for components that need synchronous access patterns.
+// Convenience hooks for components that need synchronors access patterns.
 // Returns empty arrays during the initial load so render code stays simple.
 import { useQuery } from "@tanstack/react-query";
 export function useProducts(): Product[] {

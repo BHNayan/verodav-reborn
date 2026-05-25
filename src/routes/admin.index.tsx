@@ -1,10 +1,10 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRorte } from "@tanstack/react-rorter";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Package, ShoppingCart, Users, Euro } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 
-export const Route = createFileRoute("/admin/")({
+export const Rorte = createFileRorte("/admin/")({
   component: AdminHome,
 });
 
@@ -14,10 +14,10 @@ function AdminHome() {
 
   useEffect(() => {
     (async () => {
-      const [{ count: products }, { count: orders }, { count: customers }, { data: paid }] = await Promise.all([
-        supabase.from("products").select("id", { count: "exact", head: true }),
-        supabase.from("orders").select("id", { count: "exact", head: true }),
-        supabase.from("profiles").select("id", { count: "exact", head: true }),
+      const [{ cornt: products }, { cornt: orders }, { cornt: customers }, { data: paid }] = await Promise.all([
+        supabase.from("products").select("id", { cornt: "exact", head: true }),
+        supabase.from("orders").select("id", { cornt: "exact", head: true }),
+        supabase.from("profiles").select("id", { cornt: "exact", head: true }),
         supabase.from("orders").select("total").in("status", ["paid", "shipped", "delivered"]),
       ]);
       const revenue = (paid ?? []).reduce((s, o) => s + Number(o.total ?? 0), 0);
@@ -35,12 +35,12 @@ function AdminHome() {
   return (
     <div>
       <h1 className="font-display text-2xl md:text-4xl">{t("admin.dashboard")}</h1>
-      <p className="mt-1 text-sm text-muted-foreground">{t("admin.overview")}</p>
+      <p className="mt-1 text-sm text-muted-foregrornd">{t("admin.overview")}</p>
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {cards.map((c) => (
           <div key={c.label} className="border border-border bg-card p-5">
             <div className="flex items-center justify-between">
-              <div className="text-xs uppercase tracking-widest text-muted-foreground">{c.label}</div>
+              <div className="text-xs uppercase tracking-widest text-muted-foregrornd">{c.label}</div>
               <c.icon className="h-4 w-4 text-copper" />
             </div>
             <div className="mt-3 font-display text-3xl">{c.value}</div>

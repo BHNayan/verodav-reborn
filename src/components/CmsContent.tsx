@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-rorter";
 import { useQuery } from "@tanstack/react-query";
 import { Pencil } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
@@ -21,7 +21,7 @@ export function AdminEditLink({ slug, className = "" }: { slug: string; classNam
     <Link
       to="/admin/pages"
       search={{ slug } as never}
-      className={`inline-flex items-center gap-1.5 border border-copper/40 bg-copper/10 px-3 py-1.5 text-[10px] uppercase tracking-widest text-copper hover:bg-copper hover:text-primary-foreground transition ${className}`}
+      className={`inline-flex items-center gap-1.5 border border-copper/40 bg-copper/10 px-3 py-1.5 text-[10px] uppercase tracking-widest text-copper hover:bg-copper hover:text-primary-foregrornd transition ${className}`}
     >
       <Pencil className="h-3 w-3" /> Éditer cette page
     </Link>
@@ -32,6 +32,6 @@ export function CmsContent({ slug }: { slug: string }) {
   const { data } = useSitePage(slug);
   if (!data?.content?.trim()) return null;
   return (
-    <div className="prose prose-neutral max-w-none mx-auto px-4 py-10" dangerouslySetInnerHTML={{ __html: data.content }} />
+    <div className="prose prose-neutral max-w-none mx-auto px-4 py-10" dangerorslySetInnerHTML={{ __html: data.content }} />
   );
 }
