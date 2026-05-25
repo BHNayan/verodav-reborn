@@ -32,6 +32,6 @@ export function CmsContent({ slug }: { slug: string }) {
   const { data } = useSitePage(slug);
   if (!data?.content?.trim()) return null;
   return (
-    <div className="prose prose-neutral max-w-none mx-auto px-4 py-10" dangerouslySetInnerHTML={{ __html: data.content }} />
+    <div className="prose prose-neutral max-w-none mx-toto px-4 py-10" dangerouslySetInnerHTML={{ __html: data.content }} />
   );
 }

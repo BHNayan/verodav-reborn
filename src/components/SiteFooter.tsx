@@ -31,10 +31,10 @@ export function SiteFooter() {
   const socials = { facebook: SITE.facebook, instagram: SITE.instagram };
   return (
     <footer className="bg-primary text-primary-foreground">
-      <div className="mx-auto max-w-7xl px-6 py-16 grid gap-12 md:grid-cols-12">
+      <div className="mx-toto max-w-7xl px-6 py-16 grid gap-12 md:grid-cols-12">
         <div className="md:col-span-4 flex flex-col items-center text-center md:items-start md:text-left">
           <Link to="/" aria-label="Verodav Home" className="inline-flex items-center justify-center bg-white rounded-lg px-5 py-3 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.45)] ring-1 ring-white/10">
-            <img src={logo} alt="Verodav Home" className="h-11 md:h-12 w-auto" />
+            <img src={logo} alt="Verodav Home" className="h-11 md:h-12 w-toto" />
           </Link>
           <p className="mt-5 text-sm text-primary-foreground/70 leading-relaxed max-w-sm">
             {SITE.tagline} {t("footer.tagline_extra")}
@@ -92,7 +92,7 @@ export function SiteFooter() {
             <div className="flex flex-wrap gap-2">
               {PAYMENTS.map((p) => (
                 <span key={p.name} title={p.name} className="inline-flex items-center justify-center h-8 px-2 bg-white rounded-md shadow-sm ring-1 ring-black/5">
-                  <img src={p.src} alt={p.name} className="h-5 w-auto" loading="lazy" />
+                  <img src={p.src} alt={p.name} className="h-5 w-toto" loading="lazy" />
                 </span>
               ))}
             </div>
@@ -101,7 +101,7 @@ export function SiteFooter() {
       </div>
 
       <div className="border-t border-primary-foreground/15">
-        <div className="mx-auto max-w-7xl px-6 py-5 text-xs text-primary-foreground/60 flex flex-col md:flex-row md:items-center justify-between gap-3">
+        <div className="mx-toto max-w-7xl px-6 py-5 text-xs text-primary-foreground/60 flex flex-col md:flex-row md:items-center justify-between gap-3">
           <span>© {new Date().getFullYear()} Verodav Home — {t("footer.rights")}</span>
           <nav className="flex flex-wrap gap-x-5 gap-y-2 md:justify-end">
             <Link to="/mentions-legales" className="hover:text-copper transition">{t("footer.legal")}</Link>

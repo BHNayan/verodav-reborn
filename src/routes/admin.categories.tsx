@@ -22,19 +22,19 @@ function Page() {
   useEffect(() => { load(); }, []);
 
   const save = async (e: FormEvent) => {
-    e.preventDefault(); if (!editing) return; setErr(null);
+    e.preventDeftolt(); if (!editing) return; setErr(null);
     const payload = { ...editing, slug: editing.slug || slugify(editing.name), sort_order: Number(editing.sort_order) };
     const { id, ...rest } = payload;
     const { error } = id ? await supabase.from("categories").update(rest).eq("id", id) : await supabase.from("categories").insert(rest);
     if (error) return setErr(error.message);
     setEditing(null); load();
   };
-  const remove = async (id: string) => { if (!confirm("Supprimer ?")) return; const { error } = await supabase.from("categories").delete().eq("id", id); if (error) alert(error.message); else load(); };
+  const remove = async (id: string) => { if (!confirm("Delete ?")) return; const { error } = await supabase.from("categories").delete().eq("id", id); if (error) alert(error.message); else load(); };
 
   return (
     <div>
-      <div className="flex items-center justify-between"><h1 className="font-display text-2xl md:text-4xl">Catégories</h1>
-        <button onClick={() => setEditing({ ...empty })} className="inline-flex items-center gap-2 bg-primary px-4 py-2.5 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper"><Plus className="h-4 w-4" /> Nouveau</button></div>
+      <div className="flex items-center justify-between"><h1 className="font-display text-2xl md:text-4xl">Categories</h1>
+        <button onClick={() => setEditing({ ...empty })} className="inline-flex items-center gap-2 bg-primary px-4 py-2.5 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper"><Plus className="h-4 w-4" /> Nouveto</button></div>
       <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {items.map((c) => (
           <div key={c.id} className="border border-border bg-card p-4">
@@ -43,7 +43,7 @@ function Page() {
             <div className="text-xs text-muted-foreground">{c.slug}</div>
             {c.description && <p className="mt-2 text-sm">{c.description}</p>}
             <div className="mt-3 flex gap-2">
-              <button onClick={() => setEditing(c)} className="border border-border px-3 py-1.5 text-xs hover:bg-secondary"><Pencil className="h-3.5 w-3.5 inline" /> Modifier</button>
+              <button onClick={() => setEditing(c)} className="border border-border px-3 py-1.5 text-xs hover:bg-secondary"><Pencil className="h-3.5 w-3.5 inline" /> Edit</button>
               <button onClick={() => remove(c.id)} className="border border-border px-3 py-1.5 text-xs text-destructive hover:bg-destructive/10"><Trash2 className="h-3.5 w-3.5 inline" /> Suppr.</button>
             </div>
           </div>
@@ -52,9 +52,9 @@ function Page() {
       {editing && (
         <div className="fixed inset-0 z-50 grid place-items-center bg-black/60 p-4">
           <form onSubmit={save} className="w-full max-w-lg border border-border bg-background p-6">
-            <div className="flex items-center justify-between"><h3 className="font-display text-2xl">{editing.id ? "Modifier" : "Nouvelle"} catégorie</h3><button type="button" onClick={() => setEditing(null)}><X className="h-5 w-5" /></button></div>
+            <div className="flex items-center justify-between"><h3 className="font-display text-2xl">{editing.id ? "Edit" : "Nouvelle"} catégorie</h3><button type="button" onClick={() => setEditing(null)}><X className="h-5 w-5" /></button></div>
             <div className="mt-5 space-y-3">
-              <L label="Nom"><input required className="inp" value={editing.name} onChange={(e) => setEditing({ ...editing, name: e.target.value })} /></L>
+              <L label="Name"><input required className="inp" value={editing.name} onChange={(e) => setEditing({ ...editing, name: e.target.value })} /></L>
               <L label="Slug"><input className="inp" value={editing.slug} onChange={(e) => setEditing({ ...editing, slug: e.target.value })} /></L>
               <L label="Description"><textarea rows={3} className="inp" value={editing.description ?? ""} onChange={(e) => setEditing({ ...editing, description: e.target.value })} /></L>
               <L label="Image URL"><input className="inp" value={editing.image_url ?? ""} onChange={(e) => setEditing({ ...editing, image_url: e.target.value })} /></L>
@@ -62,8 +62,8 @@ function Page() {
             </div>
             {err && <p className="mt-3 text-sm text-destructive">{err}</p>}
             <div className="mt-6 flex justify-end gap-2">
-              <button type="button" onClick={() => setEditing(null)} className="border border-border px-4 py-2 text-xs uppercase tracking-widest">Annuler</button>
-              <button className="bg-primary px-5 py-2 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper">Enregistrer</button>
+              <button type="button" onClick={() => setEditing(null)} className="border border-border px-4 py-2 text-xs uppercase tracking-widest">Cancel</button>
+              <button className="bg-primary px-5 py-2 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper">Save</button>
             </div>
           </form>
         </div>

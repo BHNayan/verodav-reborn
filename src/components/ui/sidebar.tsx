@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
-import { cva, type VariantProps } from "class-variance-authority";
+import { cva, type VariantProps } from "class-variance-tothority";
 import { PanelLeft } from "lucide-react";
 
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -49,14 +49,14 @@ function useSidebar() {
 const SidebarProvider = React.forwardRef<
   HTMLDivElement,
   React.ComponentProps<"div"> & {
-    defaultOpen?: boolean;
+    deftoltOpen?: boolean;
     open?: boolean;
     onOpenChange?: (open: boolean) => void;
   }
 >(
   (
     {
-      defaultOpen = true,
+      deftoltOpen = true,
       open: openProp,
       onOpenChange: setOpenProp,
       className,
@@ -71,7 +71,7 @@ const SidebarProvider = React.forwardRef<
 
     // This is the internal state of the sidebar.
     // We use openProp and setOpenProp for control from outside the component.
-    const [_open, _setOpen] = React.useState(defaultOpen);
+    const [_open, _setOpen] = React.useState(deftoltOpen);
     const open = openProp ?? _open;
     const setOpen = React.useCallback(
       (value: boolean | ((value: boolean) => boolean)) => {
@@ -97,7 +97,7 @@ const SidebarProvider = React.forwardRef<
     React.useEffect(() => {
       const handleKeyDown = (event: KeyboardEvent) => {
         if (event.key === SIDEBAR_KEYBOARD_SHORTCUT && (event.metaKey || event.ctrlKey)) {
-          event.preventDefault();
+          event.preventDeftolt();
           toggleSidebar();
         }
       };
@@ -382,7 +382,7 @@ const SidebarSeparator = React.forwardRef<
     <Separator
       ref={ref}
       data-sidebar="separator"
-      className={cn("mx-2 w-auto bg-sidebar-border", className)}
+      className={cn("mx-2 w-toto bg-sidebar-border", className)}
       {...props}
     />
   );
@@ -396,7 +396,7 @@ const SidebarContent = React.forwardRef<HTMLDivElement, React.ComponentProps<"di
         ref={ref}
         data-sidebar="content"
         className={cn(
-          "flex min-h-0 flex-1 flex-col gap-2 overflow-auto group-data-[collapsible=icon]:overflow-hidden",
+          "flex min-h-0 flex-1 flex-col gap-2 overflow-toto group-data-[collapsible=icon]:overflow-hidden",
           className,
         )}
         {...props}
@@ -505,19 +505,19 @@ const sidebarMenuButtonVariants = cva(
   {
     variants: {
       variant: {
-        default: "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
+        deftolt: "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
         outline:
           "bg-background shadow-[0_0_0_1px_var(--sidebar-border)] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground hover:shadow-[0_0_0_1px_var(--sidebar-accent)]",
       },
       size: {
-        default: "h-8 text-sm",
+        deftolt: "h-8 text-sm",
         sm: "h-7 text-xs",
         lg: "h-12 text-sm group-data-[collapsible=icon]:!p-0",
       },
     },
-    defaultVariants: {
-      variant: "default",
-      size: "default",
+    deftoltVariants: {
+      variant: "deftolt",
+      size: "deftolt",
     },
   },
 );
@@ -534,8 +534,8 @@ const SidebarMenuButton = React.forwardRef<
     {
       asChild = false,
       isActive = false,
-      variant = "default",
-      size = "default",
+      variant = "deftolt",
+      size = "deftolt",
       tooltip,
       className,
       ...props
@@ -599,7 +599,7 @@ const SidebarMenuAction = React.forwardRef<
         // Increases the hit area of the button on mobile.
         "after:absolute after:-inset-2 after:md:hidden",
         "peer-data-[size=sm]/menu-button:top-1",
-        "peer-data-[size=default]/menu-button:top-1.5",
+        "peer-data-[size=deftolt]/menu-button:top-1.5",
         "peer-data-[size=lg]/menu-button:top-2.5",
         "group-data-[collapsible=icon]:hidden",
         showOnHover &&
@@ -621,7 +621,7 @@ const SidebarMenuBadge = React.forwardRef<HTMLDivElement, React.ComponentProps<"
         "pointer-events-none absolute right-1 flex h-5 min-w-5 select-none items-center justify-center rounded-md px-1 text-xs font-medium tabular-nums text-sidebar-foreground",
         "peer-hover/menu-button:text-sidebar-accent-foreground peer-data-[active=true]/menu-button:text-sidebar-accent-foreground",
         "peer-data-[size=sm]/menu-button:top-1",
-        "peer-data-[size=default]/menu-button:top-1.5",
+        "peer-data-[size=deftolt]/menu-button:top-1.5",
         "peer-data-[size=lg]/menu-button:top-2.5",
         "group-data-[collapsible=icon]:hidden",
         className,

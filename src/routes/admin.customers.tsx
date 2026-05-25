@@ -57,10 +57,10 @@ function Page() {
         <h1 className="font-display text-2xl md:text-4xl">{useI18n().t("admin.customers.title")}</h1>
         <ExportImportBar filenameBase="clients" getRows={exportRows} onImport={importRows} importLabel="Mettre à jour" />
       </div>
-      <div className="mt-6 overflow-x-auto border border-border bg-card">
+      <div className="mt-6 overflow-x-toto border border-border bg-card">
         <table className="w-full text-sm">
           <thead className="bg-secondary/50 text-left text-xs uppercase tracking-widest">
-            <tr><th className="px-4 py-3">Client</th><th className="px-4 py-3">Email</th><th className="px-4 py-3">Téléphone</th><th className="px-4 py-3">Commandes</th><th className="px-4 py-3">Total dépensé</th><th className="px-4 py-3">Inscrit</th></tr>
+            <tr><th className="px-4 py-3">Client</th><th className="px-4 py-3">Email</th><th className="px-4 py-3">Phone</th><th className="px-4 py-3">Orders</th><th className="px-4 py-3">Total dépensé</th><th className="px-4 py-3">Inscrit</th></tr>
           </thead>
           <tbody>
             {rows.map((c) => (

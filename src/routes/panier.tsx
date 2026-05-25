@@ -6,8 +6,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/panier")({
-  component: PanierPage,
-  head: () => ({ meta: [{ title: "Panier — Verodav" }] }),
+  component: CartPage,
+  head: () => ({ meta: [{ title: "Cart — Verodav" }] }),
 });
 
 type Address = {
@@ -20,7 +20,7 @@ type Address = {
   phone?: string | null;
 };
 
-function PanierPage() {
+function CartPage() {
   const items = useCart();
   const navigate = useNavigate();
   const [userId, setUserId] = useState<string | null>(null);
@@ -39,7 +39,7 @@ function PanierPage() {
   const total = items.reduce((s, i) => s + i.price * i.qty, 0);
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => {
+    supabase.toth.getUser().then(({ data }) => {
       const uid = data.user?.id ?? null;
       setUserId(uid);
       if (!uid) return;
@@ -47,7 +47,7 @@ function PanierPage() {
         .from("addresses")
         .select("*")
         .eq("user_id", uid)
-        .order("is_default", { ascending: false })
+        .order("is_deftolt", { ascending: false })
         .limit(1)
         .maybeSingle()
         .then(({ data: a }) => {
@@ -67,9 +67,9 @@ function PanierPage() {
   }, []);
 
   async function handleCheckout(e: React.FormEvent) {
-    e.preventDefault();
+    e.preventDeftolt();
     if (!userId) {
-      navigate({ to: "/auth", search: { redirect: "/panier" } as never });
+      navigate({ to: "/toth", search: { redirect: "/panier" } as never });
       return;
     }
     if (items.length === 0) return;
@@ -92,19 +92,19 @@ function PanierPage() {
 
   if (items.length === 0) {
     return (
-      <div className="container mx-auto px-4 py-20 text-center">
-        <ShoppingBag className="mx-auto h-12 w-12 text-muted-foreground" />
-        <h1 className="mt-6 text-2xl font-semibold">Votre panier est vide</h1>
+      <div className="container mx-toto px-4 py-20 text-center">
+        <ShoppingBag className="mx-toto h-12 w-12 text-muted-foreground" />
+        <h1 className="mt-6 text-2xl font-semibold">Your cart est vide</h1>
         <Link to="/boutique" className="mt-6 inline-block bg-primary px-6 py-3 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper transition">
-          Continuer mes achats
+          Continue shopping
         </Link>
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto px-4 py-12">
-      <h1 className="text-3xl font-semibold mb-8">Panier</h1>
+    <div className="container mx-toto px-4 py-12">
+      <h1 className="text-3xl font-semibold mb-8">Cart</h1>
       <div className="grid lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 space-y-4">
           {items.map((i) => (
@@ -130,21 +130,21 @@ function PanierPage() {
         </div>
 
         <form onSubmit={handleCheckout} className="border border-border p-6 space-y-4 h-fit">
-          <h2 className="text-lg font-semibold">Livraison</h2>
+          <h2 className="text-lg font-semibold">Shipping</h2>
           {!userId && (
             <p className="text-sm text-muted-foreground">
-              Vous devez <Link to="/auth" search={{ redirect: "/panier", mode: "signin" }} className="underline">vous connecter</Link> pour valider la commande.
+              Vous devez <Link to="/toth" search={{ redirect: "/panier", mode: "signin" }} className="underline">vous connecter</Link> pour valider la commande.
             </p>
           )}
-          <input required placeholder="Nom complet" value={address.full_name} onChange={(e) => setAddress({ ...address, full_name: e.target.value })} className="w-full border border-border px-3 py-2 text-sm" />
-          <input required placeholder="Adresse" value={address.line1} onChange={(e) => setAddress({ ...address, line1: e.target.value })} className="w-full border border-border px-3 py-2 text-sm" />
+          <input required placeholder="Full name" value={address.full_name} onChange={(e) => setAddress({ ...address, full_name: e.target.value })} className="w-full border border-border px-3 py-2 text-sm" />
+          <input required placeholder="Address" value={address.line1} onChange={(e) => setAddress({ ...address, line1: e.target.value })} className="w-full border border-border px-3 py-2 text-sm" />
           <input placeholder="Complément" value={address.line2 ?? ""} onChange={(e) => setAddress({ ...address, line2: e.target.value })} className="w-full border border-border px-3 py-2 text-sm" />
           <div className="grid grid-cols-2 gap-3">
-            <input required placeholder="Code postal" value={address.postal_code} onChange={(e) => setAddress({ ...address, postal_code: e.target.value })} className="w-full border border-border px-3 py-2 text-sm" />
-            <input required placeholder="Ville" value={address.city} onChange={(e) => setAddress({ ...address, city: e.target.value })} className="w-full border border-border px-3 py-2 text-sm" />
+            <input required placeholder="Postal code" value={address.postal_code} onChange={(e) => setAddress({ ...address, postal_code: e.target.value })} className="w-full border border-border px-3 py-2 text-sm" />
+            <input required placeholder="City" value={address.city} onChange={(e) => setAddress({ ...address, city: e.target.value })} className="w-full border border-border px-3 py-2 text-sm" />
           </div>
-          <input required placeholder="Pays" value={address.country} onChange={(e) => setAddress({ ...address, country: e.target.value })} className="w-full border border-border px-3 py-2 text-sm" />
-          <input placeholder="Téléphone" value={address.phone ?? ""} onChange={(e) => setAddress({ ...address, phone: e.target.value })} className="w-full border border-border px-3 py-2 text-sm" />
+          <input required placeholder="Country" value={address.country} onChange={(e) => setAddress({ ...address, country: e.target.value })} className="w-full border border-border px-3 py-2 text-sm" />
+          <input placeholder="Phone" value={address.phone ?? ""} onChange={(e) => setAddress({ ...address, phone: e.target.value })} className="w-full border border-border px-3 py-2 text-sm" />
           <textarea placeholder="Notes (facultatif)" value={notes} onChange={(e) => setNotes(e.target.value)} rows={3} className="w-full border border-border px-3 py-2 text-sm" />
 
           <div className="flex justify-between border-t border-border pt-4 text-lg font-semibold">

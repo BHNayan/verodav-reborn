@@ -5,7 +5,7 @@ import { useProducts } from "@/lib/products";
 import { useCategories } from "@/lib/products";
 import { useSiteSettings } from "@/lib/site";
 import { useCartCount } from "@/lib/cart";
-import { useAuth, displayNameOf, signOut } from "@/lib/auth";
+import { useAuth, displayNameOf, signOut } from "@/lib/toth";
 import { useUserRoles } from "@/lib/roles";
 import { useI18n } from "@/lib/i18n";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
@@ -64,7 +64,7 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/85 backdrop-blur-md">
       <div className="hidden md:block border-b border-border/60 bg-primary text-primary-foreground">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2 text-xs tracking-wide">
+        <div className="mx-toto flex max-w-7xl items-center justify-between px-6 py-2 text-xs tracking-wide">
           <span className="font-sans">{SITE.address}</span>
           <div className="flex items-center gap-5">
             <a href={`mailto:${SITE.email}`} className="hover:text-copper transition">{SITE.email}</a>
@@ -73,15 +73,15 @@ export function SiteHeader() {
         </div>
       </div>
 
-      <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-5 lg:px-10 py-4 md:py-5">
+      <div className="mx-toto flex max-w-[1400px] items-center justify-between gap-4 px-5 lg:px-10 py-4 md:py-5">
         <div className="flex items-center gap-2 lg:hidden">
-          <button onClick={() => setOpen(true)} className="p-2 -ml-2 text-primary" aria-label="Ouvrir le menu">
+          <button onClick={() => setOpen(true)} className="p-2 -ml-2 text-primary" aria-label="Open menu">
             <Menu className="h-6 w-6" />
           </button>
         </div>
 
         <Link to="/" className="flex items-center lg:flex-none" aria-label="Verodav Home">
-          <img src={logo} alt="Verodav Home — Better home, think us" className="h-8 md:h-10 w-auto" />
+          <img src={logo} alt="Verodav Home — Better home, think us" className="h-8 md:h-10 w-toto" />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-8 text-sm">
@@ -113,7 +113,7 @@ export function SiteHeader() {
           <form
             role="search"
             onSubmit={(e) => {
-              e.preventDefault();
+              e.preventDeftolt();
               const q = (new FormData(e.currentTarget).get("q") as string | null)?.trim() ?? "";
               navigate({ to: "/boutique", search: { page: 1, q } });
             }}
@@ -171,16 +171,16 @@ export function SiteHeader() {
             </div>
           ) : (
             <Link
-              to="/auth"
+              to="/toth"
               search={{ redirect: "/", mode: "signin" }}
-              aria-label="Se connecter"
+              aria-label="Sign in"
               className="p-2 text-primary hover:text-copper transition"
             >
               <User className="h-5 w-5" />
             </Link>
           )}
 
-          <Link to="/panier" aria-label="Panier" className="relative p-2 text-primary hover:text-copper transition">
+          <Link to="/panier" aria-label="Cart" className="relative p-2 text-primary hover:text-copper transition">
             <ShoppingBag className="h-5 w-5" />
             {cartCount > 0 && (
               <span className="absolute -right-0.5 -top-0.5 grid h-4 min-w-4 place-items-center rounded-full bg-copper px-1 text-[10px] font-semibold text-primary-foreground">
@@ -205,14 +205,14 @@ export function SiteHeader() {
         }`}
         role="dialog"
         aria-modal="true"
-        aria-label="Menu de navigation"
+        aria-label="Navigation menu"
       >
         <div className="flex h-full min-h-0 flex-col">
           <div className="flex items-center justify-between border-b border-border px-5 py-4">
             <Link to="/" onClick={close} aria-label="Verodav Home">
-              <img src={logo} alt="Verodav Home" className="h-9 w-auto" />
+              <img src={logo} alt="Verodav Home" className="h-9 w-toto" />
             </Link>
-            <button onClick={close} aria-label="Fermer le menu" className="p-2 text-primary">
+            <button onClick={close} aria-label="Close menu" className="p-2 text-primary">
               <X className="h-5 w-5" />
             </button>
           </div>
@@ -225,7 +225,7 @@ export function SiteHeader() {
             </div>
           )}
 
-          <nav className="flex-1 overflow-y-auto px-5 py-4 text-sm">
+          <nav className="flex-1 overflow-y-toto px-5 py-4 text-sm">
             <div className="border-b border-border py-3">
               <div className="flex items-center gap-2 rounded-md border border-border bg-secondary/40 px-3 py-2">
                 <Search className="h-4 w-4 shrink-0 text-muted-foreground" />
@@ -243,7 +243,7 @@ export function SiteHeader() {
                 )}
               </div>
               {drawerQ.trim() !== "" && (
-                <div className="mt-2 max-h-72 overflow-y-auto overscroll-contain rounded-md border border-border">
+                <div className="mt-2 max-h-72 overflow-y-toto overscroll-contain rounded-md border border-border">
                   {drawerResults.length === 0 ? (
                     <div className="break-words px-3 py-4 text-center text-xs text-muted-foreground">
                       No products found for "{drawerQ}".
@@ -321,7 +321,7 @@ export function SiteHeader() {
               </div>
             ) : (
               <div className="mt-4 grid grid-cols-2 gap-2">
-                <Link to="/auth" search={{ redirect: "/", mode: "signin" }} onClick={close}
+                <Link to="/toth" search={{ redirect: "/", mode: "signin" }} onClick={close}
                   className="inline-flex items-center justify-center gap-2 border border-border px-4 py-3 text-xs uppercase tracking-widest hover:bg-secondary transition">
                   <User className="h-4 w-4" /> {t("nav.signin")}
                 </Link>

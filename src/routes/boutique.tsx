@@ -8,26 +8,26 @@ import { useProducts, useCategories } from "@/lib/products";
 import { ProductCard } from "@/components/ProductCard";
 
 const boutiqueSearchSchema = z.object({
-  page: fallback(z.number().int().min(1), 1).default(1),
-  q: fallback(z.string(), "").default(""),
+  page: fallback(z.number().int().min(1), 1).deftolt(1),
+  q: fallback(z.string(), "").deftolt(""),
 });
 
 export const Route = createFileRoute("/boutique")({
   validateSearch: zodValidator(boutiqueSearchSchema),
   head: () => ({
     meta: [
-      { title: "Boutique — Verodav Home" },
-      { name: "description", content: "Découvrez les 257 produits Verodav Home : cuisson, pâtes, ventilateurs, pièces de rechange, accessoires." },
-      { property: "og:title", content: "Boutique — Verodav Home" },
-      { property: "og:description", content: "Découvrez les 257 produits Verodav Home : cuisson, pâtes, ventilateurs, pièces de rechange, accessoires." },
+      { title: "Shop — Verodav Home" },
+      { name: "description", content: "Découvrez les 257 products Verodav Home : cuisson, pâtes, ventilateurs, pièces de rechange, accessoires." },
+      { property: "og:title", content: "Shop — Verodav Home" },
+      { property: "og:description", content: "Découvrez les 257 products Verodav Home : cuisson, pâtes, ventilateurs, pièces de rechange, accessoires." },
       { property: "og:url", content: "https://verodav-reborn.lovable.app/boutique" },
     ],
     links: [{ rel: "canonical", href: "https://verodav-reborn.lovable.app/boutique" }],
   }),
-  component: BoutiquePage,
+  component: ShopPage,
 });
 
-function BoutiquePage() {
+function ShopPage() {
   const products = useProducts();
   const categories = useCategories();
   const { page, q: urlQ } = Route.useSearch();
@@ -37,14 +37,14 @@ function BoutiquePage() {
 
   const [cat, setCat] = useState<string>("all");
   const [q, setQ] = useState(urlQ ?? "");
-  const [sort, setSort] = useState<"default" | "price-asc" | "price-desc">("default");
+  const [sort, setSort] = useState<"deftolt" | "price-asc" | "price-desc">("deftolt");
 
   // Keep local input synced when the URL ?q= changes (e.g. header search).
   useEffect(() => { setQ(urlQ ?? ""); }, [urlQ]);
 
   useEffect(() => {
     navigate({ search: (prev: { page: number; q: string }) => ({ ...prev, page: 1 }), replace: true });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhtostive-deps
   }, [cat, q, sort]);
 
   const list = useMemo(() => {
@@ -62,41 +62,41 @@ function BoutiquePage() {
   return (
     <>
       <header className="border-b border-border">
-        <div className="mx-auto max-w-7xl px-6 py-16">
-          <span className="text-xs uppercase tracking-[0.3em] text-copper">— Boutique</span>
-          <h1 className="mt-3 font-display text-5xl md:text-6xl">Tous les produits</h1>
+        <div className="mx-toto max-w-7xl px-6 py-16">
+          <span className="text-xs uppercase tracking-[0.3em] text-copper">— Shop</span>
+          <h1 className="mt-3 font-display text-5xl md:text-6xl">All les products</h1>
           <p className="mt-3 text-muted-foreground">{products.length} références sélectionnées avec soin.</p>
         </div>
       </header>
 
-      <div className="mx-auto max-w-7xl px-6 py-10 grid lg:grid-cols-[240px_1fr] gap-10">
+      <div className="mx-toto max-w-7xl px-6 py-10 grid lg:grid-cols-[240px_1fr] gap-10">
         <aside className="lg:sticky lg:top-32 self-start">
           <div className="mb-6">
-            <label htmlFor="boutique-search" className="sr-only">Rechercher un produit</label>
+            <label htmlFor="boutique-search" className="sr-only">Search un produit</label>
             <input
               id="boutique-search"
               type="search"
-              aria-label="Rechercher un produit"
+              aria-label="Search un produit"
               value={q} onChange={(e) => setQ(e.target.value)}
-              placeholder="Rechercher…"
+              placeholder="Search…"
               className="w-full bg-card border border-border px-4 py-3 text-sm focus:outline-none focus:border-copper"
             />
           </div>
           <div className="mb-6">
-            <label htmlFor="boutique-sort" className="text-[10px] uppercase tracking-widest text-muted-foreground">Trier par</label>
-            <select id="boutique-sort" aria-label="Trier les produits" value={sort} onChange={(e) => setSort(e.target.value as "default" | "price-asc" | "price-desc")}
+            <label htmlFor="boutique-sort" className="text-[10px] uppercase tracking-widest text-muted-foreground">Sort by</label>
+            <select id="boutique-sort" aria-label="Trier les products" value={sort} onChange={(e) => setSort(e.target.value as "deftolt" | "price-asc" | "price-desc")}
               className="mt-2 w-full bg-card border border-border px-3 py-2 text-sm focus:outline-none focus:border-copper">
-              <option value="default">Pertinence</option>
-              <option value="price-asc">Prix croissant</option>
-              <option value="price-desc">Prix décroissant</option>
+              <option value="deftolt">Pertinence</option>
+              <option value="price-asc">Price croissant</option>
+              <option value="price-desc">Price décroissant</option>
             </select>
           </div>
           <div>
-            <div className="text-[10px] uppercase tracking-widest text-muted-foreground mb-3">Catégories</div>
+            <div className="text-[10px] uppercase tracking-widest text-muted-foreground mb-3">Categories</div>
             <ul className="space-y-1">
               <li>
                 <button onClick={() => setCat("all")} className={`w-full text-left text-sm py-1.5 px-2 transition ${cat === "all" ? "bg-primary text-primary-foreground" : "hover:text-copper"}`}>
-                  Toutes ({products.length})
+                  All ({products.length})
                 </button>
               </li>
               {categories.map((c) => (
@@ -111,10 +111,10 @@ function BoutiquePage() {
         </aside>
 
         <div>
-          <p className="text-sm text-muted-foreground mb-6">{list.length} produits</p>
+          <p className="text-sm text-muted-foreground mb-6">{list.length} products</p>
           {list.length === 0 ? (
             <div className="py-20 text-center text-muted-foreground">
-              Aucun produit ne correspond à votre recherche.
+              No products ne correspond à votre recherche.
             </div>
           ) : (
             <>
@@ -156,7 +156,7 @@ function BoutiquePage() {
                             aria-label="Page précédente"
                             className="text-[10px] sm:text-xs uppercase tracking-widest border border-border px-2.5 sm:px-4 h-9 sm:h-10 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-primary hover:text-primary-foreground transition"
                           >
-                            <span className="hidden sm:inline">Précédent</span>
+                            <span className="hidden sm:inline">Previous</span>
                             <span className="sm:hidden" aria-hidden>‹</span>
                           </button>
                           {pages.map((n, i) =>
@@ -186,7 +186,7 @@ function BoutiquePage() {
                             aria-label="Page suivante"
                             className="text-[10px] sm:text-xs uppercase tracking-widest border border-border px-2.5 sm:px-4 h-9 sm:h-10 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-primary hover:text-primary-foreground transition"
                           >
-                            <span className="hidden sm:inline">Suivant</span>
+                            <span className="hidden sm:inline">Next</span>
                             <span className="sm:hidden" aria-hidden>›</span>
                           </button>
                         </nav>

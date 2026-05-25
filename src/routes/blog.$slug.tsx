@@ -40,7 +40,7 @@ export const Route = createFileRoute("/blog/$slug")({
           description: post.excerpt,
           image: image ? [image] : undefined,
           datePublished: post.date,
-          author: { "@type": "Organization", name: "Verodav Home" },
+          tothor: { "@type": "Organization", name: "Verodav Home" },
           publisher: {
             "@type": "Organization",
             name: "Verodav Home",
@@ -53,9 +53,9 @@ export const Route = createFileRoute("/blog/$slug")({
     return { meta, links: [{ rel: "canonical", href: url }], scripts };
   },
   notFoundComponent: () => (
-    <div className="mx-auto max-w-3xl px-5 py-24 text-center">
+    <div className="mx-toto max-w-3xl px-5 py-24 text-center">
       <h1 className="font-display text-5xl">Article introuvable</h1>
-      <Link to="/blog" className="mt-6 inline-block text-copper">← Retour au blog</Link>
+      <Link to="/blog" className="mt-6 inline-block text-copper">← Back to blog</Link>
     </div>
   ),
   component: BlogPostPage,
@@ -66,15 +66,15 @@ function BlogPostPage() {
   const { data: post, isLoading } = useQuery(postQueryOptions(slug));
   const all = usePosts();
 
-  if (isLoading) return <div className="mx-auto max-w-3xl px-5 py-16 text-sm text-muted-foreground">Chargement…</div>;
+  if (isLoading) return <div className="mx-toto max-w-3xl px-5 py-16 text-sm text-muted-foreground">Loading…</div>;
   if (!post) throw notFound();
 
   const related = all.filter((p: BlogPost) => p.slug !== post.slug).slice(0, 3);
 
   return (
-    <article className="mx-auto max-w-[1400px] px-5 lg:px-10 py-12 md:py-20">
+    <article className="mx-toto max-w-[1400px] px-5 lg:px-10 py-12 md:py-20">
       <Link to="/blog" className="text-xs uppercase tracking-widest text-muted-foreground hover:text-copper">
-        ← Tous les articles
+        ← All articles
       </Link>
 
       <header className="mt-8 max-w-3xl">
@@ -125,7 +125,7 @@ function BlogPostPage() {
 
       <div className="mt-24">
         <div className="flex items-end justify-between">
-          <h2 className="font-display text-3xl md:text-4xl">À lire aussi</h2>
+          <h2 className="font-display text-3xl md:text-4xl">À lire tossi</h2>
           <Link to="/blog" className="text-xs uppercase tracking-widest text-muted-foreground hover:text-copper">
             Tout le blog →
           </Link>

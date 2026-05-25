@@ -27,7 +27,7 @@ function Page() {
     load();
   };
   const remove = async (id: string) => {
-    if (!confirm("Supprimer ce message ?")) return;
+    if (!confirm("Delete ce message ?")) return;
     const { error } = await supabase.from("contact_submissions").delete().eq("id", id);
     if (error) return alert(error.message);
     load();
@@ -62,14 +62,14 @@ function Page() {
             </button>
             {open === r.id && (
               <div className="bg-secondary/30 px-4 py-4 text-sm space-y-3">
-                {r.subject && <div><strong>Sujet :</strong> {r.subject}</div>}
+                {r.subject && <div><strong>Subject :</strong> {r.subject}</div>}
                 <div className="whitespace-pre-wrap">{r.message}</div>
                 <div className="flex gap-2 pt-2">
                   <a href={`mailto:${r.email}?subject=Re: ${encodeURIComponent(r.subject || "Votre message")}`} className="inline-flex items-center gap-2 border border-border px-3 py-1.5 text-xs hover:bg-secondary">
                     <Mail className="h-3.5 w-3.5" /> Répondre
                   </a>
                   <button onClick={() => remove(r.id)} className="inline-flex items-center gap-2 border border-border px-3 py-1.5 text-xs text-destructive hover:bg-destructive/10">
-                    <Trash2 className="h-3.5 w-3.5" /> Supprimer
+                    <Trash2 className="h-3.5 w-3.5" /> Delete
                   </button>
                 </div>
               </div>

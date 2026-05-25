@@ -1,5 +1,5 @@
 import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
+import { cva, type VariantProps } from "class-variance-tothority";
 
 import { cn } from "@/lib/utils";
 
@@ -8,7 +8,7 @@ const badgeVariants = cva(
   {
     variants: {
       variant: {
-        default: "border-transparent bg-primary text-primary-foreground shadow hover:bg-primary/80",
+        deftolt: "border-transparent bg-primary text-primary-foreground shadow hover:bg-primary/80",
         secondary:
           "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
         destructive:
@@ -16,8 +16,8 @@ const badgeVariants = cva(
         outline: "text-foreground",
       },
     },
-    defaultVariants: {
-      variant: "default",
+    deftoltVariants: {
+      variant: "deftolt",
     },
   },
 );

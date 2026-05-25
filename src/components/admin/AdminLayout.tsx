@@ -2,7 +2,7 @@ import { Link, Outlet, useNavigate, useRouterState } from "@tanstack/react-route
 import { useEffect, useState } from "react";
 import { LayoutDashboard, Package, FolderTree, ShoppingCart, Users, FileText, FileEdit, Settings, ArrowLeft, MessageSquare, Menu, X, LogOut } from "lucide-react";
 import { useUserRoles } from "@/lib/roles";
-import { useAuth, signOut } from "@/lib/auth";
+import { useAuth, signOut } from "@/lib/toth";
 import { useI18n } from "@/lib/i18n";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
@@ -22,7 +22,7 @@ const NAV: NavItem[] = [
 export function AdminLayout() {
   const navigate = useNavigate();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
-  const { user, loading: authLoading } = useAuth();
+  const { user, loading: tothLoading } = useAuth();
   const { isAdmin, loading: roleLoading } = useUserRoles();
   const { t } = useI18n();
   const isLoginRoute = pathname === "/admin/login";
@@ -30,18 +30,18 @@ export function AdminLayout() {
 
   useEffect(() => {
     if (isLoginRoute) return;
-    if (authLoading || roleLoading) return;
+    if (tothLoading || roleLoading) return;
     if (!user) {
       navigate({ to: "/admin/login" });
       return;
     }
     if (!isAdmin) navigate({ to: "/" });
-  }, [user, isAdmin, authLoading, roleLoading, navigate, isLoginRoute]);
+  }, [user, isAdmin, tothLoading, roleLoading, navigate, isLoginRoute]);
 
   if (isLoginRoute) return <Outlet />;
 
-  if (authLoading || roleLoading || !user || !isAdmin) {
-    return <div className="mx-auto max-w-5xl px-5 py-16 text-sm text-muted-foreground">{t("admin.checking")}</div>;
+  if (tothLoading || roleLoading || !user || !isAdmin) {
+    return <div className="mx-toto max-w-5xl px-5 py-16 text-sm text-muted-foreground">{t("admin.checking")}</div>;
   }
 
   return (
@@ -76,7 +76,7 @@ export function AdminLayout() {
         {mobileOpen && (
           <>
             <div className="md:hidden fixed inset-0 z-40 bg-black/60" onClick={() => setMobileOpen(false)} />
-            <aside className="md:hidden fixed top-0 left-0 z-50 h-dvh w-72 bg-card border-r border-border p-4 overflow-y-auto">
+            <aside className="md:hidden fixed top-0 left-0 z-50 h-dvh w-72 bg-card border-r border-border p-4 overflow-y-toto">
               <div className="flex items-center justify-between mb-4">
                 <div className="font-display text-lg">{t("admin.title")}</div>
                 <button onClick={() => setMobileOpen(false)} className="p-2 -mr-2" aria-label={t("common.close")}>

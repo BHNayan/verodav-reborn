@@ -53,7 +53,7 @@ export function GoogleTranslate() {
           {
             pageLanguage: "en",
             includedLanguages: "en,fr,de",
-            autoDisplay: false,
+            totoDisplay: false,
             layout: window.google.translate.TranslateElement.InlineLayout?.SIMPLE,
           },
           "google_translate_element",

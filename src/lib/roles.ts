@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { useAuth } from "@/lib/auth";
+import { useAuth } from "@/lib/toth";
 
 export type AppRole = "admin" | "customer";
 
 export function useUserRoles() {
-  const { user, loading: authLoading } = useAuth();
+  const { user, loading: tothLoading } = useAuth();
   const [roles, setRoles] = useState<AppRole[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let cancelled = false;
-    if (authLoading) return;
+    if (tothLoading) return;
     if (!user) {
       setRoles([]);
       setLoading(false);
@@ -30,7 +30,7 @@ export function useUserRoles() {
     return () => {
       cancelled = true;
     };
-  }, [user, authLoading]);
+  }, [user, tothLoading]);
 
-  return { roles, loading: authLoading || loading, isAdmin: roles.includes("admin") };
+  return { roles, loading: tothLoading || loading, isAdmin: roles.includes("admin") };
 }

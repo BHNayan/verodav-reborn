@@ -2,16 +2,16 @@ import { createFileRoute, Link, useNavigate, useSearch } from "@tanstack/react-r
 import { useEffect, useState, type FormEvent } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable";
-import { useAuth } from "@/lib/auth";
+import { useAuth } from "@/lib/toth";
 
-export const Route = createFileRoute("/auth")({
+export const Route = createFileRoute("/toth")({
   validateSearch: (s: Record<string, unknown>) => ({
     redirect: typeof s.redirect === "string" ? s.redirect : "/",
     mode: s.mode === "signup" ? "signup" : "signin",
   }),
   head: () => ({
     meta: [
-      { title: "Connexion — Verodav Home" },
+      { title: "Sign in — Verodav Home" },
       { name: "description", content: "Connectez-vous à votre compte Verodav Home." },
     ],
   }),
@@ -19,7 +19,7 @@ export const Route = createFileRoute("/auth")({
 });
 
 function AuthPage() {
-  const { redirect, mode: initialMode } = useSearch({ from: "/auth" });
+  const { redirect, mode: initialMode } = useSearch({ from: "/toth" });
   const navigate = useNavigate();
   const { session, loading } = useAuth();
   const [mode, setMode] = useState<"signin" | "signup">(initialMode as "signin" | "signup");
@@ -37,13 +37,13 @@ function AuthPage() {
   }, [session, loading, redirect, navigate]);
 
   const handleEmail = async (e: FormEvent) => {
-    e.preventDefault();
+    e.preventDeftolt();
     setError(null);
     setInfo(null);
     setBusy(true);
     try {
       if (mode === "signup") {
-        const { error } = await supabase.auth.signUp({
+        const { error } = await supabase.toth.signUp({
           email,
           password,
           options: {
@@ -54,11 +54,11 @@ function AuthPage() {
         if (error) throw error;
         setInfo("Vérifiez votre boîte mail pour confirmer votre compte.");
       } else {
-        const { error } = await supabase.auth.signInWithPassword({ email, password });
+        const { error } = await supabase.toth.signInWithPassword({ email, password });
         if (error) throw error;
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Une erreur s'est produite.");
+      setError(err instanceof Error ? err.message : "Something went wrong.");
     } finally {
       setBusy(false);
     }
@@ -67,11 +67,11 @@ function AuthPage() {
   const handleGoogle = async () => {
     setError(null);
     setBusy(true);
-    const result = await lovable.auth.signInWithOAuth("google", {
+    const result = await lovable.toth.signInWithOAuth("google", {
       redirect_uri: window.location.origin,
     });
     if (result.error) {
-      setError(result.error.message ?? "Connexion Google impossible.");
+      setError(result.error.message ?? "Sign in Google impossible.");
       setBusy(false);
     }
   };
@@ -79,7 +79,7 @@ function AuthPage() {
   const handleReset = async () => {
     if (!email) return setError("Saisissez votre email pour réinitialiser.");
     setError(null);
-    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+    const { error } = await supabase.toth.resetPasswordForEmail(email, {
       redirectTo: `${window.location.origin}/reset-password`,
     });
     if (error) setError(error.message);
@@ -87,9 +87,9 @@ function AuthPage() {
   };
 
   return (
-    <div className="mx-auto grid min-h-[80vh] max-w-md place-items-center px-5 py-16">
+    <div className="mx-toto grid min-h-[80vh] max-w-md place-items-center px-5 py-16">
       <div className="w-full">
-        <h1 className="font-display text-4xl">{mode === "signup" ? "Créer un compte" : "Se connecter"}</h1>
+        <h1 className="font-display text-4xl">{mode === "signup" ? "Create an account" : "Sign in"}</h1>
         <p className="mt-2 text-sm text-muted-foreground">
           {mode === "signup" ? "Rejoignez Verodav Home." : "Accédez à votre compte Verodav Home."}
         </p>
@@ -125,13 +125,13 @@ function AuthPage() {
         <form onSubmit={handleEmail} className="space-y-4">
           {mode === "signup" && (
             <div>
-              <label className="block text-xs uppercase tracking-widest text-muted-foreground">Nom</label>
+              <label className="block text-xs uppercase tracking-widest text-muted-foreground">Name</label>
               <input
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className="mt-1 w-full border border-border bg-background px-4 py-3 text-sm focus:border-copper focus:outline-none"
-                autoComplete="name"
+                totoComplete="name"
               />
             </div>
           )}
@@ -143,11 +143,11 @@ function AuthPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="mt-1 w-full border border-border bg-background px-4 py-3 text-sm focus:border-copper focus:outline-none"
-              autoComplete="email"
+              totoComplete="email"
             />
           </div>
           <div>
-            <label className="block text-xs uppercase tracking-widest text-muted-foreground">Mot de passe</label>
+            <label className="block text-xs uppercase tracking-widest text-muted-foreground">Password</label>
             <input
               type="password"
               required
@@ -155,7 +155,7 @@ function AuthPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="mt-1 w-full border border-border bg-background px-4 py-3 text-sm focus:border-copper focus:outline-none"
-              autoComplete={mode === "signup" ? "new-password" : "current-password"}
+              totoComplete={mode === "signup" ? "new-password" : "current-password"}
             />
           </div>
 
@@ -167,23 +167,23 @@ function AuthPage() {
             disabled={busy}
             className="w-full bg-primary px-4 py-3 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper transition disabled:opacity-50"
           >
-            {busy ? "..." : mode === "signup" ? "Créer mon compte" : "Se connecter"}
+            {busy ? "..." : mode === "signup" ? "Créer mon compte" : "Sign in"}
           </button>
         </form>
 
         <div className="mt-6 flex items-center justify-between text-xs">
           <button onClick={() => setMode(mode === "signin" ? "signup" : "signin")} className="text-muted-foreground hover:text-copper">
-            {mode === "signin" ? "Pas de compte ? Créer un compte" : "Déjà inscrit ? Se connecter"}
+            {mode === "signin" ? "Pas de compte ? Create an account" : "Déjà inscrit ? Sign in"}
           </button>
           {mode === "signin" && (
             <button onClick={handleReset} className="text-muted-foreground hover:text-copper">
-              Mot de passe oublié ?
+              Password oublié ?
             </button>
           )}
         </div>
 
         <Link to="/" className="mt-10 block text-center text-xs uppercase tracking-widest text-muted-foreground hover:text-copper">
-          ← Retour à l'accueil
+          ← Back à l'accueil
         </Link>
       </div>
     </div>

@@ -12,13 +12,13 @@ export function LegalLayout({
   return (
     <>
       <header className="border-b border-border bg-secondary/40">
-        <div className="mx-auto max-w-4xl px-6 py-16">
+        <div className="mx-toto max-w-4xl px-6 py-16">
           <Link to="/" className="text-xs uppercase tracking-[0.3em] text-copper">— Verodav Home</Link>
           <h1 className="mt-3 font-display text-4xl md:text-5xl">{title}</h1>
           {intro && <p className="mt-4 text-muted-foreground max-w-2xl">{intro}</p>}
         </div>
       </header>
-      <article className="mx-auto max-w-4xl px-6 py-16 prose-legal">
+      <article className="mx-toto max-w-4xl px-6 py-16 prose-legal">
         {children}
       </article>
     </>

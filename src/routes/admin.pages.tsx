@@ -34,7 +34,7 @@ function AdminPages() {
   }, [pages, initSlug, active]);
 
   const save = async (e: FormEvent) => {
-    e.preventDefault();
+    e.preventDeftolt();
     if (!draft) return;
     setBusy(true); setMsg(null);
     const { error } = await supabase.from("site_pages").upsert({
@@ -106,7 +106,7 @@ function AdminPages() {
             {msg && <p className="mt-3 text-sm text-emerald-700">{msg}</p>}
             <div className="mt-4 flex justify-end">
               <button type="submit" disabled={busy} className="inline-flex items-center gap-2 bg-primary px-5 py-2.5 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper disabled:opacity-50">
-                <Save className="h-4 w-4" /> {busy ? "Enregistrement…" : "Enregistrer"}
+                <Save className="h-4 w-4" /> {busy ? "Saving…" : "Save"}
               </button>
             </div>
           </form>

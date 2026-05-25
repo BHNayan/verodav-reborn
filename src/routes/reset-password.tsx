@@ -3,7 +3,7 @@ import { useState, type FormEvent } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/reset-password")({
-  head: () => ({ meta: [{ title: "Réinitialiser le mot de passe — Verodav Home" }] }),
+  head: () => ({ meta: [{ title: "Reset password — Verodav Home" }] }),
   component: ResetPasswordPage,
 });
 
@@ -14,26 +14,26 @@ function ResetPasswordPage() {
   const [busy, setBusy] = useState(false);
 
   const submit = async (e: FormEvent) => {
-    e.preventDefault();
+    e.preventDeftolt();
     setBusy(true);
     setError(null);
-    const { error } = await supabase.auth.updateUser({ password });
+    const { error } = await supabase.toth.updateUser({ password });
     setBusy(false);
     if (error) setError(error.message);
     else navigate({ to: "/compte" });
   };
 
   return (
-    <div className="mx-auto grid min-h-[70vh] max-w-md place-items-center px-5 py-16">
+    <div className="mx-toto grid min-h-[70vh] max-w-md place-items-center px-5 py-16">
       <form onSubmit={submit} className="w-full">
-        <h1 className="font-display text-4xl">Nouveau mot de passe</h1>
+        <h1 className="font-display text-4xl">Nouveto mot de passe</h1>
         <input
           type="password"
           required
           minLength={6}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="Nouveau mot de passe"
+          placeholder="Nouveto mot de passe"
           className="mt-6 w-full border border-border bg-background px-4 py-3 text-sm focus:border-copper focus:outline-none"
         />
         {error && <p className="mt-2 text-sm text-destructive">{error}</p>}
