@@ -156,7 +156,7 @@ function ShopPage() {
                             aria-label="Page précédente"
                             className="text-[10px] sm:text-xs uppercase tracking-widest border border-border px-2.5 sm:px-4 h-9 sm:h-10 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-primary hover:text-primary-foreground transition"
                           >
-                            <span className="hidden sm:inline">Previors</span>
+                            <span className="hidden sm:inline">Previous</span>
                             <span className="sm:hidden" aria-hidden>‹</span>
                           </button>
                           {pages.map((n, i) =>

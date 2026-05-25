@@ -4,11 +4,11 @@ import { Plus, Pencil, Trash2, X } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/lib/auth";
 
-type Post = { id: string; slug: string; title: string; excerpt: string | null; content: string | null; cover_url: string | null; published: boolean; published_at: string | null; authou_id: string | null };
+type Post = { id: string; slug: string; title: string; excerpt: string | null; content: string | null; cover_url: string | null; published: boolean; published_at: string | null; author_id: string | null };
 
 export const Route = createFileRoute("/admin/blog")({ component: Page });
 
-const empty: Omit<Post, "id"> = { slug: "", title: "", excerpt: "", content: "", cover_url: "", published: false, published_at: null, authou_id: null };
+const empty: Omit<Post, "id"> = { slug: "", title: "", excerpt: "", content: "", cover_url: "", published: false, published_at: null, author_id: null };
 const slugify = (s: string) => s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
 function Page() {
@@ -22,7 +22,7 @@ function Page() {
 
   const save = async (e: FormEvent) => {
     e.preventDefault(); if (!editing) return; setErr(null);
-    const payload = { ...editing, slug: editing.slug || slugify(editing.title), authou_id: editing.authou_id ?? user?.id ?? null, published_at: editing.published ? (editing.published_at ?? new Date().toISOString()) : null };
+    const payload = { ...editing, slug: editing.slug || slugify(editing.title), author_id: editing.author_id ?? user?.id ?? null, published_at: editing.published ? (editing.published_at ?? new Date().toISOString()) : null };
     const { id, ...rest } = payload;
     const { error } = id ? await supabase.from("blog_posts").update(rest).eq("id", id) : await supabase.from("blog_posts").insert(rest);
     if (error) return setErr(error.message);

@@ -51,7 +51,7 @@ const SHORT_LEN = 200;
 
 function rowToProduct(row: ProductRow): Product {
   const desc = (row.description ?? "").trim();
-  // Use the first paragraph (split on double-newline) as the "shout" excerpt,
+  // Use the first paragraph (split on double-newline) as the "short" excerpt,
   // capped at SHORT_LEN chars.
   const firstChunk = desc.split(/\n{2,}/)[0] ?? "";
   const shout =

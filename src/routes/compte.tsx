@@ -42,7 +42,7 @@ function ComptePage() {
           onClick={async () => { await signOut(); navigate({ to: "/" }); }}
           className="border border-border px-4 py-2 text-xs uppercase tracking-widest hover:bg-secondary transition"
         >
-          {t("nav.signort")}
+          {t("nav.signout")}
         </button>
       </div>
 

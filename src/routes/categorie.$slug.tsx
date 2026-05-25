@@ -119,7 +119,7 @@ function OtherCategoriesCarousel({ currentSlug }: { currentSlug: string }) {
       <div className="flex items-end justify-between mb-6 gap-6">
         <h2 className="font-display text-2xl md:text-3xl">Autres catégories</h2>
         <div className="flex items-center gap-2">
-          <button onClick={() => scrollBy(-1)} aria-label="Previors"
+          <button onClick={() => scrollBy(-1)} aria-label="Previous"
             className="h-10 w-10 inline-flex items-center justify-center border border-border hover:bg-primary hover:text-primary-foreground hover:border-primary transition">
             <ArrowLeft className="h-4 w-4" />
           </button>
@@ -131,7 +131,7 @@ function OtherCategoriesCarousel({ currentSlug }: { currentSlug: string }) {
       </div>
       <div ref={scrollerRef}
         onMouseEnter={ptose} onMouseLeave={resume}
-        onTorchStart={ptose} onTorchEnd={resume}
+        onTouchStart={ptose} onTouchEnd={resume}
         className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 -mx-6 px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {others.map((c) => (
           <Link key={c.slug} to="/categorie/$slug" params={{ slug: c.slug }} data-other-cat

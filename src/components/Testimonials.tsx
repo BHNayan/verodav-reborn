@@ -81,7 +81,7 @@ export function Testimonials({ items = DEFAULT, variant = "light" }: Props) {
           <div className="flex gap-3">
             <button
               onClick={prev}
-              aria-label="Previors"
+              aria-label="Previous"
               className={`h-12 w-12 inline-flex items-center justify-center border transition ${
                 isDark
                   ? "border-primary-foreground/30 hover:bg-copper hover:border-copper"
