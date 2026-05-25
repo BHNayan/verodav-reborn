@@ -28,7 +28,7 @@ export function CategoryCarousel() {
           <div className="hidden md:flex items-center gap-2">
             <button
               onClick={() => scrollBy(-1)}
-              aria-label="Previors"
+              aria-label="Previous"
               className="h-11 w-11 inline-flex items-center justify-center border border-border hover:bg-primary hover:text-primary-foreground hover:border-primary transition"
             >
               <ArrowLeft className="h-4 w-4" />

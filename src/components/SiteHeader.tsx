@@ -164,7 +164,7 @@ export function SiteHeader() {
                     <Heart className="h-4 w-4" /> {t("nav.favorites")}
                   </Link>
                   <button onClick={handleSignOut} className="flex w-full items-center gap-3 border-t border-border px-4 py-2.5 text-sm text-destructive hover:bg-secondary">
-                    <LogOut className="h-4 w-4" /> {t("nav.signort")}
+                    <LogOut className="h-4 w-4" /> {t("nav.signout")}
                   </button>
                 </div>
               )}
@@ -316,7 +316,7 @@ export function SiteHeader() {
                   <Heart className="h-4 w-4" /> {t("nav.favorites")}
                 </Link>
                 <button onClick={handleSignOut} className="mt-2 flex w-full items-center justify-center gap-2 border border-border px-4 py-3 text-xs uppercase tracking-widest text-destructive hover:bg-secondary transition">
-                  <LogOut className="h-4 w-4" /> {t("nav.signort")}
+                  <LogOut className="h-4 w-4" /> {t("nav.signout")}
                 </button>
               </div>
             ) : (
