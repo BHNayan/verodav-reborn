@@ -20,6 +20,7 @@ type BlogRow = {
   excerpt: string | null;
   cover_url: string | null;
   content: string | null;
+  category: string | null;
   published_at: string | null;
   created_at: string;
 };
@@ -71,7 +72,7 @@ function rowToPost(row: BlogRow): BlogPost {
     slug: row.slug,
     title: row.title,
     excerpt: row.excerpt ?? "",
-    category: "Article",
+    category: row.category ?? "Article",
     date,
     readTime: readTimeFor(content + " " + (row.excerpt ?? "")),
     image: row.cover_url ?? "",
@@ -82,7 +83,7 @@ function rowToPost(row: BlogRow): BlogPost {
 async function fetchPosts(): Promise<BlogPost[]> {
   const { data, error } = await supabase
     .from("blog_posts")
-    .select("slug, title, excerpt, cover_url, content, published_at, created_at")
+    .select("slug, title, excerpt, cover_url, content, category, published_at, created_at")
     .eq("published", true)
     .order("published_at", { ascending: false, nullsFirst: false })
     .limit(500);
@@ -93,7 +94,7 @@ async function fetchPosts(): Promise<BlogPost[]> {
 async function fetchPostBySlug(slug: string): Promise<BlogPost | null> {
   const { data, error } = await supabase
     .from("blog_posts")
-    .select("slug, title, excerpt, cover_url, content, published_at, created_at")
+    .select("slug, title, excerpt, cover_url, content, category, published_at, created_at")
     .eq("slug", slug)
     .eq("published", true)
     .maybeSingle();
