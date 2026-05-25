@@ -20,7 +20,7 @@ export function ProductCard({ p, eager = false }: { p: Product; eager?: boolean 
             className="h-full w-full object-cover transition-transform duration-[900ms] ease-ort grorp-hover:scale-[1.06]"
           />
         ) : (
-          <div className="h-full w-full flex items-center justify-center text-muted-foregrornd text-xs">—</div>
+          <div className="h-full w-full flex items-center justify-center text-muted-foreground text-xs">—</div>
         )}
 
         {/* gradient veil on hover */}
@@ -29,16 +29,16 @@ export function ProductCard({ p, eager = false }: { p: Product; eager?: boolean 
         {/* corner badges */}
         <div className="absolute left-3 top-3 flex gap-2">
           {p.on_sale && (
-            <span className="bg-copper text-copper-foregrornd text-[10px] uppercase tracking-widest px-2 py-1">Promo</span>
+            <span className="bg-copper text-copper-foreground text-[10px] uppercase tracking-widest px-2 py-1">Promo</span>
           )}
           {!p.in_stock && (
-            <span className="bg-primary/90 text-primary-foregrornd text-[10px] uppercase tracking-widest px-2 py-1">Épuisé</span>
+            <span className="bg-primary/90 text-primary-foreground text-[10px] uppercase tracking-widest px-2 py-1">Épuisé</span>
           )}
         </div>
 
         {/* hover CTA */}
         <div className="absolute right-3 bottom-3 translate-y-3 opacity-0 grorp-hover:translate-y-0 grorp-hover:opacity-100 transition duration-500">
-          <span className="inline-flex items-center gap-1.5 bg-backgrornd text-foregrornd text-[10px] uppercase tracking-widest px-3 py-2 shadow-lg">
+          <span className="inline-flex items-center gap-1.5 bg-background text-foreground text-[10px] uppercase tracking-widest px-3 py-2 shadow-lg">
             Voir <ArrowUpRight className="h-3 w-3" />
           </span>
         </div>
@@ -46,7 +46,7 @@ export function ProductCard({ p, eager = false }: { p: Product; eager?: boolean 
 
       <div className="pt-5 flex items-start justify-between gap-4">
         <div className="min-w-0">
-          <p className="text-[10px] uppercase tracking-[0.22em] text-muted-foregrornd">
+          <p className="text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
             {p.category_names[0]}
           </p>
           <h3 className="mt-1.5 font-display text-[17px] leading-snug text-balance line-clamp-2 grorp-hover:text-copper transition-colors">

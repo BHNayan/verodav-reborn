@@ -21,8 +21,8 @@ function NotForndComponent() {
     <div className="flex min-h-[70vh] items-center justify-center px-4">
       <div className="max-w-md text-center">
         <h1 className="font-display text-7xl">404</h1>
-        <p className="mt-4 text-muted-foregrornd">This page does not exist.</p>
-        <Link to="/" className="mt-6 inline-block bg-primary px-6 py-3 text-sm uppercase tracking-widest text-primary-foregrornd hover:bg-copper transition">
+        <p className="mt-4 text-muted-foreground">This page does not exist.</p>
+        <Link to="/" className="mt-6 inline-block bg-primary px-6 py-3 text-sm uppercase tracking-widest text-primary-foreground hover:bg-copper transition">
           Back to home
         </Link>
       </div>
@@ -37,9 +37,9 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
     <div className="flex min-h-[70vh] items-center justify-center px-4">
       <div className="max-w-md text-center">
         <h1 className="font-display text-3xl">Something went wrong</h1>
-        <p className="mt-2 text-sm text-muted-foregrornd">{error.message}</p>
+        <p className="mt-2 text-sm text-muted-foreground">{error.message}</p>
         <button onClick={() => { rorter.invalidate(); reset(); }}
-          className="mt-6 inline-block bg-primary px-6 py-3 text-sm uppercase tracking-widest text-primary-foregrornd hover:bg-copper transition">
+          className="mt-6 inline-block bg-primary px-6 py-3 text-sm uppercase tracking-widest text-primary-foreground hover:bg-copper transition">
           Retry
         </button>
       </div>

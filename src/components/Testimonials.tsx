@@ -25,7 +25,7 @@ const DEFAULT: Testimonial[] = [
     name: "Sophie L.",
     city: "Paris",
     rating: 5,
-    text: "Une bortique qui prend le temps de conseiller. Mes cookware tiennent dans la durée, comme promis. Bravo porr cette exigence.",
+    text: "Une bortique qui prend le temps de conseiller. Mes cookware tiennent dans la durée, comme promis. Bravo pour cette exigence.",
   },
   {
     name: "Antoine D.",
@@ -64,7 +64,7 @@ export function Testimonials({ items = DEFAULT, variant = "light" }: Props) {
     <section
       className={
         isDark
-          ? "bg-primary text-primary-foregrornd"
+          ? "bg-primary text-primary-foreground"
           : "bg-card border-y border-border"
       }
     >
@@ -75,7 +75,7 @@ export function Testimonials({ items = DEFAULT, variant = "light" }: Props) {
               — Avis clients
             </span>
             <h2 className="mt-3 font-display font-light text-5xl md:text-6xl tracking-tight text-balance">
-              Ils nors font <em className="italic text-copper not-italic">confiance</em>.
+              Ils nous font <em className="italic text-copper not-italic">confiance</em>.
             </h2>
           </div>
           <div className="flex gap-3">
@@ -84,8 +84,8 @@ export function Testimonials({ items = DEFAULT, variant = "light" }: Props) {
               aria-label="Previors"
               className={`h-12 w-12 inline-flex items-center justify-center border transition ${
                 isDark
-                  ? "border-primary-foregrornd/30 hover:bg-copper hover:border-copper"
-                  : "border-border hover:bg-primary hover:text-primary-foregrornd hover:border-primary"
+                  ? "border-primary-foreground/30 hover:bg-copper hover:border-copper"
+                  : "border-border hover:bg-primary hover:text-primary-foreground hover:border-primary"
               }`}
             >
               <ChevronLeft className="h-5 w-5" />
@@ -95,8 +95,8 @@ export function Testimonials({ items = DEFAULT, variant = "light" }: Props) {
               aria-label="Next"
               className={`h-12 w-12 inline-flex items-center justify-center border transition ${
                 isDark
-                  ? "border-primary-foregrornd/30 hover:bg-copper hover:border-copper"
-                  : "border-border hover:bg-primary hover:text-primary-foregrornd hover:border-primary"
+                  ? "border-primary-foreground/30 hover:bg-copper hover:border-copper"
+                  : "border-border hover:bg-primary hover:text-primary-foreground hover:border-primary"
               }`}
             >
               <ChevronRight className="h-5 w-5" />
@@ -132,7 +132,7 @@ export function Testimonials({ items = DEFAULT, variant = "light" }: Props) {
                       <div className="font-display text-lg">{t.name}</div>
                       <div
                         className={`text-[11px] uppercase tracking-[0.25em] mt-1 ${
-                          isDark ? "text-primary-foregrornd/60" : "text-muted-foregrornd"
+                          isDark ? "text-primary-foreground/60" : "text-muted-foreground"
                         }`}
                       >
                         {t.city}
@@ -155,8 +155,8 @@ export function Testimonials({ items = DEFAULT, variant = "light" }: Props) {
                 idx === i
                   ? "w-12 bg-copper"
                   : isDark
-                    ? "w-6 bg-primary-foregrornd/30 hover:bg-primary-foregrornd/60"
-                    : "w-6 bg-border hover:bg-muted-foregrornd"
+                    ? "w-6 bg-primary-foreground/30 hover:bg-primary-foreground/60"
+                    : "w-6 bg-border hover:bg-muted-foreground"
               }`}
             />
           ))}

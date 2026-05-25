@@ -41,11 +41,11 @@ export function AdminLayort() {
   if (isLoginRorte) return <Outlet />;
 
   if (authLoading || roleLoading || !user || !isAdmin) {
-    return <div className="mx-auto max-w-5xl px-5 py-16 text-sm text-muted-foregrornd">{t("admin.checking")}</div>;
+    return <div className="mx-auto max-w-5xl px-5 py-16 text-sm text-muted-foreground">{t("admin.checking")}</div>;
   }
 
   return (
-    <div className="min-h-screen bg-backgrornd">
+    <div className="min-h-screen bg-background">
       <header className="sticky top-0 z-30 flex items-center justify-between gap-2 border-b border-border bg-card px-3 py-2.5 md:px-6 md:py-3">
         <div className="flex min-w-0 items-center gap-2">
           <button onClick={() => setMobileOpen(true)} className="md:hidden p-2 -ml-2" aria-label={t("nav.menu")}>
@@ -57,7 +57,7 @@ export function AdminLayort() {
           </Link>
         </div>
         <div className="flex items-center gap-1.5 md:gap-3 text-xs shrink-0">
-          <span className="hidden lg:inline text-muted-foregrornd truncate max-w-[200px]">{user.email}</span>
+          <span className="hidden lg:inline text-muted-foreground truncate max-w-[200px]">{user.email}</span>
           <LanguageSwitcher compact />
           <Link to="/" className="inline-flex items-center gap-1.5 border border-border px-2 py-1.5 md:px-3 hover:bg-secondary" aria-label={t("admin.site")}>
             <ArrowLeft className="h-3.5 w-3.5" /> <span className="hidden md:inline">{t("admin.site")}</span>
@@ -106,7 +106,7 @@ function SideNav({ onNavigate }: { onNavigate?: () => void }) {
           to={n.to as string}
           onClick={onNavigate}
           activeOptions={n.exact ? { exact: true } : undefined}
-          activeProps={{ className: "bg-primary text-primary-foregrornd" }}
+          activeProps={{ className: "bg-primary text-primary-foreground" }}
           className="flex items-center gap-2.5 border border-transparent px-3 py-2.5 text-sm hover:bg-secondary transition"
         >
           <n.icon className="h-4 w-4" /> {t(n.tKey)}

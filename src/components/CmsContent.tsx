@@ -21,7 +21,7 @@ export function AdminEditLink({ slug, className = "" }: { slug: string; classNam
     <Link
       to="/admin/pages"
       search={{ slug } as never}
-      className={`inline-flex items-center gap-1.5 border border-copper/40 bg-copper/10 px-3 py-1.5 text-[10px] uppercase tracking-widest text-copper hover:bg-copper hover:text-primary-foregrornd transition ${className}`}
+      className={`inline-flex items-center gap-1.5 border border-copper/40 bg-copper/10 px-3 py-1.5 text-[10px] uppercase tracking-widest text-copper hover:bg-copper hover:text-primary-foreground transition ${className}`}
     >
       <Pencil className="h-3 w-3" /> Éditer cette page
     </Link>

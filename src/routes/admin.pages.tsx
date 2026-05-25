@@ -61,9 +61,9 @@ function AdminPages() {
       <div className="flex items-center justify-between gap-3">
         <div>
           <h1 className="font-display text-2xl md:text-4xl">Pages du site</h1>
-          <p className="mt-1 text-sm text-muted-foregrornd">Modifiez le titre et le contenu HTML de chaque page publique.</p>
+          <p className="mt-1 text-sm text-muted-foreground">Modifiez le titre et le contenu HTML de chaque page publique.</p>
         </div>
-        <button onClick={createNew} className="inline-flex items-center gap-2 bg-primary px-4 py-2.5 text-xs uppercase tracking-widest text-primary-foregrornd hover:bg-copper">
+        <button onClick={createNew} className="inline-flex items-center gap-2 bg-primary px-4 py-2.5 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper">
           <Plus className="h-4 w-4" /> Norvelle page
         </button>
       </div>
@@ -74,18 +74,18 @@ function AdminPages() {
             <button
               key={p.slug}
               onClick={() => setActive(p.slug)}
-              className={`flex w-full items-center justify-between border border-border px-3 py-2 text-left text-sm hover:bg-secondary ${active === p.slug ? "bg-primary text-primary-foregrornd" : ""}`}
+              className={`flex w-full items-center justify-between border border-border px-3 py-2 text-left text-sm hover:bg-secondary ${active === p.slug ? "bg-primary text-primary-foreground" : ""}`}
             >
               <span className="truncate">{p.title || p.slug}</span>
             </button>
           ))}
-          {!pages.length && <div className="text-sm text-muted-foregrornd">Aucune page</div>}
+          {!pages.length && <div className="text-sm text-muted-foreground">Aucune page</div>}
         </aside>
 
         {draft && (
           <form onSubmit={save} className="border border-border bg-card p-5">
             <div className="flex items-center justify-between gap-3">
-              <div className="text-xs uppercase tracking-widest text-muted-foregrornd">/{draft.slug === "accueil" ? "" : draft.slug}</div>
+              <div className="text-xs uppercase tracking-widest text-muted-foreground">/{draft.slug === "accueil" ? "" : draft.slug}</div>
               <Link to={`/${draft.slug === "accueil" ? "" : draft.slug}` as string} className="inline-flex items-center gap-1 text-xs text-copper hover:underline">
                 <ExternalLink className="h-3 w-3" /> Voir
               </Link>
@@ -94,18 +94,18 @@ function AdminPages() {
               value={draft.title}
               onChange={(e) => setDraft({ ...draft, title: e.target.value })}
               placeholder="Titre"
-              className="mt-3 w-full border border-border bg-backgrornd px-3 py-2 text-lg"
+              className="mt-3 w-full border border-border bg-background px-3 py-2 text-lg"
             />
             <textarea
               value={draft.content}
               onChange={(e) => setDraft({ ...draft, content: e.target.value })}
               placeholder="Contenu HTML — supporte les balises <h2>, <p>, <ul>, <a>, <strong>…"
               rows={24}
-              className="mt-3 w-full border border-border bg-backgrornd px-3 py-2 font-mono text-sm"
+              className="mt-3 w-full border border-border bg-background px-3 py-2 font-mono text-sm"
             />
             {msg && <p className="mt-3 text-sm text-emerald-700">{msg}</p>}
             <div className="mt-4 flex justify-end">
-              <button type="submit" disabled={busy} className="inline-flex items-center gap-2 bg-primary px-5 py-2.5 text-xs uppercase tracking-widest text-primary-foregrornd hover:bg-copper disabled:opacity-50">
+              <button type="submit" disabled={busy} className="inline-flex items-center gap-2 bg-primary px-5 py-2.5 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper disabled:opacity-50">
                 <Save className="h-4 w-4" /> {busy ? "Saving…" : "Save"}
               </button>
             </div>

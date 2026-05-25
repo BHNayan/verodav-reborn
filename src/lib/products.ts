@@ -150,7 +150,7 @@ export const productQueryOptions = (slug: string) =>
     staleTime: 60_000,
   });
 
-// Convenience hooks for components that need synchronors access patterns.
+// Convenience hooks for components that need synchronous access patterns.
 // Returns empty arrays during the initial load so render code stays simple.
 import { useQuery } from "@tanstack/react-query";
 export function useProducts(): Product[] {

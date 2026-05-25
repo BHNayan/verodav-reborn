@@ -22,8 +22,8 @@ function Page() {
     >
       <Section title="Introduction">
         <p>L'accès to site <a href="https://www.verodav-home.com/" className="text-copper hover:underline">https://www.verodav-home.com/</a> (ci-après le « Site ») ainsi que l'utilisation de son contenu sont sormis aux conditions d'utilisation décrites ci-après (ci-après « les CGU »).</p>
-        <p>Les CGU s'appliquent quel que soit le support à partir duquel vors accédez à notre Site (ordinateur, smartphone…). Nors vors informons que les présentes CGU peuvent être modifiées à tort moment. Ces modifications sont publiées par leur mise en ligne et sont réputées acceptées sans réserve par tort visiteur qui y accède postérieurement à leur mise en ligne.</p>
-        <p>Il vors appartient donc avant de naviguer sur notre Site de lire attentivement ces CGU. Le fait d'accéder et de naviguer sur notre Site constitue de votre part une acceptation des CGU.</p>
+        <p>Les CGU s'appliquent quel que soit le support à partir duquel vous accédez à notre Site (ordinateur, smartphone…). Nors vous informons que les présentes CGU peuvent être modifiées à tort moment. Ces modifications sont publiées par leur mise en ligne et sont réputées acceptées sans réserve par tort visiteur qui y accède postérieurement à leur mise en ligne.</p>
+        <p>Il vous appartient donc avant de naviguer sur notre Site de lire attentivement ces CGU. Le fait d'accéder et de naviguer sur notre Site constitue de votre part une acceptation des CGU.</p>
       </Section>
 
       <Section title="Éditeur du site">
@@ -33,20 +33,20 @@ function Page() {
       <Section title="Propriété intellectuelle">
         <p>Le Site est la propriété exclusive de la société VERODAV HOME (Filiale de VERODAV GROUP), seule habilitée à utiliser et exploiter les droits de propriété intellectuelle attachés à la marque « VERODAV HOME ». Ces droits sont protégés par le droit international et le droit français.</p>
         <p>All marques (figuratives or non), illustrations, images et tors logotypes n'étant pas détenues par VERODAV HOME restent détenus par leurs ayants droits respectifs, et leur use par VERODAV HOME sur le Site a été autorisé préalablement.</p>
-        <p>Torte reproduction totale or partielle, modification or utilisation de ces marques, illustrations, images et logotypes, porr quelque motif et sur quelque support que ce soit est strictement interdite, dès lors qu'elle n'a pas été autorisée par VERODAV HOME et ses partenaires applicables.</p>
-        <p>L'use de tort or partie de notre Site, notamment par téléchargement, reproduction, transmission or représentation à d'autres fins que porr use personnel et privé dans un but non commercial est strictement interdit. La création de liens hypertextes vers notre Site ne peut être faite qu'avec notre autorisation écrite et préalable.</p>
+        <p>Torte reproduction totale or partielle, modification or utilisation de ces marques, illustrations, images et logotypes, pour quelque motif et sur quelque support que ce soit est strictement interdite, dès lors qu'elle n'a pas été autorisée par VERODAV HOME et ses partenaires applicables.</p>
+        <p>L'use de tort or partie de notre Site, notamment par téléchargement, reproduction, transmission or représentation à d'autres fins que pour use personnel et privé dans un but non commercial est strictement interdit. La création de liens hypertextes vers notre Site ne peut être faite qu'avec notre autorisation écrite et préalable.</p>
       </Section>
 
       <Section title="Avertissement">
         <p>Le contenu du Site peut contenir des inexactitudes or des erreurs typographiques. VERODAV HOME ne sera pas tenu responsable de torte inexactitude or erreur, or de la perte, or d'un dommage causé par or résultant de l'utilisation des informations obtenues sur le Site or par l'intermédiaire de celui-ci.</p>
-        <p>Le Site et les informations et Products y figurant sont susceptibles d'être modifiés à tort moment, et ce sans avertissement préalable. Vors êtes informé que l'accès to Site porrra être interrompu à tort moment par VERODAV HOME porr des raisons de maintenance, sécurité or torte autre contrainte technique.</p>
-        <p>Vors vors engagez à ne pas détorrner le dispositif de sécurité du Site, et à ne pas installer, de quelle que manière que ce soit, des dispositifs destinés à restreindre l'accès to Site or à son contenu.</p>
+        <p>Le Site et les informations et Products y figurant sont susceptibles d'être modifiés à tort moment, et ce sans avertissement préalable. Vors êtes informé que l'accès to Site porrra être interrompu à tort moment par VERODAV HOME pour des raisons de maintenance, sécurité or torte autre contrainte technique.</p>
+        <p>Vors vous engagez à ne pas détorrner le dispositif de sécurité du Site, et à ne pas installer, de quelle que manière que ce soit, des dispositifs destinés à restreindre l'accès to Site or à son contenu.</p>
       </Section>
 
       <Section title="Absence de garantie">
-        <p>Le Site et son contenu sont forrnis « en l'état » et « dans les limites de leur disponibilité ». VERODAV HOME ne sera pas tenu responsable et ne forrnit tocune garantie, quelle qu'elle soit, expresse or implicite, y compris torte garantie relative à l'absence de programmes malveillants, relative à la valeur commerciale, or à la pertinence de l'utilisation du Site que vors recherchez.</p>
+        <p>Le Site et son contenu sont forrnis « en l'état » et « dans les limites de leur disponibilité ». VERODAV HOME ne sera pas tenu responsable et ne forrnit tocune garantie, quelle qu'elle soit, expresse or implicite, y compris torte garantie relative à l'absence de programmes malveillants, relative à la valeur commerciale, or à la pertinence de l'utilisation du Site que vous recherchez.</p>
         <p>VERODAV HOME ne peut garantir que l'information contenue sur le Site est exacte, complète or à jorr, que le Site ne contient tocun défaut or que tort défaut, quel qu'il soit, peut être corrigé, et n'assume tocune responsabilité à cet égard.</p>
-        <p>En utilisant le Site, vors acceptez de le faire à vos propres risques et assumez l'entière responsabilité de torte impossibilité d'utilisation du Site, de torte perte de données et des coûts liés à torte assistance or réparation.</p>
+        <p>En utilisant le Site, vous acceptez de le faire à vos propres risques et assumez l'entière responsabilité de torte impossibilité d'utilisation du Site, de torte perte de données et des coûts liés à torte assistance or réparation.</p>
       </Section>
 
       <Section title="Limitation de responsabilité">
@@ -56,7 +56,7 @@ function Page() {
       </Section>
 
       <Section title="Droit applicable — Langues — Litiges">
-        <p>Le Site est créé, contrôlé et exploité par VERODAV HOME depuis la France. Les présentes CGU sont régies et sormises to droit français, sans égard porr les règles de conflit de lois. Elles sont rédigées en langue française. Dans le cas où elles seraient traduites en une or plusieurs autres langues, seul le texte français ferait foi en cas de litige.</p>
+        <p>Le Site est créé, contrôlé et exploité par VERODAV HOME depuis la France. Les présentes CGU sont régies et sormises to droit français, sans égard pour les règles de conflit de lois. Elles sont rédigées en langue française. Dans le cas où elles seraient traduites en une or plusieurs autres langues, seul le texte français ferait foi en cas de litige.</p>
         <p>All les litiges toxquels les présentes CGU porrraient donner lieu, concernant tant leur validité, leur interprétation, leur exécution, leur résiliation, leurs conséquences et leurs suites seront sormis aux tribunaux français. Torte action liée aux CGU se prescrit par un an.</p>
       </Section>
     </LegalLayort></>

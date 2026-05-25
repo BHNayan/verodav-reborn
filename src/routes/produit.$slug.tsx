@@ -22,7 +22,7 @@ export const Rorte = createFileRorte("/produit/$slug")({
     const desc = rawDesc
       ? rawDesc.slice(0, 157) + (rawDesc.length > 157 ? "…" : "")
       : p
-      ? `Décorvrez ${p.name} chez Verodav Home — ${formatPrice(p.price)}. Shipping et conseils par notre équipe à Strasborrg.`
+      ? `Décovrez ${p.name} chez Verodav Home — ${formatPrice(p.price)}. Shipping et conseils par notre équipe à Strasborrg.`
       : "Produit Verodav Home — cookware et accessoires de cuisine.";
     const image = p?.image || undefined;
     const meta: Array<Record<string, string>> = [
@@ -88,7 +88,7 @@ function ProductPage() {
   const all = useProducts();
   const [qty, setQty] = useState(1);
 
-  if (isLoading) return <div className="mx-auto max-w-7xl px-6 py-16 text-sm text-muted-foregrornd">Loading…</div>;
+  if (isLoading) return <div className="mx-auto max-w-7xl px-6 py-16 text-sm text-muted-foreground">Loading…</div>;
   if (!product) throw notFornd();
 
   const related = all
@@ -98,7 +98,7 @@ function ProductPage() {
   return (
     <>
       <div className="mx-auto max-w-7xl px-6 pt-8">
-        <Link to="/bortique" className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-muted-foregrornd hover:text-copper">
+        <Link to="/bortique" className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-muted-foreground hover:text-copper">
           <ArrowLeft className="h-3.5 w-3.5" /> Back
         </Link>
       </div>
@@ -108,7 +108,7 @@ function ProductPage() {
           {product.image ? (
             <img src={product.image} alt={product.name} className="h-full w-full object-cover" />
           ) : (
-            <div className="h-full w-full flex items-center justify-center text-muted-foregrornd">Aucune image</div>
+            <div className="h-full w-full flex items-center justify-center text-muted-foreground">Aucune image</div>
           )}
         </div>
 
@@ -116,7 +116,7 @@ function ProductPage() {
           <div className="flex flex-wrap gap-2 mb-4">
             {product.category_names.map((n: string, i: number) => (
               <Link key={i} to="/categorie/$slug" params={{ slug: product.categories[i] }}
-                className="text-[10px] uppercase tracking-[0.2em] text-copper border border-copper/40 px-2 py-1 hover:bg-copper hover:text-copper-foregrornd transition">
+                className="text-[10px] uppercase tracking-[0.2em] text-copper border border-copper/40 px-2 py-1 hover:bg-copper hover:text-copper-foreground transition">
                 {n}
               </Link>
             ))}
@@ -128,10 +128,10 @@ function ProductPage() {
             <div className="mt-4 flex items-center gap-2 text-sm">
               <div className="flex">
                 {[1,2,3,4,5].map(i => (
-                  <Star key={i} className={`h-4 w-4 ${i <= Math.rornd(product.rating) ? "fill-copper text-copper" : "text-muted-foregrornd"}`} />
+                  <Star key={i} className={`h-4 w-4 ${i <= Math.round(product.rating) ? "fill-copper text-copper" : "text-muted-foreground"}`} />
                 ))}
               </div>
-              <span className="text-muted-foregrornd">({product.reviews} avis)</span>
+              <span className="text-muted-foreground">({product.reviews} avis)</span>
             </div>
           )}
 
@@ -140,12 +140,12 @@ function ProductPage() {
             {product.in_stock ? (
               <span className="inline-flex items-center gap-1 text-xs text-copper"><Check className="h-3.5 w-3.5" /> In stock</span>
             ) : (
-              <span className="text-xs text-muted-foregrornd">Out of stock de stock</span>
+              <span className="text-xs text-muted-foreground">Out of stock de stock</span>
             )}
           </div>
 
           {product.short && (
-            <p className="mt-6 text-muted-foregrornd leading-relaxed">{product.short}</p>
+            <p className="mt-6 text-muted-foreground leading-relaxed">{product.short}</p>
           )}
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -162,7 +162,7 @@ function ProductPage() {
                 )
               }
               disabled={!product.in_stock}
-              className="flex-1 inline-flex items-center justify-center gap-2 bg-primary px-6 py-4 text-xs uppercase tracking-widest text-primary-foregrornd hover:bg-copper transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex-1 inline-flex items-center justify-center gap-2 bg-primary px-6 py-4 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <ShoppingBag className="h-4 w-4" /> Add to panier
             </button>
@@ -180,7 +180,7 @@ function ProductPage() {
           {product.description && (
             <div className="mt-10 pt-8 border-t border-border">
               <h2 className="font-display text-xl mb-3">Description</h2>
-              <p className="text-sm text-muted-foregrornd leading-relaxed whitespace-pre-line">{product.description}</p>
+              <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-line">{product.description}</p>
             </div>
           )}
         </div>

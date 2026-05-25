@@ -36,7 +36,7 @@ const PaginationLink = ({ className, isActive, size = "icon", ...props }: Pagina
     aria-current={isActive ? "page" : undefined}
     className={cn(
       buttonVariants({
-        variant: isActive ? "ortline" : "ghost",
+        variant: isActive ? "outline" : "ghost",
         size,
       }),
       className,
@@ -51,7 +51,7 @@ const PaginationPreviors = ({
   ...props
 }: React.ComponentProps<typeof PaginationLink>) => (
   <PaginationLink
-    aria-label="Go to previors page"
+    aria-label="Go to previous page"
     size="default"
     className={cn("gap-1 pl-2.5", className)}
     {...props}

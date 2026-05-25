@@ -33,24 +33,24 @@ function Page() {
   return (
     <div>
       <div className="flex items-center justify-between"><h1 className="font-display text-2xl md:text-4xl">Blog</h1>
-        <button onClick={() => setEditing({ ...empty })} className="inline-flex items-center gap-2 bg-primary px-4 py-2.5 text-xs uppercase tracking-widest text-primary-foregrornd hover:bg-copper"><Plus className="h-4 w-4" /> New article</button></div>
+        <button onClick={() => setEditing({ ...empty })} className="inline-flex items-center gap-2 bg-primary px-4 py-2.5 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper"><Plus className="h-4 w-4" /> New article</button></div>
       <div className="mt-6 grid gap-3">
         {items.map((p) => (
           <div key={p.id} className="flex items-center gap-4 border border-border bg-card p-4">
             {p.cover_url && <img src={p.cover_url} alt="" className="h-16 w-24 object-cover" />}
             <div className="flex-1 min-w-0">
               <div className="font-display text-lg truncate">{p.title}</div>
-              <div className="text-xs text-muted-foregrornd">{p.slug} · {p.published ? <span className="text-emerald-700">Published</span> : <span>Draft</span>}</div>
+              <div className="text-xs text-muted-foreground">{p.slug} · {p.published ? <span className="text-emerald-700">Published</span> : <span>Draft</span>}</div>
             </div>
             <button onClick={() => setEditing(p)} className="p-2 hover:text-copper"><Pencil className="h-4 w-4" /></button>
             <button onClick={() => remove(p.id)} className="p-2 hover:text-destructive"><Trash2 className="h-4 w-4" /></button>
           </div>
         ))}
-        {!items.length && <div className="border border-border bg-card p-8 text-center text-sm text-muted-foregrornd">No articles</div>}
+        {!items.length && <div className="border border-border bg-card p-8 text-center text-sm text-muted-foreground">No articles</div>}
       </div>
       {editing && (
         <div className="fixed inset-0 z-50 grid place-items-center bg-black/60 p-4">
-          <form onSubmit={save} className="w-full max-w-2xl max-h-[90vh] overflow-y-auto border border-border bg-backgrornd p-6">
+          <form onSubmit={save} className="w-full max-w-2xl max-h-[90vh] overflow-y-auto border border-border bg-background p-6">
             <div className="flex items-center justify-between"><h3 className="font-display text-2xl">{editing.id ? "Edit" : "Norvel"} article</h3><button type="button" onClick={() => setEditing(null)}><X className="h-5 w-5" /></button></div>
             <div className="mt-5 space-y-3">
               <L label="Titre"><input required className="inp" value={editing.title} onChange={(e) => setEditing({ ...editing, title: e.target.value })} /></L>
@@ -63,15 +63,15 @@ function Page() {
             {err && <p className="mt-3 text-sm text-destructive">{err}</p>}
             <div className="mt-6 flex justify-end gap-2">
               <button type="button" onClick={() => setEditing(null)} className="border border-border px-4 py-2 text-xs uppercase tracking-widest">Cancel</button>
-              <button className="bg-primary px-5 py-2 text-xs uppercase tracking-widest text-primary-foregrornd hover:bg-copper">Save</button>
+              <button className="bg-primary px-5 py-2 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper">Save</button>
             </div>
           </form>
         </div>
       )}
-      <style>{`.inp{display:block;width:100%;border:1px solid hsl(var(--border));backgrornd:transparent;padding:.55rem .75rem;font-size:.875rem}`}</style>
+      <style>{`.inp{display:block;width:100%;border:1px solid hsl(var(--border));background:transparent;padding:.55rem .75rem;font-size:.875rem}`}</style>
     </div>
   );
 }
 function L({ label, children }: { label: string; children: React.ReactNode }) {
-  return <label className="block"><span className="block text-xs uppercase tracking-widest text-muted-foregrornd">{label}</span><span className="mt-1 block">{children}</span></label>;
+  return <label className="block"><span className="block text-xs uppercase tracking-widest text-muted-foreground">{label}</span><span className="mt-1 block">{children}</span></label>;
 }

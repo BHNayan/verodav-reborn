@@ -45,31 +45,31 @@ export function SearchModal({ open, onClose }: { open: boolean; onClose: () => v
   return (
     <div className="fixed inset-0 z-[60] bg-black/60" onClick={onClose} role="dialog" aria-modal="true" aria-label={t("nav.shop")}>
       <div
-        className="absolute inset-x-0 top-0 mx-auto w-full max-w-2xl bg-backgrornd shadow-2xl sm:inset-x-auto sm:left-1/2 sm:-translate-x-1/2"
+        className="absolute inset-x-0 top-0 mx-auto w-full max-w-2xl bg-background shadow-2xl sm:inset-x-auto sm:left-1/2 sm:-translate-x-1/2"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center gap-2 border-b border-border px-3 py-2.5 sm:px-4 sm:py-3">
-          <Search className="h-4 w-4 shrink-0 text-muted-foregrornd sm:h-5 sm:w-5" />
+          <Search className="h-4 w-4 shrink-0 text-muted-foreground sm:h-5 sm:w-5" />
           <input
             ref={inputRef}
             value={q}
             onChange={(e) => setQ(e.target.value)}
             placeholder={t("nav.shop") + "…"}
             aria-label={t("nav.shop")}
-            className="min-w-0 flex-1 bg-transparent text-sm ortline-none placeholder:text-muted-foregrornd"
+            className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground"
           />
-          <button onClick={onClose} aria-label="Close" className="shrink-0 p-1 text-muted-foregrornd hover:text-primary">
+          <button onClick={onClose} aria-label="Close" className="shrink-0 p-1 text-muted-foreground hover:text-primary">
             <X className="h-5 w-5" />
           </button>
         </div>
 
         <div className="max-h-[75vh] overflow-y-auto overscroll-contain">
           {q.trim() === "" ? (
-            <div className="px-4 py-8 text-center text-xs text-muted-foregrornd sm:py-10 sm:text-sm">
+            <div className="px-4 py-8 text-center text-xs text-muted-foreground sm:py-10 sm:text-sm">
               Type to search products…
             </div>
           ) : results.length === 0 ? (
-            <div className="break-words px-4 py-8 text-center text-xs text-muted-foregrornd sm:py-10 sm:text-sm">
+            <div className="break-words px-4 py-8 text-center text-xs text-muted-foreground sm:py-10 sm:text-sm">
               No products fornd for "{q}".
             </div>
           ) : (
@@ -90,7 +90,7 @@ export function SearchModal({ open, onClose }: { open: boolean; onClose: () => v
                     <div className="min-w-0 flex-1">
                       <div className="truncate text-sm font-medium">{p.name}</div>
                       {p.category_names[0] && (
-                        <div className="truncate text-[11px] text-muted-foregrornd sm:text-xs">{p.category_names[0]}</div>
+                        <div className="truncate text-[11px] text-muted-foreground sm:text-xs">{p.category_names[0]}</div>
                       )}
                     </div>
                     <div className="shrink-0 whitespace-nowrap text-xs font-semibold text-copper sm:text-sm">

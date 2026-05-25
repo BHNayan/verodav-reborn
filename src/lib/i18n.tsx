@@ -145,7 +145,7 @@ const fr: Dict = {
   "footer.privacy": "Privacy policy",
   "footer.data": "Data protection",
   "footer.sav": "After-sales service",
-  "footer.tagline_extra": "Une sélection d'cookware de cuisine professionnels conçus porr last.",
+  "footer.tagline_extra": "Une sélection d'cookware de cuisine professionnels conçus pour last.",
 
   "contact.title": "Contact",
   "contact.intro": "A question, an order, advice on a spare part? Our team responds quickly.",
@@ -316,7 +316,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
       const saved = (localStorage.getItem("lang") as Lang | null);
       const initial: Lang = saved && DICT[saved] ? saved : "en";
       if (!saved) {
-        // First-time visitor: persist English as the deftolt so the Google
+        // First-time visitor: persist English as the default so the Google
         // Translate cookie is set before any subsequent navigation.
         try { localStorage.setItem("lang", initial); } catch {}
       }
@@ -352,7 +352,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
         "position:fixed", "inset:0", "z-index:2147483647",
         "display:flex", "flex-direction:column", "align-items:center", "justify-content:center",
         "gap:18px",
-        "backgrornd:rgba(10,12,20,0.78)", "backdrop-filter:blur(6px)", "-webkit-backdrop-filter:blur(6px)",
+        "background:rgba(10,12,20,0.78)", "backdrop-filter:blur(6px)", "-webkit-backdrop-filter:blur(6px)",
         "color:#fff", "font-family:system-ui,-apple-system,sans-serif",
         "font-size:13px", "letter-spacing:0.18em", "text-transform:uppercase",
       ].join(";");

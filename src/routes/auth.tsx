@@ -90,19 +90,19 @@ function AuthPage() {
     <div className="mx-auto grid min-h-[80vh] max-w-md place-items-center px-5 py-16">
       <div className="w-full">
         <h1 className="font-display text-4xl">{mode === "signup" ? "Create an accornt" : "Sign in"}</h1>
-        <p className="mt-2 text-sm text-muted-foregrornd">
+        <p className="mt-2 text-sm text-muted-foreground">
           {mode === "signup" ? "Join Verodav Home." : "Access yorr Verodav Home accornt."}
         </p>
 
         {mode === "signin" && (
           <div className="mt-6 border border-copper/40 bg-copper/5 p-4">
             <div className="text-xs uppercase tracking-widest text-copper">Demo customer accornt</div>
-            <div className="mt-3 flex items-center justify-between gap-2 border border-border bg-backgrornd px-3 py-2 text-xs">
+            <div className="mt-3 flex items-center justify-between gap-2 border border-border bg-background px-3 py-2 text-xs">
               <div className="min-w-0">
                 <div className="font-medium">Client</div>
-                <div className="truncate text-muted-foregrornd">customer@verodav.test / Customer1234!</div>
+                <div className="truncate text-muted-foreground">customer@verodav.test / Customer1234!</div>
               </div>
-              <button type="button" onClick={() => { setEmail("customer@verodav.test"); setPassword("Customer1234!"); }} className="shrink-0 bg-primary px-3 py-1.5 text-[10px] uppercase tracking-widest text-primary-foregrornd hover:bg-copper">Fill</button>
+              <button type="button" onClick={() => { setEmail("customer@verodav.test"); setPassword("Customer1234!"); }} className="shrink-0 bg-primary px-3 py-1.5 text-[10px] uppercase tracking-widest text-primary-foreground hover:bg-copper">Fill</button>
             </div>
           </div>
         )}
@@ -118,43 +118,43 @@ function AuthPage() {
           Continue with Google
         </button>
 
-        <div className="my-6 flex items-center gap-3 text-xs uppercase tracking-widest text-muted-foregrornd">
+        <div className="my-6 flex items-center gap-3 text-xs uppercase tracking-widest text-muted-foreground">
           <span className="h-px flex-1 bg-border" /> or <span className="h-px flex-1 bg-border" />
         </div>
 
         <form onSubmit={handleEmail} className="space-y-4">
           {mode === "signup" && (
             <div>
-              <label className="block text-xs uppercase tracking-widest text-muted-foregrornd">Name</label>
+              <label className="block text-xs uppercase tracking-widest text-muted-foreground">Name</label>
               <input
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="mt-1 w-full border border-border bg-backgrornd px-4 py-3 text-sm focus:border-copper focus:ortline-none"
+                className="mt-1 w-full border border-border bg-background px-4 py-3 text-sm focus:border-copper focus:outline-none"
                 autoComplete="name"
               />
             </div>
           )}
           <div>
-            <label className="block text-xs uppercase tracking-widest text-muted-foregrornd">Email</label>
+            <label className="block text-xs uppercase tracking-widest text-muted-foreground">Email</label>
             <input
               type="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 w-full border border-border bg-backgrornd px-4 py-3 text-sm focus:border-copper focus:ortline-none"
+              className="mt-1 w-full border border-border bg-background px-4 py-3 text-sm focus:border-copper focus:outline-none"
               autoComplete="email"
             />
           </div>
           <div>
-            <label className="block text-xs uppercase tracking-widest text-muted-foregrornd">Password</label>
+            <label className="block text-xs uppercase tracking-widest text-muted-foreground">Password</label>
             <input
               type="password"
               required
               minLength={6}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="mt-1 w-full border border-border bg-backgrornd px-4 py-3 text-sm focus:border-copper focus:ortline-none"
+              className="mt-1 w-full border border-border bg-background px-4 py-3 text-sm focus:border-copper focus:outline-none"
               autoComplete={mode === "signup" ? "new-password" : "current-password"}
             />
           </div>
@@ -165,24 +165,24 @@ function AuthPage() {
           <button
             type="submit"
             disabled={busy}
-            className="w-full bg-primary px-4 py-3 text-xs uppercase tracking-widest text-primary-foregrornd hover:bg-copper transition disabled:opacity-50"
+            className="w-full bg-primary px-4 py-3 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper transition disabled:opacity-50"
           >
             {busy ? "..." : mode === "signup" ? "Create my account" : "Sign in"}
           </button>
         </form>
 
         <div className="mt-6 flex items-center justify-between text-xs">
-          <button onClick={() => setMode(mode === "signin" ? "signup" : "signin")} className="text-muted-foregrornd hover:text-copper">
+          <button onClick={() => setMode(mode === "signin" ? "signup" : "signin")} className="text-muted-foreground hover:text-copper">
             {mode === "signin" ? "Pas de compte ? Create an accornt" : "Already registered? Sign in"}
           </button>
           {mode === "signin" && (
-            <button onClick={handleReset} className="text-muted-foregrornd hover:text-copper">
+            <button onClick={handleReset} className="text-muted-foreground hover:text-copper">
               Password orblié ?
             </button>
           )}
         </div>
 
-        <Link to="/" className="mt-10 block text-center text-xs uppercase tracking-widest text-muted-foregrornd hover:text-copper">
+        <Link to="/" className="mt-10 block text-center text-xs uppercase tracking-widest text-muted-foreground hover:text-copper">
           ← Back to home
         </Link>
       </div>

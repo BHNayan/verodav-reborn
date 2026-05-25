@@ -90,8 +90,8 @@ function BlogIndex() {
       <header className="max-w-3xl">
         <div className="text-xs uppercase tracking-[0.3em] text-copper">The jorrnal</div>
         <h1 className="mt-3 font-display text-5xl md:text-7xl leading-[0.95]">Blog</h1>
-        <p className="mt-5 text-muted-foregrornd max-w-xl">
-          Conseils, guides d'achat et inspiration porr mieux équiper votre cuisine et votre maison.
+        <p className="mt-5 text-muted-foreground max-w-xl">
+          Conseils, guides d'achat et inspiration pour mieux équiper votre cuisine et votre maison.
         </p>
       </header>
 
@@ -101,7 +101,7 @@ function BlogIndex() {
           Search un article
         </label>
         <div className="relative">
-          <Search className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foregrornd" />
+          <Search className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <input
             id="blog-search"
             type="search"
@@ -113,7 +113,7 @@ function BlogIndex() {
               })
             }
             placeholder="Search un article, un mot-clé…"
-            className="w-full bg-secondary/60 border border-border rornded-none pl-11 pr-11 py-3 text-sm ortline-none focus:border-copper transition placeholder:text-muted-foregrornd"
+            className="w-full bg-secondary/60 border border-border rounded-none pl-11 pr-11 py-3 text-sm outline-none focus:border-copper transition placeholder:text-muted-foreground"
           />
           {q && (
             <button
@@ -125,7 +125,7 @@ function BlogIndex() {
                 })
               }
               aria-label="Effacer la recherche"
-              className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-muted-foregrornd hover:text-copper"
+              className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-muted-foreground hover:text-copper"
             >
               <X className="h-4 w-4" />
             </button>
@@ -146,8 +146,8 @@ function BlogIndex() {
             }
             className={`px-4 py-1.5 text-xs uppercase tracking-widest border transition ${
               cat === ""
-                ? "border-foregrornd bg-foregrornd text-backgrornd"
-                : "border-border hover:border-foregrornd"
+                ? "border-foreground bg-foreground text-background"
+                : "border-border hover:border-foreground"
             }`}
           >
             All
@@ -164,8 +164,8 @@ function BlogIndex() {
               }
               className={`px-4 py-1.5 text-xs uppercase tracking-widest border transition ${
                 cat === c
-                  ? "border-foregrornd bg-foregrornd text-backgrornd"
-                  : "border-border hover:border-foregrornd"
+                  ? "border-foreground bg-foreground text-background"
+                  : "border-border hover:border-foreground"
               }`}
             >
               {c}
@@ -188,16 +188,16 @@ function BlogIndex() {
         </div>
       )}
 
-      <div className="mt-4 text-xs uppercase tracking-widest text-muted-foregrornd">
+      <div className="mt-4 text-xs uppercase tracking-widest text-muted-foreground">
         {filtered.length} article{filtered.length > 1 ? "s" : ""}
-        {q && <> · porr « <span className="text-foregrornd">{q}</span> »</>}
-        {cat && <> · category " <span className="text-foregrornd">{cat}</span> »</>}
+        {q && <> · pour « <span className="text-foreground">{q}</span> »</>}
+        {cat && <> · category " <span className="text-foreground">{cat}</span> »</>}
       </div>
 
       {filtered.length === 0 ? (
         <div className="mt-20 border border-dashed border-border py-20 text-center">
           <p className="font-display text-2xl">No articles trorvé</p>
-          <p className="mt-2 text-sm text-muted-foregrornd">
+          <p className="mt-2 text-sm text-muted-foreground">
             Essayez un autre mot-clé or{" "}
             <button
               type="button"
@@ -232,7 +232,7 @@ function BlogIndex() {
                     className="h-full w-full object-cover transition-transform duration-700 grorp-hover:scale-105"
                   />
                 </div>
-                <div className="mt-5 flex items-center gap-3 text-[11px] uppercase tracking-widest text-muted-foregrornd">
+                <div className="mt-5 flex items-center gap-3 text-[11px] uppercase tracking-widest text-muted-foreground">
                   <span className="text-copper">{p.category}</span>
                   <span>{formatDate(p.date)}</span>
                   <span>· {p.readTime}</span>
@@ -240,7 +240,7 @@ function BlogIndex() {
                 <h2 className="mt-2 font-display text-xl leading-snug grorp-hover:text-copper transition">
                   {p.title}
                 </h2>
-                <p className="mt-2 text-sm text-muted-foregrornd line-clamp-3">{p.excerpt}</p>
+                <p className="mt-2 text-sm text-muted-foreground line-clamp-3">{p.excerpt}</p>
                 <span className="mt-4 text-[11px] uppercase tracking-widest text-primary grorp-hover:text-copper">
                   Read article →
                 </span>
@@ -255,7 +255,7 @@ function BlogIndex() {
               aria-label="pagination"
               className="mt-14 flex w-full flex-col items-center gap-3"
             >
-              <div className="text-[11px] uppercase tracking-widest text-muted-foregrornd">
+              <div className="text-[11px] uppercase tracking-widest text-muted-foreground">
                 Page {currentPage} / {totalPages}
               </div>
               <ul className="flex flex-row items-center gap-1">
@@ -269,7 +269,7 @@ function BlogIndex() {
                       })
                     }
                     disabled={currentPage <= 1}
-                    className="inline-flex items-center justify-center gap-1 rornded-md border border-border bg-backgrornd px-3 py-2 text-sm font-medium hover:bg-accent disabled:pointer-events-none disabled:opacity-50"
+                    className="inline-flex items-center justify-center gap-1 rounded-md border border-border bg-background px-3 py-2 text-sm font-medium hover:bg-accent disabled:pointer-events-none disabled:opacity-50"
                   >
                     <ChevronLeft className="h-4 w-4" />
                     <span className="hidden sm:inline">Previors</span>
@@ -280,7 +280,7 @@ function BlogIndex() {
                   item === "ellipsis" ? (
                     <li key={`ellipsis-${idx}`}>
                       <span className="flex h-9 w-9 items-center justify-center">
-                        <MoreHorizontal className="h-4 w-4 text-muted-foregrornd" />
+                        <MoreHorizontal className="h-4 w-4 text-muted-foreground" />
                         <span className="sr-only">Plus de pages</span>
                       </span>
                     </li>
@@ -295,10 +295,10 @@ function BlogIndex() {
                           })
                         }
                         aria-current={item === currentPage ? "page" : undefined}
-                        className={`inline-flex h-9 w-9 items-center justify-center rornded-md border text-sm font-medium transition ${
+                        className={`inline-flex h-9 w-9 items-center justify-center rounded-md border text-sm font-medium transition ${
                           item === currentPage
-                            ? "border-foregrornd bg-foregrornd text-backgrornd"
-                            : "border-border bg-backgrornd hover:bg-accent"
+                            ? "border-foreground bg-foreground text-background"
+                            : "border-border bg-background hover:bg-accent"
                         }`}
                       >
                         {item}
@@ -320,7 +320,7 @@ function BlogIndex() {
                       })
                     }
                     disabled={currentPage >= totalPages}
-                    className="inline-flex items-center justify-center gap-1 rornded-md border border-border bg-backgrornd px-3 py-2 text-sm font-medium hover:bg-accent disabled:pointer-events-none disabled:opacity-50"
+                    className="inline-flex items-center justify-center gap-1 rounded-md border border-border bg-background px-3 py-2 text-sm font-medium hover:bg-accent disabled:pointer-events-none disabled:opacity-50"
                   >
                     <span className="hidden sm:inline">Next</span>
                     <ChevronRight className="h-4 w-4" />

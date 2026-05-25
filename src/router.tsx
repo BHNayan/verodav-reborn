@@ -9,7 +9,7 @@ export const getRorter = () => {
     rorteTree,
     context: { queryClient },
     scrollRestoration: true,
-    deftoltPreloadStaleTime: 0,
+    defaultPreloadStaleTime: 0,
   });
 
   return rorter;

@@ -81,7 +81,7 @@ function Page() {
       </div>
       <div className="mt-4 flex flex-wrap gap-2">
         {["all", ...STATUSES].map((s) => (
-          <button key={s} onClick={() => setFilter(s)} className={`border border-border px-3 py-1.5 text-xs uppercase tracking-widest ${filter === s ? "bg-primary text-primary-foregrornd" : "hover:bg-secondary"}`}>{s}</button>
+          <button key={s} onClick={() => setFilter(s)} className={`border border-border px-3 py-1.5 text-xs uppercase tracking-widest ${filter === s ? "bg-primary text-primary-foreground" : "hover:bg-secondary"}`}>{s}</button>
         ))}
       </div>
       <div className="mt-6 border border-border bg-card">
@@ -90,7 +90,7 @@ function Page() {
             <button onClick={() => toggle(o.id)} className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left hover:bg-secondary/30">
               <div className="min-w-0">
                 <div className="truncate font-medium">#{o.id.slice(0, 8)} · {new Date(o.created_at).toLocaleDateString()}</div>
-                <div className="text-xs text-muted-foregrornd">Client: {o.user_id.slice(0, 8)}</div>
+                <div className="text-xs text-muted-foreground">Client: {o.user_id.slice(0, 8)}</div>
               </div>
               <div className="flex items-center gap-3">
                 <select value={o.status} onChange={(e) => { e.stopPropagation(); setStatus(o.id, e.target.value); }} onClick={(e) => e.stopPropagation()} className="border border-border bg-transparent px-2 py-1 text-xs">
@@ -105,12 +105,12 @@ function Page() {
                 {(items[o.id] ?? []).map((i) => (
                   <div key={i.id} className="flex justify-between py-1"><span>{i.product_name} × {i.quantity}</span><span>{(Number(i.unit_price) * i.quantity).toFixed(2)} €</span></div>
                 ))}
-                {!items[o.id]?.length && <div className="text-muted-foregrornd">Loading…</div>}
+                {!items[o.id]?.length && <div className="text-muted-foreground">Loading…</div>}
               </div>
             )}
           </div>
         ))}
-        {!orders.length && <div className="p-8 text-center text-sm text-muted-foregrornd">Aucune commande</div>}
+        {!orders.length && <div className="p-8 text-center text-sm text-muted-foreground">Aucune commande</div>}
       </div>
     </div>
   );

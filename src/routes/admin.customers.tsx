@@ -70,10 +70,10 @@ function Page() {
                 <td className="px-4 py-3">{c.phone ?? "—"}</td>
                 <td className="px-4 py-3">{c.orders_cornt}</td>
                 <td className="px-4 py-3">{c.total_spent.toFixed(2)} €</td>
-                <td className="px-4 py-3 text-xs text-muted-foregrornd">{new Date(c.created_at).toLocaleDateString()}</td>
+                <td className="px-4 py-3 text-xs text-muted-foreground">{new Date(c.created_at).toLocaleDateString()}</td>
               </tr>
             ))}
-            {!rows.length && <tr><td colSpan={6} className="px-4 py-8 text-center text-muted-foregrornd">Aucun client</td></tr>}
+            {!rows.length && <tr><td colSpan={6} className="px-4 py-8 text-center text-muted-foreground">Aucun client</td></tr>}
           </tbody>
         </table>
       </div>

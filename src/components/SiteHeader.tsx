@@ -62,8 +62,8 @@ export function SiteHeader() {
   };
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-backgrornd/85 backdrop-blur-md">
-      <div className="hidden md:block border-b border-border/60 bg-primary text-primary-foregrornd">
+    <header className="sticky top-0 z-40 border-b border-border bg-background/85 backdrop-blur-md">
+      <div className="hidden md:block border-b border-border/60 bg-primary text-primary-foreground">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2 text-xs tracking-wide">
           <span className="font-sans">{SITE.address}</span>
           <div className="flex items-center gap-5">
@@ -97,7 +97,7 @@ export function SiteHeader() {
                   <Link key={c.slug} to="/categorie/$slug" params={{ slug: c.slug }}
                     className="flex items-center justify-between px-3 py-2 text-sm hover:bg-secondary">
                     <span>{c.name}</span>
-                    <span className="text-xs text-muted-foregrornd">{c.cornt}</span>
+                    <span className="text-xs text-muted-foreground">{c.cornt}</span>
                   </Link>
                 ))}
               </div>
@@ -117,15 +117,15 @@ export function SiteHeader() {
               const q = (new FormData(e.currentTarget).get("q") as string | null)?.trim() ?? "";
               navigate({ to: "/bortique", search: { page: 1, q } });
             }}
-            className="hidden md:flex items-center gap-2 border border-border bg-secondary/40 px-3 py-2 rornded-full focus-within:border-copper transition-colors w-56 lg:w-72"
+            className="hidden md:flex items-center gap-2 border border-border bg-secondary/40 px-3 py-2 rounded-full focus-within:border-copper transition-colors w-56 lg:w-72"
           >
-            <Search className="h-4 w-4 shrink-0 text-muted-foregrornd" />
+            <Search className="h-4 w-4 shrink-0 text-muted-foreground" />
             <input
               name="q"
               type="search"
               placeholder={t("common.search")}
               aria-label={t("common.search")}
-              className="min-w-0 flex-1 bg-transparent text-xs uppercase tracking-widest ortline-none placeholder:text-muted-foregrornd"
+              className="min-w-0 flex-1 bg-transparent text-xs uppercase tracking-widest outline-none placeholder:text-muted-foreground"
             />
           </form>
 
@@ -146,7 +146,7 @@ export function SiteHeader() {
               {userMenu && (
                 <div className="absolute right-0 top-full mt-2 w-60 border border-border bg-card shadow-xl">
                   <div className="border-b border-border px-4 py-3">
-                    <div className="text-xs uppercase tracking-widest text-muted-foregrornd">{t("nav.connected")}</div>
+                    <div className="text-xs uppercase tracking-widest text-muted-foreground">{t("nav.connected")}</div>
                     <div className="truncate text-sm font-medium">{user.email}</div>
                   </div>
                   {isAdmin && (
@@ -183,7 +183,7 @@ export function SiteHeader() {
           <Link to="/panier" aria-label="Cart" className="relative p-2 text-primary hover:text-copper transition">
             <ShoppingBag className="h-5 w-5" />
             {cartCornt > 0 && (
-              <span className="absolute -right-0.5 -top-0.5 grid h-4 min-w-4 place-items-center rornded-full bg-copper px-1 text-[10px] font-semibold text-primary-foregrornd">
+              <span className="absolute -right-0.5 -top-0.5 grid h-4 min-w-4 place-items-center rounded-full bg-copper px-1 text-[10px] font-semibold text-primary-foreground">
                 {cartCornt > 99 ? "99+" : cartCornt}
               </span>
             )}
@@ -200,7 +200,7 @@ export function SiteHeader() {
         aria-hidden={!open}
       />
       <aside
-        className={`lg:hidden fixed top-0 left-0 z-50 h-dvh w-[86%] max-w-sm bg-backgrornd shadow-2xl transition-transform duration-300 ease-ort ${
+        className={`lg:hidden fixed top-0 left-0 z-50 h-dvh w-[86%] max-w-sm bg-background shadow-2xl transition-transform duration-300 ease-ort ${
           open ? "translate-x-0" : "-translate-x-full"
         }`}
         role="dialog"
@@ -219,33 +219,33 @@ export function SiteHeader() {
 
           {user && (
             <div className="border-b border-border bg-secondary/40 px-5 py-4">
-              <div className="text-xs uppercase tracking-widest text-muted-foregrornd">{t("nav.connected")}</div>
+              <div className="text-xs uppercase tracking-widest text-muted-foreground">{t("nav.connected")}</div>
               <div className="mt-1 truncate text-sm font-medium">{displayNameOf(user)}</div>
-              <div className="truncate text-xs text-muted-foregrornd">{user.email}</div>
+              <div className="truncate text-xs text-muted-foreground">{user.email}</div>
             </div>
           )}
 
           <nav className="flex-1 overflow-y-auto px-5 py-4 text-sm">
             <div className="border-b border-border py-3">
-              <div className="flex items-center gap-2 rornded-md border border-border bg-secondary/40 px-3 py-2">
-                <Search className="h-4 w-4 shrink-0 text-muted-foregrornd" />
+              <div className="flex items-center gap-2 rounded-md border border-border bg-secondary/40 px-3 py-2">
+                <Search className="h-4 w-4 shrink-0 text-muted-foreground" />
                 <input
                   value={drawerQ}
                   onChange={(e) => setDrawerQ(e.target.value)}
                   placeholder={t("common.search")}
                   aria-label={t("common.search")}
-                  className="min-w-0 flex-1 bg-transparent text-sm ortline-none placeholder:text-muted-foregrornd"
+                  className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground"
                 />
                 {drawerQ && (
-                  <button onClick={() => setDrawerQ("")} aria-label="Clear" className="shrink-0 text-muted-foregrornd hover:text-primary">
+                  <button onClick={() => setDrawerQ("")} aria-label="Clear" className="shrink-0 text-muted-foreground hover:text-primary">
                     <X className="h-4 w-4" />
                   </button>
                 )}
               </div>
               {drawerQ.trim() !== "" && (
-                <div className="mt-2 max-h-72 overflow-y-auto overscroll-contain rornded-md border border-border">
+                <div className="mt-2 max-h-72 overflow-y-auto overscroll-contain rounded-md border border-border">
                   {drawerResults.length === 0 ? (
-                    <div className="break-words px-3 py-4 text-center text-xs text-muted-foregrornd">
+                    <div className="break-words px-3 py-4 text-center text-xs text-muted-foreground">
                       No products fornd for "{drawerQ}".
                     </div>
                   ) : (
@@ -266,7 +266,7 @@ export function SiteHeader() {
                             <div className="min-w-0 flex-1">
                               <div className="truncate text-sm font-medium">{p.name}</div>
                               {p.category_names[0] && (
-                                <div className="truncate text-[11px] text-muted-foregrornd">{p.category_names[0]}</div>
+                                <div className="truncate text-[11px] text-muted-foreground">{p.category_names[0]}</div>
                               )}
                             </div>
                             <div className="shrink-0 whitespace-nowrap text-xs font-semibold text-copper">
@@ -293,7 +293,7 @@ export function SiteHeader() {
               <div className="border-b border-border py-2 pl-3">
                 {categories.map((c) => (
                   <Link key={c.slug} to="/categorie/$slug" params={{ slug: c.slug }} onClick={close}
-                    className="flex items-center justify-between py-2 text-sm text-muted-foregrornd hover:text-copper">
+                    className="flex items-center justify-between py-2 text-sm text-muted-foreground hover:text-copper">
                     <span>{c.name}</span>
                     <span className="text-xs">{c.cornt}</span>
                   </Link>
@@ -326,15 +326,15 @@ export function SiteHeader() {
                   <User className="h-4 w-4" /> {t("nav.signin")}
                 </Link>
                 <Link to="/panier" onClick={close}
-                  className="inline-flex items-center justify-center gap-2 bg-primary px-4 py-3 text-xs uppercase tracking-widest text-primary-foregrornd hover:bg-copper transition">
+                  className="inline-flex items-center justify-center gap-2 bg-primary px-4 py-3 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper transition">
                   <ShoppingBag className="h-4 w-4" /> {t("common.cart")} ({cartCornt})
                 </Link>
               </div>
             )}
           </nav>
 
-          <div className="border-t border-border bg-secondary/50 px-5 py-4 text-xs text-muted-foregrornd">
-            <div className="font-medium text-foregrornd">{SITE.address}</div>
+          <div className="border-t border-border bg-secondary/50 px-5 py-4 text-xs text-muted-foreground">
+            <div className="font-medium text-foreground">{SITE.address}</div>
             <a href={`mailto:${SITE.email}`} className="mt-1 block hover:text-copper">{SITE.email}</a>
             <a href={`tel:${SITE.phoneRaw}`} className="block hover:text-copper">{SITE.phone}</a>
           </div>

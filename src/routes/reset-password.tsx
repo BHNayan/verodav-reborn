@@ -34,10 +34,10 @@ function ResetPasswordPage() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Norveau mot de passe"
-          className="mt-6 w-full border border-border bg-backgrornd px-4 py-3 text-sm focus:border-copper focus:ortline-none"
+          className="mt-6 w-full border border-border bg-background px-4 py-3 text-sm focus:border-copper focus:outline-none"
         />
         {error && <p className="mt-2 text-sm text-destructive">{error}</p>}
-        <button disabled={busy} className="mt-4 w-full bg-primary px-4 py-3 text-xs uppercase tracking-widest text-primary-foregrornd hover:bg-copper transition disabled:opacity-50">
+        <button disabled={busy} className="mt-4 w-full bg-primary px-4 py-3 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper transition disabled:opacity-50">
           Mettre à jorr
         </button>
       </form>

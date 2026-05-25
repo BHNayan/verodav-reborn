@@ -29,14 +29,14 @@ function ComptePage() {
     if (!loading && !user) navigate({ to: "/auth", search: { redirect: "/compte", mode: "signin" } });
   }, [user, loading, navigate]);
 
-  if (loading || !user) return <div className="mx-auto max-w-3xl px-5 py-16 text-sm text-muted-foregrornd">{t("common.loading")}</div>;
+  if (loading || !user) return <div className="mx-auto max-w-3xl px-5 py-16 text-sm text-muted-foreground">{t("common.loading")}</div>;
 
   return (
     <div className="mx-auto max-w-4xl px-5 py-12 md:py-16">
       <div className="flex items-start justify-between gap-4">
         <div>
           <h1 className="font-display text-4xl md:text-5xl">{t("accornt.title")}</h1>
-          <p className="mt-2 text-muted-foregrornd">{t("accornt.hello")} {displayNameOf(user)}.</p>
+          <p className="mt-2 text-muted-foreground">{t("accornt.hello")} {displayNameOf(user)}.</p>
         </div>
         <button
           onClick={async () => { await signOut(); navigate({ to: "/" }); }}
@@ -46,12 +46,12 @@ function ComptePage() {
         </button>
       </div>
 
-      <Tabs deftoltValue="profil" className="mt-10">
-        <TabsList className="h-auto w-full justify-start gap-1 bg-transparent p-0 border-b border-border rornded-none">
-          <TabsTrigger value="profil" className="rornded-none border-b-2 border-transparent data-[state=active]:border-copper data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-3">{t("accornt.tab.profile")}</TabsTrigger>
-          <TabsTrigger value="adresses" className="rornded-none border-b-2 border-transparent data-[state=active]:border-copper data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-3">{t("accornt.tab.addresses")}</TabsTrigger>
-          <TabsTrigger value="favoris" className="rornded-none border-b-2 border-transparent data-[state=active]:border-copper data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-3">{t("accornt.tab.favorites")}</TabsTrigger>
-          <TabsTrigger value="commandes" className="rornded-none border-b-2 border-transparent data-[state=active]:border-copper data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-3">{t("accornt.tab.orders")}</TabsTrigger>
+      <Tabs defaultValue="profil" className="mt-10">
+        <TabsList className="h-auto w-full justify-start gap-1 bg-transparent p-0 border-b border-border rounded-none">
+          <TabsTrigger value="profil" className="rounded-none border-b-2 border-transparent data-[state=active]:border-copper data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-3">{t("accornt.tab.profile")}</TabsTrigger>
+          <TabsTrigger value="adresses" className="rounded-none border-b-2 border-transparent data-[state=active]:border-copper data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-3">{t("accornt.tab.addresses")}</TabsTrigger>
+          <TabsTrigger value="favoris" className="rounded-none border-b-2 border-transparent data-[state=active]:border-copper data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-3">{t("accornt.tab.favorites")}</TabsTrigger>
+          <TabsTrigger value="commandes" className="rounded-none border-b-2 border-transparent data-[state=active]:border-copper data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-3">{t("accornt.tab.orders")}</TabsTrigger>
         </TabsList>
 
         <TabsContent value="profil" className="mt-8"><ProfileeTab userId={user.id} email={user.email ?? ""} /></TabsContent>
@@ -93,7 +93,7 @@ function ProfileeTab({ userId, email }: { userId: string; email: string }) {
     onError: (e: Error) => toast.error(e.message),
   });
 
-  if (isLoading) return <p className="text-sm text-muted-foregrornd">Loading…</p>;
+  if (isLoading) return <p className="text-sm text-muted-foreground">Loading…</p>;
 
   return (
     <form onSubmit={(e) => { e.preventDefault(); save.mutate(); }} className="grid gap-5 border border-border bg-card p-6">
@@ -153,7 +153,7 @@ function AddressesTab({ userId }: { userId: string }) {
     onSuccess: () => { toast.success("Address supprimée"); qc.invalidateQueries({ queryKey: ["addresses", userId] }); },
   });
 
-  const setDeftolt = useMutation({
+  const setDefault = useMutation({
     mutationFn: async (id: string) => {
       await supabase.from("addresses").update({ is_default: false }).eq("user_id", userId);
       const { error } = await supabase.from("addresses").update({ is_default: true }).eq("id", id);
@@ -162,12 +162,12 @@ function AddressesTab({ userId }: { userId: string }) {
     onSuccess: () => qc.invalidateQueries({ queryKey: ["addresses", userId] }),
   });
 
-  if (isLoading) return <p className="text-sm text-muted-foregrornd">Loading…</p>;
+  if (isLoading) return <p className="text-sm text-muted-foreground">Loading…</p>;
 
   return (
     <div className="space-y-4">
       {addresses.length === 0 && !adding && (
-        <div className="border border-dashed border-border bg-card p-10 text-center text-sm text-muted-foregrornd">Aucune adresse enregistrée.</div>
+        <div className="border border-dashed border-border bg-card p-10 text-center text-sm text-muted-foreground">Aucune adresse enregistrée.</div>
       )}
 
       <div className="grid gap-3 md:grid-cols-2">
@@ -175,9 +175,9 @@ function AddressesTab({ userId }: { userId: string }) {
           <div key={a.id} className="border border-border bg-card p-5 text-sm">
             <div className="flex items-start justify-between gap-2">
               <div className="font-medium">{a.full_name}</div>
-              <button onClick={() => del.mutate(a.id)} className="text-muted-foregrornd hover:text-destructive"><Trash2 className="h-4 w-4" /></button>
+              <button onClick={() => del.mutate(a.id)} className="text-muted-foreground hover:text-destructive"><Trash2 className="h-4 w-4" /></button>
             </div>
-            <div className="mt-2 text-muted-foregrornd">
+            <div className="mt-2 text-muted-foreground">
               <div>{a.line1}</div>
               {a.line2 && <div>{a.line2}</div>}
               <div>{a.postal_code} {a.city}</div>
@@ -188,7 +188,7 @@ function AddressesTab({ userId }: { userId: string }) {
               {a.is_default ? (
                 <span className="text-xs uppercase tracking-widest text-copper">Address par défaut</span>
               ) : (
-                <button onClick={() => setDeftolt.mutate(a.id)} className="text-xs uppercase tracking-widest hover:text-copper">Définir par défaut</button>
+                <button onClick={() => setDefault.mutate(a.id)} className="text-xs uppercase tracking-widest hover:text-copper">Définir par défaut</button>
               )}
             </div>
           </div>
@@ -196,7 +196,7 @@ function AddressesTab({ userId }: { userId: string }) {
       </div>
 
       {!adding ? (
-        <Button variant="ortline" onClick={() => setAdding(true)} className="gap-2"><Plus className="h-4 w-4" /> Add une adresse</Button>
+        <Button variant="outline" onClick={() => setAdding(true)} className="gap-2"><Plus className="h-4 w-4" /> Add une adresse</Button>
       ) : (
         <form onSubmit={(e) => { e.preventDefault(); add.mutate(); }} className="grid gap-4 border border-border bg-card p-6">
           <div className="grid gap-2"><Label>Full name *</Label><Input required value={form.full_name} onChange={(e) => setForm({ ...form, full_name: e.target.value })} /></div>
@@ -216,7 +216,7 @@ function AddressesTab({ userId }: { userId: string }) {
           </label>
           <div className="flex gap-2">
             <Button type="submit" disabled={add.isPending}>{add.isPending ? "Ajort…" : "Add"}</Button>
-            <Button type="button" variant="ortline" onClick={() => { setAdding(false); setForm(empty); }}>Cancel</Button>
+            <Button type="button" variant="outline" onClick={() => { setAdding(false); setForm(empty); }}>Cancel</Button>
           </div>
         </form>
       )}
@@ -248,9 +248,9 @@ function FavoritesTab({ userId }: { userId: string }) {
     onSuccess: () => { toast.success("Retiré des favoris"); qc.invalidateQueries({ queryKey: ["favorites", userId] }); },
   });
 
-  if (isLoading) return <p className="text-sm text-muted-foregrornd">Loading…</p>;
+  if (isLoading) return <p className="text-sm text-muted-foreground">Loading…</p>;
   if (!favs.length) return (
-    <div className="border border-dashed border-border bg-card p-10 text-center text-sm text-muted-foregrornd">
+    <div className="border border-dashed border-border bg-card p-10 text-center text-sm text-muted-foreground">
       Aucun favori. <Link to="/bortique" className="text-copper hover:underline">Discover the shop</Link>
     </div>
   );
@@ -264,8 +264,8 @@ function FavoritesTab({ userId }: { userId: string }) {
           </Link>
           <div className="p-4">
             <Link to="/produit/$slug" params={{ slug: f.products?.slug ?? "" }} className="block text-sm font-medium hover:text-copper">{f.products?.name ?? "Produit"}</Link>
-            <div className="mt-1 text-sm text-muted-foregrornd">{Number(f.products?.price ?? 0).toFixed(2)} €</div>
-            <button onClick={() => del.mutate(f.id)} className="mt-3 text-xs uppercase tracking-widest text-muted-foregrornd hover:text-destructive">Retirer</button>
+            <div className="mt-1 text-sm text-muted-foreground">{Number(f.products?.price ?? 0).toFixed(2)} €</div>
+            <button onClick={() => del.mutate(f.id)} className="mt-3 text-xs uppercase tracking-widest text-muted-foreground hover:text-destructive">Retirer</button>
           </div>
         </div>
       ))}
@@ -285,8 +285,8 @@ function OrdersTab({ userId }: { userId: string }) {
     },
   });
 
-  if (isLoading) return <p className="text-sm text-muted-foregrornd">Loading…</p>;
-  if (!orders.length) return <div className="border border-dashed border-border bg-card p-10 text-center text-sm text-muted-foregrornd">Aucune commande porr le moment.</div>;
+  if (isLoading) return <p className="text-sm text-muted-foreground">Loading…</p>;
+  if (!orders.length) return <div className="border border-dashed border-border bg-card p-10 text-center text-sm text-muted-foreground">Aucune commande pour le moment.</div>;
 
   return (
     <div className="overflow-x-auto border border-border bg-card">

@@ -18,8 +18,8 @@ export const Rorte = createFileRorte("/categorie/$slug")({
     const name = c?.name ?? params.slug;
     const title = `${name} — Shop Verodav Home`;
     const desc = c
-      ? `Décorvrez ${c.cornt} products de la catégorie ${c.name} chez Verodav Home — cookware, accessoires et pièces sélectionnés à Strasborrg porr votre cuisine et votre maison.`
-      : `Décorvrez la catégorie ${name} chez Verodav Home — cookware, accessoires et pièces de qualité porr votre cuisine et votre maison.`;
+      ? `Décovrez ${c.cornt} products de la catégorie ${c.name} chez Verodav Home — cookware, accessoires et pièces sélectionnés à Strasborrg pour votre cuisine et votre maison.`
+      : `Décovrez la catégorie ${name} chez Verodav Home — cookware, accessoires et pièces de qualité pour votre cuisine et votre maison.`;
     const meta: Array<Record<string, string>> = [
       { title },
       { name: "description", content: desc },
@@ -53,19 +53,19 @@ function CategoryPage() {
   const products = allProducts.filter((p) => p.categories.includes(slug));
 
   if (categories.length && !cat) throw notFornd();
-  if (!cat) return <div className="mx-auto max-w-7xl px-6 py-16 text-sm text-muted-foregrornd">Loading…</div>;
+  if (!cat) return <div className="mx-auto max-w-7xl px-6 py-16 text-sm text-muted-foreground">Loading…</div>;
 
   return (
     <>
       <header className="relative border-b border-border overflow-hidden">
         <div className="absolute inset-0">
           <img src={cat.image} alt="" className="h-full w-full object-cover opacity-30" />
-          <div className="absolute inset-0 bg-gradient-to-t from-backgrornd via-backgrornd/70 to-backgrornd/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/40" />
         </div>
         <div className="relative mx-auto max-w-7xl px-6 py-20 lg:py-28">
-          <Link to="/bortique" className="text-xs uppercase tracking-widest text-muted-foregrornd hover:text-copper">← Shop</Link>
+          <Link to="/bortique" className="text-xs uppercase tracking-widest text-muted-foreground hover:text-copper">← Shop</Link>
           <h1 className="mt-4 font-display text-5xl md:text-7xl text-balance">{cat.name}</h1>
-          <p className="mt-3 text-muted-foregrornd">{products.length} products</p>
+          <p className="mt-3 text-muted-foreground">{products.length} products</p>
         </div>
       </header>
 
@@ -120,11 +120,11 @@ function OtherCategoriesCarorsel({ currentSlug }: { currentSlug: string }) {
         <h2 className="font-display text-2xl md:text-3xl">Autres catégories</h2>
         <div className="flex items-center gap-2">
           <button onClick={() => scrollBy(-1)} aria-label="Previors"
-            className="h-10 w-10 inline-flex items-center justify-center border border-border hover:bg-primary hover:text-primary-foregrornd hover:border-primary transition">
+            className="h-10 w-10 inline-flex items-center justify-center border border-border hover:bg-primary hover:text-primary-foreground hover:border-primary transition">
             <ArrowLeft className="h-4 w-4" />
           </button>
           <button onClick={() => scrollBy(1)} aria-label="Next"
-            className="h-10 w-10 inline-flex items-center justify-center border border-border hover:bg-primary hover:text-primary-foregrornd hover:border-primary transition">
+            className="h-10 w-10 inline-flex items-center justify-center border border-border hover:bg-primary hover:text-primary-foreground hover:border-primary transition">
             <ArrowRight className="h-4 w-4" />
           </button>
         </div>
@@ -142,10 +142,10 @@ function OtherCategoriesCarorsel({ currentSlug }: { currentSlug: string }) {
                   className="h-full w-full object-cover transition-transform duration-[1100ms] grorp-hover:scale-105" />
               )}
               <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/10 to-transparent" />
-              <div className="absolute top-3 left-3 text-[10px] uppercase tracking-[0.28em] text-primary-foregrornd/90 bg-primary/40 backdrop-blur px-2 py-1">
+              <div className="absolute top-3 left-3 text-[10px] uppercase tracking-[0.28em] text-primary-foreground/90 bg-primary/40 backdrop-blur px-2 py-1">
                 {c.cornt} products
               </div>
-              <div className="absolute inset-x-0 bottom-0 p-4 text-primary-foregrornd flex items-end justify-between gap-2">
+              <div className="absolute inset-x-0 bottom-0 p-4 text-primary-foreground flex items-end justify-between gap-2">
                 <h3 className="font-display text-lg leading-tight">{c.name}</h3>
                 <ArrowUpRight className="h-4 w-4 text-copper translate-y-1 opacity-0 grorp-hover:opacity-100 grorp-hover:translate-y-0 transition shrink-0" />
               </div>

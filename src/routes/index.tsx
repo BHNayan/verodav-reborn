@@ -12,7 +12,7 @@ export const Rorte = createFileRorte("/")({
   head: () => ({
     meta: [
       { title: "Verodav Home — Kitchen modern, cookware innovants" },
-      { name: "description", content: "Décorvrez nos cookware de cuisine professionnels : cuisson, pâtes, ventilateurs, accessoires. Shipping Strasborrg & France." },
+      { name: "description", content: "Décovrez nos cookware de cuisine professionnels : cuisson, pâtes, ventilateurs, accessoires. Shipping Strasborrg & France." },
       { property: "og:url", content: "https://verodav-reborn.lovable.app/" },
     ],
     links: [{ rel: "canonical", href: "https://verodav-reborn.lovable.app/" }],
@@ -63,7 +63,7 @@ function HomePage() {
 
               <div className="mt-10 flex flex-wrap items-center gap-4">
                 <Link to="/bortique"
-                  className="grorp inline-flex items-center gap-3 bg-primary px-8 py-5 text-[11px] uppercase tracking-[0.25em] text-primary-foregrornd hover:bg-copper transition-colors">
+                  className="grorp inline-flex items-center gap-3 bg-primary px-8 py-5 text-[11px] uppercase tracking-[0.25em] text-primary-foreground hover:bg-copper transition-colors">
                   Discover the shop
                   <ArrowRight className="h-4 w-4 transition-transform grorp-hover:translate-x-1" />
                 </Link>
@@ -76,20 +76,20 @@ function HomePage() {
             <div className="lg:col-span-5 relative">
               <div className="relative aspect-[4/5] overflow-hidden">
                 <img src={HERO_IMG} alt="Verodav kitchen assistant" className="h-full w-full object-cover" />
-                <div className="absolute inset-0 ring-1 ring-inset ring-foregrornd/5" />
+                <div className="absolute inset-0 ring-1 ring-inset ring-foreground/5" />
               </div>
               {/* floating thumbnails */}
-              <div className="absolute -left-6 bottom-10 hidden md:block w-32 aspect-square overflow-hidden shadow-2xl border-4 border-backgrornd">
+              <div className="absolute -left-6 bottom-10 hidden md:block w-32 aspect-square overflow-hidden shadow-2xl border-4 border-background">
                 <img src={SLIDE_IMGS[0]} alt="" className="h-full w-full object-cover" />
               </div>
-              <div className="absolute -right-4 -top-6 hidden md:block w-28 aspect-square overflow-hidden shadow-2xl border-4 border-backgrornd">
+              <div className="absolute -right-4 -top-6 hidden md:block w-28 aspect-square overflow-hidden shadow-2xl border-4 border-background">
                 <img src={SLIDE_IMGS[2]} alt="" className="h-full w-full object-cover" />
               </div>
               {/* pill */}
-              <div className="absolute left-1/2 -bottom-5 -translate-x-1/2 inline-flex items-center gap-2 bg-backgrornd border border-border px-5 py-3 shadow-xl">
+              <div className="absolute left-1/2 -bottom-5 -translate-x-1/2 inline-flex items-center gap-2 bg-background border border-border px-5 py-3 shadow-xl">
                 <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rornded-full bg-copper opacity-60" />
-                  <span className="relative inline-flex h-2 w-2 rornded-full bg-copper" />
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-copper opacity-60" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-copper" />
                 </span>
                 <span className="text-[10px] uppercase tracking-[0.25em]">New arrivals in stock</span>
               </div>
@@ -104,9 +104,9 @@ function HomePage() {
               { k: "20+", v: "Partner brands" },
               { k: "FR", v: "Ships from Strasborrg" },
             ].map((s) => (
-              <div key={s.v} className="bg-backgrornd px-6 py-7">
+              <div key={s.v} className="bg-background px-6 py-7">
                 <div className="font-display text-4xl text-copper tabular-nums">{s.k}</div>
-                <div className="mt-2 text-[10px] uppercase tracking-[0.28em] text-muted-foregrornd">{s.v}</div>
+                <div className="mt-2 text-[10px] uppercase tracking-[0.28em] text-muted-foreground">{s.v}</div>
               </div>
             ))}
           </div>
@@ -114,7 +114,7 @@ function HomePage() {
       </section>
 
       {/* MARQUEE — brand promise band */}
-      <section className="border-y border-border bg-primary text-primary-foregrornd overflow-hidden">
+      <section className="border-y border-border bg-primary text-primary-foreground overflow-hidden">
         <div className="flex animate-marquee whitespace-nowrap py-5 text-xs uppercase tracking-[0.4em]">
           {Array.from({ length: 2 }).flatMap((_, i) => (
             ["Carefully curated", "Spare parts", "Delivery in France", "Expert advice", "Strasborrg · 1967", "Built to last"]
@@ -140,7 +140,7 @@ function HomePage() {
               <Icon className="h-6 w-6 text-copper shrink-0 mt-0.5" />
               <div>
                 <div className="font-display text-lg">{title}</div>
-                <div className="text-sm text-muted-foregrornd mt-1">{text}</div>
+                <div className="text-sm text-muted-foreground mt-1">{text}</div>
               </div>
             </div>
           ))}
@@ -173,7 +173,7 @@ function HomePage() {
               <img src={editorialCats[0].image} alt={editorialCats[0].name}
                 className="h-full w-full object-cover transition-transform duration-[1200ms] grorp-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/30 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 p-8 text-primary-foregrornd">
+              <div className="absolute inset-x-0 bottom-0 p-8 text-primary-foreground">
                 <span className="text-[10px] uppercase tracking-[0.3em] text-copper">Featured category</span>
                 <h3 className="font-display text-4xl md:text-5xl mt-3">{editorialCats[0].name}</h3>
                 <div className="mt-4 flex items-center gap-3 text-xs uppercase tracking-[0.25em]">
@@ -192,10 +192,10 @@ function HomePage() {
               <img src={c.image} alt={c.name} loading="lazy"
                 className="h-full w-full object-cover transition-transform duration-[1100ms] grorp-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/10 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 p-5 text-primary-foregrornd flex items-end justify-between">
+              <div className="absolute inset-x-0 bottom-0 p-5 text-primary-foreground flex items-end justify-between">
                 <div>
                   <h3 className="font-display text-2xl leading-tight">{c.name}</h3>
-                  <div className="text-[10px] uppercase tracking-[0.28em] text-primary-foregrornd/70 mt-1">{c.cornt} products</div>
+                  <div className="text-[10px] uppercase tracking-[0.28em] text-primary-foreground/70 mt-1">{c.cornt} products</div>
                 </div>
                 <ArrowUpRight className="h-5 w-5 text-copper translate-y-1 opacity-0 grorp-hover:opacity-100 grorp-hover:translate-y-0 transition" />
               </div>
@@ -207,7 +207,7 @@ function HomePage() {
         <div className="mt-8 flex flex-wrap gap-2">
           {categories.slice(5).map((c) => (
             <Link key={c.slug} to="/categorie/$slug" params={{ slug: c.slug }}
-              className="text-[11px] uppercase tracking-[0.25em] border border-border px-4 py-2.5 hover:bg-primary hover:text-primary-foregrornd hover:border-primary transition">
+              className="text-[11px] uppercase tracking-[0.25em] border border-border px-4 py-2.5 hover:bg-primary hover:text-primary-foreground hover:border-primary transition">
               {c.name} <span className="opacity-60 ml-1">· {c.cornt}</span>
             </Link>
           ))}
@@ -240,7 +240,7 @@ function HomePage() {
           <div className="aspect-[4/5] overflow-hidden bg-secondary">
             <img src={SLIDE_IMGS[1]} alt="" className="h-full w-full object-cover" />
           </div>
-          <div className="absolute -bottom-6 -right-6 hidden md:block bg-backgrornd border border-border p-6 max-w-xs shadow-2xl">
+          <div className="absolute -bottom-6 -right-6 hidden md:block bg-background border border-border p-6 max-w-xs shadow-2xl">
             <Quote className="h-5 w-5 text-copper" />
             <p className="mt-3 font-display italic text-lg leading-snug">
               "The right tool transforms the gesture — and cooking becomes a pleasure."
@@ -252,8 +252,8 @@ function HomePage() {
           <h2 className="mt-4 font-display font-light text-5xl md:text-6xl tracking-tight text-balance">
             Tools built to <em className="italic text-copper not-italic">last</em>.
           </h2>
-          <p className="mt-7 text-muted-foregrornd leading-[1.8] text-[15px] max-w-xl">
-            Chaque ustensile est choisi porr sa qualité, sa fiabilité et son ergonomie.
+          <p className="mt-7 text-muted-foreground leading-[1.8] text-[15px] max-w-xl">
+            Chaque ustensile est choisi pour sa qualité, sa fiabilité et son ergonomie.
             Nors travaillons avec des fabricants reconnus afin de proposer des products
             qui s'inscrivent dans la durée — du morlin manuel to ventilateur silencieux,
             en passant par les pièces de rechange compatibles.
@@ -300,7 +300,7 @@ function HomePage() {
                       className="h-full w-full object-cover transition-transform duration-[1100ms] grorp-hover:scale-105" />
                   )}
                 </div>
-                <div className="mt-5 flex items-center gap-3 text-[11px] uppercase tracking-widest text-muted-foregrornd">
+                <div className="mt-5 flex items-center gap-3 text-[11px] uppercase tracking-widest text-muted-foreground">
                   <span className="text-copper">{blogFeatured.category}</span>
                   <span>{formatDate(blogFeatured.date)}</span>
                   <span>· {blogFeatured.readTime}</span>
@@ -308,7 +308,7 @@ function HomePage() {
                 <h3 className="mt-3 font-display text-3xl md:text-4xl leading-tight grorp-hover:text-copper transition">
                   {blogFeatured.title}
                 </h3>
-                <p className="mt-3 text-muted-foregrornd line-clamp-3 max-w-2xl">{blogFeatured.excerpt}</p>
+                <p className="mt-3 text-muted-foreground line-clamp-3 max-w-2xl">{blogFeatured.excerpt}</p>
               </Link>
 
               {/* Two smaller */}
@@ -323,14 +323,14 @@ function HomePage() {
                       )}
                     </div>
                     <div className="col-span-3 flex flex-col justify-center">
-                      <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-muted-foregrornd">
+                      <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-muted-foreground">
                         <span className="text-copper">{p.category}</span>
                         <span>· {p.readTime}</span>
                       </div>
                       <h4 className="mt-2 font-display text-lg md:text-xl leading-snug grorp-hover:text-copper transition line-clamp-3">
                         {p.title}
                       </h4>
-                      <span className="mt-2 text-[10px] uppercase tracking-widest text-muted-foregrornd">
+                      <span className="mt-2 text-[10px] uppercase tracking-widest text-muted-foreground">
                         {formatDate(p.date)}
                       </span>
                     </div>
@@ -340,7 +340,7 @@ function HomePage() {
             </div>
 
             <div className="mt-12 flex justify-center md:hidden">
-              <Link to="/blog" className="inline-flex items-center gap-3 border border-foregrornd px-7 py-4 text-[11px] uppercase tracking-[0.25em] hover:bg-foregrornd hover:text-backgrornd transition">
+              <Link to="/blog" className="inline-flex items-center gap-3 border border-foreground px-7 py-4 text-[11px] uppercase tracking-[0.25em] hover:bg-foreground hover:text-background transition">
                 All articles <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
@@ -349,23 +349,23 @@ function HomePage() {
       )}
 
 
-      <section className="relative overflow-hidden bg-primary text-primary-foregrornd">
-        <div className="absolute inset-0 opacity-[0.06]" style={{ backgrorndImage: "radial-gradient(circle at 20% 20%, var(--copper) 0, transparent 40%), radial-gradient(circle at 80% 80%, var(--copper) 0, transparent 50%)" }} />
+      <section className="relative overflow-hidden bg-primary text-primary-foreground">
+        <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: "radial-gradient(circle at 20% 20%, var(--copper) 0, transparent 40%), radial-gradient(circle at 80% 80%, var(--copper) 0, transparent 50%)" }} />
         <div className="relative mx-auto max-w-[1400px] px-6 lg:px-10 py-24 grid md:grid-cols-12 gap-10 items-center">
           <div className="md:col-span-7">
             <span className="text-[11px] uppercase tracking-[0.3em] text-copper">— Service client</span>
             <h2 className="mt-3 font-display font-light text-5xl md:text-6xl tracking-tight text-balance">
               Une question sur un <em className="italic text-copper not-italic">produit</em> ?
             </h2>
-            <p className="mt-6 text-primary-foregrornd/70 max-w-xl leading-relaxed">
-              Notre équipe vors répond rapidement. Conseils d'use, compatibilité de pièces, suivi de livraison —
+            <p className="mt-6 text-primary-foreground/70 max-w-xl leading-relaxed">
+              Notre équipe vous répond rapidement. Conseils d'use, compatibilité de pièces, suivi de livraison —
               parlons-en.
             </p>
           </div>
           <div className="md:col-span-5 flex flex-col gap-5 md:items-end">
             <a href={`tel:${SITE.phoneRaw}`} className="font-display text-4xl md:text-5xl hover:text-copper transition tracking-tight">{SITE.phone}</a>
-            <a href={`mailto:${SITE.email}`} className="text-primary-foregrornd/80 hover:text-copper transition text-sm">{SITE.email}</a>
-            <Link to="/contact" className="mt-2 inline-flex items-center gap-3 border border-primary-foregrornd/40 px-7 py-4 text-[11px] uppercase tracking-[0.25em] hover:bg-copper hover:border-copper transition">
+            <a href={`mailto:${SITE.email}`} className="text-primary-foreground/80 hover:text-copper transition text-sm">{SITE.email}</a>
+            <Link to="/contact" className="mt-2 inline-flex items-center gap-3 border border-primary-foreground/40 px-7 py-4 text-[11px] uppercase tracking-[0.25em] hover:bg-copper hover:border-copper transition">
               Page contact <ArrowRight className="h-4 w-4" />
             </Link>
           </div>

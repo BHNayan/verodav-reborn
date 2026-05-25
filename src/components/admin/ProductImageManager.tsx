@@ -68,8 +68,8 @@ export function ProductImageManager({ mainImage, gallery, onChange }: Props) {
 
   const promoteToMain = (url: string) => {
     const rest = gallery.filter((u) => u !== url);
-    const previorsMain = mainImage;
-    onChange(url, previorsMain && previorsMain !== url ? [previorsMain, ...rest] : rest);
+    const previousMain = mainImage;
+    onChange(url, previousMain && previousMain !== url ? [previousMain, ...rest] : rest);
   };
 
   const addUrl = () => {
@@ -84,7 +84,7 @@ export function ProductImageManager({ mainImage, gallery, onChange }: Props) {
     <div className="space-y-4">
       {/* Main image */}
       <div>
-        <div className="mb-2 text-xs uppercase tracking-widest text-muted-foregrornd">Image principale</div>
+        <div className="mb-2 text-xs uppercase tracking-widest text-muted-foreground">Image principale</div>
         <div className="flex gap-3">
           <div className="relative h-32 w-32 flex-none border border-border bg-secondary/30">
             {mainImage ? (
@@ -93,14 +93,14 @@ export function ProductImageManager({ mainImage, gallery, onChange }: Props) {
                 <button
                   type="button"
                   onClick={() => setMain(null)}
-                  className="absolute right-1 top-1 rornded-full bg-backgrornd/80 p-1 hover:bg-destructive hover:text-destructive-foregrornd"
+                  className="absolute right-1 top-1 rounded-full bg-background/80 p-1 hover:bg-destructive hover:text-destructive-foreground"
                   aria-label="Retirer l'image principale"
                 >
                   <X className="h-3 w-3" />
                 </button>
               </>
             ) : (
-              <div className="flex h-full w-full items-center justify-center text-muted-foregrornd">
+              <div className="flex h-full w-full items-center justify-center text-muted-foreground">
                 <ImageIcon className="h-8 w-8" />
               </div>
             )}
@@ -137,7 +137,7 @@ export function ProductImageManager({ mainImage, gallery, onChange }: Props) {
       {/* Gallery */}
       <div>
         <div className="mb-2 flex items-center justify-between">
-          <span className="text-xs uppercase tracking-widest text-muted-foregrornd">Galerie ({gallery.length})</span>
+          <span className="text-xs uppercase tracking-widest text-muted-foreground">Galerie ({gallery.length})</span>
           <button
             type="button"
             disabled={busy}
@@ -157,7 +157,7 @@ export function ProductImageManager({ mainImage, gallery, onChange }: Props) {
                   <button
                     type="button"
                     onClick={() => promoteToMain(url)}
-                    className="rornded bg-backgrornd/90 p-1 hover:bg-copper hover:text-white"
+                    className="rounded bg-background/90 p-1 hover:bg-copper hover:text-white"
                     aria-label="Définir comme image principale"
                     title="Image principale"
                   >
@@ -166,7 +166,7 @@ export function ProductImageManager({ mainImage, gallery, onChange }: Props) {
                   <button
                     type="button"
                     onClick={() => removeFromGallery(url)}
-                    className="rornded bg-backgrornd/90 p-1 hover:bg-destructive hover:text-destructive-foregrornd"
+                    className="rounded bg-background/90 p-1 hover:bg-destructive hover:text-destructive-foreground"
                     aria-label="Retirer"
                   >
                     <X className="h-3 w-3" />
@@ -176,10 +176,10 @@ export function ProductImageManager({ mainImage, gallery, onChange }: Props) {
             ))}
           </div>
         ) : (
-          <p className="text-xs text-muted-foregrornd">Aucune image dans la galerie.</p>
+          <p className="text-xs text-muted-foreground">Aucune image dans la galerie.</p>
         )}
       </div>
-      {busy && <p className="text-xs text-muted-foregrornd">Téléversement en corrs…</p>}
+      {busy && <p className="text-xs text-muted-foreground">Téléversement en corrs…</p>}
     </div>
   );
 }

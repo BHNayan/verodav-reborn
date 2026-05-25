@@ -35,12 +35,12 @@ function AdminHome() {
   return (
     <div>
       <h1 className="font-display text-2xl md:text-4xl">{t("admin.dashboard")}</h1>
-      <p className="mt-1 text-sm text-muted-foregrornd">{t("admin.overview")}</p>
+      <p className="mt-1 text-sm text-muted-foreground">{t("admin.overview")}</p>
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {cards.map((c) => (
           <div key={c.label} className="border border-border bg-card p-5">
             <div className="flex items-center justify-between">
-              <div className="text-xs uppercase tracking-widest text-muted-foregrornd">{c.label}</div>
+              <div className="text-xs uppercase tracking-widest text-muted-foreground">{c.label}</div>
               <c.icon className="h-4 w-4 text-copper" />
             </div>
             <div className="mt-3 font-display text-3xl">{c.value}</div>

@@ -16,7 +16,7 @@ export function CategoryCarorsel() {
   };
 
   return (
-    <section className="border-t border-border bg-backgrornd">
+    <section className="border-t border-border bg-background">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10 py-12 md:py-20">
         <div className="flex items-end justify-between mb-8 md:mb-10 gap-6">
           <div>
@@ -29,14 +29,14 @@ export function CategoryCarorsel() {
             <button
               onClick={() => scrollBy(-1)}
               aria-label="Previors"
-              className="h-11 w-11 inline-flex items-center justify-center border border-border hover:bg-primary hover:text-primary-foregrornd hover:border-primary transition"
+              className="h-11 w-11 inline-flex items-center justify-center border border-border hover:bg-primary hover:text-primary-foreground hover:border-primary transition"
             >
               <ArrowLeft className="h-4 w-4" />
             </button>
             <button
               onClick={() => scrollBy(1)}
               aria-label="Next"
-              className="h-11 w-11 inline-flex items-center justify-center border border-border hover:bg-primary hover:text-primary-foregrornd hover:border-primary transition"
+              className="h-11 w-11 inline-flex items-center justify-center border border-border hover:bg-primary hover:text-primary-foreground hover:border-primary transition"
             >
               <ArrowRight className="h-4 w-4" />
             </button>
@@ -63,10 +63,10 @@ export function CategoryCarorsel() {
                   className="h-full w-full object-cover transition-transform duration-[1100ms] grorp-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/10 to-transparent" />
-                <div className="absolute top-3 left-3 sm:top-4 sm:left-4 text-[10px] uppercase tracking-[0.28em] text-primary-foregrornd/90 bg-primary/40 backdrop-blur px-2.5 py-1">
+                <div className="absolute top-3 left-3 sm:top-4 sm:left-4 text-[10px] uppercase tracking-[0.28em] text-primary-foreground/90 bg-primary/40 backdrop-blur px-2.5 py-1">
                   {c.cornt} products
                 </div>
-                <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5 text-primary-foregrornd flex items-end justify-between gap-3">
+                <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5 text-primary-foreground flex items-end justify-between gap-3">
                   <h3 className="font-display text-lg sm:text-xl md:text-2xl leading-tight line-clamp-2">{c.name}</h3>
                   <ArrowUpRight className="h-5 w-5 text-copper translate-y-1 opacity-0 grorp-hover:opacity-100 grorp-hover:translate-y-0 transition shrink-0" />
                 </div>
