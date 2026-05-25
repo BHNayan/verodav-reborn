@@ -9,10 +9,11 @@ const PAGE_SIZE = 6;
 
 const searchSchema = z.object({
   q: fallback(z.string(), "").default(""),
+  cat: fallback(z.string(), "").default(""),
   page: fallback(z.number().int().min(1), 1).default(1),
 });
 
-type BlogSearch = { q: string; page: number };
+type BlogSearch = { q: string; cat: string; page: number };
 
 export const Route = createFileRoute("/blog")({
   validateSearch: zodValidator(searchSchema),
@@ -45,31 +46,44 @@ function getPageNumbers(current: number, total: number): (number | "ellipsis")[]
 
 function BlogIndex() {
   const posts = usePosts();
-  const { q, page } = Route.useSearch();
+  const { q, cat, page } = Route.useSearch();
   const navigate = Route.useNavigate();
 
+  const categories = useMemo(() => {
+    const set = new Set(posts.map((p) => p.category));
+    return Array.from(set).sort();
+  }, [posts]);
+
   const filtered = useMemo(() => {
+    let result = posts;
     const term = q.trim().toLowerCase();
-    if (!term) return posts;
-    const tokens = term.split(/\s+/).filter(Boolean);
-    return posts.filter((p) => {
-      const haystack = [
-        p.title,
-        p.excerpt,
-        p.category,
-        ...p.sections.flatMap((s) => [s.heading ?? "", ...s.paragraphs, ...(s.bullets ?? [])]),
-      ]
-        .join(" ")
-        .toLowerCase();
-      return tokens.every((t: string) => haystack.includes(t));
-    });
-  }, [q, posts]);
+    if (term) {
+      const tokens = term.split(/\s+/).filter(Boolean);
+      result = result.filter((p) => {
+        const haystack = [
+          p.title,
+          p.excerpt,
+          p.category,
+          ...p.sections.flatMap((s) => [s.heading ?? "", ...s.paragraphs, ...(s.bullets ?? [])]),
+        ]
+          .join(" ")
+          .toLowerCase();
+        return tokens.every((t: string) => haystack.includes(t));
+      });
+    }
+    if (cat) {
+      result = result.filter((p) => p.category === cat);
+    }
+    return result;
+  }, [q, cat, posts]);
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const currentPage = Math.min(page, totalPages);
   const startIndex = (currentPage - 1) * PAGE_SIZE;
   const visible = filtered.slice(startIndex, startIndex + PAGE_SIZE);
   const pages = getPageNumbers(currentPage, totalPages);
+
+  const activeFilters = Boolean(q) || Boolean(cat);
 
   return (
     <div className="mx-auto max-w-[1400px] px-5 lg:px-10 py-14 md:py-20">
@@ -117,10 +131,67 @@ function BlogIndex() {
             </button>
           )}
         </div>
-        <div className="mt-3 text-xs uppercase tracking-widest text-muted-foreground">
-          {filtered.length} article{filtered.length > 1 ? "s" : ""}
-          {q && <> · pour « <span className="text-foreground">{q}</span> »</>}
+      </div>
+
+      {/* Category filters */}
+      {categories.length > 0 && (
+        <div className="mt-6 flex flex-wrap items-center gap-2">
+          <button
+            type="button"
+            onClick={() =>
+              navigate({
+                search: (prev: BlogSearch) => ({ ...prev, cat: "", page: 1 }),
+                replace: true,
+              })
+            }
+            className={`px-4 py-1.5 text-xs uppercase tracking-widest border transition ${
+              cat === ""
+                ? "border-foreground bg-foreground text-background"
+                : "border-border hover:border-foreground"
+            }`}
+          >
+            Tous
+          </button>
+          {categories.map((c) => (
+            <button
+              key={c}
+              type="button"
+              onClick={() =>
+                navigate({
+                  search: (prev: BlogSearch) => ({ ...prev, cat: c, page: 1 }),
+                  replace: true,
+                })
+              }
+              className={`px-4 py-1.5 text-xs uppercase tracking-widest border transition ${
+                cat === c
+                  ? "border-foreground bg-foreground text-background"
+                  : "border-border hover:border-foreground"
+              }`}
+            >
+              {c}
+            </button>
+          ))}
+          {activeFilters && (
+            <button
+              type="button"
+              onClick={() =>
+                navigate({
+                  search: (prev: BlogSearch) => ({ ...prev, q: "", cat: "", page: 1 }),
+                  replace: true,
+                })
+              }
+              className="ml-1 text-[11px] uppercase tracking-widest text-copper underline underline-offset-4"
+            >
+              Réinitialiser
+            </button>
+          )}
         </div>
+      )}
+
+      <div className="mt-4 text-xs uppercase tracking-widest text-muted-foreground">
+        {filtered.length} article{filtered.length > 1 ? "s" : ""}
+        {q && <> · pour « <span className="text-foreground">{q}</span> »</>}
+        {cat && <> · catégorie « <span className="text-foreground">{cat}</span> »</>}
       </div>
 
       {filtered.length === 0 ? (
@@ -133,7 +204,7 @@ function BlogIndex() {
               className="text-copper underline underline-offset-4"
               onClick={() =>
                 navigate({
-                  search: (prev: BlogSearch) => ({ ...prev, q: "", page: 1 }),
+                  search: (prev: BlogSearch) => ({ ...prev, q: "", cat: "", page: 1 }),
                   replace: true,
                 })
               }
