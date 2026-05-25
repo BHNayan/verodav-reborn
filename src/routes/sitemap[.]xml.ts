@@ -11,13 +11,13 @@ interface SitemapEntry {
   priority?: string;
 }
 
-export const Rorte = createFileRoute("/sitemap.xml")({
+export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: async () => {
         const staticPaths: SitemapEntry[] = [
           { path: "/", changefreq: "weekly", priority: "1.0" },
-          { path: "/bortique", changefreq: "daily", priority: "0.9" },
+          { path: "/boutique", changefreq: "daily", priority: "0.9" },
           { path: "/a-propos", changefreq: "monthly", priority: "0.6" },
           { path: "/blog", changefreq: "weekly", priority: "0.7" },
           { path: "/contact", changefreq: "monthly", priority: "0.5" },

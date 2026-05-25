@@ -21,7 +21,7 @@ const en: Dict = {
   "nav.orders": "My orders",
   "nav.favorites": "My favorites",
   "nav.signin": "Sign in",
-  "nav.signort": "Sign ort",
+  "nav.signort": "Sign out",
   "nav.admin": "Administration",
   "nav.connected": "Signed in",
   "nav.menu": "Navigation menu",
@@ -63,7 +63,7 @@ const en: Dict = {
   "contact.hours": "Hours",
   "contact.shop": "Shop",
   "contact.phone": "Phone",
-  "contact.sent": "Message sent. We will get back to you shoutly.",
+  "contact.sent": "Message sent. We will get back to you shortly.",
   "contact.error": "Unable to send message.",
 
   // Account (customer dashboard)
@@ -84,7 +84,7 @@ const en: Dict = {
   "admin.title": "Administration",
   "admin.checking": "Checking admin access…",
   "admin.site": "Site",
-  "admin.signort": "Sign ort",
+  "admin.signort": "Sign out",
   "admin.dashboard": "Dashboard",
   "admin.overview": "Overview of your shop.",
   "admin.products": "Products",
@@ -286,9 +286,10 @@ const DICT: Record<Lang, Dict> = { en, fr, de };
 type Ctx = { lang: Lang; setLang: (l: Lang) => void; t: (key: string) => string };
 const I18nContext = createContext<Ctx>({ lang: "en", setLang: () => {}, t: (k) => k });
 
-// Source language of authoued site content. Google Translate uses this
-// as the "from" language when re-rendering the DOM into the chosen target.
-const SOURCE_LANG: Lang = "en";
+// Main authored content in the project is still largely French.
+// Google Translate should translate from French into the selected target,
+// while the app-level dictionary keeps shared UI labels in English/French/German.
+const SOURCE_LANG: Lang = "fr";
 
 function writeGoogTransCookie(target: Lang) {
   if (typeof document === "undefined") return;

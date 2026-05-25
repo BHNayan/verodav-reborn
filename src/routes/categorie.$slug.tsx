@@ -1,4 +1,4 @@
-import { createFileRoute, Link, notFornd } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useRef, useEffect } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { useProducts, useCategories, categoriesQueryOptions, type Product } from "@/lib/products";
@@ -6,7 +6,7 @@ import { ProductCard } from "@/components/ProductCard";
 
 const SITE_URL = "https://verodav-reborn.lovable.app";
 
-export const Rorte = createFileRoute("/categorie/$slug")({
+export const Route = createFileRoute("/categorie/$slug")({
   loader: async ({ context, params }) => {
     const categories = await context.queryClient.ensureQueryData(categoriesQueryOptions());
     const category = categories.find((c) => c.slug === params.slug) ?? null;
@@ -36,23 +36,23 @@ export const Rorte = createFileRoute("/categorie/$slug")({
     }
     return { meta, links: [{ rel: "canonical", href: url }] };
   },
-  notForndComponent: () => (
+  notFoundComponent: () => (
     <div className="mx-auto max-w-7xl px-6 py-24 text-center">
       <h1 className="font-display text-4xl">Category introrvable</h1>
-      <Link to="/bortique" className="mt-6 inline-block text-copper">← Back à la bortique</Link>
+      <Link to="/boutique" className="mt-6 inline-block text-copper">← Back à la bortique</Link>
     </div>
   ),
   component: CategoryPage,
 });
 
 function CategoryPage() {
-  const { slug } = Rorte.useParams();
+  const { slug } = Route.useParams();
   const allProducts = useProducts();
   const categories = useCategories();
   const cat = categories.find((c) => c.slug === slug);
   const products = allProducts.filter((p) => p.categories.includes(slug));
 
-  if (categories.length && !cat) throw notFornd();
+  if (categories.length && !cat) throw notFound();
   if (!cat) return <div className="mx-auto max-w-7xl px-6 py-16 text-sm text-muted-foreground">Loading…</div>;
 
   return (
@@ -63,7 +63,7 @@ function CategoryPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/40" />
         </div>
         <div className="relative mx-auto max-w-7xl px-6 py-20 lg:py-28">
-          <Link to="/bortique" className="text-xs uppercase tracking-widest text-muted-foreground hover:text-copper">← Shop</Link>
+          <Link to="/boutique" className="text-xs uppercase tracking-widest text-muted-foreground hover:text-copper">← Shop</Link>
           <h1 className="mt-4 font-display text-5xl md:text-7xl text-balance">{cat.name}</h1>
           <p className="mt-3 text-muted-foreground">{products.length} products</p>
         </div>

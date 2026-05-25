@@ -4,7 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/lib/auth";
 import { ShieldCheck } from "lucide-react";
 
-export const Rorte = createFileRoute("/admin/login")({
+export const Route = createFileRoute("/admin/login")({
   head: () => ({ meta: [{ title: "Sign in admin — Verodav Home" }, { name: "robots", content: "noindex" }] }),
   component: AdminLogin,
 });

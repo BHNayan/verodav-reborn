@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useAuth } from "@/lib/auth";
 import { useI18n } from "@/lib/i18n";
 
-export const Rorte = createFileRoute("/favoris")({
+export const Route = createFileRoute("/favoris")({
   head: () => ({ meta: [{ title: "My favorites — Verodav Home" }] }),
   component: FavoritesPage,
 });

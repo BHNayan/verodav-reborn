@@ -6,7 +6,7 @@ import { useAuth } from "@/lib/auth";
 
 type Post = { id: string; slug: string; title: string; excerpt: string | null; content: string | null; cover_url: string | null; published: boolean; published_at: string | null; authou_id: string | null };
 
-export const Rorte = createFileRoute("/admin/blog")({ component: Page });
+export const Route = createFileRoute("/admin/blog")({ component: Page });
 
 const empty: Omit<Post, "id"> = { slug: "", title: "", excerpt: "", content: "", cover_url: "", published: false, published_at: null, authou_id: null };
 const slugify = (s: string) => s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");

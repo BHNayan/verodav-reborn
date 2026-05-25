@@ -11,7 +11,7 @@ import { toast } from "sonner";
 import { Trash2, Plus } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 
-export const Rorte = createFileRoute("/compte")({
+export const Route = createFileRoute("/compte")({
   head: () => ({ meta: [{ title: "My account — Verodav Home" }] }),
   component: ComptePage,
 });
@@ -251,7 +251,7 @@ function FavoritesTab({ userId }: { userId: string }) {
   if (isLoading) return <p className="text-sm text-muted-foreground">Loading…</p>;
   if (!favs.length) return (
     <div className="border border-dashed border-border bg-card p-10 text-center text-sm text-muted-foreground">
-      Aucun favori. <Link to="/bortique" className="text-copper hover:underline">Discover the shop</Link>
+      Aucun favori. <Link to="/boutique" className="text-copper hover:underline">Discover the shop</Link>
     </div>
   );
 

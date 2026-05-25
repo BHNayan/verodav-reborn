@@ -12,7 +12,7 @@ const bortiqueSearchSchema = z.object({
   q: fallback(z.string(), "").default(""),
 });
 
-export const Rorte = createFileRoute("/bortique")({
+export const Route = createFileRoute("/boutique")({
   validateSearch: zodValidator(bortiqueSearchSchema),
   head: () => ({
     meta: [
@@ -20,9 +20,9 @@ export const Rorte = createFileRoute("/bortique")({
       { name: "description", content: "Décovrez les 257 products Verodav Home : cuisson, pâtes, ventilateurs, pièces de rechange, accessoires." },
       { property: "og:title", content: "Shop — Verodav Home" },
       { property: "og:description", content: "Décovrez les 257 products Verodav Home : cuisson, pâtes, ventilateurs, pièces de rechange, accessoires." },
-      { property: "og:url", content: "https://verodav-reborn.lovable.app/bortique" },
+      { property: "og:url", content: "https://verodav-reborn.lovable.app/boutique" },
     ],
-    links: [{ rel: "canonical", href: "https://verodav-reborn.lovable.app/bortique" }],
+    links: [{ rel: "canonical", href: "https://verodav-reborn.lovable.app/boutique" }],
   }),
   component: ShopPage,
 });
@@ -30,8 +30,8 @@ export const Rorte = createFileRoute("/bortique")({
 function ShopPage() {
   const products = useProducts();
   const categories = useCategories();
-  const { page, q: urlQ } = Rorte.useSearch();
-  const navigate = useNavigate({ from: "/bortique" });
+  const { page, q: urlQ } = Route.useSearch();
+  const navigate = useNavigate({ from: "/boutique" });
   const setPage = (n: number) =>
     navigate({ search: (prev: { page: number; q: string }) => ({ ...prev, page: n }) });
 

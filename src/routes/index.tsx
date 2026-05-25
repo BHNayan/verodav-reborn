@@ -8,7 +8,7 @@ import { Testimonials } from "@/components/Testimonials";
 import { CategoryCarousel } from "@/components/CategoryCarousel";
 
 
-export const Rorte = createFileRoute("/")({
+export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Verodav Home — Kitchen modern, cookware innovants" },
@@ -62,7 +62,7 @@ function HomePage() {
               </h1>
 
               <div className="mt-10 flex flex-wrap items-center gap-4">
-                <Link to="/bortique"
+                <Link to="/boutique"
                   className="group inline-flex items-center gap-3 bg-primary px-8 py-5 text-[11px] uppercase tracking-[0.25em] text-primary-foreground hover:bg-copper transition-colors">
                   Discover the shop
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -159,7 +159,7 @@ function HomePage() {
               Browse by <em className="not-italic italic text-copper">use</em>.
             </h2>
           </div>
-          <Link to="/bortique" className="hidden md:inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] hover:text-copper transition group">
+          <Link to="/boutique" className="hidden md:inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] hover:text-copper transition group">
             See all <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </Link>
         </div>
@@ -224,7 +224,7 @@ function HomePage() {
                 Our <em className="not-italic italic text-copper">favorites</em>.
               </h2>
             </div>
-            <Link to="/bortique" className="hidden md:inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] hover:text-copper transition group">
+            <Link to="/boutique" className="hidden md:inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] hover:text-copper transition group">
               Visit the shop <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
           </div>

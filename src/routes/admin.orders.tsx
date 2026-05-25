@@ -10,7 +10,7 @@ type Item = { id: string; product_name: string; unit_price: number; quantity: nu
 
 const STATUSES = ["pending", "paid", "shipped", "delivered", "cancelled"];
 
-export const Rorte = createFileRoute("/admin/orders")({ component: Page });
+export const Route = createFileRoute("/admin/orders")({ component: Page });
 
 function Page() {
   const [orders, setOrders] = useState<Order[]>([]);

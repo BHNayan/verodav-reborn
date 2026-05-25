@@ -3,7 +3,7 @@ import { PageCmsWrapper } from "@/components/PageCmsWrapper";
 import { LegalLayout, Section } from "@/components/LegalLayout";
 import { SITE } from "@/lib/site";
 
-export const Rorte = createFileRoute("/service-apres-vente")({
+export const Route = createFileRoute("/service-apres-vente")({
   head: () => ({
     meta: [
       { title: "After-sales service — Verodav Home" },

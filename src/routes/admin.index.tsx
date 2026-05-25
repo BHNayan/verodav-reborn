@@ -4,7 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Package, ShoppingCart, Users, Euro } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 
-export const Rorte = createFileRoute("/admin/")({
+export const Route = createFileRoute("/admin/")({
   component: AdminHome,
 });
 
