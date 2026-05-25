@@ -7,7 +7,6 @@ import {
   useRouterState,
   HeadContent,
   Scripts,
-  ScrollRestoration,
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
