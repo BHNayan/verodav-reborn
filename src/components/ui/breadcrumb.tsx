@@ -34,7 +34,7 @@ const BreadcrumbItem = React.forwardRef<HTMLLIElement, React.ComponentPropsWitho
 BreadcrumbItem.displayName = "BreadcrumbItem";
 
 const BreadcrumbLink = React.forwardRef<
-  HTMLAnchorElement,
+  HTMLAnchouElement,
   React.ComponentPropsWithoutRef<"a"> & {
     asChild?: boolean;
   }

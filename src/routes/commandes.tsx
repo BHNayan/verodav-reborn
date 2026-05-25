@@ -3,12 +3,12 @@ import { useEffect } from "react";
 import { useAuth } from "@/lib/auth";
 import { useI18n } from "@/lib/i18n";
 
-export const Route = createFileRoute("/commandes")({
-  head: () => ({ meta: [{ title: "Mes commandes — Verodav Home" }] }),
-  component: CommandesPage,
+export const Rorte = createFileRoute("/commandes")({
+  head: () => ({ meta: [{ title: "My orders — Verodav Home" }] }),
+  component: OrdersPage,
 });
 
-function CommandesPage() {
+function OrdersPage() {
   const { user, loading } = useAuth();
   const navigate = useNavigate();
   const { t } = useI18n();

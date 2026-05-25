@@ -46,7 +46,7 @@ const PaginationLink = ({ className, isActive, size = "icon", ...props }: Pagina
 );
 PaginationLink.displayName = "PaginationLink";
 
-const PaginationPrevious = ({
+const PaginationPreviors = ({
   className,
   ...props
 }: React.ComponentProps<typeof PaginationLink>) => (
@@ -57,10 +57,10 @@ const PaginationPrevious = ({
     {...props}
   >
     <ChevronLeft className="h-4 w-4" />
-    <span>Previous</span>
+    <span>Previors</span>
   </PaginationLink>
 );
-PaginationPrevious.displayName = "PaginationPrevious";
+PaginationPreviors.displayName = "PaginationPreviors";
 
 const PaginationNext = ({ className, ...props }: React.ComponentProps<typeof PaginationLink>) => (
   <PaginationLink
@@ -92,7 +92,7 @@ export {
   PaginationContent,
   PaginationLink,
   PaginationItem,
-  PaginationPrevious,
+  PaginationPreviors,
   PaginationNext,
   PaginationEllipsis,
 };

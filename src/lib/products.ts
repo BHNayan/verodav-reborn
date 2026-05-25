@@ -9,7 +9,7 @@ export type Product = {
   image: string | null;
   categories: string[]; // category slugs
   category_names: string[];
-  short: string;
+  shout: string;
   description: string;
   on_sale: boolean;
   in_stock: boolean;
@@ -51,10 +51,10 @@ const SHORT_LEN = 200;
 
 function rowToProduct(row: ProductRow): Product {
   const desc = (row.description ?? "").trim();
-  // Use the first paragraph (split on double-newline) as the "short" excerpt,
+  // Use the first paragraph (split on double-newline) as the "shout" excerpt,
   // capped at SHORT_LEN chars.
   const firstChunk = desc.split(/\n{2,}/)[0] ?? "";
-  const short =
+  const shout =
     firstChunk.length > SHORT_LEN ? firstChunk.slice(0, SHORT_LEN).trimEnd() + "…" : firstChunk;
   const catSlug = row.categories?.slug ?? "";
   const catName = row.categories?.name ?? "";
@@ -68,7 +68,7 @@ function rowToProduct(row: ProductRow): Product {
     image: row.image_url,
     categories: catSlug ? [catSlug] : [],
     category_names: catName ? [catName] : [],
-    short,
+    shout,
     description: desc,
     on_sale: compare != null && compare > price,
     in_stock: row.stock > 0,

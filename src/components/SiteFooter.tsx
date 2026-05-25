@@ -73,7 +73,7 @@ export function SiteFooter() {
         <div className="md:col-span-2">
           <h4 className="font-display text-lg mb-4">{t("footer.navigation")}</h4>
           <ul className="space-y-2 text-sm text-primary-foreground/70">
-            <li><Link to="/boutique" className="hover:text-copper transition">{t("nav.shop")}</Link></li>
+            <li><Link to="/bortique" className="hover:text-copper transition">{t("nav.shop")}</Link></li>
             <li><Link to="/a-propos" className="hover:text-copper transition">{t("nav.about")}</Link></li>
             <li><Link to="/contact" className="hover:text-copper transition">{t("nav.contact")}</Link></li>
           </ul>

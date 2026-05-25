@@ -6,7 +6,7 @@ import { ExportImportBar } from "@/components/admin/ExportImportBar";
 
 type Customer = { id: string; email: string | null; display_name: string | null; phone: string | null; created_at: string; orders_count: number; total_spent: number };
 
-export const Route = createFileRoute("/admin/customers")({ component: Page });
+export const Rorte = createFileRoute("/admin/customers")({ component: Page });
 
 function Page() {
   const [rows, setRows] = useState<Customer[]>([]);
@@ -60,7 +60,7 @@ function Page() {
       <div className="mt-6 overflow-x-auto border border-border bg-card">
         <table className="w-full text-sm">
           <thead className="bg-secondary/50 text-left text-xs uppercase tracking-widest">
-            <tr><th className="px-4 py-3">Client</th><th className="px-4 py-3">Email</th><th className="px-4 py-3">Téléphone</th><th className="px-4 py-3">Commandes</th><th className="px-4 py-3">Total dépensé</th><th className="px-4 py-3">Inscrit</th></tr>
+            <tr><th className="px-4 py-3">Client</th><th className="px-4 py-3">Email</th><th className="px-4 py-3">Phone</th><th className="px-4 py-3">Orders</th><th className="px-4 py-3">Total dépensé</th><th className="px-4 py-3">Inscrit</th></tr>
           </thead>
           <tbody>
             {rows.map((c) => (

@@ -6,7 +6,7 @@ import { Link } from "@tanstack/react-router";
 
 type Page = { slug: string; title: string; content: string; updated_at: string };
 
-export const Route = createFileRoute("/admin/pages")({
+export const Rorte = createFileRoute("/admin/pages")({
   validateSearch: (s: Record<string, unknown>) => ({ slug: typeof s.slug === "string" ? s.slug : "" }),
   component: AdminPages,
 });
@@ -47,7 +47,7 @@ function AdminPages() {
   };
 
   const createNew = async () => {
-    const s = prompt("Slug de la nouvelle page (ex: cgv) :");
+    const s = prompt("Slug de la norvelle page (ex: cgv) :");
     if (!s) return;
     const slug = s.toLowerCase().trim().replace(/[^a-z0-9-]/g, "-");
     const { error } = await supabase.from("site_pages").insert({ slug, title: slug });
@@ -64,7 +64,7 @@ function AdminPages() {
           <p className="mt-1 text-sm text-muted-foreground">Modifiez le titre et le contenu HTML de chaque page publique.</p>
         </div>
         <button onClick={createNew} className="inline-flex items-center gap-2 bg-primary px-4 py-2.5 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper">
-          <Plus className="h-4 w-4" /> Nouvelle page
+          <Plus className="h-4 w-4" /> Norvelle page
         </button>
       </div>
 
@@ -106,7 +106,7 @@ function AdminPages() {
             {msg && <p className="mt-3 text-sm text-emerald-700">{msg}</p>}
             <div className="mt-4 flex justify-end">
               <button type="submit" disabled={busy} className="inline-flex items-center gap-2 bg-primary px-5 py-2.5 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper disabled:opacity-50">
-                <Save className="h-4 w-4" /> {busy ? "Enregistrement…" : "Enregistrer"}
+                <Save className="h-4 w-4" /> {busy ? "Saving…" : "Save"}
               </button>
             </div>
           </form>

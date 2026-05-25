@@ -17,7 +17,7 @@ export function ProductCard({ p, eager = false }: { p: Product; eager?: boolean 
             alt={p.name}
             loading={eager ? "eager" : "lazy"}
             referrerPolicy="no-referrer"
-            className="h-full w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.06]"
+            className="h-full w-full object-cover transition-transform duration-[900ms] ease-ort group-hover:scale-[1.06]"
           />
         ) : (
           <div className="h-full w-full flex items-center justify-center text-muted-foreground text-xs">—</div>

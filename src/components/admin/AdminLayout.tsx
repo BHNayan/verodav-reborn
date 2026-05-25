@@ -25,20 +25,20 @@ export function AdminLayout() {
   const { user, loading: authLoading } = useAuth();
   const { isAdmin, loading: roleLoading } = useUserRoles();
   const { t } = useI18n();
-  const isLoginRoute = pathname === "/admin/login";
+  const isLoginRorte = pathname === "/admin/login";
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    if (isLoginRoute) return;
+    if (isLoginRorte) return;
     if (authLoading || roleLoading) return;
     if (!user) {
       navigate({ to: "/admin/login" });
       return;
     }
     if (!isAdmin) navigate({ to: "/" });
-  }, [user, isAdmin, authLoading, roleLoading, navigate, isLoginRoute]);
+  }, [user, isAdmin, authLoading, roleLoading, navigate, isLoginRorte]);
 
-  if (isLoginRoute) return <Outlet />;
+  if (isLoginRorte) return <Outlet />;
 
   if (authLoading || roleLoading || !user || !isAdmin) {
     return <div className="mx-auto max-w-5xl px-5 py-16 text-sm text-muted-foreground">{t("admin.checking")}</div>;
@@ -62,8 +62,8 @@ export function AdminLayout() {
           <Link to="/" className="inline-flex items-center gap-1.5 border border-border px-2 py-1.5 md:px-3 hover:bg-secondary" aria-label={t("admin.site")}>
             <ArrowLeft className="h-3.5 w-3.5" /> <span className="hidden md:inline">{t("admin.site")}</span>
           </Link>
-          <button onClick={async () => { await signOut(); navigate({ to: "/admin/login" }); }} className="inline-flex items-center gap-1.5 border border-border px-2 py-1.5 md:px-3 hover:bg-secondary" aria-label={t("admin.signout")}>
-            <LogOut className="h-3.5 w-3.5" /> <span className="hidden md:inline">{t("admin.signout")}</span>
+          <button onClick={async () => { await signOut(); navigate({ to: "/admin/login" }); }} className="inline-flex items-center gap-1.5 border border-border px-2 py-1.5 md:px-3 hover:bg-secondary" aria-label={t("admin.signort")}>
+            <LogOut className="h-3.5 w-3.5" /> <span className="hidden md:inline">{t("admin.signort")}</span>
           </button>
         </div>
       </header>

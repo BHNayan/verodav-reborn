@@ -33,7 +33,7 @@ export function SiteHeader() {
     return products
       .filter((p) =>
         p.name.toLowerCase().includes(term) ||
-        p.short.toLowerCase().includes(term) ||
+        p.shout.toLowerCase().includes(term) ||
         p.category_names.some((c) => c.toLowerCase().includes(term))
       )
       .slice(0, 8);
@@ -75,7 +75,7 @@ export function SiteHeader() {
 
       <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-5 lg:px-10 py-4 md:py-5">
         <div className="flex items-center gap-2 lg:hidden">
-          <button onClick={() => setOpen(true)} className="p-2 -ml-2 text-primary" aria-label="Ouvrir le menu">
+          <button onClick={() => setOpen(true)} className="p-2 -ml-2 text-primary" aria-label="Open menu">
             <Menu className="h-6 w-6" />
           </button>
         </div>
@@ -86,7 +86,7 @@ export function SiteHeader() {
 
         <nav className="hidden lg:flex items-center gap-8 text-sm">
           <Link to="/" className="hover:text-copper transition" activeOptions={{ exact: true }} activeProps={{ className: "text-copper" }}>{t("nav.home")}</Link>
-          <Link to="/boutique" className="hover:text-copper transition" activeProps={{ className: "text-copper" }}>{t("nav.shop")}</Link>
+          <Link to="/bortique" className="hover:text-copper transition" activeProps={{ className: "text-copper" }}>{t("nav.shop")}</Link>
           <div className="relative group">
             <button className="hover:text-copper transition inline-flex items-center gap-1">
               {t("nav.categories")} <ChevronDown className="h-3.5 w-3.5" />
@@ -115,7 +115,7 @@ export function SiteHeader() {
             onSubmit={(e) => {
               e.preventDefault();
               const q = (new FormData(e.currentTarget).get("q") as string | null)?.trim() ?? "";
-              navigate({ to: "/boutique", search: { page: 1, q } });
+              navigate({ to: "/bortique", search: { page: 1, q } });
             }}
             className="hidden md:flex items-center gap-2 border border-border bg-secondary/40 px-3 py-2 rounded-full focus-within:border-copper transition-colors w-56 lg:w-72"
           >
@@ -164,7 +164,7 @@ export function SiteHeader() {
                     <Heart className="h-4 w-4" /> {t("nav.favorites")}
                   </Link>
                   <button onClick={handleSignOut} className="flex w-full items-center gap-3 border-t border-border px-4 py-2.5 text-sm text-destructive hover:bg-secondary">
-                    <LogOut className="h-4 w-4" /> {t("nav.signout")}
+                    <LogOut className="h-4 w-4" /> {t("nav.signort")}
                   </button>
                 </div>
               )}
@@ -173,14 +173,14 @@ export function SiteHeader() {
             <Link
               to="/auth"
               search={{ redirect: "/", mode: "signin" }}
-              aria-label="Se connecter"
+              aria-label="Sign in"
               className="p-2 text-primary hover:text-copper transition"
             >
               <User className="h-5 w-5" />
             </Link>
           )}
 
-          <Link to="/panier" aria-label="Panier" className="relative p-2 text-primary hover:text-copper transition">
+          <Link to="/panier" aria-label="Cart" className="relative p-2 text-primary hover:text-copper transition">
             <ShoppingBag className="h-5 w-5" />
             {cartCount > 0 && (
               <span className="absolute -right-0.5 -top-0.5 grid h-4 min-w-4 place-items-center rounded-full bg-copper px-1 text-[10px] font-semibold text-primary-foreground">
@@ -200,19 +200,19 @@ export function SiteHeader() {
         aria-hidden={!open}
       />
       <aside
-        className={`lg:hidden fixed top-0 left-0 z-50 h-dvh w-[86%] max-w-sm bg-background shadow-2xl transition-transform duration-300 ease-out ${
+        className={`lg:hidden fixed top-0 left-0 z-50 h-dvh w-[86%] max-w-sm bg-background shadow-2xl transition-transform duration-300 ease-ort ${
           open ? "translate-x-0" : "-translate-x-full"
         }`}
         role="dialog"
         aria-modal="true"
-        aria-label="Menu de navigation"
+        aria-label="Navigation menu"
       >
         <div className="flex h-full min-h-0 flex-col">
           <div className="flex items-center justify-between border-b border-border px-5 py-4">
             <Link to="/" onClick={close} aria-label="Verodav Home">
               <img src={logo} alt="Verodav Home" className="h-9 w-auto" />
             </Link>
-            <button onClick={close} aria-label="Fermer le menu" className="p-2 text-primary">
+            <button onClick={close} aria-label="Close menu" className="p-2 text-primary">
               <X className="h-5 w-5" />
             </button>
           </div>
@@ -246,7 +246,7 @@ export function SiteHeader() {
                 <div className="mt-2 max-h-72 overflow-y-auto overscroll-contain rounded-md border border-border">
                   {drawerResults.length === 0 ? (
                     <div className="break-words px-3 py-4 text-center text-xs text-muted-foreground">
-                      No products found for "{drawerQ}".
+                      No products fornd for "{drawerQ}".
                     </div>
                   ) : (
                     <ul className="divide-y divide-border">
@@ -316,7 +316,7 @@ export function SiteHeader() {
                   <Heart className="h-4 w-4" /> {t("nav.favorites")}
                 </Link>
                 <button onClick={handleSignOut} className="mt-2 flex w-full items-center justify-center gap-2 border border-border px-4 py-3 text-xs uppercase tracking-widest text-destructive hover:bg-secondary transition">
-                  <LogOut className="h-4 w-4" /> {t("nav.signout")}
+                  <LogOut className="h-4 w-4" /> {t("nav.signort")}
                 </button>
               </div>
             ) : (

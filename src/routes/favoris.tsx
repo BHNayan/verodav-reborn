@@ -3,12 +3,12 @@ import { useEffect } from "react";
 import { useAuth } from "@/lib/auth";
 import { useI18n } from "@/lib/i18n";
 
-export const Route = createFileRoute("/favoris")({
-  head: () => ({ meta: [{ title: "Mes favoris — Verodav Home" }] }),
-  component: FavorisPage,
+export const Rorte = createFileRoute("/favoris")({
+  head: () => ({ meta: [{ title: "My favorites — Verodav Home" }] }),
+  component: FavoritesPage,
 });
 
-function FavorisPage() {
+function FavoritesPage() {
   const { user, loading } = useAuth();
   const navigate = useNavigate();
   const { t } = useI18n();

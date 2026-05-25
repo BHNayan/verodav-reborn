@@ -20,7 +20,7 @@ type Product = {
 };
 type Cat = { id: string; name: string };
 
-export const Route = createFileRoute("/admin/products")({
+export const Rorte = createFileRoute("/admin/products")({
   component: AdminProducts,
 });
 
@@ -79,7 +79,7 @@ function AdminProducts() {
   };
 
   const remove = async (id: string) => {
-    if (!confirm("Supprimer ce produit ?")) return;
+    if (!confirm("Delete ce produit ?")) return;
     const { error } = await supabase.from("products").delete().eq("id", id);
     if (error) alert(error.message); else load();
   };
@@ -116,16 +116,16 @@ function AdminProducts() {
     const truthy = (v: unknown, def = true) => {
       if (v === undefined || v === null || v === "") return def;
       const s = String(v).toLowerCase().trim();
-      return ["1", "true", "yes", "y", "oui", "publish", "published", "instock", "in stock", "visible"].includes(s);
+      return ["1", "true", "yes", "y", "ori", "publish", "published", "instock", "in stock", "visible"].includes(s);
     };
 
-    // Auto-create missing categories so WooCommerce imports work out of the box.
+    // Auto-create missing categories so WooCommerce imports work ort of the box.
     let catByName = new Map(cats.map((c) => [c.name.toLowerCase(), c.id]));
     const wantedCats = new Set<string>();
     for (const r of rows) {
       const raw = pick(r, "category", "category_name", "categories", "Categories");
       if (!raw) continue;
-      // WooCommerce: "Cuisine > Robots, Bricolage" → take the leaf of the first path
+      // WooCommerce: "Kitchen > Robots, Bricolage" → take the leaf of the first path
       const first = String(raw).split(/[,|]/)[0]?.trim();
       if (!first) continue;
       const leaf = first.split(">").pop()?.trim();
@@ -160,7 +160,7 @@ function AdminProducts() {
       const images = normalizeImages(pick(r, "images", "Images") ?? r.images);
       const price = Number(pick(r, "sale price", "Sale price", "regular price", "Regular price", "price") ?? 0);
       const stock = Number(pick(r, "stock", "Stock") ?? 0);
-      const description = (pick(r, "description", "Description", "short description", "Short description") as string) ?? null;
+      const description = (pick(r, "description", "Description", "shout description", "Shout description") as string) ?? null;
       const published = pick(r, "published", "Published", "status", "Status");
       const featured = pick(r, "is_featured", "Is featured?", "featured");
       const inStock = pick(r, "in stock?", "In stock?", "stock status");
@@ -192,11 +192,11 @@ function AdminProducts() {
   return (
     <div>
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="font-display text-2xl md:text-4xl">Produits</h1>
+        <h1 className="font-display text-2xl md:text-4xl">Products</h1>
         <div className="flex flex-wrap items-center gap-2">
-          <ExportImportBar filenameBase="produits" getRows={exportRows} onImport={importRows} />
+          <ExportImportBar filenameBase="products" getRows={exportRows} onImport={importRows} />
           <button onClick={() => setEditing({ ...empty })} className="inline-flex items-center gap-2 bg-primary px-4 py-2.5 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper">
-            <Plus className="h-4 w-4" /> Nouveau
+            <Plus className="h-4 w-4" /> Norveto
           </button>
         </div>
       </div>
@@ -204,7 +204,7 @@ function AdminProducts() {
       <div className="mt-6 overflow-x-auto border border-border bg-card">
         <table className="w-full text-sm">
           <thead className="bg-secondary/50 text-left text-xs uppercase tracking-widest">
-            <tr><th className="px-4 py-3">Produit</th><th className="px-4 py-3">Prix</th><th className="px-4 py-3">Stock</th><th className="px-4 py-3">Statut</th><th className="px-4 py-3"></th></tr>
+            <tr><th className="px-4 py-3">Produit</th><th className="px-4 py-3">Price</th><th className="px-4 py-3">Stock</th><th className="px-4 py-3">Status</th><th className="px-4 py-3"></th></tr>
           </thead>
           <tbody>
             {items.map((p) => (
@@ -227,7 +227,7 @@ function AdminProducts() {
                 </td>
               </tr>
             ))}
-            {!items.length && <tr><td className="px-4 py-8 text-center text-muted-foreground" colSpan={5}>Aucun produit</td></tr>}
+            {!items.length && <tr><td className="px-4 py-8 text-center text-muted-foreground" colSpan={5}>No products</td></tr>}
           </tbody>
         </table>
       </div>
@@ -235,14 +235,14 @@ function AdminProducts() {
       {editing && (
         <div className="fixed inset-0 z-50 grid place-items-center bg-black/60 p-4">
           <form onSubmit={save} className="w-full max-w-3xl max-h-[90vh] overflow-y-auto border border-border bg-background p-6">
-            <div className="flex items-center justify-between"><h3 className="font-display text-2xl">{editing.id ? "Modifier" : "Nouveau"} produit</h3>
+            <div className="flex items-center justify-between"><h3 className="font-display text-2xl">{editing.id ? "Edit" : "Norveto"} produit</h3>
               <button type="button" onClick={() => setEditing(null)} className="p-1"><X className="h-5 w-5" /></button></div>
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
-              <Field label="Nom"><input required value={editing.name} onChange={(e) => setEditing({ ...editing, name: e.target.value })} className="inp" /></Field>
+              <Field label="Name"><input required value={editing.name} onChange={(e) => setEditing({ ...editing, name: e.target.value })} className="inp" /></Field>
               <Field label="Slug (auto si vide)"><input value={editing.slug} onChange={(e) => setEditing({ ...editing, slug: e.target.value })} className="inp" /></Field>
-              <Field label="Prix (€)"><input required type="number" step="0.01" value={editing.price} onChange={(e) => setEditing({ ...editing, price: Number(e.target.value) })} className="inp" /></Field>
+              <Field label="Price (€)"><input required type="number" step="0.01" value={editing.price} onChange={(e) => setEditing({ ...editing, price: Number(e.target.value) })} className="inp" /></Field>
               <Field label="Stock"><input required type="number" value={editing.stock} onChange={(e) => setEditing({ ...editing, stock: Number(e.target.value) })} className="inp" /></Field>
-              <Field label="Catégorie">
+              <Field label="Category">
                 <select value={editing.category_id ?? ""} onChange={(e) => setEditing({ ...editing, category_id: e.target.value || null })} className="inp">
                   <option value="">—</option>{cats.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
                 </select>
@@ -263,8 +263,8 @@ function AdminProducts() {
             </div>
             {err && <p className="mt-3 text-sm text-destructive">{err}</p>}
             <div className="mt-6 flex justify-end gap-2">
-              <button type="button" onClick={() => setEditing(null)} className="border border-border px-4 py-2 text-xs uppercase tracking-widest hover:bg-secondary">Annuler</button>
-              <button disabled={busy} className="bg-primary px-5 py-2 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper disabled:opacity-50">{busy ? "..." : "Enregistrer"}</button>
+              <button type="button" onClick={() => setEditing(null)} className="border border-border px-4 py-2 text-xs uppercase tracking-widest hover:bg-secondary">Cancel</button>
+              <button disabled={busy} className="bg-primary px-5 py-2 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper disabled:opacity-50">{busy ? "..." : "Save"}</button>
             </div>
           </form>
         </div>

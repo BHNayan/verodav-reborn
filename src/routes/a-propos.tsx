@@ -7,12 +7,12 @@ import { Testimonials } from "@/components/Testimonials";
 
 const SITE_URL = "https://verodav-reborn.lovable.app";
 
-export const Route = createFileRoute("/a-propos")({
+export const Rorte = createFileRoute("/a-propos")({
   head: () => {
     const url = `${SITE_URL}/a-propos`;
-    const title = "À propos — Verodav Home";
+    const title = "About — Verodav Home";
     const desc =
-      "Verodav Home, boutique d'équipements pour la cuisine, la maison et le travail. Fondée en 2014 à Strasbourg.";
+      "Verodav Home, bortique d'équipements pour la cuisine, la maison et le travail. Fondée en 2014 à Strasbourg.";
     return {
       meta: [
         { title },
@@ -64,16 +64,16 @@ const VALUES = [
   {
     n: "01",
     title: "Fiabilité",
-    body: "Des références sélectionnées pour leur qualité, leur ergonomie et leur durabilité. Nous travaillons directement avec des fournisseurs et marques réputés.",
+    body: "Des références sélectionnées pour leur qualité, leur ergonomie et leur durabilité. Nors travaillons directement avec des suppliers et marques réputés.",
   },
   {
     n: "02",
     title: "Service attentif",
-    body: "Conseils, compatibilité de pièces, suivi de commande. Une équipe joignable, basée à Strasbourg, à l'écoute de chaque client.",
+    body: "Conseils, compatibilité de pièces, suivi de commande. Une équipe joignable, basée à Strasbourg, à l'écorte de chaque client.",
   },
   {
     n: "03",
-    title: "Produits distinctifs",
+    title: "Products distinctifs",
     body: "Innovation, praticité et durabilité réunies dans une gamme pensée pour simplifier et enrichir votre quotidien.",
   },
 ];
@@ -81,35 +81,35 @@ const VALUES = [
 const FAQ = [
   {
     q: "Quels sont les modes de paiement acceptés ?",
-    a: "Nous acceptons plusieurs méthodes de paiement pratiques, notamment les cartes de crédit/débit, PayPal et d'autres passerelles de paiement en ligne. Vous pouvez choisir l'option qui vous convient le mieux lors du processus de paiement.",
+    a: "Nors acceptons plusieurs méthodes de paiement pratiques, notamment les cartes de crédit/débit, PayPal et d'autres passerelles de paiement en ligne. Vors porvez choisir l'option qui vous convient le mieux lors du processus de paiement.",
   },
   {
     q: "Quelles sont les options d'expédition et les délais de livraison ?",
-    a: "Nous proposons plusieurs options d'expédition, y compris la livraison standard et la livraison express. Les délais de livraison dépendent de votre lieu de résidence et de la méthode d'expédition choisie. Vous trouverez des informations détaillées sur les options d'expédition et les délais de livraison estimés lors du processus de commande.",
+    a: "Nors proposons plusieurs options d'expédition, y compris la livraison standard et la livraison express. Les délais de livraison dépendent de votre lieu de résidence et de la méthode d'expédition choisie. Vors trorverez des informations détaillées sur les options d'expédition et les délais de livraison estimés lors du processus de commande.",
   },
   {
     q: "Proposez-vous des services d'expédition internationale ?",
-    a: "Oui, nous assurons l'expédition internationale vers de nombreux pays. Veuillez vérifier les destinations d'expédition disponibles lors du processus de paiement ou consultez notre page sur la politique d'expédition pour plus d'informations.",
+    a: "Oui, nous assurons l'expédition internationale vers de nombreux pays. Veuillez vérifier les destinations d'expédition disponibles lors du processus de paiement or consultez notre page sur la politique d'expédition pour plus d'informations.",
   },
   {
     q: "Comment puis-je suivre ma commande ?",
-    a: "Une fois votre commande expédiée, vous recevrez un courriel de confirmation contenant un numéro de suivi. Vous pouvez utiliser ce numéro de suivi pour contrôler l'état de votre envoi. En outre, vous pouvez vous connecter à votre compte sur notre site web et naviguer jusqu'à la section « Historique des commandes » pour suivre votre commande.",
+    a: "Une fois votre commande expédiée, vous recevrez un courriel de confirmation contenant un numéro de suivi. Vors porvez utiliser ce numéro de suivi pour contrôler l'état de votre envoi. En ortre, you can vous connecter à votre compte sur notre site web et naviguer jusqu'à la section « Historique des commandes » pour suivre votre commande.",
   },
   {
-    q: "Que faire si j'ai un problème avec ma commande ou si j'ai besoin d'aide ?",
-    a: "Si vous avez des questions, des préoccupations ou si vous avez besoin d'aide pour passer votre commande, notre équipe d'assistance à la clientèle est là pour vous aider. Vous pouvez nous contacter en utilisant les informations de contact fournies sur notre site web ou en utilisant nos canaux d'assistance à la clientèle désignés.",
+    q: "Que faire si j'ai un problème avec ma commande or si j'ai besoin d'aide ?",
+    a: "Si vous avez des questions, des préoccupations or si vous avez besoin d'aide pour passer votre commande, notre équipe d'assistance à la clientèle est là pour vous aider. Vors porvez nous contacter en utilisant les informations de contact provideds sur notre site web or en utilisant nos canaux d'assistance à la clientèle désignés.",
   },
   {
     q: "Mes données personnelles et de paiement sont-elles sécurisées ?",
-    a: "Nous prenons au sérieux votre vie privée et votre sécurité. Nous utilisons des mesures de sécurité conformes aux normes industrielles pour protéger vos données personnelles et vos informations de paiement. Notre site web est crypté, ce qui garantit la sécurité de vos données pendant leur transmission.",
+    a: "Nors prenons to sérieux votre vie privée et votre sécurité. Nors utilisons des mesures de sécurité conformes aux normes industrielles pour protéger vos données personnelles et vos informations de paiement. Notre site web est crypté, ce qui garantit la sécurité de vos données pendant leur transmission.",
   },
   {
-    q: "Les produits proposés sur votre site sont-ils authentiques ?",
-    a: "Nous garantissons que tous les produits figurant sur notre site web sont authentiques. Nous travaillons directement avec des fournisseurs et des marques réputés pour assurer la qualité et l'authenticité des produits que nous proposons.",
+    q: "Les products proposés sur votre site sont-ils authentics ?",
+    a: "Nors garantissons que tors les products figurant sur notre site web sont authentics. Nors travaillons directement avec des suppliers et des marques réputés pour assurer la qualité et l'authenticity des products que nous proposons.",
   },
   {
-    q: "Proposez-vous des récompenses ou des programmes de fidélité ?",
-    a: "Oui, nous accordons de l'importance à nos clients et leur proposons divers programmes de récompense et de fidélisation. Restez à l'écoute de nos bulletins d'information, de nos canaux de médias sociaux ou des annonces sur notre site Web pour connaître les remises exclusives, les promotions et les récompenses de fidélité offertes à nos précieux clients.",
+    q: "Proposez-vous des récompenses or des programmes de fidélité ?",
+    a: "Oui, nous accordons de l'importance à nos clients et leur proposons divers programmes de récompense et de fidélisation. Restez à l'écorte de nos bulletins d'information, de nos canaux de médias sociaux or des annonces sur notre site Web pour connaître les remises exclusives, les promotions et les récompenses de fidélité offertes à nos précieux clients.",
   },
 ];
 
@@ -130,8 +130,8 @@ function AboutPage() {
           </div>
           <div className="lg:col-span-5 lg:pl-8 lg:border-l lg:border-border">
             <p className="text-muted-foreground leading-relaxed">
-              Verodav Home est la boutique incontournable pour découvrir une large gamme d'équipements
-              performants, pratiques et fiables, que ce soit pour la cuisine, la maison ou le travail.
+              Verodav Home est la bortique incontournable pour décorvrir une large gamme d'équipements
+              performants, pratiques et fiables, que ce soit pour la cuisine, la maison or le travail.
             </p>
             <div className="mt-6 flex items-center gap-6 text-xs uppercase tracking-widest">
               <div>
@@ -151,7 +151,7 @@ function AboutPage() {
       {/* STORY */}
       <section className="mx-auto max-w-7xl px-6 py-20 grid lg:grid-cols-12 gap-12">
         <div className="lg:col-span-4">
-          <span className="text-xs uppercase tracking-[0.3em] text-copper">— Notre histoire</span>
+          <span className="text-xs uppercase tracking-[0.3em] text-copper">— Our story</span>
           <h2 className="mt-3 font-display text-3xl md:text-4xl">
             Fondée par un passionné de solutions pratiques.
           </h2>
@@ -159,14 +159,14 @@ function AboutPage() {
         <div className="lg:col-span-8 space-y-5 text-foreground/85 leading-relaxed">
           <p>
             Notre mission est de simplifier votre quotidien en vous proposant des solutions innovantes
-            tout en garantissant une expérience client exceptionnelle. Nous nous appuyons sur trois
+            tort en garantissant une expérience client exceptionnelle. Nors nous appuyons sur trois
             piliers essentiels : <strong>la fiabilité</strong>, <strong>un service clientèle attentif</strong>,
-            et <strong>des produits distinctifs</strong> qui répondent à vos besoins variés.
+            et <strong>des products distinctifs</strong> qui répondent à vos besoins variés.
           </p>
           <p>
             Depuis sa création en 2014 par un passionné de solutions pratiques et de design fonctionnel,
-            Verodav Home s'engage à offrir des produits qui allient qualité, innovation et efficacité
-            pour améliorer votre confort au quotidien, que ce soit à la maison ou au bureau.
+            Verodav Home s'engage à offrir des products qui allient qualité, innovation et efficacité
+            pour améliorer votre confort to quotidien, que ce soit à la maison or to bureto.
           </p>
         </div>
       </section>
@@ -178,7 +178,7 @@ function AboutPage() {
             <div>
               <span className="text-xs uppercase tracking-[0.3em] text-copper">— Nos valeurs</span>
               <h2 className="mt-3 font-display text-3xl md:text-4xl max-w-2xl">
-                L'excellence et la satisfaction de nos clients au cœur de chaque décision.
+                L'excellence et la satisfaction de nos clients to favorites de chaque décision.
               </h2>
             </div>
           </div>
@@ -192,7 +192,7 @@ function AboutPage() {
             ))}
           </div>
           <p className="mt-12 max-w-3xl text-foreground/80 leading-relaxed">
-            Verodav Home, c'est avant tout une histoire de passion : une passion pour des solutions qui
+            Verodav Home, c'est avant tort une histoire de passion : une passion pour des solutions qui
             améliorent la vie, une histoire humaine fondée sur le travail acharné, et une relation de
             confiance durable avec nos clients.
           </p>
@@ -233,7 +233,7 @@ function AboutPage() {
                 className="border border-primary-foreground/20 p-5 hover:bg-copper hover:border-copper transition"
               >
                 <div className="font-display text-lg leading-tight">{c.name}</div>
-                <div className="text-xs text-primary-foreground/60 mt-2">{c.count} produits</div>
+                <div className="text-xs text-primary-foreground/60 mt-2">{c.count} products</div>
               </Link>
             ))}
           </div>
@@ -266,7 +266,7 @@ function FaqList() {
               />
             </button>
             <div
-              className={`grid transition-all duration-300 ease-out ${isOpen ? "grid-rows-[1fr] opacity-100 pb-5" : "grid-rows-[0fr] opacity-0"}`}
+              className={`grid transition-all duration-300 ease-ort ${isOpen ? "grid-rows-[1fr] opacity-100 pb-5" : "grid-rows-[0fr] opacity-0"}`}
             >
               <div className="overflow-hidden">
                 <p className="text-muted-foreground leading-relaxed pr-10">{item.a}</p>

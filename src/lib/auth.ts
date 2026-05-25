@@ -24,7 +24,7 @@ export function useAuth() {
 export function displayNameOf(user: User | null | undefined) {
   if (!user) return "";
   const meta = user.user_metadata || {};
-  return meta.display_name || meta.full_name || meta.name || user.email || "Mon compte";
+  return meta.display_name || meta.full_name || meta.name || user.email || "My account";
 }
 
 export async function signOut() {

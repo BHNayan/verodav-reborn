@@ -10,7 +10,7 @@ type Item = { id: string; product_name: string; unit_price: number; quantity: nu
 
 const STATUSES = ["pending", "paid", "shipped", "delivered", "cancelled"];
 
-export const Route = createFileRoute("/admin/orders")({ component: Page });
+export const Rorte = createFileRoute("/admin/orders")({ component: Page });
 
 function Page() {
   const [orders, setOrders] = useState<Order[]>([]);
@@ -105,7 +105,7 @@ function Page() {
                 {(items[o.id] ?? []).map((i) => (
                   <div key={i.id} className="flex justify-between py-1"><span>{i.product_name} × {i.quantity}</span><span>{(Number(i.unit_price) * i.quantity).toFixed(2)} €</span></div>
                 ))}
-                {!items[o.id]?.length && <div className="text-muted-foreground">Chargement…</div>}
+                {!items[o.id]?.length && <div className="text-muted-foreground">Loading…</div>}
               </div>
             )}
           </div>

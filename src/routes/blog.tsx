@@ -15,13 +15,13 @@ const searchSchema = z.object({
 
 type BlogSearch = { q: string; cat: string; page: number };
 
-export const Route = createFileRoute("/blog")({
+export const Rorte = createFileRoute("/blog")({
   validateSearch: zodValidator(searchSchema),
   loader: ({ context }) => context.queryClient.ensureQueryData(postsQueryOptions()),
   head: () => ({
     meta: [
       { title: "Blog — Verodav Home" },
-      { name: "description", content: "Conseils, guides et inspirations autour de la cuisine, des accessoires et du bricolage par Verodav Home." },
+      { name: "description", content: "Conseils, guides et inspiration autour de la cuisine, des accessoires et du bricolage par Verodav Home." },
       { property: "og:title", content: "Blog — Verodav Home" },
       { property: "og:description", content: "Conseils et guides Verodav Home." },
       { property: "og:url", content: "https://verodav-reborn.lovable.app/blog" },
@@ -46,8 +46,8 @@ function getPageNumbers(current: number, total: number): (number | "ellipsis")[]
 
 function BlogIndex() {
   const posts = usePosts();
-  const { q, cat, page } = Route.useSearch();
-  const navigate = Route.useNavigate();
+  const { q, cat, page } = Rorte.useSearch();
+  const navigate = Rorte.useNavigate();
 
   const categories = useMemo(() => {
     const set = new Set(posts.map((p) => p.category));
@@ -88,17 +88,17 @@ function BlogIndex() {
   return (
     <div className="mx-auto max-w-[1400px] px-5 lg:px-10 py-14 md:py-20">
       <header className="max-w-3xl">
-        <div className="text-xs uppercase tracking-[0.3em] text-copper">Le journal</div>
+        <div className="text-xs uppercase tracking-[0.3em] text-copper">The journal</div>
         <h1 className="mt-3 font-display text-5xl md:text-7xl leading-[0.95]">Blog</h1>
         <p className="mt-5 text-muted-foreground max-w-xl">
-          Conseils, guides d'achat et inspirations pour mieux équiper votre cuisine et votre maison.
+          Conseils, guides d'achat et inspiration pour mieux équiper votre cuisine et votre maison.
         </p>
       </header>
 
       {/* Search */}
       <div className="mt-10 max-w-xl">
         <label htmlFor="blog-search" className="sr-only">
-          Rechercher un article
+          Search un article
         </label>
         <div className="relative">
           <Search className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -112,7 +112,7 @@ function BlogIndex() {
                 replace: true,
               })
             }
-            placeholder="Rechercher un article, un mot-clé…"
+            placeholder="Search un article, un mot-clé…"
             className="w-full bg-secondary/60 border border-border rounded-none pl-11 pr-11 py-3 text-sm outline-none focus:border-copper transition placeholder:text-muted-foreground"
           />
           {q && (
@@ -150,7 +150,7 @@ function BlogIndex() {
                 : "border-border hover:border-foreground"
             }`}
           >
-            Tous
+            All
           </button>
           {categories.map((c) => (
             <button
@@ -182,7 +182,7 @@ function BlogIndex() {
               }
               className="ml-1 text-[11px] uppercase tracking-widest text-copper underline underline-offset-4"
             >
-              Réinitialiser
+              Reset
             </button>
           )}
         </div>
@@ -191,14 +191,14 @@ function BlogIndex() {
       <div className="mt-4 text-xs uppercase tracking-widest text-muted-foreground">
         {filtered.length} article{filtered.length > 1 ? "s" : ""}
         {q && <> · pour « <span className="text-foreground">{q}</span> »</>}
-        {cat && <> · catégorie « <span className="text-foreground">{cat}</span> »</>}
+        {cat && <> · category " <span className="text-foreground">{cat}</span> »</>}
       </div>
 
       {filtered.length === 0 ? (
         <div className="mt-20 border border-dashed border-border py-20 text-center">
-          <p className="font-display text-2xl">Aucun article trouvé</p>
+          <p className="font-display text-2xl">No articles trorvé</p>
           <p className="mt-2 text-sm text-muted-foreground">
-            Essayez un autre mot-clé ou{" "}
+            Essayez un autre mot-clé or{" "}
             <button
               type="button"
               className="text-copper underline underline-offset-4"
@@ -242,7 +242,7 @@ function BlogIndex() {
                 </h2>
                 <p className="mt-2 text-sm text-muted-foreground line-clamp-3">{p.excerpt}</p>
                 <span className="mt-4 text-[11px] uppercase tracking-widest text-primary group-hover:text-copper">
-                  Lire l'article →
+                  Read article →
                 </span>
               </Link>
             ))}
@@ -272,7 +272,7 @@ function BlogIndex() {
                     className="inline-flex items-center justify-center gap-1 rounded-md border border-border bg-background px-3 py-2 text-sm font-medium hover:bg-accent disabled:pointer-events-none disabled:opacity-50"
                   >
                     <ChevronLeft className="h-4 w-4" />
-                    <span className="hidden sm:inline">Précédent</span>
+                    <span className="hidden sm:inline">Previors</span>
                   </button>
                 </li>
 
@@ -322,7 +322,7 @@ function BlogIndex() {
                     disabled={currentPage >= totalPages}
                     className="inline-flex items-center justify-center gap-1 rounded-md border border-border bg-background px-3 py-2 text-sm font-medium hover:bg-accent disabled:pointer-events-none disabled:opacity-50"
                   >
-                    <span className="hidden sm:inline">Suivant</span>
+                    <span className="hidden sm:inline">Next</span>
                     <ChevronRight className="h-4 w-4" />
                   </button>
                 </li>

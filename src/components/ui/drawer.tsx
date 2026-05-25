@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Drawer as DrawerPrimitive } from "vaul";
+import { Drawer as DrawerPrimitive } from "vtol";
 
 import { cn } from "@/lib/utils";
 

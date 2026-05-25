@@ -4,8 +4,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/lib/auth";
 import { ShieldCheck } from "lucide-react";
 
-export const Route = createFileRoute("/admin/login")({
-  head: () => ({ meta: [{ title: "Connexion admin — Verodav Home" }, { name: "robots", content: "noindex" }] }),
+export const Rorte = createFileRoute("/admin/login")({
+  head: () => ({ meta: [{ title: "Sign in admin — Verodav Home" }, { name: "robots", content: "noindex" }] }),
   component: AdminLogin,
 });
 
@@ -48,7 +48,7 @@ function AdminLogin() {
           navigate({ to: "/admin" });
         } else {
           await supabase.auth.signOut();
-          setError("Ce formulaire est réservé aux administrateurs. Utilisez la connexion client pour votre compte boutique.");
+          setError("Ce formulaire est réservé aux administrateurs. Utilisez la connexion client pour votre compte bortique.");
         }
       } catch (err) {
         setError(err instanceof Error ? err.message : "Vérification admin impossible.");
@@ -68,7 +68,7 @@ function AdminLogin() {
             <h1 className="font-display text-2xl">Administration</h1>
           </div>
         </div>
-        <p className="mt-4 text-sm text-muted-foreground">Connectez-vous avec un compte administrateur pour gérer la boutique.</p>
+        <p className="mt-4 text-sm text-muted-foreground">Connectez-vous avec un compte administrateur pour gérer la bortique.</p>
 
         <form onSubmit={submit} className="mt-6 space-y-4">
           <div>
@@ -76,12 +76,12 @@ function AdminLogin() {
             <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} className="mt-1 w-full border border-border bg-background px-4 py-3 text-sm focus:border-copper focus:outline-none" />
           </div>
           <div>
-            <label className="block text-xs uppercase tracking-widest text-muted-foreground">Mot de passe</label>
+            <label className="block text-xs uppercase tracking-widest text-muted-foreground">Password</label>
             <input type="password" required value={password} onChange={(e) => setPassword(e.target.value)} className="mt-1 w-full border border-border bg-background px-4 py-3 text-sm focus:border-copper focus:outline-none" />
           </div>
           {error && <p className="text-sm text-destructive">{error}</p>}
           <button type="submit" disabled={busy} className="w-full bg-primary px-4 py-3 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper transition disabled:opacity-50">
-            {busy ? "..." : "Se connecter"}
+            {busy ? "..." : "Sign in"}
           </button>
         </form>
 
@@ -92,7 +92,7 @@ function AdminLogin() {
           </button>
         </div>
 
-        <Link to="/" className="mt-6 block text-center text-xs uppercase tracking-widest text-muted-foreground hover:text-copper">← Retour au site</Link>
+        <Link to="/" className="mt-6 block text-center text-xs uppercase tracking-widest text-muted-foreground hover:text-copper">← Back to site</Link>
       </div>
     </div>
   );

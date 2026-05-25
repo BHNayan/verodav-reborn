@@ -8,11 +8,11 @@ import { Testimonials } from "@/components/Testimonials";
 import { CategoryCarousel } from "@/components/CategoryCarousel";
 
 
-export const Route = createFileRoute("/")({
+export const Rorte = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Verodav Home — Cuisine moderne, ustensiles innovants" },
-      { name: "description", content: "Découvrez nos ustensiles de cuisine professionnels : cuisson, pâtes, ventilateurs, accessoires. Livraison Strasbourg & France." },
+      { title: "Verodav Home — Kitchen modern, cookware innovants" },
+      { name: "description", content: "Décovrez nos cookware de cuisine professionnels : cuisson, pâtes, ventilateurs, accessoires. Shipping Strasbourg & France." },
       { property: "og:url", content: "https://verodav-reborn.lovable.app/" },
     ],
     links: [{ rel: "canonical", href: "https://verodav-reborn.lovable.app/" }],
@@ -20,7 +20,7 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
-const HERO_IMG = "https://www.verodav-home.com/wp-content/uploads/2025/11/Aide-de-Cuisine.jpg";
+const HERO_IMG = "https://www.verodav-home.com/wp-content/uploads/2025/11/Aide-de-Kitchen.jpg";
 const SLIDE_IMGS = [
   "https://www.verodav-home.com/wp-content/uploads/2025/11/shop27.jpg",
   "https://www.verodav-home.com/wp-content/uploads/2025/11/Pieces-de-rechange.jpg",
@@ -48,34 +48,34 @@ function HomePage() {
           <div className="grid lg:grid-cols-12 gap-x-10 gap-y-12 items-end">
             <div className="lg:col-span-7 z-10">
               <div className="flex items-center gap-3 text-[11px] uppercase tracking-[0.32em] text-copper">
-                <span className="h-px w-10 bg-copper" /> Maison · Cuisine · Strasbourg
+                <span className="h-px w-10 bg-copper" /> Home · Kitchen · Strasbourg
               </div>
 
               <h1 className="mt-6 font-display font-light text-[clamp(3rem,8.4vw,8.5rem)] leading-[0.92] tracking-[-0.025em] text-balance">
-                Cuisine
+                Kitchen
                 <br />
-                <span className="italic text-copper">moderne</span>,
+                <span className="italic text-copper">modern</span>,
                 <br />
-                ustensiles
+                cookware
                 <br />
-                innovants.
+                innovation.
               </h1>
 
               <div className="mt-10 flex flex-wrap items-center gap-4">
-                <Link to="/boutique"
+                <Link to="/bortique"
                   className="group inline-flex items-center gap-3 bg-primary px-8 py-5 text-[11px] uppercase tracking-[0.25em] text-primary-foreground hover:bg-copper transition-colors">
-                  Découvrir la boutique
+                  Discover the shop
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
                 <Link to="/a-propos" className="text-[11px] uppercase tracking-[0.25em] underline underline-offset-8 decoration-copper/60 hover:decoration-copper hover:text-copper transition">
-                  Notre histoire
+                  Our story
                 </Link>
               </div>
             </div>
 
             <div className="lg:col-span-5 relative">
               <div className="relative aspect-[4/5] overflow-hidden">
-                <img src={HERO_IMG} alt="Aide de cuisine Verodav" className="h-full w-full object-cover" />
+                <img src={HERO_IMG} alt="Verodav kitchen assistant" className="h-full w-full object-cover" />
                 <div className="absolute inset-0 ring-1 ring-inset ring-foreground/5" />
               </div>
               {/* floating thumbnails */}
@@ -91,7 +91,7 @@ function HomePage() {
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-copper opacity-60" />
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-copper" />
                 </span>
-                <span className="text-[10px] uppercase tracking-[0.25em]">Nouveautés en stock</span>
+                <span className="text-[10px] uppercase tracking-[0.25em]">New arrivals in stock</span>
               </div>
             </div>
           </div>
@@ -99,10 +99,10 @@ function HomePage() {
           {/* hero stats row */}
           <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-px bg-border border border-border">
             {[
-              { k: "257", v: "Références" },
-              { k: "10", v: "Catégories" },
-              { k: "20+", v: "Marques partenaires" },
-              { k: "FR", v: "Expédition Strasbourg" },
+              { k: "257", v: "References" },
+              { k: "10", v: "Categories" },
+              { k: "20+", v: "Partner brands" },
+              { k: "FR", v: "Ships from Strasbourg" },
             ].map((s) => (
               <div key={s.v} className="bg-background px-6 py-7">
                 <div className="font-display text-4xl text-copper tabular-nums">{s.k}</div>
@@ -117,7 +117,7 @@ function HomePage() {
       <section className="border-y border-border bg-primary text-primary-foreground overflow-hidden">
         <div className="flex animate-marquee whitespace-nowrap py-5 text-xs uppercase tracking-[0.4em]">
           {Array.from({ length: 2 }).flatMap((_, i) => (
-            ["Sélection rigoureuse", "Pièces de rechange", "Livraison France", "Conseils experts", "Strasbourg · 1967", "Fait pour durer"]
+            ["Carefully curated", "Spare parts", "Delivery in France", "Expert advice", "Strasbourg · 1967", "Built to last"]
               .map((t, j) => (
                 <span key={`${i}-${j}`} className="mx-10 flex items-center gap-10">
                   {t} <Sparkles className="h-3 w-3 text-copper" />
@@ -131,9 +131,9 @@ function HomePage() {
       <section className="bg-card">
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-16 grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-border">
           {[
-            { icon: Truck, title: "Livraison France", text: "Expédition rapide depuis Strasbourg en 48–72h." },
-            { icon: ShieldCheck, title: "Qualité garantie", text: "Outils sélectionnés pour leur fiabilité et durabilité." },
-            { icon: Wrench, title: "Pièces de rechange", text: "Service après-vente et compatibilité long terme." },
+            { icon: Truck, title: "Delivery in France", text: "Fast shipping from Strasbourg in 48–72h." },
+            { icon: ShieldCheck, title: "Guaranteed quality", text: "Tools chosen for their reliability and durability." },
+            { icon: Wrench, title: "Spare parts", text: "After-sales service and long-term compatibility." },
           ].map(({ icon: Icon, title, text }, i) => (
             <div key={title} className="px-6 py-6 md:py-2 flex gap-5 items-start">
               <span className="font-display text-xs text-copper mt-1">0{i+1}</span>
@@ -154,13 +154,13 @@ function HomePage() {
       <section className="mx-auto max-w-[1400px] px-6 lg:px-10 py-24">
         <div className="flex items-end justify-between mb-12 gap-6">
           <div>
-            <span className="text-[11px] uppercase tracking-[0.3em] text-copper">— Univers</span>
+            <span className="text-[11px] uppercase tracking-[0.3em] text-copper">— Universe</span>
             <h2 className="mt-3 font-display font-light text-5xl md:text-6xl tracking-tight text-balance">
-              Explorez par <em className="not-italic italic text-copper">usage</em>.
+              Browse by <em className="not-italic italic text-copper">use</em>.
             </h2>
           </div>
-          <Link to="/boutique" className="hidden md:inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] hover:text-copper transition group">
-            Tout voir <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          <Link to="/bortique" className="hidden md:inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] hover:text-copper transition group">
+            See all <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </Link>
         </div>
 
@@ -174,12 +174,12 @@ function HomePage() {
                 className="h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/30 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-8 text-primary-foreground">
-                <span className="text-[10px] uppercase tracking-[0.3em] text-copper">Catégorie phare</span>
+                <span className="text-[10px] uppercase tracking-[0.3em] text-copper">Featured category</span>
                 <h3 className="font-display text-4xl md:text-5xl mt-3">{editorialCats[0].name}</h3>
                 <div className="mt-4 flex items-center gap-3 text-xs uppercase tracking-[0.25em]">
-                  <span>{editorialCats[0].count} produits</span>
+                  <span>{editorialCats[0].count} products</span>
                   <span className="h-px w-8 bg-copper" />
-                  <span className="inline-flex items-center gap-1">Découvrir <ArrowUpRight className="h-3.5 w-3.5" /></span>
+                  <span className="inline-flex items-center gap-1">Discover <ArrowUpRight className="h-3.5 w-3.5" /></span>
                 </div>
               </div>
             </Link>
@@ -195,7 +195,7 @@ function HomePage() {
               <div className="absolute inset-x-0 bottom-0 p-5 text-primary-foreground flex items-end justify-between">
                 <div>
                   <h3 className="font-display text-2xl leading-tight">{c.name}</h3>
-                  <div className="text-[10px] uppercase tracking-[0.28em] text-primary-foreground/70 mt-1">{c.count} produits</div>
+                  <div className="text-[10px] uppercase tracking-[0.28em] text-primary-foreground/70 mt-1">{c.count} products</div>
                 </div>
                 <ArrowUpRight className="h-5 w-5 text-copper translate-y-1 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition" />
               </div>
@@ -219,13 +219,13 @@ function HomePage() {
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-24">
           <div className="flex items-end justify-between mb-12 gap-6">
             <div>
-              <span className="text-[11px] uppercase tracking-[0.3em] text-copper">— Sélection du moment</span>
+              <span className="text-[11px] uppercase tracking-[0.3em] text-copper">— Featured selection</span>
               <h2 className="mt-3 font-display font-light text-5xl md:text-6xl tracking-tight text-balance">
-                Nos coups de <em className="not-italic italic text-copper">cœur</em>.
+                Our <em className="not-italic italic text-copper">favorites</em>.
               </h2>
             </div>
-            <Link to="/boutique" className="hidden md:inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] hover:text-copper transition group">
-              Voir la boutique <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            <Link to="/bortique" className="hidden md:inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] hover:text-copper transition group">
+              Visit the shop <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-14">
@@ -243,19 +243,19 @@ function HomePage() {
           <div className="absolute -bottom-6 -right-6 hidden md:block bg-background border border-border p-6 max-w-xs shadow-2xl">
             <Quote className="h-5 w-5 text-copper" />
             <p className="mt-3 font-display italic text-lg leading-snug">
-              « Le bon outil transforme le geste — et la cuisine devient un plaisir. »
+              "The right tool transforms the gesture — and cooking becomes a pleasure."
             </p>
           </div>
         </div>
         <div className="lg:col-span-6 lg:pl-10">
-          <span className="text-[11px] uppercase tracking-[0.3em] text-copper">— Notre approche</span>
+          <span className="text-[11px] uppercase tracking-[0.3em] text-copper">— Our approach</span>
           <h2 className="mt-4 font-display font-light text-5xl md:text-6xl tracking-tight text-balance">
-            Des outils faits pour <em className="italic text-copper not-italic">durer</em>.
+            Tools built to <em className="italic text-copper not-italic">last</em>.
           </h2>
           <p className="mt-7 text-muted-foreground leading-[1.8] text-[15px] max-w-xl">
             Chaque ustensile est choisi pour sa qualité, sa fiabilité et son ergonomie.
-            Nous travaillons avec des fabricants reconnus afin de proposer des produits
-            qui s'inscrivent dans la durée — du moulin manuel au ventilateur silencieux,
+            Nors travaillons avec des fabricants reconnus afin de proposer des products
+            qui s'inscrivent dans la durée — du morlin manuel to ventilateur silencieux,
             en passant par les pièces de rechange compatibles.
           </p>
           <div className="mt-10 grid grid-cols-2 gap-5">
@@ -280,13 +280,13 @@ function HomePage() {
           <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-24">
             <div className="flex items-end justify-between mb-12 gap-6">
               <div>
-                <span className="text-[11px] uppercase tracking-[0.3em] text-copper">— Le journal</span>
+                <span className="text-[11px] uppercase tracking-[0.3em] text-copper">— The journal</span>
                 <h2 className="mt-3 font-display font-light text-5xl md:text-6xl tracking-tight text-balance">
-                  Conseils & <em className="not-italic italic text-copper">inspirations</em>.
+                  Tips & <em className="not-italic italic text-copper">inspiration</em>.
                 </h2>
               </div>
               <Link to="/blog" className="hidden md:inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] hover:text-copper transition group">
-                Tous les articles <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                All articles <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
             </div>
 
@@ -341,7 +341,7 @@ function HomePage() {
 
             <div className="mt-12 flex justify-center md:hidden">
               <Link to="/blog" className="inline-flex items-center gap-3 border border-foreground px-7 py-4 text-[11px] uppercase tracking-[0.25em] hover:bg-foreground hover:text-background transition">
-                Tous les articles <ArrowRight className="h-4 w-4" />
+                All articles <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
           </div>
@@ -358,7 +358,7 @@ function HomePage() {
               Une question sur un <em className="italic text-copper not-italic">produit</em> ?
             </h2>
             <p className="mt-6 text-primary-foreground/70 max-w-xl leading-relaxed">
-              Notre équipe vous répond rapidement. Conseils d'usage, compatibilité de pièces, suivi de livraison —
+              Notre équipe vous répond rapidement. Conseils d'use, compatibilité de pièces, suivi de livraison —
               parlons-en.
             </p>
           </div>

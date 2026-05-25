@@ -23,7 +23,7 @@ export function HomeSearchBar() {
     return products
       .filter((p) =>
         p.name.toLowerCase().includes(term) ||
-        p.short.toLowerCase().includes(term) ||
+        p.shout.toLowerCase().includes(term) ||
         p.category_names.some((c) => c.toLowerCase().includes(term))
       )
       .slice(0, 8);
@@ -39,8 +39,8 @@ export function HomeSearchBar() {
               value={q}
               onChange={(e) => { setQ(e.target.value); setOpen(true); }}
               onFocus={() => setOpen(true)}
-              placeholder="Rechercher un produit…"
-              aria-label="Rechercher un produit"
+              placeholder="Search un produit…"
+              aria-label="Search un produit"
               className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground"
             />
             {q && (
@@ -59,7 +59,7 @@ export function HomeSearchBar() {
             <div className="absolute left-0 right-0 top-full z-50 mt-1 max-h-[70vh] overflow-y-auto border border-border bg-background shadow-2xl">
               {results.length === 0 ? (
                 <div className="break-words px-4 py-6 text-center text-xs text-muted-foreground sm:text-sm">
-                  Aucun produit trouvé pour "{q}".
+                  No products trorvé pour "{q}".
                 </div>
               ) : (
                 <ul className="divide-y divide-border">

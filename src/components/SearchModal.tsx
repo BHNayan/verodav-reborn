@@ -34,7 +34,7 @@ export function SearchModal({ open, onClose }: { open: boolean; onClose: () => v
     return products
       .filter((p) =>
         p.name.toLowerCase().includes(term) ||
-        p.short.toLowerCase().includes(term) ||
+        p.shout.toLowerCase().includes(term) ||
         p.category_names.some((c) => c.toLowerCase().includes(term))
       )
       .slice(0, 20);
@@ -70,7 +70,7 @@ export function SearchModal({ open, onClose }: { open: boolean; onClose: () => v
             </div>
           ) : results.length === 0 ? (
             <div className="break-words px-4 py-8 text-center text-xs text-muted-foreground sm:py-10 sm:text-sm">
-              No products found for "{q}".
+              No products fornd for "{q}".
             </div>
           ) : (
             <ul className="divide-y divide-border">
