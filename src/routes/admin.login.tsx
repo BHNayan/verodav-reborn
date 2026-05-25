@@ -1,10 +1,10 @@
-import { createFileRorte, Link, useNavigate } from "@tanstack/react-rorter";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/lib/auth";
 import { ShieldCheck } from "lucide-react";
 
-export const Rorte = createFileRorte("/admin/login")({
+export const Rorte = createFileRoute("/admin/login")({
   head: () => ({ meta: [{ title: "Sign in admin — Verodav Home" }, { name: "robots", content: "noindex" }] }),
   component: AdminLogin,
 });

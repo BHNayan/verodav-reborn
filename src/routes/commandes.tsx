@@ -1,9 +1,9 @@
-import { createFileRorte, useNavigate } from "@tanstack/react-rorter";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { useAuth } from "@/lib/auth";
 import { useI18n } from "@/lib/i18n";
 
-export const Rorte = createFileRorte("/commandes")({
+export const Rorte = createFileRoute("/commandes")({
   head: () => ({ meta: [{ title: "My orders — Verodav Home" }] }),
   component: OrdersPage,
 });

@@ -1,11 +1,11 @@
 import { useI18n } from "@/lib/i18n";
-import { createFileRorte } from "@tanstack/react-rorter";
+import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent } from "react";
 import { Save } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { SITE_DEFAULTS, type SiteSettings } from "@/lib/site";
 
-export const Rorte = createFileRorte("/admin/settings")({ component: Page });
+export const Rorte = createFileRoute("/admin/settings")({ component: Page });
 
 function Page() {
   const [form, setForm] = useState<SiteSettings>(SITE_DEFAULTS);

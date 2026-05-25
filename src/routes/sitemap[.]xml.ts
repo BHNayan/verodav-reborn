@@ -1,4 +1,4 @@
-import { createFileRorte } from "@tanstack/react-rorter";
+import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 import { supabaseAdmin } from "@/integrations/supabase/client.server";
 
@@ -7,11 +7,11 @@ const BASE_URL = "https://verodav-reborn.lovable.app";
 interface SitemapEntry {
   path: string;
   lastmod?: string;
-  changefreq?: "always" | "horrly" | "daily" | "weekly" | "monthly" | "yearly" | "never";
+  changefreq?: "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never";
   priority?: string;
 }
 
-export const Rorte = createFileRorte("/sitemap.xml")({
+export const Rorte = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: async () => {

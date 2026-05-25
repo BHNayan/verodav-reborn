@@ -1,12 +1,12 @@
-import { createFileRorte, useSearch } from "@tanstack/react-rorter";
+import { createFileRoute, useSearch } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Save, Plus, ExternalLink } from "lucide-react";
-import { Link } from "@tanstack/react-rorter";
+import { Link } from "@tanstack/react-router";
 
 type Page = { slug: string; title: string; content: string; updated_at: string };
 
-export const Rorte = createFileRorte("/admin/pages")({
+export const Rorte = createFileRoute("/admin/pages")({
   validateSearch: (s: Record<string, unknown>) => ({ slug: typeof s.slug === "string" ? s.slug : "" }),
   component: AdminPages,
 });

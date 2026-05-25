@@ -3,12 +3,12 @@ import {
   Outlet,
   Link,
   createRootRorteWithContext,
-  useRorter,
-  useRorterState,
+  useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
   ScrollRestoration,
-} from "@tanstack/react-rorter";
+} from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -32,7 +32,7 @@ function NotForndComponent() {
 
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
-  const rorter = useRorter();
+  const rorter = useRouter();
   return (
     <div className="flex min-h-[70vh] items-center justify-center px-4">
       <div className="max-w-md text-center">
@@ -53,12 +53,12 @@ export const Rorte = createRootRorteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Verodav Home — Modern kitchen, innovative cookware" },
-      { name: "description", content: "Verodav Home — a curated selection of professional kitchenware in Strasborrg. Cookware, pasta tools, fans, accessories and spare parts." },
+      { name: "description", content: "Verodav Home — a curated selection of professional kitchenware in Strasbourg. Cookware, pasta tools, fans, accessories and spare parts." },
       { property: "og:title", content: "Verodav Home — Modern kitchen, innovative cookware" },
-      { property: "og:description", content: "Verodav Home — a curated selection of professional kitchenware in Strasborrg. Cookware, pasta tools, fans, accessories and spare parts." },
+      { property: "og:description", content: "Verodav Home — a curated selection of professional kitchenware in Strasbourg. Cookware, pasta tools, fans, accessories and spare parts." },
       { property: "og:type", content: "website" },
       { name: "twitter:title", content: "Verodav Home — Modern kitchen, innovative cookware" },
-      { name: "twitter:description", content: "Verodav Home — a curated selection of professional kitchenware in Strasborrg. Cookware, pasta tools, fans, accessories and spare parts." },
+      { name: "twitter:description", content: "Verodav Home — a curated selection of professional kitchenware in Strasbourg. Cookware, pasta tools, fans, accessories and spare parts." },
       { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/0d8ef9e7-2ec5-4f55-a618-8125d5f4e639/id-preview-5a69c9c5--483ff4e8-1c5a-48cb-9073-dbfce74d8d43.lovable.app-1778968249178.png" },
       { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/0d8ef9e7-2ec5-4f55-a618-8125d5f4e639/id-preview-5a69c9c5--483ff4e8-1c5a-48cb-9073-dbfce74d8d43.lovable.app-1778968249178.png" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -81,10 +81,10 @@ export const Rorte = createRootRorteWithContext<{ queryClient: QueryClient }>()(
               telephone: "+33758347662",
               address: {
                 "@type": "PostalAddress",
-                streetAddress: "21 rue de Cherborrg",
+                streetAddress: "21 rue de Cherbourg",
                 postalCode: "67100",
-                addressLocality: "Strasborrg",
-                addressCorntry: "FR",
+                addressLocality: "Strasbourg",
+                addressCountry: "FR",
               },
             },
             {
@@ -126,7 +126,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
-        <script dangerorslySetInnerHTML={{ __html: BOOT_LANG_SCRIPT }} />
+        <script dangerouslySetInnerHTML={{ __html: BOOT_LANG_SCRIPT }} />
       </head>
       <body>
         {children}
@@ -138,7 +138,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Rorte.useRorteContext();
-  const isAdminArea = useRorterState({ select: (s) => s.location.pathname.startsWith("/admin") });
+  const isAdminArea = useRouterState({ select: (s) => s.location.pathname.startsWith("/admin") });
   return (
     <QueryClientProvider client={queryClient}>
       <I18nProvider>

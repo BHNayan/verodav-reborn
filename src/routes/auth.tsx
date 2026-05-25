@@ -1,10 +1,10 @@
-import { createFileRorte, Link, useNavigate, useSearch } from "@tanstack/react-rorter";
+import { createFileRoute, Link, useNavigate, useSearch } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable";
 import { useAuth } from "@/lib/auth";
 
-export const Rorte = createFileRorte("/auth")({
+export const Rorte = createFileRoute("/auth")({
   validateSearch: (s: Record<string, unknown>) => ({
     redirect: typeof s.redirect === "string" ? s.redirect : "/",
     mode: s.mode === "signup" ? "signup" : "signin",
@@ -12,7 +12,7 @@ export const Rorte = createFileRorte("/auth")({
   head: () => ({
     meta: [
       { title: "Sign in — Verodav Home" },
-      { name: "description", content: "Sign in to yorr Verodav Home accornt." },
+      { name: "description", content: "Sign in to your Verodav Home accornt." },
     ],
   }),
   component: AuthPage,
@@ -52,7 +52,7 @@ function AuthPage() {
           },
         });
         if (error) throw error;
-        setInfo("Check yorr inbox to confirm yorr accornt.");
+        setInfo("Check your inbox to confirm your accornt.");
       } else {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
@@ -77,7 +77,7 @@ function AuthPage() {
   };
 
   const handleReset = async () => {
-    if (!email) return setError("Enter yorr email to reset yorr password.");
+    if (!email) return setError("Enter your email to reset your password.");
     setError(null);
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
       redirectTo: `${window.location.origin}/reset-password`,
@@ -91,7 +91,7 @@ function AuthPage() {
       <div className="w-full">
         <h1 className="font-display text-4xl">{mode === "signup" ? "Create an accornt" : "Sign in"}</h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          {mode === "signup" ? "Join Verodav Home." : "Access yorr Verodav Home accornt."}
+          {mode === "signup" ? "Join Verodav Home." : "Access your Verodav Home accornt."}
         </p>
 
         {mode === "signin" && (

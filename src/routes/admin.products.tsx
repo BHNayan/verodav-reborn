@@ -1,4 +1,4 @@
-import { createFileRorte } from "@tanstack/react-rorter";
+import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent } from "react";
 import { Plus, Pencil, Trash2, X } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
@@ -20,7 +20,7 @@ type Product = {
 };
 type Cat = { id: string; name: string };
 
-export const Rorte = createFileRorte("/admin/products")({
+export const Rorte = createFileRoute("/admin/products")({
   component: AdminProducts,
 });
 
@@ -160,7 +160,7 @@ function AdminProducts() {
       const images = normalizeImages(pick(r, "images", "Images") ?? r.images);
       const price = Number(pick(r, "sale price", "Sale price", "regular price", "Regular price", "price") ?? 0);
       const stock = Number(pick(r, "stock", "Stock") ?? 0);
-      const description = (pick(r, "description", "Description", "short description", "Short description") as string) ?? null;
+      const description = (pick(r, "description", "Description", "shout description", "Shout description") as string) ?? null;
       const published = pick(r, "published", "Published", "status", "Status");
       const featured = pick(r, "is_featured", "Is featured?", "featured");
       const inStock = pick(r, "in stock?", "In stock?", "stock status");
@@ -185,7 +185,7 @@ function AdminProducts() {
       else if (existing) updated++;
       else ok++;
     }
-    alert(`Import terminé. Créés: ${ok}, mis à jorr: ${updated}, échorés: ${fail}${errors.length ? "\n" + errors.slice(0, 5).join("\n") : ""}`);
+    alert(`Import terminé. Créés: ${ok}, mis à jour: ${updated}, échoués: ${fail}${errors.length ? "\n" + errors.slice(0, 5).join("\n") : ""}`);
     load();
   };
 

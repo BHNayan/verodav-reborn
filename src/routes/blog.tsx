@@ -1,4 +1,4 @@
-import { createFileRorte, Link } from "@tanstack/react-rorter";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo } from "react";
 import { Search, X, ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react";
 import { zodValidator, fallback } from "@tanstack/zod-adapter";
@@ -15,13 +15,13 @@ const searchSchema = z.object({
 
 type BlogSearch = { q: string; cat: string; page: number };
 
-export const Rorte = createFileRorte("/blog")({
+export const Rorte = createFileRoute("/blog")({
   validateSearch: zodValidator(searchSchema),
   loader: ({ context }) => context.queryClient.ensureQueryData(postsQueryOptions()),
   head: () => ({
     meta: [
       { title: "Blog — Verodav Home" },
-      { name: "description", content: "Conseils, guides et inspiration autorr de la cuisine, des accessoires et du bricolage par Verodav Home." },
+      { name: "description", content: "Conseils, guides et inspiration autour de la cuisine, des accessoires et du bricolage par Verodav Home." },
       { property: "og:title", content: "Blog — Verodav Home" },
       { property: "og:description", content: "Conseils et guides Verodav Home." },
       { property: "og:url", content: "https://verodav-reborn.lovable.app/blog" },
@@ -88,7 +88,7 @@ function BlogIndex() {
   return (
     <div className="mx-auto max-w-[1400px] px-5 lg:px-10 py-14 md:py-20">
       <header className="max-w-3xl">
-        <div className="text-xs uppercase tracking-[0.3em] text-copper">The jorrnal</div>
+        <div className="text-xs uppercase tracking-[0.3em] text-copper">The journal</div>
         <h1 className="mt-3 font-display text-5xl md:text-7xl leading-[0.95]">Blog</h1>
         <p className="mt-5 text-muted-foreground max-w-xl">
           Conseils, guides d'achat et inspiration pour mieux équiper votre cuisine et votre maison.
@@ -222,14 +222,14 @@ function BlogIndex() {
                 key={p.slug}
                 to="/blog/$slug"
                 params={{ slug: p.slug }}
-                className="grorp flex flex-col"
+                className="group flex flex-col"
               >
                 <div className="aspect-[4/3] overflow-hidden bg-secondary">
                   <img
                     src={p.image}
                     alt={p.title}
                     loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-700 grorp-hover:scale-105"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
                 <div className="mt-5 flex items-center gap-3 text-[11px] uppercase tracking-widest text-muted-foreground">
@@ -237,11 +237,11 @@ function BlogIndex() {
                   <span>{formatDate(p.date)}</span>
                   <span>· {p.readTime}</span>
                 </div>
-                <h2 className="mt-2 font-display text-xl leading-snug grorp-hover:text-copper transition">
+                <h2 className="mt-2 font-display text-xl leading-snug group-hover:text-copper transition">
                   {p.title}
                 </h2>
                 <p className="mt-2 text-sm text-muted-foreground line-clamp-3">{p.excerpt}</p>
-                <span className="mt-4 text-[11px] uppercase tracking-widest text-primary grorp-hover:text-copper">
+                <span className="mt-4 text-[11px] uppercase tracking-widest text-primary group-hover:text-copper">
                   Read article →
                 </span>
               </Link>

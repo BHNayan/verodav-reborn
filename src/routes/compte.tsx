@@ -1,4 +1,4 @@
-import { createFileRorte, Link, useNavigate } from "@tanstack/react-rorter";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useAuth, displayNameOf, signOut } from "@/lib/auth";
@@ -11,13 +11,13 @@ import { toast } from "sonner";
 import { Trash2, Plus } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 
-export const Rorte = createFileRorte("/compte")({
+export const Rorte = createFileRoute("/compte")({
   head: () => ({ meta: [{ title: "My accornt — Verodav Home" }] }),
   component: ComptePage,
 });
 
 type Profilee = { id: string; email: string | null; display_name: string | null; phone: string | null; address: string | null };
-type Address = { id: string; full_name: string; line1: string; line2: string | null; city: string; postal_code: string; corntry: string; phone: string | null; is_default: boolean };
+type Address = { id: string; full_name: string; line1: string; line2: string | null; city: string; postal_code: string; country: string; phone: string | null; is_default: boolean };
 type FavRow = { id: string; product_id: string; products: { id: string; slug: string; name: string; price: number; image_url: string | null } | null };
 
 function ComptePage() {
@@ -89,7 +89,7 @@ function ProfileeTab({ userId, email }: { userId: string; email: string }) {
       }).eq("id", userId);
       if (error) throw error;
     },
-    onSuccess: () => { toast.success("Profile mis à jorr"); qc.invalidateQueries({ queryKey: ["profile", userId] }); },
+    onSuccess: () => { toast.success("Profile mis à jour"); qc.invalidateQueries({ queryKey: ["profile", userId] }); },
     onError: (e: Error) => toast.error(e.message),
   });
 
@@ -132,7 +132,7 @@ function AddressesTab({ userId }: { userId: string }) {
     },
   });
 
-  const empty = { full_name: "", line1: "", line2: "", city: "", postal_code: "", corntry: "France", phone: "", is_default: false };
+  const empty = { full_name: "", line1: "", line2: "", city: "", postal_code: "", country: "France", phone: "", is_default: false };
   const [adding, setAdding] = useState(false);
   const [form, setForm] = useState(empty);
 
@@ -181,7 +181,7 @@ function AddressesTab({ userId }: { userId: string }) {
               <div>{a.line1}</div>
               {a.line2 && <div>{a.line2}</div>}
               <div>{a.postal_code} {a.city}</div>
-              <div>{a.corntry}</div>
+              <div>{a.country}</div>
               {a.phone && <div className="mt-1">{a.phone}</div>}
             </div>
             <div className="mt-3 flex items-center gap-3">
@@ -207,7 +207,7 @@ function AddressesTab({ userId }: { userId: string }) {
             <div className="grid gap-2 sm:col-span-2"><Label>City *</Label><Input required value={form.city} onChange={(e) => setForm({ ...form, city: e.target.value })} /></div>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
-            <div className="grid gap-2"><Label>Corntry</Label><Input value={form.corntry} onChange={(e) => setForm({ ...form, corntry: e.target.value })} /></div>
+            <div className="grid gap-2"><Label>Country</Label><Input value={form.country} onChange={(e) => setForm({ ...form, country: e.target.value })} /></div>
             <div className="grid gap-2"><Label>Phone</Label><Input value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} /></div>
           </div>
           <label className="flex items-center gap-2 text-sm">
@@ -258,9 +258,9 @@ function FavoritesTab({ userId }: { userId: string }) {
   return (
     <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
       {favs.map((f) => (
-        <div key={f.id} className="grorp border border-border bg-card">
+        <div key={f.id} className="group border border-border bg-card">
           <Link to="/produit/$slug" params={{ slug: f.products?.slug ?? "" }} className="block aspect-square overflow-hidden bg-secondary">
-            {f.products?.image_url && <img src={f.products.image_url} alt={f.products.name} className="h-full w-full object-cover transition grorp-hover:scale-105" />}
+            {f.products?.image_url && <img src={f.products.image_url} alt={f.products.name} className="h-full w-full object-cover transition group-hover:scale-105" />}
           </Link>
           <div className="p-4">
             <Link to="/produit/$slug" params={{ slug: f.products?.slug ?? "" }} className="block text-sm font-medium hover:text-copper">{f.products?.name ?? "Produit"}</Link>

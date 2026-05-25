@@ -1,4 +1,4 @@
-import { createFileRorte } from "@tanstack/react-rorter";
+import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Trash2, Mail } from "lucide-react";
@@ -6,7 +6,7 @@ import { Trash2, Mail } from "lucide-react";
 type Submission = { id: string; name: string; email: string; subject: string | null; message: string; status: string; created_at: string };
 const STATUSES = ["new", "read", "replied", "archived"];
 
-export const Rorte = createFileRorte("/admin/contacts")({ component: Page });
+export const Rorte = createFileRoute("/admin/contacts")({ component: Page });
 
 function Page() {
   const [rows, setRows] = useState<Submission[]>([]);

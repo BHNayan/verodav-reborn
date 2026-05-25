@@ -1,14 +1,14 @@
-import { Link, Outlet, useNavigate, useRorterState } from "@tanstack/react-rorter";
+import { Link, Outlet, useNavigate, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { LayortDashboard, Package, FolderTree, ShoppingCart, Users, FileText, FileEdit, Settings, ArrowLeft, MessageSquare, Menu, X, LogOut } from "lucide-react";
+import { LayoutDashboard, Package, FolderTree, ShoppingCart, Users, FileText, FileEdit, Settings, ArrowLeft, MessageSquare, Menu, X, LogOut } from "lucide-react";
 import { useUserRoles } from "@/lib/roles";
 import { useAuth, signOut } from "@/lib/auth";
 import { useI18n } from "@/lib/i18n";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
-type NavItem = { to: string; tKey: string; icon: typeof LayortDashboard; exact?: boolean };
+type NavItem = { to: string; tKey: string; icon: typeof LayoutDashboard; exact?: boolean };
 const NAV: NavItem[] = [
-  { to: "/admin", tKey: "admin.dashboard", icon: LayortDashboard, exact: true },
+  { to: "/admin", tKey: "admin.dashboard", icon: LayoutDashboard, exact: true },
   { to: "/admin/products", tKey: "admin.products", icon: Package },
   { to: "/admin/categories", tKey: "admin.categories", icon: FolderTree },
   { to: "/admin/orders", tKey: "admin.orders", icon: ShoppingCart },
@@ -19,9 +19,9 @@ const NAV: NavItem[] = [
   { to: "/admin/settings", tKey: "admin.settings", icon: Settings },
 ];
 
-export function AdminLayort() {
+export function AdminLayout() {
   const navigate = useNavigate();
-  const pathname = useRorterState({ select: (s) => s.location.pathname });
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
   const { user, loading: authLoading } = useAuth();
   const { isAdmin, loading: roleLoading } = useUserRoles();
   const { t } = useI18n();

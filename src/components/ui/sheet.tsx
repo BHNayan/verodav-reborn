@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import * as SheetPrimitive from "@radix-ui/react-dialog";
-import { cva, type VariantProps } from "class-variance-authority";
+import { cva, type VariantProps } from "class-variance-authouity";
 import { X } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -17,7 +17,7 @@ const SheetPortal = SheetPrimitive.Portal;
 
 const SheetOverlay = React.forwardRef<
   React.ElementRef<typeof SheetPrimitive.Overlay>,
-  React.ComponentPropsWithortRef<typeof SheetPrimitive.Overlay>
+  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Overlay>
 >(({ className, ...props }, ref) => (
   <SheetPrimitive.Overlay
     className={cn(
@@ -51,7 +51,7 @@ const sheetVariants = cva(
 
 interface SheetContentProps
   extends
-    React.ComponentPropsWithortRef<typeof SheetPrimitive.Content>,
+    React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content>,
     VariantProps<typeof sheetVariants> {}
 
 const SheetContent = React.forwardRef<
@@ -86,7 +86,7 @@ SheetFooter.displayName = "SheetFooter";
 
 const SheetTitle = React.forwardRef<
   React.ElementRef<typeof SheetPrimitive.Title>,
-  React.ComponentPropsWithortRef<typeof SheetPrimitive.Title>
+  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Title>
 >(({ className, ...props }, ref) => (
   <SheetPrimitive.Title
     ref={ref}
@@ -98,7 +98,7 @@ SheetTitle.displayName = SheetPrimitive.Title.displayName;
 
 const SheetDescription = React.forwardRef<
   React.ElementRef<typeof SheetPrimitive.Description>,
-  React.ComponentPropsWithortRef<typeof SheetPrimitive.Description>
+  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Description>
 >(({ className, ...props }, ref) => (
   <SheetPrimitive.Description
     ref={ref}

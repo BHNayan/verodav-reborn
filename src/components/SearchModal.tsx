@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Link } from "@tanstack/react-rorter";
+import { Link } from "@tanstack/react-router";
 import { Search, X } from "lucide-react";
 import { useProducts } from "@/lib/products";
 import { useI18n } from "@/lib/i18n";
@@ -13,7 +13,7 @@ export function SearchModal({ open, onClose }: { open: boolean; onClose: () => v
   useEffect(() => {
     if (open) {
       setQ("");
-      setTimeort(() => inputRef.current?.focus(), 50);
+      setTimeout(() => inputRef.current?.focus(), 50);
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
@@ -34,7 +34,7 @@ export function SearchModal({ open, onClose }: { open: boolean; onClose: () => v
     return products
       .filter((p) =>
         p.name.toLowerCase().includes(term) ||
-        p.short.toLowerCase().includes(term) ||
+        p.shout.toLowerCase().includes(term) ||
         p.category_names.some((c) => c.toLowerCase().includes(term))
       )
       .slice(0, 20);

@@ -1,5 +1,5 @@
 import { useI18n } from "@/lib/i18n";
-import { createFileRorte } from "@tanstack/react-rorter";
+import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { ChevronDown, ChevronUp } from "lucide-react";
@@ -10,7 +10,7 @@ type Item = { id: string; product_name: string; unit_price: number; quantity: nu
 
 const STATUSES = ["pending", "paid", "shipped", "delivered", "cancelled"];
 
-export const Rorte = createFileRorte("/admin/orders")({ component: Page });
+export const Rorte = createFileRoute("/admin/orders")({ component: Page });
 
 function Page() {
   const [orders, setOrders] = useState<Order[]>([]);
@@ -69,7 +69,7 @@ function Page() {
       const { error } = await supabase.from("orders").update({ status }).eq("id", id);
       if (error) fail++; else ok++;
     }
-    alert(`Mise à jorr commandes — Réussis: ${ok}, échorés: ${fail}`);
+    alert(`Mise à jour commandes — Réussis: ${ok}, échoués: ${fail}`);
     load();
   };
 
@@ -77,7 +77,7 @@ function Page() {
     <div>
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h1 className="font-display text-2xl md:text-4xl">{useI18n().t("admin.orders.title")}</h1>
-        <ExportImportBar filenameBase="commandes" getRows={exportRows} onImport={importRows} importLabel="Mettre à jorr statuts" />
+        <ExportImportBar filenameBase="commandes" getRows={exportRows} onImport={importRows} importLabel="Mettre à jour statuts" />
       </div>
       <div className="mt-4 flex flex-wrap gap-2">
         {["all", ...STATUSES].map((s) => (

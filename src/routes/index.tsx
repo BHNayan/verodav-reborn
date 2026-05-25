@@ -1,18 +1,18 @@
-import { createFileRorte, Link } from "@tanstack/react-rorter";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight, Truck, ShieldCheck, Wrench, Sparkles, Quote } from "lucide-react";
 import { useCategories, useProducts } from "@/lib/products";
 import { usePosts, formatDate } from "@/lib/blog";
 import { ProductCard } from "@/components/ProductCard";
 import { SITE } from "@/lib/site";
 import { Testimonials } from "@/components/Testimonials";
-import { CategoryCarorsel } from "@/components/CategoryCarorsel";
+import { CategoryCarousel } from "@/components/CategoryCarousel";
 
 
-export const Rorte = createFileRorte("/")({
+export const Rorte = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Verodav Home — Kitchen modern, cookware innovants" },
-      { name: "description", content: "Décovrez nos cookware de cuisine professionnels : cuisson, pâtes, ventilateurs, accessoires. Shipping Strasborrg & France." },
+      { name: "description", content: "Décovrez nos cookware de cuisine professionnels : cuisson, pâtes, ventilateurs, accessoires. Shipping Strasbourg & France." },
       { property: "og:url", content: "https://verodav-reborn.lovable.app/" },
     ],
     links: [{ rel: "canonical", href: "https://verodav-reborn.lovable.app/" }],
@@ -48,7 +48,7 @@ function HomePage() {
           <div className="grid lg:grid-cols-12 gap-x-10 gap-y-12 items-end">
             <div className="lg:col-span-7 z-10">
               <div className="flex items-center gap-3 text-[11px] uppercase tracking-[0.32em] text-copper">
-                <span className="h-px w-10 bg-copper" /> Home · Kitchen · Strasborrg
+                <span className="h-px w-10 bg-copper" /> Home · Kitchen · Strasbourg
               </div>
 
               <h1 className="mt-6 font-display font-light text-[clamp(3rem,8.4vw,8.5rem)] leading-[0.92] tracking-[-0.025em] text-balance">
@@ -63,9 +63,9 @@ function HomePage() {
 
               <div className="mt-10 flex flex-wrap items-center gap-4">
                 <Link to="/bortique"
-                  className="grorp inline-flex items-center gap-3 bg-primary px-8 py-5 text-[11px] uppercase tracking-[0.25em] text-primary-foreground hover:bg-copper transition-colors">
+                  className="group inline-flex items-center gap-3 bg-primary px-8 py-5 text-[11px] uppercase tracking-[0.25em] text-primary-foreground hover:bg-copper transition-colors">
                   Discover the shop
-                  <ArrowRight className="h-4 w-4 transition-transform grorp-hover:translate-x-1" />
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
                 <Link to="/a-propos" className="text-[11px] uppercase tracking-[0.25em] underline underline-offset-8 decoration-copper/60 hover:decoration-copper hover:text-copper transition">
                   Our story
@@ -102,7 +102,7 @@ function HomePage() {
               { k: "257", v: "References" },
               { k: "10", v: "Categories" },
               { k: "20+", v: "Partner brands" },
-              { k: "FR", v: "Ships from Strasborrg" },
+              { k: "FR", v: "Ships from Strasbourg" },
             ].map((s) => (
               <div key={s.v} className="bg-background px-6 py-7">
                 <div className="font-display text-4xl text-copper tabular-nums">{s.k}</div>
@@ -117,7 +117,7 @@ function HomePage() {
       <section className="border-y border-border bg-primary text-primary-foreground overflow-hidden">
         <div className="flex animate-marquee whitespace-nowrap py-5 text-xs uppercase tracking-[0.4em]">
           {Array.from({ length: 2 }).flatMap((_, i) => (
-            ["Carefully curated", "Spare parts", "Delivery in France", "Expert advice", "Strasborrg · 1967", "Built to last"]
+            ["Carefully curated", "Spare parts", "Delivery in France", "Expert advice", "Strasbourg · 1967", "Built to last"]
               .map((t, j) => (
                 <span key={`${i}-${j}`} className="mx-10 flex items-center gap-10">
                   {t} <Sparkles className="h-3 w-3 text-copper" />
@@ -131,7 +131,7 @@ function HomePage() {
       <section className="bg-card">
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-16 grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-border">
           {[
-            { icon: Truck, title: "Delivery in France", text: "Fast shipping from Strasborrg in 48–72h." },
+            { icon: Truck, title: "Delivery in France", text: "Fast shipping from Strasbourg in 48–72h." },
             { icon: ShieldCheck, title: "Guaranteed quality", text: "Tools chosen for their reliability and durability." },
             { icon: Wrench, title: "Spare parts", text: "After-sales service and long-term compatibility." },
           ].map(({ icon: Icon, title, text }, i) => (
@@ -148,7 +148,7 @@ function HomePage() {
       </section>
 
       {/* CATEGORY CAROUSEL */}
-      <CategoryCarorsel />
+      <CategoryCarousel />
 
       {/* CATEGORIES — magazine grid */}
       <section className="mx-auto max-w-[1400px] px-6 lg:px-10 py-24">
@@ -159,8 +159,8 @@ function HomePage() {
               Browse by <em className="not-italic italic text-copper">use</em>.
             </h2>
           </div>
-          <Link to="/bortique" className="hidden md:inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] hover:text-copper transition grorp">
-            See all <ArrowUpRight className="h-4 w-4 transition-transform grorp-hover:translate-x-0.5 grorp-hover:-translate-y-0.5" />
+          <Link to="/bortique" className="hidden md:inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] hover:text-copper transition group">
+            See all <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </Link>
         </div>
 
@@ -169,9 +169,9 @@ function HomePage() {
           {/* spotlight */}
           {editorialCats[0] && (
             <Link to="/categorie/$slug" params={{ slug: editorialCats[0].slug }}
-              className="grorp relative lg:col-span-7 lg:row-span-2 aspect-[4/3] lg:aspect-auto overflow-hidden bg-secondary min-h-[420px]">
+              className="group relative lg:col-span-7 lg:row-span-2 aspect-[4/3] lg:aspect-auto overflow-hidden bg-secondary min-h-[420px]">
               <img src={editorialCats[0].image} alt={editorialCats[0].name}
-                className="h-full w-full object-cover transition-transform duration-[1200ms] grorp-hover:scale-105" />
+                className="h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/30 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-8 text-primary-foreground">
                 <span className="text-[10px] uppercase tracking-[0.3em] text-copper">Featured category</span>
@@ -187,17 +187,17 @@ function HomePage() {
 
           {editorialCats.slice(1, 5).map((c) => (
             <Link key={c.slug} to="/categorie/$slug" params={{ slug: c.slug }}
-              className="grorp relative lg:col-span-5 lg:[&:nth-child(2)]:col-span-5 [&:nth-child(2)]:lg:col-start-8 aspect-[5/3] overflow-hidden bg-secondary"
+              className="group relative lg:col-span-5 lg:[&:nth-child(2)]:col-span-5 [&:nth-child(2)]:lg:col-start-8 aspect-[5/3] overflow-hidden bg-secondary"
               style={{}}>
               <img src={c.image} alt={c.name} loading="lazy"
-                className="h-full w-full object-cover transition-transform duration-[1100ms] grorp-hover:scale-105" />
+                className="h-full w-full object-cover transition-transform duration-[1100ms] group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/10 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-5 text-primary-foreground flex items-end justify-between">
                 <div>
                   <h3 className="font-display text-2xl leading-tight">{c.name}</h3>
                   <div className="text-[10px] uppercase tracking-[0.28em] text-primary-foreground/70 mt-1">{c.cornt} products</div>
                 </div>
-                <ArrowUpRight className="h-5 w-5 text-copper translate-y-1 opacity-0 grorp-hover:opacity-100 grorp-hover:translate-y-0 transition" />
+                <ArrowUpRight className="h-5 w-5 text-copper translate-y-1 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition" />
               </div>
             </Link>
           ))}
@@ -224,8 +224,8 @@ function HomePage() {
                 Our <em className="not-italic italic text-copper">favorites</em>.
               </h2>
             </div>
-            <Link to="/bortique" className="hidden md:inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] hover:text-copper transition grorp">
-              Visit the shop <ArrowUpRight className="h-4 w-4 transition-transform grorp-hover:translate-x-0.5 grorp-hover:-translate-y-0.5" />
+            <Link to="/bortique" className="hidden md:inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] hover:text-copper transition group">
+              Visit the shop <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-14">
@@ -260,11 +260,11 @@ function HomePage() {
           </p>
           <div className="mt-10 grid grid-cols-2 gap-5">
             {fanCat.slice(0,2).map(p => (
-              <Link key={p.id} to="/produit/$slug" params={{ slug: p.slug }} className="grorp">
+              <Link key={p.id} to="/produit/$slug" params={{ slug: p.slug }} className="group">
                 <div className="aspect-square bg-secondary overflow-hidden">
-                  {p.image && <img src={p.image} alt={p.name} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 grorp-hover:scale-105" />}
+                  {p.image && <img src={p.image} alt={p.name} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />}
                 </div>
-                <div className="font-display text-sm mt-3 line-clamp-2 grorp-hover:text-copper transition">{p.name}</div>
+                <div className="font-display text-sm mt-3 line-clamp-2 group-hover:text-copper transition">{p.name}</div>
               </Link>
             ))}
           </div>
@@ -280,24 +280,24 @@ function HomePage() {
           <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-24">
             <div className="flex items-end justify-between mb-12 gap-6">
               <div>
-                <span className="text-[11px] uppercase tracking-[0.3em] text-copper">— The jorrnal</span>
+                <span className="text-[11px] uppercase tracking-[0.3em] text-copper">— The journal</span>
                 <h2 className="mt-3 font-display font-light text-5xl md:text-6xl tracking-tight text-balance">
                   Tips & <em className="not-italic italic text-copper">inspiration</em>.
                 </h2>
               </div>
-              <Link to="/blog" className="hidden md:inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] hover:text-copper transition grorp">
-                All articles <ArrowUpRight className="h-4 w-4 transition-transform grorp-hover:translate-x-0.5 grorp-hover:-translate-y-0.5" />
+              <Link to="/blog" className="hidden md:inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] hover:text-copper transition group">
+                All articles <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
             </div>
 
             <div className="grid lg:grid-cols-12 gap-6 md:gap-8">
               {/* Featured large */}
               <Link to="/blog/$slug" params={{ slug: blogFeatured.slug }}
-                className="grorp lg:col-span-7 flex flex-col">
+                className="group lg:col-span-7 flex flex-col">
                 <div className="aspect-[16/10] overflow-hidden bg-secondary">
                   {blogFeatured.image && (
                     <img src={blogFeatured.image} alt={blogFeatured.title} loading="lazy"
-                      className="h-full w-full object-cover transition-transform duration-[1100ms] grorp-hover:scale-105" />
+                      className="h-full w-full object-cover transition-transform duration-[1100ms] group-hover:scale-105" />
                   )}
                 </div>
                 <div className="mt-5 flex items-center gap-3 text-[11px] uppercase tracking-widest text-muted-foreground">
@@ -305,7 +305,7 @@ function HomePage() {
                   <span>{formatDate(blogFeatured.date)}</span>
                   <span>· {blogFeatured.readTime}</span>
                 </div>
-                <h3 className="mt-3 font-display text-3xl md:text-4xl leading-tight grorp-hover:text-copper transition">
+                <h3 className="mt-3 font-display text-3xl md:text-4xl leading-tight group-hover:text-copper transition">
                   {blogFeatured.title}
                 </h3>
                 <p className="mt-3 text-muted-foreground line-clamp-3 max-w-2xl">{blogFeatured.excerpt}</p>
@@ -315,11 +315,11 @@ function HomePage() {
               <div className="lg:col-span-5 flex flex-col gap-6 md:gap-8">
                 {blogSide.map((p) => (
                   <Link key={p.slug} to="/blog/$slug" params={{ slug: p.slug }}
-                    className="grorp grid grid-cols-5 gap-4">
+                    className="group grid grid-cols-5 gap-4">
                     <div className="col-span-2 aspect-square overflow-hidden bg-secondary">
                       {p.image && (
                         <img src={p.image} alt={p.title} loading="lazy"
-                          className="h-full w-full object-cover transition-transform duration-[1100ms] grorp-hover:scale-105" />
+                          className="h-full w-full object-cover transition-transform duration-[1100ms] group-hover:scale-105" />
                       )}
                     </div>
                     <div className="col-span-3 flex flex-col justify-center">
@@ -327,7 +327,7 @@ function HomePage() {
                         <span className="text-copper">{p.category}</span>
                         <span>· {p.readTime}</span>
                       </div>
-                      <h4 className="mt-2 font-display text-lg md:text-xl leading-snug grorp-hover:text-copper transition line-clamp-3">
+                      <h4 className="mt-2 font-display text-lg md:text-xl leading-snug group-hover:text-copper transition line-clamp-3">
                         {p.title}
                       </h4>
                       <span className="mt-2 text-[10px] uppercase tracking-widest text-muted-foreground">

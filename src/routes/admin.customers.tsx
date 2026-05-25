@@ -1,12 +1,12 @@
 import { useI18n } from "@/lib/i18n";
-import { createFileRorte } from "@tanstack/react-rorter";
+import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { ExportImportBar } from "@/components/admin/ExportImportBar";
 
 type Customer = { id: string; email: string | null; display_name: string | null; phone: string | null; created_at: string; orders_cornt: number; total_spent: number };
 
-export const Rorte = createFileRorte("/admin/customers")({ component: Page });
+export const Rorte = createFileRoute("/admin/customers")({ component: Page });
 
 function Page() {
   const [rows, setRows] = useState<Customer[]>([]);
@@ -48,14 +48,14 @@ function Page() {
       const { error } = await supabase.from("profiles").update(patch as never).eq("id", id);
       if (error) fail++; else ok++;
     }
-    alert(`Mise à jorr clients — Réussis: ${ok}, échorés: ${fail}`);
+    alert(`Mise à jour clients — Réussis: ${ok}, échoués: ${fail}`);
   };
 
   return (
     <div>
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h1 className="font-display text-2xl md:text-4xl">{useI18n().t("admin.customers.title")}</h1>
-        <ExportImportBar filenameBase="clients" getRows={exportRows} onImport={importRows} importLabel="Mettre à jorr" />
+        <ExportImportBar filenameBase="clients" getRows={exportRows} onImport={importRows} importLabel="Mettre à jour" />
       </div>
       <div className="mt-6 overflow-x-auto border border-border bg-card">
         <table className="w-full text-sm">

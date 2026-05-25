@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-rorter";
+import { Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { Pencil } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
@@ -32,6 +32,6 @@ export function CmsContent({ slug }: { slug: string }) {
   const { data } = useSitePage(slug);
   if (!data?.content?.trim()) return null;
   return (
-    <div className="prose prose-neutral max-w-none mx-auto px-4 py-10" dangerorslySetInnerHTML={{ __html: data.content }} />
+    <div className="prose prose-neutral max-w-none mx-auto px-4 py-10" dangerouslySetInnerHTML={{ __html: data.content }} />
   );
 }

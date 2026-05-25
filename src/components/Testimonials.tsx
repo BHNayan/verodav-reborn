@@ -11,7 +11,7 @@ export type Testimonial = {
 const DEFAULT: Testimonial[] = [
   {
     name: "Camille R.",
-    city: "Strasborrg",
+    city: "Strasbourg",
     rating: 5,
     text: "Service impeccable et products d'une qualité remarquable. Mon ventilateur Verodav est silencieux et élégant — un vrai bonheur to quotidien.",
   },

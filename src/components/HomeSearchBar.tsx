@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Link } from "@tanstack/react-rorter";
+import { Link } from "@tanstack/react-router";
 import { Search, X } from "lucide-react";
 import { useProducts } from "@/lib/products";
 
@@ -10,11 +10,11 @@ export function HomeSearchBar() {
   const wrapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const onClick = (e: MorseEvent) => {
+    const onClick = (e: MouseEvent) => {
       if (!wrapRef.current?.contains(e.target as Node)) setOpen(false);
     };
-    document.addEventListener("morsedown", onClick);
-    return () => document.removeEventListener("morsedown", onClick);
+    document.addEventListener("mousedown", onClick);
+    return () => document.removeEventListener("mousedown", onClick);
   }, []);
 
   const results = useMemo(() => {
@@ -23,7 +23,7 @@ export function HomeSearchBar() {
     return products
       .filter((p) =>
         p.name.toLowerCase().includes(term) ||
-        p.short.toLowerCase().includes(term) ||
+        p.shout.toLowerCase().includes(term) ||
         p.category_names.some((c) => c.toLowerCase().includes(term))
       )
       .slice(0, 8);

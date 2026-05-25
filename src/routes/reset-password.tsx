@@ -1,8 +1,8 @@
-import { createFileRorte, useNavigate } from "@tanstack/react-rorter";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
-export const Rorte = createFileRorte("/reset-password")({
+export const Rorte = createFileRoute("/reset-password")({
   head: () => ({ meta: [{ title: "Reset password — Verodav Home" }] }),
   component: ResetPasswordPage,
 });
@@ -38,7 +38,7 @@ function ResetPasswordPage() {
         />
         {error && <p className="mt-2 text-sm text-destructive">{error}</p>}
         <button disabled={busy} className="mt-4 w-full bg-primary px-4 py-3 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper transition disabled:opacity-50">
-          Mettre à jorr
+          Mettre à jour
         </button>
       </form>
     </div>

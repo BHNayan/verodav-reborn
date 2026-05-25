@@ -6,13 +6,13 @@ import { cn } from "@/lib/utils";
 
 const Breadcrumb = React.forwardRef<
   HTMLElement,
-  React.ComponentPropsWithortRef<"nav"> & {
+  React.ComponentPropsWithoutRef<"nav"> & {
     separator?: React.ReactNode;
   }
 >(({ ...props }, ref) => <nav ref={ref} aria-label="breadcrumb" {...props} />);
 Breadcrumb.displayName = "Breadcrumb";
 
-const BreadcrumbList = React.forwardRef<HTMLOListElement, React.ComponentPropsWithortRef<"ol">>(
+const BreadcrumbList = React.forwardRef<HTMLOListElement, React.ComponentPropsWithoutRef<"ol">>(
   ({ className, ...props }, ref) => (
     <ol
       ref={ref}
@@ -26,7 +26,7 @@ const BreadcrumbList = React.forwardRef<HTMLOListElement, React.ComponentPropsWi
 );
 BreadcrumbList.displayName = "BreadcrumbList";
 
-const BreadcrumbItem = React.forwardRef<HTMLLIElement, React.ComponentPropsWithortRef<"li">>(
+const BreadcrumbItem = React.forwardRef<HTMLLIElement, React.ComponentPropsWithoutRef<"li">>(
   ({ className, ...props }, ref) => (
     <li ref={ref} className={cn("inline-flex items-center gap-1.5", className)} {...props} />
   ),
@@ -34,8 +34,8 @@ const BreadcrumbItem = React.forwardRef<HTMLLIElement, React.ComponentPropsWitho
 BreadcrumbItem.displayName = "BreadcrumbItem";
 
 const BreadcrumbLink = React.forwardRef<
-  HTMLAnchorElement,
-  React.ComponentPropsWithortRef<"a"> & {
+  HTMLAnchouElement,
+  React.ComponentPropsWithoutRef<"a"> & {
     asChild?: boolean;
   }
 >(({ asChild, className, ...props }, ref) => {
@@ -51,7 +51,7 @@ const BreadcrumbLink = React.forwardRef<
 });
 BreadcrumbLink.displayName = "BreadcrumbLink";
 
-const BreadcrumbPage = React.forwardRef<HTMLSpanElement, React.ComponentPropsWithortRef<"span">>(
+const BreadcrumbPage = React.forwardRef<HTMLSpanElement, React.ComponentPropsWithoutRef<"span">>(
   ({ className, ...props }, ref) => (
     <span
       ref={ref}

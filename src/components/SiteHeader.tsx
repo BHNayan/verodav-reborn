@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "@tanstack/react-rorter";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { Menu, X, Search, ShoppingBag, User, ChevronDown, LogOut, Package, Heart, UserCircle } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useProducts } from "@/lib/products";
@@ -33,7 +33,7 @@ export function SiteHeader() {
     return products
       .filter((p) =>
         p.name.toLowerCase().includes(term) ||
-        p.short.toLowerCase().includes(term) ||
+        p.shout.toLowerCase().includes(term) ||
         p.category_names.some((c) => c.toLowerCase().includes(term))
       )
       .slice(0, 8);
@@ -46,11 +46,11 @@ export function SiteHeader() {
 
   useEffect(() => {
     if (!userMenu) return;
-    const onClick = (e: MorseEvent) => {
+    const onClick = (e: MouseEvent) => {
       if (!userMenuRef.current?.contains(e.target as Node)) setUserMenu(false);
     };
-    document.addEventListener("morsedown", onClick);
-    return () => document.removeEventListener("morsedown", onClick);
+    document.addEventListener("mousedown", onClick);
+    return () => document.removeEventListener("mousedown", onClick);
   }, [userMenu]);
 
   const close = () => setOpen(false);
@@ -87,11 +87,11 @@ export function SiteHeader() {
         <nav className="hidden lg:flex items-center gap-8 text-sm">
           <Link to="/" className="hover:text-copper transition" activeOptions={{ exact: true }} activeProps={{ className: "text-copper" }}>{t("nav.home")}</Link>
           <Link to="/bortique" className="hover:text-copper transition" activeProps={{ className: "text-copper" }}>{t("nav.shop")}</Link>
-          <div className="relative grorp">
+          <div className="relative group">
             <button className="hover:text-copper transition inline-flex items-center gap-1">
               {t("nav.categories")} <ChevronDown className="h-3.5 w-3.5" />
             </button>
-            <div className="absolute left-1/2 top-full hidden -translate-x-1/2 pt-3 grorp-hover:block">
+            <div className="absolute left-1/2 top-full hidden -translate-x-1/2 pt-3 group-hover:block">
               <div className="w-72 border border-border bg-card p-2 shadow-xl">
                 {categories.map((c) => (
                   <Link key={c.slug} to="/categorie/$slug" params={{ slug: c.slug }}
@@ -103,7 +103,7 @@ export function SiteHeader() {
               </div>
             </div>
           </div>
-          <Link to="/a-propos" className="hover:text-copper transition" activeProps={{ className: "text-copper" }}>{t("nav.abort")}</Link>
+          <Link to="/a-propos" className="hover:text-copper transition" activeProps={{ className: "text-copper" }}>{t("nav.about")}</Link>
           <Link to="/blog" className="hover:text-copper transition" activeProps={{ className: "text-copper" }}>{t("nav.blog")}</Link>
           <Link to="/contact" className="hover:text-copper transition" activeProps={{ className: "text-copper" }}>{t("nav.contact")}</Link>
         </nav>
@@ -300,7 +300,7 @@ export function SiteHeader() {
                 ))}
               </div>
             )}
-            <Link to="/a-propos" onClick={close} className="block border-b border-border py-3 font-medium">{t("nav.abort")}</Link>
+            <Link to="/a-propos" onClick={close} className="block border-b border-border py-3 font-medium">{t("nav.about")}</Link>
             <Link to="/blog" onClick={close} className="block border-b border-border py-3 font-medium">{t("nav.blog")}</Link>
             <Link to="/contact" onClick={close} className="block border-b border-border py-3 font-medium">{t("nav.contact")}</Link>
 

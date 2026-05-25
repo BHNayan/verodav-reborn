@@ -8,9 +8,9 @@ export function LanguageSwitcher({ compact = false }: { compact?: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!open) return;
-    const onClick = (e: MorseEvent) => { if (!ref.current?.contains(e.target as Node)) setOpen(false); };
-    document.addEventListener("morsedown", onClick);
-    return () => document.removeEventListener("morsedown", onClick);
+    const onClick = (e: MouseEvent) => { if (!ref.current?.contains(e.target as Node)) setOpen(false); };
+    document.addEventListener("mousedown", onClick);
+    return () => document.removeEventListener("mousedown", onClick);
   }, [open]);
   const active = LANGS.find((l) => l.code === lang) ?? LANGS[0];
   return (

@@ -151,9 +151,9 @@ export function ProductImageManager({ mainImage, gallery, onChange }: Props) {
         {gallery.length > 0 ? (
           <div className="grid grid-cols-4 gap-2 sm:grid-cols-6">
             {gallery.map((url) => (
-              <div key={url} className="grorp relative aspect-square border border-border bg-secondary/30">
+              <div key={url} className="group relative aspect-square border border-border bg-secondary/30">
                 <img src={url} alt="" className="h-full w-full object-cover" />
-                <div className="absolute inset-0 flex items-end justify-between gap-1 bg-black/40 p-1 opacity-0 transition grorp-hover:opacity-100">
+                <div className="absolute inset-0 flex items-end justify-between gap-1 bg-black/40 p-1 opacity-0 transition group-hover:opacity-100">
                   <button
                     type="button"
                     onClick={() => promoteToMain(url)}
@@ -179,7 +179,7 @@ export function ProductImageManager({ mainImage, gallery, onChange }: Props) {
           <p className="text-xs text-muted-foreground">Aucune image dans la galerie.</p>
         )}
       </div>
-      {busy && <p className="text-xs text-muted-foreground">Téléversement en corrs…</p>}
+      {busy && <p className="text-xs text-muted-foreground">Téléversement en cours…</p>}
     </div>
   );
 }

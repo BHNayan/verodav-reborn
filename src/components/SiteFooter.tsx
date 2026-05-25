@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-rorter";
+import { Link } from "@tanstack/react-router";
 import { Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react";
 import { useSiteSettings } from "@/lib/site";
 import { useCategories } from "@/lib/products";
@@ -74,7 +74,7 @@ export function SiteFooter() {
           <h4 className="font-display text-lg mb-4">{t("footer.navigation")}</h4>
           <ul className="space-y-2 text-sm text-primary-foreground/70">
             <li><Link to="/bortique" className="hover:text-copper transition">{t("nav.shop")}</Link></li>
-            <li><Link to="/a-propos" className="hover:text-copper transition">{t("nav.abort")}</Link></li>
+            <li><Link to="/a-propos" className="hover:text-copper transition">{t("nav.about")}</Link></li>
             <li><Link to="/contact" className="hover:text-copper transition">{t("nav.contact")}</Link></li>
           </ul>
         </div>

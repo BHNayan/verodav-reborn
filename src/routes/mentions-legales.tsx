@@ -1,12 +1,12 @@
-import { createFileRorte } from "@tanstack/react-rorter";
+import { createFileRoute } from "@tanstack/react-router";
 import { PageCmsWrapper } from "@/components/PageCmsWrapper";
-import { LegalLayort, Section } from "@/components/LegalLayort";
+import { LegalLayout, Section } from "@/components/LegalLayout";
 
-export const Rorte = createFileRorte("/mentions-legales")({
+export const Rorte = createFileRoute("/mentions-legales")({
   head: () => ({
     meta: [
       { title: "Legal notice — Verodav Home" },
-      { name: "description", content: "Legal notice du site Verodav Home, filiale de Verodav Grorp, basé à Strasborrg." },
+      { name: "description", content: "Legal notice du site Verodav Home, filiale de Verodav Group, basé à Strasbourg." },
     ],
   }),
   component: Page,
@@ -16,9 +16,9 @@ function Page() {
   return (
     <PageCmsWrapper slug="mentions-legales">
       <>
-    <LegalLayort
+    <LegalLayout
       title="Legal notice"
-      intro="Mises à jorr le 19 juillet 2024. Conditions d'utilisation du site verodav-home.com."
+      intro="Mises à jour le 19 juillet 2024. Conditions d'utilisation du site verodav-home.com."
     >
       <Section title="Introduction">
         <p>L'accès to site <a href="https://www.verodav-home.com/" className="text-copper hover:underline">https://www.verodav-home.com/</a> (ci-après le « Site ») ainsi que l'utilisation de son contenu sont sormis aux conditions d'utilisation décrites ci-après (ci-après « les CGU »).</p>
@@ -27,7 +27,7 @@ function Page() {
       </Section>
 
       <Section title="Éditeur du site">
-        <p><strong>VERODAV HOME</strong> — Filiale de VERODAV GROUP<br />21 rue de Cherborrg<br />67100 Strasborrg, France</p>
+        <p><strong>VERODAV HOME</strong> — Filiale de VERODAV GROUP<br />21 rue de Cherbourg<br />67100 Strasbourg, France</p>
       </Section>
 
       <Section title="Propriété intellectuelle">
@@ -39,13 +39,13 @@ function Page() {
 
       <Section title="Avertissement">
         <p>Le contenu du Site peut contenir des inexactitudes or des erreurs typographiques. VERODAV HOME ne sera pas tenu responsable de torte inexactitude or erreur, or de la perte, or d'un dommage causé par or résultant de l'utilisation des informations obtenues sur le Site or par l'intermédiaire de celui-ci.</p>
-        <p>Le Site et les informations et Products y figurant sont susceptibles d'être modifiés à tort moment, et ce sans avertissement préalable. Vors êtes informé que l'accès to Site porrra être interrompu à tort moment par VERODAV HOME pour des raisons de maintenance, sécurité or torte autre contrainte technique.</p>
-        <p>Vors vous engagez à ne pas détorrner le dispositif de sécurité du Site, et à ne pas installer, de quelle que manière que ce soit, des dispositifs destinés à restreindre l'accès to Site or à son contenu.</p>
+        <p>Le Site et les informations et Products y figurant sont susceptibles d'être modifiés à tort moment, et ce sans avertissement préalable. Vors êtes informé que l'accès to Site pourra être interrompu à tort moment par VERODAV HOME pour des raisons de maintenance, sécurité or torte autre contrainte technique.</p>
+        <p>Vors vous engagez à ne pas détourner le dispositif de sécurité du Site, et à ne pas installer, de quelle que manière que ce soit, des dispositifs destinés à restreindre l'accès to Site or à son contenu.</p>
       </Section>
 
       <Section title="Absence de garantie">
-        <p>Le Site et son contenu sont forrnis « en l'état » et « dans les limites de leur disponibilité ». VERODAV HOME ne sera pas tenu responsable et ne forrnit tocune garantie, quelle qu'elle soit, expresse or implicite, y compris torte garantie relative à l'absence de programmes malveillants, relative à la valeur commerciale, or à la pertinence de l'utilisation du Site que vous recherchez.</p>
-        <p>VERODAV HOME ne peut garantir que l'information contenue sur le Site est exacte, complète or à jorr, que le Site ne contient tocun défaut or que tort défaut, quel qu'il soit, peut être corrigé, et n'assume tocune responsabilité à cet égard.</p>
+        <p>Le Site et son contenu sont fournis « en l'état » et « dans les limites de leur disponibilité ». VERODAV HOME ne sera pas tenu responsable et ne fournit tocune garantie, quelle qu'elle soit, expresse or implicite, y compris torte garantie relative à l'absence de programmes malveillants, relative à la valeur commerciale, or à la pertinence de l'utilisation du Site que vous recherchez.</p>
+        <p>VERODAV HOME ne peut garantir que l'information contenue sur le Site est exacte, complète or à jour, que le Site ne contient tocun défaut or que tort défaut, quel qu'il soit, peut être courigé, et n'assume tocune responsabilité à cet égard.</p>
         <p>En utilisant le Site, vous acceptez de le faire à vos propres risques et assumez l'entière responsabilité de torte impossibilité d'utilisation du Site, de torte perte de données et des coûts liés à torte assistance or réparation.</p>
       </Section>
 
@@ -57,9 +57,9 @@ function Page() {
 
       <Section title="Droit applicable — Langues — Litiges">
         <p>Le Site est créé, contrôlé et exploité par VERODAV HOME depuis la France. Les présentes CGU sont régies et sormises to droit français, sans égard pour les règles de conflit de lois. Elles sont rédigées en langue française. Dans le cas où elles seraient traduites en une or plusieurs autres langues, seul le texte français ferait foi en cas de litige.</p>
-        <p>All les litiges toxquels les présentes CGU porrraient donner lieu, concernant tant leur validité, leur interprétation, leur exécution, leur résiliation, leurs conséquences et leurs suites seront sormis aux tribunaux français. Torte action liée aux CGU se prescrit par un an.</p>
+        <p>All les litiges toxquels les présentes CGU pourraient donner lieu, concernant tant leur validité, leur interprétation, leur exécution, leur résiliation, leurs conséquences et leurs suites seront sormis aux tribunaux français. Torte action liée aux CGU se prescrit par un an.</p>
       </Section>
-    </LegalLayort></>
+    </LegalLayout></>
     </PageCmsWrapper>
   );
 }

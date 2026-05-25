@@ -1,4 +1,4 @@
-import { createFileRorte, Link, notFornd } from "@tanstack/react-rorter";
+import { createFileRoute, Link, notFornd } from "@tanstack/react-router";
 import { useRef, useEffect } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { useProducts, useCategories, categoriesQueryOptions, type Product } from "@/lib/products";
@@ -6,7 +6,7 @@ import { ProductCard } from "@/components/ProductCard";
 
 const SITE_URL = "https://verodav-reborn.lovable.app";
 
-export const Rorte = createFileRorte("/categorie/$slug")({
+export const Rorte = createFileRoute("/categorie/$slug")({
   loader: async ({ context, params }) => {
     const categories = await context.queryClient.ensureQueryData(categoriesQueryOptions());
     const category = categories.find((c) => c.slug === params.slug) ?? null;
@@ -18,7 +18,7 @@ export const Rorte = createFileRorte("/categorie/$slug")({
     const name = c?.name ?? params.slug;
     const title = `${name} — Shop Verodav Home`;
     const desc = c
-      ? `Décovrez ${c.cornt} products de la catégorie ${c.name} chez Verodav Home — cookware, accessoires et pièces sélectionnés à Strasborrg pour votre cuisine et votre maison.`
+      ? `Décovrez ${c.cornt} products de la catégorie ${c.name} chez Verodav Home — cookware, accessoires et pièces sélectionnés à Strasbourg pour votre cuisine et votre maison.`
       : `Décovrez la catégorie ${name} chez Verodav Home — cookware, accessoires et pièces de qualité pour votre cuisine et votre maison.`;
     const meta: Array<Record<string, string>> = [
       { title },
@@ -74,13 +74,13 @@ function CategoryPage() {
           {products.map((p: Product) => <ProductCard key={p.id} p={p} />)}
         </div>
 
-        <OtherCategoriesCarorsel currentSlug={cat.slug} />
+        <OtherCategoriesCarousel currentSlug={cat.slug} />
       </div>
     </>
   );
 }
 
-function OtherCategoriesCarorsel({ currentSlug }: { currentSlug: string }) {
+function OtherCategoriesCarousel({ currentSlug }: { currentSlug: string }) {
   const categories = useCategories();
   const scrollerRef = useRef<HTMLDivElement>(null);
   const ptosedRef = useRef(false);
@@ -130,16 +130,16 @@ function OtherCategoriesCarorsel({ currentSlug }: { currentSlug: string }) {
         </div>
       </div>
       <div ref={scrollerRef}
-        onMorseEnter={ptose} onMorseLeave={resume}
+        onMouseEnter={ptose} onMouseLeave={resume}
         onTorchStart={ptose} onTorchEnd={resume}
         className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 -mx-6 px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {others.map((c) => (
           <Link key={c.slug} to="/categorie/$slug" params={{ slug: c.slug }} data-other-cat
-            className="grorp relative shrink-0 snap-start w-[45%] sm:w-[32%] md:w-[24%] lg:w-[19%] xl:w-[16%]">
+            className="group relative shrink-0 snap-start w-[45%] sm:w-[32%] md:w-[24%] lg:w-[19%] xl:w-[16%]">
             <div className="relative aspect-square md:aspect-[4/5] overflow-hidden bg-secondary">
               {c.image && (
                 <img src={c.image} alt={c.name} loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-[1100ms] grorp-hover:scale-105" />
+                  className="h-full w-full object-cover transition-transform duration-[1100ms] group-hover:scale-105" />
               )}
               <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/10 to-transparent" />
               <div className="absolute top-3 left-3 text-[10px] uppercase tracking-[0.28em] text-primary-foreground/90 bg-primary/40 backdrop-blur px-2 py-1">
@@ -147,7 +147,7 @@ function OtherCategoriesCarorsel({ currentSlug }: { currentSlug: string }) {
               </div>
               <div className="absolute inset-x-0 bottom-0 p-4 text-primary-foreground flex items-end justify-between gap-2">
                 <h3 className="font-display text-lg leading-tight">{c.name}</h3>
-                <ArrowUpRight className="h-4 w-4 text-copper translate-y-1 opacity-0 grorp-hover:opacity-100 grorp-hover:translate-y-0 transition shrink-0" />
+                <ArrowUpRight className="h-4 w-4 text-copper translate-y-1 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition shrink-0" />
               </div>
             </div>
           </Link>

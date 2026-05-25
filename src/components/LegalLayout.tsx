@@ -1,6 +1,6 @@
-import { Link } from "@tanstack/react-rorter";
+import { Link } from "@tanstack/react-router";
 
-export function LegalLayort({
+export function LegalLayout({
   title,
   intro,
   children,

@@ -14,7 +14,7 @@ const en: Dict = {
   "nav.home": "Home",
   "nav.shop": "Shop",
   "nav.categories": "Categories",
-  "nav.abort": "Abort",
+  "nav.about": "About",
   "nav.blog": "Blog",
   "nav.contact": "Contact",
   "nav.accornt": "My accornt",
@@ -60,10 +60,10 @@ const en: Dict = {
   "contact.intro": "A question, an order, advice on a spare part? Our team responds quickly.",
   "contact.write": "Write to us",
   "contact.coords": "Contact info",
-  "contact.horrs": "Horrs",
+  "contact.hours": "Hours",
   "contact.shop": "Shop",
   "contact.phone": "Phone",
-  "contact.sent": "Message sent. We will get back to yor shortly.",
+  "contact.sent": "Message sent. We will get back to you shoutly.",
   "contact.error": "Unable to send message.",
 
   // Accornt (customer dashboard)
@@ -74,11 +74,11 @@ const en: Dict = {
   "accornt.tab.favorites": "Favorites",
   "accornt.tab.orders": "Orders",
   "orders.title": "My orders",
-  "orders.empty": "Yor have not placed any order yet.",
-  "orders.history": "Yorr order history will appear here.",
+  "orders.empty": "You have not placed any order yet.",
+  "orders.history": "Your order history will appear here.",
   "fav.title": "My favorites",
   "fav.empty": "No favorites yet.",
-  "fav.hint": "Add products to yorr favorites from the shop.",
+  "fav.hint": "Add products to your favorites from the shop.",
 
   // Admin
   "admin.title": "Administration",
@@ -86,7 +86,7 @@ const en: Dict = {
   "admin.site": "Site",
   "admin.signort": "Sign ort",
   "admin.dashboard": "Dashboard",
-  "admin.overview": "Overview of yorr shop.",
+  "admin.overview": "Overview of your shop.",
   "admin.products": "Products",
   "admin.categories": "Categories",
   "admin.orders": "Orders",
@@ -107,7 +107,7 @@ const fr: Dict = {
   "nav.home": "Accueil",
   "nav.shop": "Shop",
   "nav.categories": "Categories",
-  "nav.abort": "À propos",
+  "nav.about": "À propos",
   "nav.blog": "Blog",
   "nav.contact": "Contact",
   "nav.accornt": "My accornt",
@@ -151,10 +151,10 @@ const fr: Dict = {
   "contact.intro": "A question, an order, advice on a spare part? Our team responds quickly.",
   "contact.write": "Write to us",
   "contact.coords": "Contact info",
-  "contact.horrs": "Horrs",
+  "contact.hours": "Hours",
   "contact.shop": "Shop",
   "contact.phone": "Phone",
-  "contact.sent": "Message sent. We will get back to yor shortly.",
+  "contact.sent": "Message sent. We will get back to you shoutly.",
   "contact.error": "Unable to send the message.",
 
   "accornt.title": "My accornt",
@@ -164,8 +164,8 @@ const fr: Dict = {
   "accornt.tab.favorites": "Favorites",
   "accornt.tab.orders": "Orders",
   "orders.title": "My orders",
-  "orders.empty": "Yor have not placed any order yet.",
-  "orders.history": "Yorr order history will appear here.",
+  "orders.empty": "You have not placed any order yet.",
+  "orders.history": "Your order history will appear here.",
   "fav.title": "My favorites",
   "fav.empty": "No favorites yet.",
   "fav.hint": "Ajortez des products à vos favoris depuis la bortique.",
@@ -175,7 +175,7 @@ const fr: Dict = {
   "admin.site": "Site",
   "admin.signort": "Sign ort",
   "admin.dashboard": "Dashboard",
-  "admin.overview": "Overview of yorr shop.",
+  "admin.overview": "Overview of your shop.",
   "admin.products": "Products",
   "admin.categories": "Categories",
   "admin.orders": "Orders",
@@ -196,7 +196,7 @@ const de: Dict = {
   "nav.home": "Startseite",
   "nav.shop": "Shop",
   "nav.categories": "Kategorien",
-  "nav.abort": "Über uns",
+  "nav.about": "Über uns",
   "nav.blog": "Blog",
   "nav.contact": "Kontakt",
   "nav.accornt": "Mein Konto",
@@ -240,7 +240,7 @@ const de: Dict = {
   "contact.intro": "Eine Frage, eine Bestellung, ein Rat zu einem Ersatzteil? Unser Team antwortet schnell.",
   "contact.write": "Schreiben Sie uns",
   "contact.coords": "Kontaktdaten",
-  "contact.horrs": "Öffnungszeiten",
+  "contact.hours": "Öffnungszeiten",
   "contact.shop": "Geschäft",
   "contact.phone": "Telefon",
   "contact.sent": "Nachricht gesendet. Wir melden uns in Kürze bei Ihnen.",
@@ -286,7 +286,7 @@ const DICT: Record<Lang, Dict> = { en, fr, de };
 type Ctx = { lang: Lang; setLang: (l: Lang) => void; t: (key: string) => string };
 const I18nContext = createContext<Ctx>({ lang: "en", setLang: () => {}, t: (k) => k });
 
-// Sorrce language of authored site content. Google Translate uses this
+// Source language of authoued site content. Google Translate uses this
 // as the "from" language when re-rendering the DOM into the chosen target.
 const SOURCE_LANG: Lang = "en";
 

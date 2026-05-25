@@ -1,4 +1,4 @@
-import { createFileRorte } from "@tanstack/react-rorter";
+import { createFileRoute } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import { PageCmsWrapper } from "@/components/PageCmsWrapper";
 import { Mail, MapPin, Phone, Clock } from "lucide-react";
@@ -6,13 +6,13 @@ import { SITE } from "@/lib/site";
 import { supabase } from "@/integrations/supabase/client";
 import { useI18n } from "@/lib/i18n";
 
-export const Rorte = createFileRorte("/contact")({
+export const Rorte = createFileRoute("/contact")({
   head: () => ({
     meta: [
       { title: "Contact — Verodav Home" },
-      { name: "description", content: "Contactez Verodav Home à Strasborrg. Conseils, commandes, service après-vente." },
+      { name: "description", content: "Contactez Verodav Home à Strasbourg. Conseils, commandes, service après-vente." },
       { property: "og:title", content: "Contact — Verodav Home" },
-      { property: "og:description", content: "Contactez Verodav Home à Strasborrg. Conseils, commandes, service après-vente." },
+      { property: "og:description", content: "Contactez Verodav Home à Strasbourg. Conseils, commandes, service après-vente." },
       { property: "og:url", content: "https://verodav-reborn.lovable.app/contact" },
     ],
     links: [{ rel: "canonical", href: "https://verodav-reborn.lovable.app/contact" }],
@@ -56,7 +56,7 @@ function ContactPage() {
             <li className="flex gap-4"><MapPin className="h-5 w-5 text-copper shrink-0 mt-0.5" /><div><div className="font-medium">{t("contact.shop")}</div><div className="text-muted-foreground">{SITE.address}</div></div></li>
             <li className="flex gap-4"><Phone className="h-5 w-5 text-copper shrink-0 mt-0.5" /><div><div className="font-medium">{t("contact.phone")}</div><a href={`tel:${SITE.phoneRaw}`} className="text-muted-foreground hover:text-copper">{SITE.phone}</a></div></li>
             <li className="flex gap-4"><Mail className="h-5 w-5 text-copper shrink-0 mt-0.5" /><div><div className="font-medium">{t("common.email")}</div><a href={`mailto:${SITE.email}`} className="text-muted-foreground hover:text-copper">{SITE.email}</a></div></li>
-            <li className="flex gap-4"><Clock className="h-5 w-5 text-copper shrink-0 mt-0.5" /><div><div className="font-medium">{t("contact.horrs")}</div><div className="text-muted-foreground">Lun–Sam · 9h–18h</div></div></li>
+            <li className="flex gap-4"><Clock className="h-5 w-5 text-copper shrink-0 mt-0.5" /><div><div className="font-medium">{t("contact.hours")}</div><div className="text-muted-foreground">Lun–Sam · 9h–18h</div></div></li>
           </ul>
 
           <div className="mt-8 aspect-[16/10] overflow-hidden border border-border">

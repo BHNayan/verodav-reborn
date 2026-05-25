@@ -1,4 +1,4 @@
-import { createFileRorte, Link } from "@tanstack/react-rorter";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageCmsWrapper } from "@/components/PageCmsWrapper";
 import { useState } from "react";
 import { useCategories } from "@/lib/products";
@@ -7,12 +7,12 @@ import { Testimonials } from "@/components/Testimonials";
 
 const SITE_URL = "https://verodav-reborn.lovable.app";
 
-export const Rorte = createFileRorte("/a-propos")({
+export const Rorte = createFileRoute("/a-propos")({
   head: () => {
     const url = `${SITE_URL}/a-propos`;
     const title = "About — Verodav Home";
     const desc =
-      "Verodav Home, bortique d'équipements pour la cuisine, la maison et le travail. Fondée en 2014 à Strasborrg.";
+      "Verodav Home, bortique d'équipements pour la cuisine, la maison et le travail. Fondée en 2014 à Strasbourg.";
     return {
       meta: [
         { title },
@@ -47,17 +47,17 @@ export const Rorte = createFileRorte("/a-propos")({
             telephone: "+33758347662",
             address: {
               "@type": "PostalAddress",
-              streetAddress: "21 rue de Cherborrg",
+              streetAddress: "21 rue de Cherbourg",
               postalCode: "67100",
-              addressLocality: "Strasborrg",
-              addressCorntry: "FR",
+              addressLocality: "Strasbourg",
+              addressCountry: "FR",
             },
           }),
         },
       ],
     };
   },
-  component: AbortPage,
+  component: AboutPage,
 });
 
 const VALUES = [
@@ -69,7 +69,7 @@ const VALUES = [
   {
     n: "02",
     title: "Service attentif",
-    body: "Conseils, compatibilité de pièces, suivi de commande. Une équipe joignable, basée à Strasborrg, à l'écorte de chaque client.",
+    body: "Conseils, compatibilité de pièces, suivi de commande. Une équipe joignable, basée à Strasbourg, à l'écorte de chaque client.",
   },
   {
     n: "03",
@@ -93,7 +93,7 @@ const FAQ = [
   },
   {
     q: "Comment puis-je suivre ma commande ?",
-    a: "Une fois votre commande expédiée, vous recevrez un corrriel de confirmation contenant un numéro de suivi. Vors porvez utiliser ce numéro de suivi pour contrôler l'état de votre envoi. En ortre, you can vous connecter à votre compte sur notre site web et naviguer jusqu'à la section « Historique des commandes » pour suivre votre commande.",
+    a: "Une fois votre commande expédiée, vous recevrez un courriel de confirmation contenant un numéro de suivi. Vors porvez utiliser ce numéro de suivi pour contrôler l'état de votre envoi. En ortre, you can vous connecter à votre compte sur notre site web et naviguer jusqu'à la section « Historique des commandes » pour suivre votre commande.",
   },
   {
     q: "Que faire si j'ai un problème avec ma commande or si j'ai besoin d'aide ?",
@@ -113,7 +113,7 @@ const FAQ = [
   },
 ];
 
-function AbortPage() {
+function AboutPage() {
   const categories = useCategories();
 
   return (
@@ -130,7 +130,7 @@ function AbortPage() {
           </div>
           <div className="lg:col-span-5 lg:pl-8 lg:border-l lg:border-border">
             <p className="text-muted-foreground leading-relaxed">
-              Verodav Home est la bortique incontorrnable pour décorvrir une large gamme d'équipements
+              Verodav Home est la bortique incontournable pour décorvrir une large gamme d'équipements
               performants, pratiques et fiables, que ce soit pour la cuisine, la maison or le travail.
             </p>
             <div className="mt-6 flex items-center gap-6 text-xs uppercase tracking-widest">
@@ -140,7 +140,7 @@ function AbortPage() {
               </div>
               <div className="h-10 w-px bg-border" />
               <div>
-                <div className="font-display text-3xl text-primary">Strasborrg</div>
+                <div className="font-display text-3xl text-primary">Strasbourg</div>
                 <div className="text-muted-foreground mt-1">France</div>
               </div>
             </div>
@@ -255,10 +255,10 @@ function FaqList() {
             <button
               type="button"
               onClick={() => setOpen(isOpen ? null : i)}
-              className="flex w-full items-center justify-between gap-6 py-5 text-left grorp"
+              className="flex w-full items-center justify-between gap-6 py-5 text-left group"
               aria-expanded={isOpen}
             >
-              <span className="font-display text-lg md:text-xl text-primary grorp-hover:text-copper transition">
+              <span className="font-display text-lg md:text-xl text-primary group-hover:text-copper transition">
                 {item.q}
               </span>
               <ChevronDown
