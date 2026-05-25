@@ -103,32 +103,89 @@ function AdminProducts() {
 
   const importRows = async (rows: Record<string, unknown>[]) => {
     if (!rows.length) return alert("Fichier vide");
-    const catByName = new Map(cats.map((c) => [c.name.toLowerCase(), c.id]));
-    let ok = 0, fail = 0;
-    const errors: string[] = [];
+
+    // Build a case-insensitive lookup for each row (handles WooCommerce headers like "Regular price")
+    const pick = (r: Record<string, unknown>, ...keys: string[]) => {
+      const map = new Map(Object.keys(r).map((k) => [k.toLowerCase().trim(), k]));
+      for (const k of keys) {
+        const hit = map.get(k.toLowerCase());
+        if (hit !== undefined && r[hit] !== undefined && r[hit] !== null && r[hit] !== "") return r[hit];
+      }
+      return undefined;
+    };
+    const truthy = (v: unknown, def = true) => {
+      if (v === undefined || v === null || v === "") return def;
+      const s = String(v).toLowerCase().trim();
+      return ["1", "true", "yes", "y", "oui", "publish", "published", "instock", "in stock", "visible"].includes(s);
+    };
+
+    // Auto-create missing categories so WooCommerce imports work out of the box.
+    let catByName = new Map(cats.map((c) => [c.name.toLowerCase(), c.id]));
+    const wantedCats = new Set<string>();
     for (const r of rows) {
-      const name = String(r.name ?? "").trim();
+      const raw = pick(r, "category", "category_name", "categories", "Categories");
+      if (!raw) continue;
+      // WooCommerce: "Cuisine > Robots, Bricolage" → take the leaf of the first path
+      const first = String(raw).split(/[,|]/)[0]?.trim();
+      if (!first) continue;
+      const leaf = first.split(">").pop()?.trim();
+      if (leaf && !catByName.has(leaf.toLowerCase())) wantedCats.add(leaf);
+    }
+    if (wantedCats.size) {
+      const toInsert = Array.from(wantedCats).map((name) => ({ name, slug: slugify(name) }));
+      const { data: created } = await supabase.from("categories").insert(toInsert).select("id,name");
+      for (const c of (created ?? []) as Cat[]) catByName.set(c.name.toLowerCase(), c.id);
+    }
+
+    let ok = 0, fail = 0, updated = 0;
+    const errors: string[] = [];
+
+    for (const r of rows) {
+      const name = String(pick(r, "name", "Name", "title") ?? "").trim();
       if (!name) { fail++; continue; }
-      const slug = String(r.slug || slugify(name));
-      const catRaw = (r.category ?? r.category_name ?? "") as string;
-      const category_id = catRaw ? catByName.get(String(catRaw).toLowerCase()) ?? null : (r.category_id as string ?? null);
-      const images = normalizeImages(r.images);
+
+      // WooCommerce: SKU is the most stable identifier. Fall back to slug, then slugified name.
+      const sku = String(pick(r, "sku", "SKU") ?? "").trim();
+      const slug = String(pick(r, "slug") ?? "").trim() || (sku ? slugify(sku) : slugify(name));
+
+      const catRaw = pick(r, "category", "category_name", "categories", "Categories");
+      let category_id: string | null = null;
+      if (catRaw) {
+        const leaf = String(catRaw).split(/[,|]/)[0]?.split(">").pop()?.trim();
+        if (leaf) category_id = catByName.get(leaf.toLowerCase()) ?? null;
+      } else if (r.category_id) {
+        category_id = String(r.category_id);
+      }
+
+      const images = normalizeImages(pick(r, "images", "Images") ?? r.images);
+      const price = Number(pick(r, "sale price", "Sale price", "regular price", "Regular price", "price") ?? 0);
+      const stock = Number(pick(r, "stock", "Stock") ?? 0);
+      const description = (pick(r, "description", "Description", "short description", "Short description") as string) ?? null;
+      const published = pick(r, "published", "Published", "status", "Status");
+      const featured = pick(r, "is_featured", "Is featured?", "featured");
+      const inStock = pick(r, "in stock?", "In stock?", "stock status");
+
       const payload = {
         slug,
         name,
-        price: Number(r.price ?? 0),
-        stock: Number(r.stock ?? 0),
+        price: isNaN(price) ? 0 : price,
+        stock: isNaN(stock) ? 0 : stock,
         category_id,
-        image_url: (r.image_url as string) || images[0] || null,
+        image_url: (pick(r, "image_url", "image") as string) || images[0] || null,
         images,
-        description: (r.description as string) ?? null,
-        is_active: r.is_active === false || r.is_active === "false" || r.is_active === 0 ? false : true,
-        is_featured: r.is_featured === true || r.is_featured === "true" || r.is_featured === 1 ? true : false,
+        description,
+        is_active: truthy(published, true) && (inStock === undefined ? true : truthy(inStock, true)),
+        is_featured: truthy(featured, false),
       };
+
+      // Check existence to report new vs updated.
+      const { data: existing } = await supabase.from("products").select("id").eq("slug", slug).maybeSingle();
       const { error } = await supabase.from("products").upsert(payload, { onConflict: "slug" });
-      if (error) { fail++; errors.push(`${slug}: ${error.message}`); } else ok++;
+      if (error) { fail++; errors.push(`${slug}: ${error.message}`); }
+      else if (existing) updated++;
+      else ok++;
     }
-    alert(`Import terminé. Réussis: ${ok}, échoués: ${fail}${errors.length ? "\n" + errors.slice(0, 5).join("\n") : ""}`);
+    alert(`Import terminé. Créés: ${ok}, mis à jour: ${updated}, échoués: ${fail}${errors.length ? "\n" + errors.slice(0, 5).join("\n") : ""}`);
     load();
   };
 
