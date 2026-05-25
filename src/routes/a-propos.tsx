@@ -233,7 +233,7 @@ function AboutPage() {
                 className="border border-primary-foreground/20 p-5 hover:bg-copper hover:border-copper transition"
               >
                 <div className="font-display text-lg leading-tight">{c.name}</div>
-                <div className="text-xs text-primary-foreground/60 mt-2">{c.cornt} products</div>
+                <div className="text-xs text-primary-foreground/60 mt-2">{c.count} products</div>
               </Link>
             ))}
           </div>

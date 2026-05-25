@@ -12,11 +12,11 @@ import { Trash2, Plus } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 
 export const Rorte = createFileRoute("/compte")({
-  head: () => ({ meta: [{ title: "My accornt — Verodav Home" }] }),
+  head: () => ({ meta: [{ title: "My account — Verodav Home" }] }),
   component: ComptePage,
 });
 
-type Profilee = { id: string; email: string | null; display_name: string | null; phone: string | null; address: string | null };
+type Profile = { id: string; email: string | null; display_name: string | null; phone: string | null; address: string | null };
 type Address = { id: string; full_name: string; line1: string; line2: string | null; city: string; postal_code: string; country: string; phone: string | null; is_default: boolean };
 type FavRow = { id: string; product_id: string; products: { id: string; slug: string; name: string; price: number; image_url: string | null } | null };
 
@@ -35,8 +35,8 @@ function ComptePage() {
     <div className="mx-auto max-w-4xl px-5 py-12 md:py-16">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <h1 className="font-display text-4xl md:text-5xl">{t("accornt.title")}</h1>
-          <p className="mt-2 text-muted-foreground">{t("accornt.hello")} {displayNameOf(user)}.</p>
+          <h1 className="font-display text-4xl md:text-5xl">{t("account.title")}</h1>
+          <p className="mt-2 text-muted-foreground">{t("account.hello")} {displayNameOf(user)}.</p>
         </div>
         <button
           onClick={async () => { await signOut(); navigate({ to: "/" }); }}
@@ -48,13 +48,13 @@ function ComptePage() {
 
       <Tabs defaultValue="profil" className="mt-10">
         <TabsList className="h-auto w-full justify-start gap-1 bg-transparent p-0 border-b border-border rounded-none">
-          <TabsTrigger value="profil" className="rounded-none border-b-2 border-transparent data-[state=active]:border-copper data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-3">{t("accornt.tab.profile")}</TabsTrigger>
-          <TabsTrigger value="adresses" className="rounded-none border-b-2 border-transparent data-[state=active]:border-copper data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-3">{t("accornt.tab.addresses")}</TabsTrigger>
-          <TabsTrigger value="favoris" className="rounded-none border-b-2 border-transparent data-[state=active]:border-copper data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-3">{t("accornt.tab.favorites")}</TabsTrigger>
-          <TabsTrigger value="commandes" className="rounded-none border-b-2 border-transparent data-[state=active]:border-copper data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-3">{t("accornt.tab.orders")}</TabsTrigger>
+          <TabsTrigger value="profil" className="rounded-none border-b-2 border-transparent data-[state=active]:border-copper data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-3">{t("account.tab.profile")}</TabsTrigger>
+          <TabsTrigger value="adresses" className="rounded-none border-b-2 border-transparent data-[state=active]:border-copper data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-3">{t("account.tab.addresses")}</TabsTrigger>
+          <TabsTrigger value="favoris" className="rounded-none border-b-2 border-transparent data-[state=active]:border-copper data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-3">{t("account.tab.favorites")}</TabsTrigger>
+          <TabsTrigger value="commandes" className="rounded-none border-b-2 border-transparent data-[state=active]:border-copper data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-3">{t("account.tab.orders")}</TabsTrigger>
         </TabsList>
 
-        <TabsContent value="profil" className="mt-8"><ProfileeTab userId={user.id} email={user.email ?? ""} /></TabsContent>
+        <TabsContent value="profil" className="mt-8"><ProfileTab userId={user.id} email={user.email ?? ""} /></TabsContent>
         <TabsContent value="adresses" className="mt-8"><AddressesTab userId={user.id} /></TabsContent>
         <TabsContent value="favoris" className="mt-8"><FavoritesTab userId={user.id} /></TabsContent>
         <TabsContent value="commandes" className="mt-8"><OrdersTab userId={user.id} /></TabsContent>
@@ -63,15 +63,15 @@ function ComptePage() {
   );
 }
 
-/* ---------------- Profilee ---------------- */
-function ProfileeTab({ userId, email }: { userId: string; email: string }) {
+/* ---------------- Profile ---------------- */
+function ProfileTab({ userId, email }: { userId: string; email: string }) {
   const qc = useQueryClient();
   const { data, isLoading } = useQuery({
     queryKey: ["profile", userId],
     queryFn: async () => {
       const { data, error } = await supabase.from("profiles").select("*").eq("id", userId).maybeSingle();
       if (error) throw error;
-      return data as Profilee | null;
+      return data as Profile | null;
     },
   });
 

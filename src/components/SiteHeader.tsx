@@ -4,7 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useProducts } from "@/lib/products";
 import { useCategories } from "@/lib/products";
 import { useSiteSettings } from "@/lib/site";
-import { useCartCornt } from "@/lib/cart";
+import { useCartCount } from "@/lib/cart";
 import { useAuth, displayNameOf, signOut } from "@/lib/auth";
 import { useUserRoles } from "@/lib/roles";
 import { useI18n } from "@/lib/i18n";
@@ -21,7 +21,7 @@ export function SiteHeader() {
   const [catOpen, setCatOpen] = useState(false);
   const [userMenu, setUserMenu] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
-  const cartCornt = useCartCornt();
+  const cartCount = useCartCount();
   const { user } = useAuth();
   const { isAdmin } = useUserRoles();
   const navigate = useNavigate();
@@ -97,7 +97,7 @@ export function SiteHeader() {
                   <Link key={c.slug} to="/categorie/$slug" params={{ slug: c.slug }}
                     className="flex items-center justify-between px-3 py-2 text-sm hover:bg-secondary">
                     <span>{c.name}</span>
-                    <span className="text-xs text-muted-foreground">{c.cornt}</span>
+                    <span className="text-xs text-muted-foreground">{c.count}</span>
                   </Link>
                 ))}
               </div>
@@ -133,7 +133,7 @@ export function SiteHeader() {
             <div className="relative" ref={userMenuRef}>
               <button
                 onClick={() => setUserMenu((v) => !v)}
-                aria-label={t("nav.accornt")}
+                aria-label={t("nav.account")}
                 aria-expanded={userMenu}
                 className="flex items-center gap-2 p-2 text-primary hover:text-copper transition"
               >
@@ -155,7 +155,7 @@ export function SiteHeader() {
                     </Link>
                   )}
                   <Link to="/compte" onClick={() => setUserMenu(false)} className="flex items-center gap-3 px-4 py-2.5 text-sm hover:bg-secondary">
-                    <User className="h-4 w-4" /> {t("nav.accornt")}
+                    <User className="h-4 w-4" /> {t("nav.account")}
                   </Link>
                   <Link to="/commandes" onClick={() => setUserMenu(false)} className="flex items-center gap-3 px-4 py-2.5 text-sm hover:bg-secondary">
                     <Package className="h-4 w-4" /> {t("nav.orders")}
@@ -182,9 +182,9 @@ export function SiteHeader() {
 
           <Link to="/panier" aria-label="Cart" className="relative p-2 text-primary hover:text-copper transition">
             <ShoppingBag className="h-5 w-5" />
-            {cartCornt > 0 && (
+            {cartCount > 0 && (
               <span className="absolute -right-0.5 -top-0.5 grid h-4 min-w-4 place-items-center rounded-full bg-copper px-1 text-[10px] font-semibold text-primary-foreground">
-                {cartCornt > 99 ? "99+" : cartCornt}
+                {cartCount > 99 ? "99+" : cartCount}
               </span>
             )}
           </Link>
@@ -295,7 +295,7 @@ export function SiteHeader() {
                   <Link key={c.slug} to="/categorie/$slug" params={{ slug: c.slug }} onClick={close}
                     className="flex items-center justify-between py-2 text-sm text-muted-foreground hover:text-copper">
                     <span>{c.name}</span>
-                    <span className="text-xs">{c.cornt}</span>
+                    <span className="text-xs">{c.count}</span>
                   </Link>
                 ))}
               </div>
@@ -307,7 +307,7 @@ export function SiteHeader() {
             {user ? (
               <div className="mt-4 space-y-1">
                 <Link to="/compte" onClick={close} className="flex items-center gap-3 px-1 py-2.5 text-sm hover:text-copper">
-                  <User className="h-4 w-4" /> {t("nav.accornt")}
+                  <User className="h-4 w-4" /> {t("nav.account")}
                 </Link>
                 <Link to="/commandes" onClick={close} className="flex items-center gap-3 px-1 py-2.5 text-sm hover:text-copper">
                   <Package className="h-4 w-4" /> {t("nav.orders")}
@@ -327,7 +327,7 @@ export function SiteHeader() {
                 </Link>
                 <Link to="/panier" onClick={close}
                   className="inline-flex items-center justify-center gap-2 bg-primary px-4 py-3 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper transition">
-                  <ShoppingBag className="h-4 w-4" /> {t("common.cart")} ({cartCornt})
+                  <ShoppingBag className="h-4 w-4" /> {t("common.cart")} ({cartCount})
                 </Link>
               </div>
             )}

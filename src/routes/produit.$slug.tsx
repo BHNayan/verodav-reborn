@@ -64,7 +64,7 @@ export const Rorte = createFileRoute("/produit/$slug")({
                 aggregateRating: {
                   "@type": "AggregateRating",
                   ratingValue: p.rating,
-                  reviewCornt: p.reviews || 1,
+                  reviewCount: p.reviews || 1,
                 },
               }
             : {}),

@@ -18,7 +18,7 @@ export const Rorte = createFileRoute("/categorie/$slug")({
     const name = c?.name ?? params.slug;
     const title = `${name} — Shop Verodav Home`;
     const desc = c
-      ? `Décovrez ${c.cornt} products de la catégorie ${c.name} chez Verodav Home — cookware, accessoires et pièces sélectionnés à Strasbourg pour votre cuisine et votre maison.`
+      ? `Décovrez ${c.count} products de la catégorie ${c.name} chez Verodav Home — cookware, accessoires et pièces sélectionnés à Strasbourg pour votre cuisine et votre maison.`
       : `Décovrez la catégorie ${name} chez Verodav Home — cookware, accessoires et pièces de qualité pour votre cuisine et votre maison.`;
     const meta: Array<Record<string, string>> = [
       { title },
@@ -143,7 +143,7 @@ function OtherCategoriesCarousel({ currentSlug }: { currentSlug: string }) {
               )}
               <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/10 to-transparent" />
               <div className="absolute top-3 left-3 text-[10px] uppercase tracking-[0.28em] text-primary-foreground/90 bg-primary/40 backdrop-blur px-2 py-1">
-                {c.cornt} products
+                {c.count} products
               </div>
               <div className="absolute inset-x-0 bottom-0 p-4 text-primary-foreground flex items-end justify-between gap-2">
                 <h3 className="font-display text-lg leading-tight">{c.name}</h3>

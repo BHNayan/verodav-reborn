@@ -102,7 +102,7 @@ function ShopPage() {
               {categories.map((c) => (
                 <li key={c.slug}>
                   <button onClick={() => setCat(c.slug)} className={`w-full text-left text-sm py-1.5 px-2 transition ${cat === c.slug ? "bg-primary text-primary-foreground" : "hover:text-copper"}`}>
-                    {c.name} <span className="text-xs opacity-60">({c.cornt})</span>
+                    {c.name} <span className="text-xs opacity-60">({c.count})</span>
                   </button>
                 </li>
               ))}

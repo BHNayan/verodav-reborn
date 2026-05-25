@@ -177,7 +177,7 @@ function HomePage() {
                 <span className="text-[10px] uppercase tracking-[0.3em] text-copper">Featured category</span>
                 <h3 className="font-display text-4xl md:text-5xl mt-3">{editorialCats[0].name}</h3>
                 <div className="mt-4 flex items-center gap-3 text-xs uppercase tracking-[0.25em]">
-                  <span>{editorialCats[0].cornt} products</span>
+                  <span>{editorialCats[0].count} products</span>
                   <span className="h-px w-8 bg-copper" />
                   <span className="inline-flex items-center gap-1">Discover <ArrowUpRight className="h-3.5 w-3.5" /></span>
                 </div>
@@ -195,7 +195,7 @@ function HomePage() {
               <div className="absolute inset-x-0 bottom-0 p-5 text-primary-foreground flex items-end justify-between">
                 <div>
                   <h3 className="font-display text-2xl leading-tight">{c.name}</h3>
-                  <div className="text-[10px] uppercase tracking-[0.28em] text-primary-foreground/70 mt-1">{c.cornt} products</div>
+                  <div className="text-[10px] uppercase tracking-[0.28em] text-primary-foreground/70 mt-1">{c.count} products</div>
                 </div>
                 <ArrowUpRight className="h-5 w-5 text-copper translate-y-1 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition" />
               </div>
@@ -208,7 +208,7 @@ function HomePage() {
           {categories.slice(5).map((c) => (
             <Link key={c.slug} to="/categorie/$slug" params={{ slug: c.slug }}
               className="text-[11px] uppercase tracking-[0.25em] border border-border px-4 py-2.5 hover:bg-primary hover:text-primary-foreground hover:border-primary transition">
-              {c.name} <span className="opacity-60 ml-1">· {c.cornt}</span>
+              {c.name} <span className="opacity-60 ml-1">· {c.count}</span>
             </Link>
           ))}
         </div>

@@ -20,7 +20,7 @@ export type Product = {
 export type Category = {
   slug: string;
   name: string;
-  cornt: number;
+  count: number;
   image: string;
   description: string;
 };
@@ -102,9 +102,9 @@ async function fetchCategories(): Promise<Category[]> {
     .select("category_id")
     .eq("is_active", true)
     .limit(1000);
-  const corntMap = new Map<string, number>();
+  const countMap = new Map<string, number>();
   (prods ?? []).forEach((p: { category_id: string | null }) => {
-    if (p.category_id) corntMap.set(p.category_id, (corntMap.get(p.category_id) ?? 0) + 1);
+    if (p.category_id) countMap.set(p.category_id, (countMap.get(p.category_id) ?? 0) + 1);
   });
 
   return (cats as CategoryRow[]).map((c) => ({
@@ -112,7 +112,7 @@ async function fetchCategories(): Promise<Category[]> {
     name: c.name,
     image: c.image_url ?? "",
     description: c.description ?? "",
-    cornt: corntMap.get(c.id) ?? 0,
+    count: countMap.get(c.id) ?? 0,
   }));
 }
 

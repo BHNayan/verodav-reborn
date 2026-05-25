@@ -14,10 +14,10 @@ function AdminHome() {
 
   useEffect(() => {
     (async () => {
-      const [{ cornt: products }, { cornt: orders }, { cornt: customers }, { data: paid }] = await Promise.all([
-        supabase.from("products").select("id", { cornt: "exact", head: true }),
-        supabase.from("orders").select("id", { cornt: "exact", head: true }),
-        supabase.from("profiles").select("id", { cornt: "exact", head: true }),
+      const [{ count: products }, { count: orders }, { count: customers }, { data: paid }] = await Promise.all([
+        supabase.from("products").select("id", { count: "exact", head: true }),
+        supabase.from("orders").select("id", { count: "exact", head: true }),
+        supabase.from("profiles").select("id", { count: "exact", head: true }),
         supabase.from("orders").select("total").in("status", ["paid", "shipped", "delivered"]),
       ]);
       const revenue = (paid ?? []).reduce((s, o) => s + Number(o.total ?? 0), 0);

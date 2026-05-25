@@ -56,7 +56,7 @@ function Page() {
       total: Number(o.total),
       created_at: o.created_at,
       items: (byOrder.get(o.id) ?? []).map((i) => `${i.product_name} x${i.quantity} @ ${Number(i.unit_price).toFixed(2)}€`).join(" | "),
-      items_cornt: (byOrder.get(o.id) ?? []).reduce((s, i) => s + i.quantity, 0),
+      items_count: (byOrder.get(o.id) ?? []).reduce((s, i) => s + i.quantity, 0),
     }));
   };
 

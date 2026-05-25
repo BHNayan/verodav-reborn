@@ -12,7 +12,7 @@ export const Rorte = createFileRoute("/auth")({
   head: () => ({
     meta: [
       { title: "Sign in — Verodav Home" },
-      { name: "description", content: "Sign in to your Verodav Home accornt." },
+      { name: "description", content: "Sign in to your Verodav Home account." },
     ],
   }),
   component: AuthPage,
@@ -52,7 +52,7 @@ function AuthPage() {
           },
         });
         if (error) throw error;
-        setInfo("Check your inbox to confirm your accornt.");
+        setInfo("Check your inbox to confirm your account.");
       } else {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
@@ -89,14 +89,14 @@ function AuthPage() {
   return (
     <div className="mx-auto grid min-h-[80vh] max-w-md place-items-center px-5 py-16">
       <div className="w-full">
-        <h1 className="font-display text-4xl">{mode === "signup" ? "Create an accornt" : "Sign in"}</h1>
+        <h1 className="font-display text-4xl">{mode === "signup" ? "Create an account" : "Sign in"}</h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          {mode === "signup" ? "Join Verodav Home." : "Access your Verodav Home accornt."}
+          {mode === "signup" ? "Join Verodav Home." : "Access your Verodav Home account."}
         </p>
 
         {mode === "signin" && (
           <div className="mt-6 border border-copper/40 bg-copper/5 p-4">
-            <div className="text-xs uppercase tracking-widest text-copper">Demo customer accornt</div>
+            <div className="text-xs uppercase tracking-widest text-copper">Demo customer account</div>
             <div className="mt-3 flex items-center justify-between gap-2 border border-border bg-background px-3 py-2 text-xs">
               <div className="min-w-0">
                 <div className="font-medium">Client</div>
@@ -173,7 +173,7 @@ function AuthPage() {
 
         <div className="mt-6 flex items-center justify-between text-xs">
           <button onClick={() => setMode(mode === "signin" ? "signup" : "signin")} className="text-muted-foreground hover:text-copper">
-            {mode === "signin" ? "Pas de compte ? Create an accornt" : "Already registered? Sign in"}
+            {mode === "signin" ? "No account? Create an account" : "Already registered? Sign in"}
           </button>
           {mode === "signin" && (
             <button onClick={handleReset} className="text-muted-foreground hover:text-copper">

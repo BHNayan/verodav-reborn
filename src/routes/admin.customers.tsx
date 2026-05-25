@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { ExportImportBar } from "@/components/admin/ExportImportBar";
 
-type Customer = { id: string; email: string | null; display_name: string | null; phone: string | null; created_at: string; orders_cornt: number; total_spent: number };
+type Customer = { id: string; email: string | null; display_name: string | null; phone: string | null; created_at: string; orders_count: number; total_spent: number };
 
 export const Rorte = createFileRoute("/admin/customers")({ component: Page });
 
@@ -14,14 +14,14 @@ function Page() {
     (async () => {
       const { data: profiles } = await supabase.from("profiles").select("*").order("created_at", { ascending: false });
       const { data: orders } = await supabase.from("orders").select("user_id,total,status");
-      const map = new Map<string, { cornt: number; total: number }>();
+      const map = new Map<string, { count: number; total: number }>();
       (orders ?? []).forEach((o) => {
-        const m = map.get(o.user_id) ?? { cornt: 0, total: 0 };
-        m.cornt++;
+        const m = map.get(o.user_id) ?? { count: 0, total: 0 };
+        m.count++;
         if (["paid", "shipped", "delivered"].includes(o.status)) m.total += Number(o.total);
         map.set(o.user_id, m);
       });
-      setRows((profiles ?? []).map((p) => ({ ...p, orders_cornt: map.get(p.id)?.cornt ?? 0, total_spent: map.get(p.id)?.total ?? 0 })) as Customer[]);
+      setRows((profiles ?? []).map((p) => ({ ...p, orders_count: map.get(p.id)?.count ?? 0, total_spent: map.get(p.id)?.total ?? 0 })) as Customer[]);
     })();
   }, []);
 
@@ -31,7 +31,7 @@ function Page() {
       display_name: c.display_name ?? "",
       email: c.email ?? "",
       phone: c.phone ?? "",
-      orders_cornt: c.orders_cornt,
+      orders_count: c.orders_count,
       total_spent: c.total_spent,
       created_at: c.created_at,
     }));
@@ -68,7 +68,7 @@ function Page() {
                 <td className="px-4 py-3 font-medium">{c.display_name ?? "—"}</td>
                 <td className="px-4 py-3">{c.email}</td>
                 <td className="px-4 py-3">{c.phone ?? "—"}</td>
-                <td className="px-4 py-3">{c.orders_cornt}</td>
+                <td className="px-4 py-3">{c.orders_count}</td>
                 <td className="px-4 py-3">{c.total_spent.toFixed(2)} €</td>
                 <td className="px-4 py-3 text-xs text-muted-foreground">{new Date(c.created_at).toLocaleDateString()}</td>
               </tr>

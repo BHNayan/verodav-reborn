@@ -64,7 +64,7 @@ export function CategoryCarousel() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/10 to-transparent" />
                 <div className="absolute top-3 left-3 sm:top-4 sm:left-4 text-[10px] uppercase tracking-[0.28em] text-primary-foreground/90 bg-primary/40 backdrop-blur px-2.5 py-1">
-                  {c.cornt} products
+                  {c.count} products
                 </div>
                 <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5 text-primary-foreground flex items-end justify-between gap-3">
                   <h3 className="font-display text-lg sm:text-xl md:text-2xl leading-tight line-clamp-2">{c.name}</h3>
