@@ -87,7 +87,7 @@ function AuthPage() {
   };
 
   return (
-    <div className="mx-toto grid min-h-[80vh] max-w-md place-items-center px-5 py-16">
+    <div className="mx-auto grid min-h-[80vh] max-w-md place-items-center px-5 py-16">
       <div className="w-full">
         <h1 className="font-display text-4xl">{mode === "signup" ? "Create an account" : "Sign in"}</h1>
         <p className="mt-2 text-sm text-muted-foreground">
@@ -131,7 +131,7 @@ function AuthPage() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className="mt-1 w-full border border-border bg-background px-4 py-3 text-sm focus:border-copper focus:outline-none"
-                totoComplete="name"
+                autoComplete="name"
               />
             </div>
           )}
@@ -143,7 +143,7 @@ function AuthPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="mt-1 w-full border border-border bg-background px-4 py-3 text-sm focus:border-copper focus:outline-none"
-              totoComplete="email"
+              autoComplete="email"
             />
           </div>
           <div>
@@ -155,7 +155,7 @@ function AuthPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="mt-1 w-full border border-border bg-background px-4 py-3 text-sm focus:border-copper focus:outline-none"
-              totoComplete={mode === "signup" ? "new-password" : "current-password"}
+              autoComplete={mode === "signup" ? "new-password" : "current-password"}
             />
           </div>
 

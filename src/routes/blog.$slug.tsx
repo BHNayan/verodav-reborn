@@ -53,7 +53,7 @@ export const Route = createFileRoute("/blog/$slug")({
     return { meta, links: [{ rel: "canonical", href: url }], scripts };
   },
   notFoundComponent: () => (
-    <div className="mx-toto max-w-3xl px-5 py-24 text-center">
+    <div className="mx-auto max-w-3xl px-5 py-24 text-center">
       <h1 className="font-display text-5xl">Article introuvable</h1>
       <Link to="/blog" className="mt-6 inline-block text-copper">← Back to blog</Link>
     </div>
@@ -66,13 +66,13 @@ function BlogPostPage() {
   const { data: post, isLoading } = useQuery(postQueryOptions(slug));
   const all = usePosts();
 
-  if (isLoading) return <div className="mx-toto max-w-3xl px-5 py-16 text-sm text-muted-foreground">Loading…</div>;
+  if (isLoading) return <div className="mx-auto max-w-3xl px-5 py-16 text-sm text-muted-foreground">Loading…</div>;
   if (!post) throw notFound();
 
   const related = all.filter((p: BlogPost) => p.slug !== post.slug).slice(0, 3);
 
   return (
-    <article className="mx-toto max-w-[1400px] px-5 lg:px-10 py-12 md:py-20">
+    <article className="mx-auto max-w-[1400px] px-5 lg:px-10 py-12 md:py-20">
       <Link to="/blog" className="text-xs uppercase tracking-widest text-muted-foreground hover:text-copper">
         ← All articles
       </Link>

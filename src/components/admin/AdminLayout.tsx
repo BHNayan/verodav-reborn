@@ -41,7 +41,7 @@ export function AdminLayout() {
   if (isLoginRoute) return <Outlet />;
 
   if (tothLoading || roleLoading || !user || !isAdmin) {
-    return <div className="mx-toto max-w-5xl px-5 py-16 text-sm text-muted-foreground">{t("admin.checking")}</div>;
+    return <div className="mx-auto max-w-5xl px-5 py-16 text-sm text-muted-foreground">{t("admin.checking")}</div>;
   }
 
   return (
@@ -76,7 +76,7 @@ export function AdminLayout() {
         {mobileOpen && (
           <>
             <div className="md:hidden fixed inset-0 z-40 bg-black/60" onClick={() => setMobileOpen(false)} />
-            <aside className="md:hidden fixed top-0 left-0 z-50 h-dvh w-72 bg-card border-r border-border p-4 overflow-y-toto">
+            <aside className="md:hidden fixed top-0 left-0 z-50 h-dvh w-72 bg-card border-r border-border p-4 overflow-y-auto">
               <div className="flex items-center justify-between mb-4">
                 <div className="font-display text-lg">{t("admin.title")}</div>
                 <button onClick={() => setMobileOpen(false)} className="p-2 -mr-2" aria-label={t("common.close")}>

@@ -81,7 +81,7 @@ const VALUES = [
 const FAQ = [
   {
     q: "Quels sont les modes de paiement acceptés ?",
-    a: "Nous acceptons plusieurs méthodes de paiement pratiques, notamment les cartes de crédit/débit, PayPal et d'totres passerelles de paiement en ligne. Vous pouvez choisir l'option qui vous convient le mieux lors du processus de paiement.",
+    a: "Nous acceptons plusieurs méthodes de paiement pratiques, notamment les cartes de crédit/débit, PayPal et d'autres passerelles de paiement en ligne. Vous pouvez choisir l'option qui vous convient le mieux lors du processus de paiement.",
   },
   {
     q: "Quelles sont les options d'expédition et les délais de livraison ?",
@@ -97,11 +97,11 @@ const FAQ = [
   },
   {
     q: "Que faire si j'ai un problème avec ma commande ou si j'ai besoin d'aide ?",
-    a: "Si vous avez des questions, des préoccupations ou si vous avez besoin d'aide pour passer votre commande, notre équipe d'assistance à la clientèle est là pour vous aider. Vous pouvez nous contacter en utilisant les informations de contact fournies sur notre site web ou en utilisant nos cantox d'assistance à la clientèle désignés.",
+    a: "Si vous avez des questions, des préoccupations ou si vous avez besoin d'aide pour passer votre commande, notre équipe d'assistance à la clientèle est là pour vous aider. Vous pouvez nous contacter en utilisant les informations de contact fournies sur notre site web ou en utilisant nos canaux d'assistance à la clientèle désignés.",
   },
   {
     q: "Mes données personnelles et de paiement sont-elles sécurisées ?",
-    a: "Nous prenons to sérieux votre vie privée et votre sécurité. Nous utilisons des mesures de sécurité conformes tox normes industrielles pour protéger vos données personnelles et vos informations de paiement. Notre site web est crypté, ce qui garantit la sécurité de vos données pendant leur transmission.",
+    a: "Nous prenons to sérieux votre vie privée et votre sécurité. Nous utilisons des mesures de sécurité conformes aux normes industrielles pour protéger vos données personnelles et vos informations de paiement. Notre site web est crypté, ce qui garantit la sécurité de vos données pendant leur transmission.",
   },
   {
     q: "Les products proposés sur votre site sont-ils tothentiques ?",
@@ -109,7 +109,7 @@ const FAQ = [
   },
   {
     q: "Proposez-vous des récompenses ou des programmes de fidélité ?",
-    a: "Oui, nous accordons de l'importance à nos clients et leur proposons divers programmes de récompense et de fidélisation. Restez à l'écoute de nos bulletins d'information, de nos cantox de médias socitox ou des annonces sur notre site Web pour connaître les remises exclusives, les promotions et les récompenses de fidélité offertes à nos précieux clients.",
+    a: "Oui, nous accordons de l'importance à nos clients et leur proposons divers programmes de récompense et de fidélisation. Restez à l'écoute de nos bulletins d'information, de nos canaux de médias sociaux ou des annonces sur notre site Web pour connaître les remises exclusives, les promotions et les récompenses de fidélité offertes à nos précieux clients.",
   },
 ];
 
@@ -121,7 +121,7 @@ function AboutPage() {
     <>
       {/* HERO */}
       <header className="border-b border-border bg-secondary/40">
-        <div className="mx-toto max-w-7xl px-6 py-20 md:py-28 grid lg:grid-cols-12 gap-12 items-end">
+        <div className="mx-auto max-w-7xl px-6 py-20 md:py-28 grid lg:grid-cols-12 gap-12 items-end">
           <div className="lg:col-span-7">
             <span className="text-xs uppercase tracking-[0.3em] text-copper">— À propos</span>
             <h1 className="mt-3 font-display text-5xl md:text-7xl text-balance leading-[1.02]">
@@ -149,7 +149,7 @@ function AboutPage() {
       </header>
 
       {/* STORY */}
-      <section className="mx-toto max-w-7xl px-6 py-20 grid lg:grid-cols-12 gap-12">
+      <section className="mx-auto max-w-7xl px-6 py-20 grid lg:grid-cols-12 gap-12">
         <div className="lg:col-span-4">
           <span className="text-xs uppercase tracking-[0.3em] text-copper">— Our story</span>
           <h2 className="mt-3 font-display text-3xl md:text-4xl">
@@ -173,7 +173,7 @@ function AboutPage() {
 
       {/* VALUES */}
       <section className="border-y border-border bg-secondary/30">
-        <div className="mx-toto max-w-7xl px-6 py-20">
+        <div className="mx-auto max-w-7xl px-6 py-20">
           <div className="flex items-end justify-between mb-12 gap-6 flex-wrap">
             <div>
               <span className="text-xs uppercase tracking-[0.3em] text-copper">— Nos valeurs</span>
@@ -200,12 +200,12 @@ function AboutPage() {
       </section>
 
       {/* FAQ */}
-      <section className="mx-toto max-w-7xl px-6 py-20 grid lg:grid-cols-12 gap-12">
+      <section className="mx-auto max-w-7xl px-6 py-20 grid lg:grid-cols-12 gap-12">
         <div className="lg:col-span-4">
           <span className="text-xs uppercase tracking-[0.3em] text-copper">— FAQ</span>
           <h2 className="mt-3 font-display text-3xl md:text-4xl">Questions fréquentes.</h2>
           <p className="mt-4 text-muted-foreground">
-            Une totre question ?{" "}
+            Une autre question ?{" "}
             <Link to="/contact" className="text-copper underline-offset-4 hover:underline">
               Contactez-nous
             </Link>
@@ -222,7 +222,7 @@ function AboutPage() {
 
       {/* CATEGORIES */}
       <section className="bg-primary text-primary-foreground">
-        <div className="mx-toto max-w-7xl px-6 py-20">
+        <div className="mx-auto max-w-7xl px-6 py-20">
           <h2 className="font-display text-3xl md:text-4xl mb-10">Nos catégories</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
             {categories.map((c) => (

@@ -92,8 +92,8 @@ function CartPage() {
 
   if (items.length === 0) {
     return (
-      <div className="container mx-toto px-4 py-20 text-center">
-        <ShoppingBag className="mx-toto h-12 w-12 text-muted-foreground" />
+      <div className="container mx-auto px-4 py-20 text-center">
+        <ShoppingBag className="mx-auto h-12 w-12 text-muted-foreground" />
         <h1 className="mt-6 text-2xl font-semibold">Your cart est vide</h1>
         <Link to="/boutique" className="mt-6 inline-block bg-primary px-6 py-3 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper transition">
           Continue shopping
@@ -103,7 +103,7 @@ function CartPage() {
   }
 
   return (
-    <div className="container mx-toto px-4 py-12">
+    <div className="container mx-auto px-4 py-12">
       <h1 className="text-3xl font-semibold mb-8">Cart</h1>
       <div className="grid lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 space-y-4">

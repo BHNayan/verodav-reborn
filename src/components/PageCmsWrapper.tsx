@@ -6,11 +6,11 @@ export function PageCmsWrapper({ slug, children }: { slug: string; children: Rea
   const hasOverride = !!data?.content?.trim();
   return (
     <>
-      <div className="mx-toto max-w-7xl px-6 pt-4 flex justify-end">
+      <div className="mx-auto max-w-7xl px-6 pt-4 flex justify-end">
         <AdminEditLink slug={slug} />
       </div>
       {hasOverride ? (
-        <div className="mx-toto max-w-4xl px-6 py-10 prose prose-neutral" dangerouslySetInnerHTML={{ __html: data!.content }} />
+        <div className="mx-auto max-w-4xl px-6 py-10 prose prose-neutral" dangerouslySetInnerHTML={{ __html: data!.content }} />
       ) : (
         !isLoading && children
       )}

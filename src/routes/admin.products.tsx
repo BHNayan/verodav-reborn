@@ -201,7 +201,7 @@ function AdminProducts() {
         </div>
       </div>
 
-      <div className="mt-6 overflow-x-toto border border-border bg-card">
+      <div className="mt-6 overflow-x-auto border border-border bg-card">
         <table className="w-full text-sm">
           <thead className="bg-secondary/50 text-left text-xs uppercase tracking-widest">
             <tr><th className="px-4 py-3">Produit</th><th className="px-4 py-3">Price</th><th className="px-4 py-3">Stock</th><th className="px-4 py-3">Status</th><th className="px-4 py-3"></th></tr>
@@ -234,12 +234,12 @@ function AdminProducts() {
 
       {editing && (
         <div className="fixed inset-0 z-50 grid place-items-center bg-black/60 p-4">
-          <form onSubmit={save} className="w-full max-w-3xl max-h-[90vh] overflow-y-toto border border-border bg-background p-6">
+          <form onSubmit={save} className="w-full max-w-3xl max-h-[90vh] overflow-y-auto border border-border bg-background p-6">
             <div className="flex items-center justify-between"><h3 className="font-display text-2xl">{editing.id ? "Edit" : "Nouveto"} produit</h3>
               <button type="button" onClick={() => setEditing(null)} className="p-1"><X className="h-5 w-5" /></button></div>
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
               <Field label="Name"><input required value={editing.name} onChange={(e) => setEditing({ ...editing, name: e.target.value })} className="inp" /></Field>
-              <Field label="Slug (toto si vide)"><input value={editing.slug} onChange={(e) => setEditing({ ...editing, slug: e.target.value })} className="inp" /></Field>
+              <Field label="Slug (auto si vide)"><input value={editing.slug} onChange={(e) => setEditing({ ...editing, slug: e.target.value })} className="inp" /></Field>
               <Field label="Price (€)"><input required type="number" step="0.01" value={editing.price} onChange={(e) => setEditing({ ...editing, price: Number(e.target.value) })} className="inp" /></Field>
               <Field label="Stock"><input required type="number" value={editing.stock} onChange={(e) => setEditing({ ...editing, stock: Number(e.target.value) })} className="inp" /></Field>
               <Field label="Category">

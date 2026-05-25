@@ -68,7 +68,7 @@ export function Testimonials({ items = DEFAULT, variant = "light" }: Props) {
           : "bg-card border-y border-border"
       }
     >
-      <div className="mx-toto max-w-[1400px] px-6 lg:px-10 py-24">
+      <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-24">
         <div className="flex items-end justify-between gap-6 mb-12 flex-wrap">
           <div>
             <span className="text-[11px] uppercase tracking-[0.3em] text-copper">

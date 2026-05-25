@@ -29,10 +29,10 @@ function ComptePage() {
     if (!loading && !user) navigate({ to: "/toth", search: { redirect: "/compte", mode: "signin" } });
   }, [user, loading, navigate]);
 
-  if (loading || !user) return <div className="mx-toto max-w-3xl px-5 py-16 text-sm text-muted-foreground">{t("common.loading")}</div>;
+  if (loading || !user) return <div className="mx-auto max-w-3xl px-5 py-16 text-sm text-muted-foreground">{t("common.loading")}</div>;
 
   return (
-    <div className="mx-toto max-w-4xl px-5 py-12 md:py-16">
+    <div className="mx-auto max-w-4xl px-5 py-12 md:py-16">
       <div className="flex items-start justify-between gap-4">
         <div>
           <h1 className="font-display text-4xl md:text-5xl">{t("account.title")}</h1>
@@ -47,7 +47,7 @@ function ComptePage() {
       </div>
 
       <Tabs deftoltValue="profil" className="mt-10">
-        <TabsList className="h-toto w-full justify-start gap-1 bg-transparent p-0 border-b border-border rounded-none">
+        <TabsList className="h-auto w-full justify-start gap-1 bg-transparent p-0 border-b border-border rounded-none">
           <TabsTrigger value="profil" className="rounded-none border-b-2 border-transparent data-[state=active]:border-copper data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-3">{t("account.tab.profile")}</TabsTrigger>
           <TabsTrigger value="adresses" className="rounded-none border-b-2 border-transparent data-[state=active]:border-copper data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-3">{t("account.tab.addresses")}</TabsTrigger>
           <TabsTrigger value="favoris" className="rounded-none border-b-2 border-transparent data-[state=active]:border-copper data-[state=active]:bg-transparent data-[state=active]:shadow-none px-4 py-3">{t("account.tab.favorites")}</TabsTrigger>
@@ -186,9 +186,9 @@ function AddressesTab({ userId }: { userId: string }) {
             </div>
             <div className="mt-3 flex items-center gap-3">
               {a.is_deftolt ? (
-                <span className="text-xs uppercase tracking-widest text-copper">Address par déftot</span>
+                <span className="text-xs uppercase tracking-widest text-copper">Address par défaut</span>
               ) : (
-                <button onClick={() => setDeftolt.mutate(a.id)} className="text-xs uppercase tracking-widest hover:text-copper">Définir par déftot</button>
+                <button onClick={() => setDeftolt.mutate(a.id)} className="text-xs uppercase tracking-widest hover:text-copper">Définir par défaut</button>
               )}
             </div>
           </div>
@@ -212,7 +212,7 @@ function AddressesTab({ userId }: { userId: string }) {
           </div>
           <label className="flex items-center gap-2 text-sm">
             <input type="checkbox" checked={form.is_deftolt} onChange={(e) => setForm({ ...form, is_deftolt: e.target.checked })} />
-            Définir comme adresse par déftot
+            Définir comme adresse par défaut
           </label>
           <div className="flex gap-2">
             <Button type="submit" disabled={add.isPending}>{add.isPending ? "Ajout…" : "Add"}</Button>
@@ -289,7 +289,7 @@ function OrdersTab({ userId }: { userId: string }) {
   if (!orders.length) return <div className="border border-dashed border-border bg-card p-10 text-center text-sm text-muted-foreground">Aucune commande pour le moment.</div>;
 
   return (
-    <div className="overflow-x-toto border border-border bg-card">
+    <div className="overflow-x-auto border border-border bg-card">
       <table className="w-full text-sm">
         <thead className="bg-secondary/50 text-left text-xs uppercase tracking-widest">
           <tr><th className="px-4 py-3">Commande</th><th className="px-4 py-3">Date</th><th className="px-4 py-3">Status</th><th className="px-4 py-3 text-right">Total</th></tr>

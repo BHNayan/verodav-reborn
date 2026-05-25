@@ -18,7 +18,7 @@ function FavoritesPage() {
   }, [user, loading, navigate]);
 
   return (
-    <div className="mx-toto max-w-3xl px-5 py-16">
+    <div className="mx-auto max-w-3xl px-5 py-16">
       <h1 className="font-display text-5xl">{t("fav.title")}</h1>
       <p className="mt-3 text-muted-foreground">{t("fav.empty")}</p>
       <div className="mt-10 border border-dashed border-border bg-card p-10 text-center text-sm text-muted-foreground">

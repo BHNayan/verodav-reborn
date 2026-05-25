@@ -17,7 +17,7 @@ export function CategoryCarousel() {
 
   return (
     <section className="border-t border-border bg-background">
-      <div className="mx-toto max-w-[1400px] px-4 sm:px-6 lg:px-10 py-12 md:py-20">
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10 py-12 md:py-20">
         <div className="flex items-end justify-between mb-8 md:mb-10 gap-6">
           <div>
             <span className="text-[11px] uppercase tracking-[0.3em] text-copper">— Categories</span>
@@ -45,7 +45,7 @@ export function CategoryCarousel() {
 
         <div
           ref={scrollerRef}
-          className="flex gap-4 sm:gap-6 overflow-x-toto snap-x snap-mandatory scroll-smooth pb-4 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-10 lg:px-10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="flex gap-4 sm:gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-10 lg:px-10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           {categories.map((c) => (
             <Link

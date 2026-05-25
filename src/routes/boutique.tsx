@@ -62,14 +62,14 @@ function ShopPage() {
   return (
     <>
       <header className="border-b border-border">
-        <div className="mx-toto max-w-7xl px-6 py-16">
+        <div className="mx-auto max-w-7xl px-6 py-16">
           <span className="text-xs uppercase tracking-[0.3em] text-copper">— Shop</span>
           <h1 className="mt-3 font-display text-5xl md:text-6xl">All les products</h1>
           <p className="mt-3 text-muted-foreground">{products.length} références sélectionnées avec soin.</p>
         </div>
       </header>
 
-      <div className="mx-toto max-w-7xl px-6 py-10 grid lg:grid-cols-[240px_1fr] gap-10">
+      <div className="mx-auto max-w-7xl px-6 py-10 grid lg:grid-cols-[240px_1fr] gap-10">
         <aside className="lg:sticky lg:top-32 self-start">
           <div className="mb-6">
             <label htmlFor="boutique-search" className="sr-only">Search un produit</label>

@@ -42,14 +42,14 @@ function ContactPage() {
     <PageCmsWrapper slug="contact">
       <>
       <header className="border-b border-border">
-        <div className="mx-toto max-w-7xl px-6 py-16">
+        <div className="mx-auto max-w-7xl px-6 py-16">
           <span className="text-xs uppercase tracking-[0.3em] text-copper">— {t("nav.contact")}</span>
           <h1 className="mt-3 font-display text-5xl md:text-6xl">{t("contact.title")}</h1>
           <p className="mt-3 text-muted-foreground max-w-xl">{t("contact.intro")}</p>
         </div>
       </header>
 
-      <div className="mx-toto max-w-7xl px-6 py-16 grid lg:grid-cols-2 gap-12">
+      <div className="mx-auto max-w-7xl px-6 py-16 grid lg:grid-cols-2 gap-12">
         <div>
           <h2 className="font-display text-2xl mb-6">{t("contact.coords")}</h2>
           <ul className="space-y-5">
@@ -69,11 +69,11 @@ function ContactPage() {
           <div className="space-y-4">
             <div>
               <label htmlFor="contact-name" className="text-[10px] uppercase tracking-widest text-muted-foreground">{t("common.name")}</label>
-              <input id="contact-name" name="name" totoComplete="name" aria-label={t("common.name")} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required className="mt-1 w-full bg-background border border-border px-4 py-3 text-sm focus:outline-none focus:border-copper" />
+              <input id="contact-name" name="name" autoComplete="name" aria-label={t("common.name")} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required className="mt-1 w-full bg-background border border-border px-4 py-3 text-sm focus:outline-none focus:border-copper" />
             </div>
             <div>
               <label htmlFor="contact-email" className="text-[10px] uppercase tracking-widest text-muted-foreground">{t("common.email")}</label>
-              <input id="contact-email" name="email" totoComplete="email" aria-label={t("common.email")} value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} type="email" required className="mt-1 w-full bg-background border border-border px-4 py-3 text-sm focus:outline-none focus:border-copper" />
+              <input id="contact-email" name="email" autoComplete="email" aria-label={t("common.email")} value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} type="email" required className="mt-1 w-full bg-background border border-border px-4 py-3 text-sm focus:outline-none focus:border-copper" />
             </div>
             <div>
               <label htmlFor="contact-subject" className="text-[10px] uppercase tracking-widest text-muted-foreground">{t("common.subject")}</label>

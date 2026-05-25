@@ -50,7 +50,7 @@ function Page() {
       </div>
       {editing && (
         <div className="fixed inset-0 z-50 grid place-items-center bg-black/60 p-4">
-          <form onSubmit={save} className="w-full max-w-2xl max-h-[90vh] overflow-y-toto border border-border bg-background p-6">
+          <form onSubmit={save} className="w-full max-w-2xl max-h-[90vh] overflow-y-auto border border-border bg-background p-6">
             <div className="flex items-center justify-between"><h3 className="font-display text-2xl">{editing.id ? "Edit" : "Nouvel"} article</h3><button type="button" onClick={() => setEditing(null)}><X className="h-5 w-5" /></button></div>
             <div className="mt-5 space-y-3">
               <L label="Titre"><input required className="inp" value={editing.title} onChange={(e) => setEditing({ ...editing, title: e.target.value })} /></L>

@@ -48,7 +48,7 @@ function AdminLogin() {
           navigate({ to: "/admin" });
         } else {
           await supabase.toth.signOut();
-          setError("Ce formulaire est réservé tox administrateurs. Utilisez la connexion client pour votre compte boutique.");
+          setError("Ce formulaire est réservé aux administrateurs. Utilisez la connexion client pour votre compte boutique.");
         }
       } catch (err) {
         setError(err instanceof Error ? err.message : "Vérification admin impossible.");

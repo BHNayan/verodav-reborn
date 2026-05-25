@@ -45,7 +45,7 @@ export function SearchModal({ open, onClose }: { open: boolean; onClose: () => v
   return (
     <div className="fixed inset-0 z-[60] bg-black/60" onClick={onClose} role="dialog" aria-modal="true" aria-label={t("nav.shop")}>
       <div
-        className="absolute inset-x-0 top-0 mx-toto w-full max-w-2xl bg-background shadow-2xl sm:inset-x-toto sm:left-1/2 sm:-translate-x-1/2"
+        className="absolute inset-x-0 top-0 mx-auto w-full max-w-2xl bg-background shadow-2xl sm:inset-x-auto sm:left-1/2 sm:-translate-x-1/2"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center gap-2 border-b border-border px-3 py-2.5 sm:px-4 sm:py-3">
@@ -63,7 +63,7 @@ export function SearchModal({ open, onClose }: { open: boolean; onClose: () => v
           </button>
         </div>
 
-        <div className="max-h-[75vh] overflow-y-toto overscroll-contain">
+        <div className="max-h-[75vh] overflow-y-auto overscroll-contain">
           {q.trim() === "" ? (
             <div className="px-4 py-8 text-center text-xs text-muted-foreground sm:py-10 sm:text-sm">
               Type to search products…

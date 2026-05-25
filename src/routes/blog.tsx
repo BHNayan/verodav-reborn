@@ -21,7 +21,7 @@ export const Route = createFileRoute("/blog")({
   head: () => ({
     meta: [
       { title: "Blog — Verodav Home" },
-      { name: "description", content: "Conseils, guides et inspiration totour de la cuisine, des accessoires et du bricolage par Verodav Home." },
+      { name: "description", content: "Conseils, guides et inspiration autour de la cuisine, des accessoires et du bricolage par Verodav Home." },
       { property: "og:title", content: "Blog — Verodav Home" },
       { property: "og:description", content: "Conseils et guides Verodav Home." },
       { property: "og:url", content: "https://verodav-reborn.lovable.app/blog" },
@@ -86,7 +86,7 @@ function BlogIndex() {
   const activeFilters = Boolean(q) || Boolean(cat);
 
   return (
-    <div className="mx-toto max-w-[1400px] px-5 lg:px-10 py-14 md:py-20">
+    <div className="mx-auto max-w-[1400px] px-5 lg:px-10 py-14 md:py-20">
       <header className="max-w-3xl">
         <div className="text-xs uppercase tracking-[0.3em] text-copper">The journal</div>
         <h1 className="mt-3 font-display text-5xl md:text-7xl leading-[0.95]">Blog</h1>
@@ -198,7 +198,7 @@ function BlogIndex() {
         <div className="mt-20 border border-dashed border-border py-20 text-center">
           <p className="font-display text-2xl">No articles trouvé</p>
           <p className="mt-2 text-sm text-muted-foreground">
-            Essayez un totre mot-clé ou{" "}
+            Essayez un autre mot-clé ou{" "}
             <button
               type="button"
               className="text-copper underline underline-offset-4"

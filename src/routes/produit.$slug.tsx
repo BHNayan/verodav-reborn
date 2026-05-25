@@ -74,7 +74,7 @@ export const Route = createFileRoute("/produit/$slug")({
     return { meta, links: [{ rel: "canonical", href: url }], scripts };
   },
   notFoundComponent: () => (
-    <div className="mx-toto max-w-7xl px-6 py-24 text-center">
+    <div className="mx-auto max-w-7xl px-6 py-24 text-center">
       <h1 className="font-display text-4xl">Produit introuvable</h1>
       <Link to="/boutique" className="mt-6 inline-block text-copper">← Back à la boutique</Link>
     </div>
@@ -88,7 +88,7 @@ function ProductPage() {
   const all = useProducts();
   const [qty, setQty] = useState(1);
 
-  if (isLoading) return <div className="mx-toto max-w-7xl px-6 py-16 text-sm text-muted-foreground">Loading…</div>;
+  if (isLoading) return <div className="mx-auto max-w-7xl px-6 py-16 text-sm text-muted-foreground">Loading…</div>;
   if (!product) throw notFound();
 
   const related = all
@@ -97,13 +97,13 @@ function ProductPage() {
 
   return (
     <>
-      <div className="mx-toto max-w-7xl px-6 pt-8">
+      <div className="mx-auto max-w-7xl px-6 pt-8">
         <Link to="/boutique" className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-muted-foreground hover:text-copper">
           <ArrowLeft className="h-3.5 w-3.5" /> Back
         </Link>
       </div>
 
-      <section className="mx-toto max-w-7xl px-6 py-10 grid lg:grid-cols-2 gap-12">
+      <section className="mx-auto max-w-7xl px-6 py-10 grid lg:grid-cols-2 gap-12">
         <div className="aspect-square bg-secondary overflow-hidden">
           {product.image ? (
             <img src={product.image} alt={product.name} className="h-full w-full object-cover" />
@@ -188,7 +188,7 @@ function ProductPage() {
 
       {related.length > 0 && (
         <section className="border-t border-border bg-card mt-20">
-          <div className="mx-toto max-w-7xl px-6 py-16">
+          <div className="mx-auto max-w-7xl px-6 py-16">
             <h2 className="font-display text-3xl mb-8">Vous aimerez tossi</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-12">
               {related.map((p: Product) => <ProductCard key={p.id} p={p} />)}

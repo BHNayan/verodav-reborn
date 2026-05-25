@@ -31,8 +31,8 @@ export function HomeSearchBar() {
 
   return (
     <div className="border-b border-border bg-secondary/40">
-      <div className="mx-toto max-w-[1400px] px-4 py-3 sm:px-6 lg:px-10">
-        <div ref={wrapRef} className="relative mx-toto w-full max-w-3xl">
+      <div className="mx-auto max-w-[1400px] px-4 py-3 sm:px-6 lg:px-10">
+        <div ref={wrapRef} className="relative mx-auto w-full max-w-3xl">
           <div className="flex items-center gap-2 border border-border bg-background px-3 py-2.5 shadow-sm focus-within:border-copper sm:px-4 sm:py-3">
             <Search className="h-4 w-4 shrink-0 text-muted-foreground sm:h-5 sm:w-5" />
             <input
@@ -56,7 +56,7 @@ export function HomeSearchBar() {
           </div>
 
           {open && q.trim() !== "" && (
-            <div className="absolute left-0 right-0 top-full z-50 mt-1 max-h-[70vh] overflow-y-toto border border-border bg-background shadow-2xl">
+            <div className="absolute left-0 right-0 top-full z-50 mt-1 max-h-[70vh] overflow-y-auto border border-border bg-background shadow-2xl">
               {results.length === 0 ? (
                 <div className="break-words px-4 py-6 text-center text-xs text-muted-foreground sm:text-sm">
                   No products trouvé pour "{q}".

@@ -44,7 +44,7 @@ function HomePage() {
         {/* decorative copper line */}
         <div className="absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-copper/40 to-transparent" />
 
-        <div className="mx-toto max-w-[1400px] px-6 lg:px-10 pt-14 lg:pt-20 pb-20 lg:pb-28">
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-10 pt-14 lg:pt-20 pb-20 lg:pb-28">
           <div className="grid lg:grid-cols-12 gap-x-10 gap-y-12 items-end">
             <div className="lg:col-span-7 z-10">
               <div className="flex items-center gap-3 text-[11px] uppercase tracking-[0.32em] text-copper">
@@ -129,7 +129,7 @@ function HomePage() {
 
       {/* VALUE PROPS */}
       <section className="bg-card">
-        <div className="mx-toto max-w-[1400px] px-6 lg:px-10 py-16 grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-border">
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-16 grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-border">
           {[
             { icon: Truck, title: "Delivery in France", text: "Fast shipping from Strasbourg in 48–72h." },
             { icon: ShieldCheck, title: "Guaranteed quality", text: "Tools chosen for their reliability and durability." },
@@ -151,7 +151,7 @@ function HomePage() {
       <CategoryCarousel />
 
       {/* CATEGORIES — magazine grid */}
-      <section className="mx-toto max-w-[1400px] px-6 lg:px-10 py-24">
+      <section className="mx-auto max-w-[1400px] px-6 lg:px-10 py-24">
         <div className="flex items-end justify-between mb-12 gap-6">
           <div>
             <span className="text-[11px] uppercase tracking-[0.3em] text-copper">— Universe</span>
@@ -169,7 +169,7 @@ function HomePage() {
           {/* spotlight */}
           {editorialCats[0] && (
             <Link to="/categorie/$slug" params={{ slug: editorialCats[0].slug }}
-              className="group relative lg:col-span-7 lg:row-span-2 aspect-[4/3] lg:aspect-toto overflow-hidden bg-secondary min-h-[420px]">
+              className="group relative lg:col-span-7 lg:row-span-2 aspect-[4/3] lg:aspect-auto overflow-hidden bg-secondary min-h-[420px]">
               <img src={editorialCats[0].image} alt={editorialCats[0].name}
                 className="h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/30 to-transparent" />
@@ -216,7 +216,7 @@ function HomePage() {
 
       {/* FEATURED PRODUCTS */}
       <section className="bg-card border-y border-border">
-        <div className="mx-toto max-w-[1400px] px-6 lg:px-10 py-24">
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-24">
           <div className="flex items-end justify-between mb-12 gap-6">
             <div>
               <span className="text-[11px] uppercase tracking-[0.3em] text-copper">— Featured selection</span>
@@ -235,7 +235,7 @@ function HomePage() {
       </section>
 
       {/* EDITORIAL — quote + image */}
-      <section className="mx-toto max-w-[1400px] px-6 lg:px-10 py-28 grid lg:grid-cols-12 gap-10 items-center">
+      <section className="mx-auto max-w-[1400px] px-6 lg:px-10 py-28 grid lg:grid-cols-12 gap-10 items-center">
         <div className="lg:col-span-6 relative">
           <div className="aspect-[4/5] overflow-hidden bg-secondary">
             <img src={SLIDE_IMGS[1]} alt="" className="h-full w-full object-cover" />
@@ -277,7 +277,7 @@ function HomePage() {
       {/* BLOG — editorial 1 large + 2 small */}
       {blogFeatured && (
         <section className="bg-card border-y border-border">
-          <div className="mx-toto max-w-[1400px] px-6 lg:px-10 py-24">
+          <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-24">
             <div className="flex items-end justify-between mb-12 gap-6">
               <div>
                 <span className="text-[11px] uppercase tracking-[0.3em] text-copper">— The journal</span>
@@ -351,7 +351,7 @@ function HomePage() {
 
       <section className="relative overflow-hidden bg-primary text-primary-foreground">
         <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: "radial-gradient(circle at 20% 20%, var(--copper) 0, transparent 40%), radial-gradient(circle at 80% 80%, var(--copper) 0, transparent 50%)" }} />
-        <div className="relative mx-toto max-w-[1400px] px-6 lg:px-10 py-24 grid md:grid-cols-12 gap-10 items-center">
+        <div className="relative mx-auto max-w-[1400px] px-6 lg:px-10 py-24 grid md:grid-cols-12 gap-10 items-center">
           <div className="md:col-span-7">
             <span className="text-[11px] uppercase tracking-[0.3em] text-copper">— Service client</span>
             <h2 className="mt-3 font-display font-light text-5xl md:text-6xl tracking-tight text-balance">
