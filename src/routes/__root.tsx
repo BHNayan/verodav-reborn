@@ -141,7 +141,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <I18nProvider>
-        <ScrollRestoration />
+        {/* Scroll restoration handled by router config */}
         <GoogleTranslate />
         {!isAdminArea && <SiteHeader />}
         <main className="min-h-[60vh]">
