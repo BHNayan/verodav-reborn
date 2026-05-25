@@ -288,7 +288,7 @@ const I18nContext = createContext<Ctx>({ lang: "en", setLang: () => {}, t: (k) =
 
 // Source language of authored site content. Google Translate uses this
 // as the "from" language when re-rendering the DOM into the chosen target.
-const SOURCE_LANG: Lang = "fr";
+const SOURCE_LANG: Lang = "en";
 
 function writeGoogTransCookie(target: Lang) {
   if (typeof document === "undefined") return;
