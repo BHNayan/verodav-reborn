@@ -7,7 +7,6 @@ import {
   useRouterState,
   HeadContent,
   Scripts,
-  ScrollRestoration,
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
@@ -142,7 +141,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <I18nProvider>
-        <ScrollRestoration />
+        {/* Scroll restoration handled by router config */}
         <GoogleTranslate />
         {!isAdminArea && <SiteHeader />}
         <main className="min-h-[60vh]">
