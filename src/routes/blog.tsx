@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo } from "react";
-import { Search, X } from "lucide-react";
+import { Search, X, ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react";
 import { zodValidator, fallback } from "@tanstack/zod-adapter";
 import { z } from "zod";
 import { usePosts, formatDate, postsQueryOptions } from "@/lib/blog";
@@ -9,10 +9,10 @@ const PAGE_SIZE = 6;
 
 const searchSchema = z.object({
   q: fallback(z.string(), "").default(""),
-  n: fallback(z.number().int().min(PAGE_SIZE), PAGE_SIZE).default(PAGE_SIZE),
+  page: fallback(z.number().int().min(1), 1).default(1),
 });
 
-type BlogSearch = { q: string; n: number };
+type BlogSearch = { q: string; page: number };
 
 export const Route = createFileRoute("/blog")({
   validateSearch: zodValidator(searchSchema),
@@ -30,9 +30,22 @@ export const Route = createFileRoute("/blog")({
   component: BlogIndex,
 });
 
+function getPageNumbers(current: number, total: number): (number | "ellipsis")[] {
+  if (total <= 7) {
+    return Array.from({ length: total }, (_, i) => i + 1);
+  }
+  if (current <= 3) {
+    return [1, 2, 3, 4, "ellipsis", total];
+  }
+  if (current >= total - 2) {
+    return [1, "ellipsis", total - 3, total - 2, total - 1, total];
+  }
+  return [1, "ellipsis", current - 1, current, current + 1, "ellipsis", total];
+}
+
 function BlogIndex() {
   const posts = usePosts();
-  const { q, n } = Route.useSearch();
+  const { q, page } = Route.useSearch();
   const navigate = Route.useNavigate();
 
   const filtered = useMemo(() => {
@@ -50,10 +63,13 @@ function BlogIndex() {
         .toLowerCase();
       return tokens.every((t: string) => haystack.includes(t));
     });
-  }, [q]);
+  }, [q, posts]);
 
-  const visible = filtered.slice(0, n);
-  const hasMore = filtered.length > visible.length;
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const currentPage = Math.min(page, totalPages);
+  const startIndex = (currentPage - 1) * PAGE_SIZE;
+  const visible = filtered.slice(startIndex, startIndex + PAGE_SIZE);
+  const pages = getPageNumbers(currentPage, totalPages);
 
   return (
     <div className="mx-auto max-w-[1400px] px-5 lg:px-10 py-14 md:py-20">
@@ -78,7 +94,7 @@ function BlogIndex() {
             value={q}
             onChange={(e) =>
               navigate({
-                search: (prev: BlogSearch) => ({ ...prev, q: e.target.value, n: PAGE_SIZE }),
+                search: (prev: BlogSearch) => ({ ...prev, q: e.target.value, page: 1 }),
                 replace: true,
               })
             }
@@ -90,7 +106,7 @@ function BlogIndex() {
               type="button"
               onClick={() =>
                 navigate({
-                  search: (prev: BlogSearch) => ({ ...prev, q: "", n: PAGE_SIZE }),
+                  search: (prev: BlogSearch) => ({ ...prev, q: "", page: 1 }),
                   replace: true,
                 })
               }
@@ -117,7 +133,7 @@ function BlogIndex() {
               className="text-copper underline underline-offset-4"
               onClick={() =>
                 navigate({
-                  search: (prev: BlogSearch) => ({ ...prev, q: "", n: PAGE_SIZE }),
+                  search: (prev: BlogSearch) => ({ ...prev, q: "", page: 1 }),
                   replace: true,
                 })
               }
@@ -161,27 +177,87 @@ function BlogIndex() {
             ))}
           </div>
 
-          <div className="mt-14 flex flex-col items-center gap-3">
-            <div className="text-[11px] uppercase tracking-widest text-muted-foreground">
-              {visible.length} / {filtered.length}
-            </div>
-            {hasMore && (
-              <button
-                type="button"
-                onClick={() =>
-                  navigate({
-                    search: (prev: BlogSearch) => ({
-                      ...prev,
-                      n: Math.min(prev.n + PAGE_SIZE, filtered.length),
-                    }),
-                  })
-                }
-                className="border border-foreground px-8 py-3 text-xs uppercase tracking-[0.25em] hover:bg-foreground hover:text-background transition"
-              >
-                Charger plus
-              </button>
-            )}
-          </div>
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <nav
+              role="navigation"
+              aria-label="pagination"
+              className="mt-14 flex w-full flex-col items-center gap-3"
+            >
+              <div className="text-[11px] uppercase tracking-widest text-muted-foreground">
+                Page {currentPage} / {totalPages}
+              </div>
+              <ul className="flex flex-row items-center gap-1">
+                <li>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      navigate({
+                        search: (prev: BlogSearch) => ({ ...prev, page: Math.max(1, currentPage - 1) }),
+                        replace: true,
+                      })
+                    }
+                    disabled={currentPage <= 1}
+                    className="inline-flex items-center justify-center gap-1 rounded-md border border-border bg-background px-3 py-2 text-sm font-medium hover:bg-accent disabled:pointer-events-none disabled:opacity-50"
+                  >
+                    <ChevronLeft className="h-4 w-4" />
+                    <span className="hidden sm:inline">Précédent</span>
+                  </button>
+                </li>
+
+                {pages.map((item, idx) =>
+                  item === "ellipsis" ? (
+                    <li key={`ellipsis-${idx}`}>
+                      <span className="flex h-9 w-9 items-center justify-center">
+                        <MoreHorizontal className="h-4 w-4 text-muted-foreground" />
+                        <span className="sr-only">Plus de pages</span>
+                      </span>
+                    </li>
+                  ) : (
+                    <li key={item}>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          navigate({
+                            search: (prev: BlogSearch) => ({ ...prev, page: item }),
+                            replace: true,
+                          })
+                        }
+                        aria-current={item === currentPage ? "page" : undefined}
+                        className={`inline-flex h-9 w-9 items-center justify-center rounded-md border text-sm font-medium transition ${
+                          item === currentPage
+                            ? "border-foreground bg-foreground text-background"
+                            : "border-border bg-background hover:bg-accent"
+                        }`}
+                      >
+                        {item}
+                      </button>
+                    </li>
+                  ),
+                )}
+
+                <li>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      navigate({
+                        search: (prev: BlogSearch) => ({
+                          ...prev,
+                          page: Math.min(totalPages, currentPage + 1),
+                        }),
+                        replace: true,
+                      })
+                    }
+                    disabled={currentPage >= totalPages}
+                    className="inline-flex items-center justify-center gap-1 rounded-md border border-border bg-background px-3 py-2 text-sm font-medium hover:bg-accent disabled:pointer-events-none disabled:opacity-50"
+                  >
+                    <span className="hidden sm:inline">Suivant</span>
+                    <ChevronRight className="h-4 w-4" />
+                  </button>
+                </li>
+              </ul>
+            </nav>
+          )}
         </>
       )}
     </div>
