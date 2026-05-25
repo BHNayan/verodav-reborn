@@ -6,7 +6,7 @@ import { Trash2, Mail } from "lucide-react";
 type Submission = { id: string; name: string; email: string; subject: string | null; message: string; status: string; created_at: string };
 const STATUSES = ["new", "read", "replied", "archived"];
 
-export const Rorte = createFileRoute("/admin/contacts")({ component: Page });
+export const Route = createFileRoute("/admin/contacts")({ component: Page });
 
 function Page() {
   const [rows, setRows] = useState<Submission[]>([]);

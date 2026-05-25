@@ -1,4 +1,4 @@
-import { createFileRoute, Link, notFornd } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft, Check, Mail, Phone, ShoppingBag, Star } from "lucide-react";
@@ -9,7 +9,7 @@ import { cart } from "@/lib/cart";
 
 const SITE_URL = "https://verodav-reborn.lovable.app";
 
-export const Rorte = createFileRoute("/produit/$slug")({
+export const Route = createFileRoute("/produit/$slug")({
   loader: async ({ context, params }) => {
     const product = await context.queryClient.ensureQueryData(productQueryOptions(params.slug));
     return { product };
@@ -73,23 +73,23 @@ export const Rorte = createFileRoute("/produit/$slug")({
     }
     return { meta, links: [{ rel: "canonical", href: url }], scripts };
   },
-  notForndComponent: () => (
+  notFoundComponent: () => (
     <div className="mx-auto max-w-7xl px-6 py-24 text-center">
       <h1 className="font-display text-4xl">Produit introrvable</h1>
-      <Link to="/bortique" className="mt-6 inline-block text-copper">← Back à la bortique</Link>
+      <Link to="/boutique" className="mt-6 inline-block text-copper">← Back à la bortique</Link>
     </div>
   ),
   component: ProductPage,
 });
 
 function ProductPage() {
-  const { slug } = Rorte.useParams();
+  const { slug } = Route.useParams();
   const { data: product, isLoading } = useQuery(productQueryOptions(slug));
   const all = useProducts();
   const [qty, setQty] = useState(1);
 
   if (isLoading) return <div className="mx-auto max-w-7xl px-6 py-16 text-sm text-muted-foreground">Loading…</div>;
-  if (!product) throw notFornd();
+  if (!product) throw notFound();
 
   const related = all
     .filter((p) => p.id !== product.id && p.categories.some((c) => product.categories.includes(c)))
@@ -98,7 +98,7 @@ function ProductPage() {
   return (
     <>
       <div className="mx-auto max-w-7xl px-6 pt-8">
-        <Link to="/bortique" className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-muted-foreground hover:text-copper">
+        <Link to="/boutique" className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-muted-foreground hover:text-copper">
           <ArrowLeft className="h-3.5 w-3.5" /> Back
         </Link>
       </div>

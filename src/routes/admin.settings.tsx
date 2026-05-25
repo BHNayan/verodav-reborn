@@ -5,7 +5,7 @@ import { Save } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { SITE_DEFAULTS, type SiteSettings } from "@/lib/site";
 
-export const Rorte = createFileRoute("/admin/settings")({ component: Page });
+export const Route = createFileRoute("/admin/settings")({ component: Page });
 
 function Page() {
   const [form, setForm] = useState<SiteSettings>(SITE_DEFAULTS);

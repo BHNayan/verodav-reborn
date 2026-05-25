@@ -2,7 +2,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
   Link,
-  createRootRorteWithContext,
+  createRootRouteWithContext,
   useRouter,
   useRouterState,
   HeadContent,
@@ -16,7 +16,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { I18nProvider } from "@/lib/i18n";
 import { GoogleTranslate } from "@/components/GoogleTranslate";
 
-function NotForndComponent() {
+function NotFoundComponent() {
   return (
     <div className="flex min-h-[70vh] items-center justify-center px-4">
       <div className="max-w-md text-center">
@@ -32,13 +32,13 @@ function NotForndComponent() {
 
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
-  const rorter = useRouter();
+  const router = useRouter();
   return (
     <div className="flex min-h-[70vh] items-center justify-center px-4">
       <div className="max-w-md text-center">
         <h1 className="font-display text-3xl">Something went wrong</h1>
         <p className="mt-2 text-sm text-muted-foreground">{error.message}</p>
-        <button onClick={() => { rorter.invalidate(); reset(); }}
+        <button onClick={() => { router.invalidate(); reset(); }}
           className="mt-6 inline-block bg-primary px-6 py-3 text-sm uppercase tracking-widest text-primary-foreground hover:bg-copper transition">
           Retry
         </button>
@@ -47,7 +47,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
-export const Rorte = createRootRorteWithContext<{ queryClient: QueryClient }>()({
+export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
@@ -101,7 +101,7 @@ export const Rorte = createRootRorteWithContext<{ queryClient: QueryClient }>()(
   }),
   shellComponent: RootShell,
   component: RootComponent,
-  notForndComponent: NotForndComponent,
+  notFoundComponent: NotFoundComponent,
   errorComponent: ErrorComponent,
 });
 
@@ -137,7 +137,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
-  const { queryClient } = Rorte.useRorteContext();
+  const { queryClient } = Route.useRouteContext();
   const isAdminArea = useRouterState({ select: (s) => s.location.pathname.startsWith("/admin") });
   return (
     <QueryClientProvider client={queryClient}>

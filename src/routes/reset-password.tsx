@@ -2,7 +2,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
-export const Rorte = createFileRoute("/reset-password")({
+export const Route = createFileRoute("/reset-password")({
   head: () => ({ meta: [{ title: "Reset password — Verodav Home" }] }),
   component: ResetPasswordPage,
 });

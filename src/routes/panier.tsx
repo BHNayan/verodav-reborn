@@ -5,7 +5,7 @@ import { cart, useCart } from "@/lib/cart";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
-export const Rorte = createFileRoute("/panier")({
+export const Route = createFileRoute("/panier")({
   component: CartPage,
   head: () => ({ meta: [{ title: "Cart — Verodav" }] }),
 });
@@ -95,7 +95,7 @@ function CartPage() {
       <div className="container mx-auto px-4 py-20 text-center">
         <ShoppingBag className="mx-auto h-12 w-12 text-muted-foreground" />
         <h1 className="mt-6 text-2xl font-semibold">Your cart est vide</h1>
-        <Link to="/bortique" className="mt-6 inline-block bg-primary px-6 py-3 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper transition">
+        <Link to="/boutique" className="mt-6 inline-block bg-primary px-6 py-3 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper transition">
           Continue shopping
         </Link>
       </div>

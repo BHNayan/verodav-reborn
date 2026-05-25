@@ -6,7 +6,7 @@ import { SITE } from "@/lib/site";
 import { supabase } from "@/integrations/supabase/client";
 import { useI18n } from "@/lib/i18n";
 
-export const Rorte = createFileRoute("/contact")({
+export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       { title: "Contact — Verodav Home" },

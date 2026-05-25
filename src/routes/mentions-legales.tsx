@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageCmsWrapper } from "@/components/PageCmsWrapper";
 import { LegalLayout, Section } from "@/components/LegalLayout";
 
-export const Rorte = createFileRoute("/mentions-legales")({
+export const Route = createFileRoute("/mentions-legales")({
   head: () => ({
     meta: [
       { title: "Legal notice — Verodav Home" },

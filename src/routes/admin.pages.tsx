@@ -6,7 +6,7 @@ import { Link } from "@tanstack/react-router";
 
 type Page = { slug: string; title: string; content: string; updated_at: string };
 
-export const Rorte = createFileRoute("/admin/pages")({
+export const Route = createFileRoute("/admin/pages")({
   validateSearch: (s: Record<string, unknown>) => ({ slug: typeof s.slug === "string" ? s.slug : "" }),
   component: AdminPages,
 });

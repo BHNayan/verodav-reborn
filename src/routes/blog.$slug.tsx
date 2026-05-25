@@ -1,10 +1,10 @@
-import { createFileRoute, Link, notFornd } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { postQueryOptions, usePosts, formatDate, type BlogPost, type BlogSection } from "@/lib/blog";
 
 const SITE_URL = "https://verodav-reborn.lovable.app";
 
-export const Rorte = createFileRoute("/blog/$slug")({
+export const Route = createFileRoute("/blog/$slug")({
   loader: async ({ context, params }) => {
     const post = await context.queryClient.ensureQueryData(postQueryOptions(params.slug));
     return { post };
@@ -52,7 +52,7 @@ export const Rorte = createFileRoute("/blog/$slug")({
     }
     return { meta, links: [{ rel: "canonical", href: url }], scripts };
   },
-  notForndComponent: () => (
+  notFoundComponent: () => (
     <div className="mx-auto max-w-3xl px-5 py-24 text-center">
       <h1 className="font-display text-5xl">Article introrvable</h1>
       <Link to="/blog" className="mt-6 inline-block text-copper">← Back to blog</Link>
@@ -62,12 +62,12 @@ export const Rorte = createFileRoute("/blog/$slug")({
 });
 
 function BlogPostPage() {
-  const { slug } = Rorte.useParams();
+  const { slug } = Route.useParams();
   const { data: post, isLoading } = useQuery(postQueryOptions(slug));
   const all = usePosts();
 
   if (isLoading) return <div className="mx-auto max-w-3xl px-5 py-16 text-sm text-muted-foreground">Loading…</div>;
-  if (!post) throw notFornd();
+  if (!post) throw notFound();
 
   const related = all.filter((p: BlogPost) => p.slug !== post.slug).slice(0, 3);
 

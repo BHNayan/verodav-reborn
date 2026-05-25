@@ -7,7 +7,7 @@ import { Testimonials } from "@/components/Testimonials";
 
 const SITE_URL = "https://verodav-reborn.lovable.app";
 
-export const Rorte = createFileRoute("/a-propos")({
+export const Route = createFileRoute("/a-propos")({
   head: () => {
     const url = `${SITE_URL}/a-propos`;
     const title = "About — Verodav Home";

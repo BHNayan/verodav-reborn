@@ -15,7 +15,7 @@ const searchSchema = z.object({
 
 type BlogSearch = { q: string; cat: string; page: number };
 
-export const Rorte = createFileRoute("/blog")({
+export const Route = createFileRoute("/blog")({
   validateSearch: zodValidator(searchSchema),
   loader: ({ context }) => context.queryClient.ensureQueryData(postsQueryOptions()),
   head: () => ({
@@ -46,8 +46,8 @@ function getPageNumbers(current: number, total: number): (number | "ellipsis")[]
 
 function BlogIndex() {
   const posts = usePosts();
-  const { q, cat, page } = Rorte.useSearch();
-  const navigate = Rorte.useNavigate();
+  const { q, cat, page } = Route.useSearch();
+  const navigate = Route.useNavigate();
 
   const categories = useMemo(() => {
     const set = new Set(posts.map((p) => p.category));

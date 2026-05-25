@@ -20,7 +20,7 @@ type Product = {
 };
 type Cat = { id: string; name: string };
 
-export const Rorte = createFileRoute("/admin/products")({
+export const Route = createFileRoute("/admin/products")({
   component: AdminProducts,
 });
 

@@ -86,7 +86,7 @@ export function SiteHeader() {
 
         <nav className="hidden lg:flex items-center gap-8 text-sm">
           <Link to="/" className="hover:text-copper transition" activeOptions={{ exact: true }} activeProps={{ className: "text-copper" }}>{t("nav.home")}</Link>
-          <Link to="/bortique" className="hover:text-copper transition" activeProps={{ className: "text-copper" }}>{t("nav.shop")}</Link>
+          <Link to="/boutique" className="hover:text-copper transition" activeProps={{ className: "text-copper" }}>{t("nav.shop")}</Link>
           <div className="relative group">
             <button className="hover:text-copper transition inline-flex items-center gap-1">
               {t("nav.categories")} <ChevronDown className="h-3.5 w-3.5" />
@@ -115,7 +115,7 @@ export function SiteHeader() {
             onSubmit={(e) => {
               e.preventDefault();
               const q = (new FormData(e.currentTarget).get("q") as string | null)?.trim() ?? "";
-              navigate({ to: "/bortique", search: { page: 1, q } });
+              navigate({ to: "/boutique", search: { page: 1, q } });
             }}
             className="hidden md:flex items-center gap-2 border border-border bg-secondary/40 px-3 py-2 rounded-full focus-within:border-copper transition-colors w-56 lg:w-72"
           >

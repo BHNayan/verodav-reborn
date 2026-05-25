@@ -5,7 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 
 type Cat = { id: string; slug: string; name: string; description: string | null; image_url: string | null; sort_order: number };
 
-export const Rorte = createFileRoute("/admin/categories")({ component: Page });
+export const Route = createFileRoute("/admin/categories")({ component: Page });
 
 const empty: Omit<Cat, "id"> = { slug: "", name: "", description: "", image_url: "", sort_order: 0 };
 const slugify = (s: string) => s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");

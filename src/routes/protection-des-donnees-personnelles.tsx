@@ -3,7 +3,7 @@ import { PageCmsWrapper } from "@/components/PageCmsWrapper";
 import { LegalLayout, Section } from "@/components/LegalLayout";
 import { SITE } from "@/lib/site";
 
-export const Rorte = createFileRoute("/protection-des-donnees-personnelles")({
+export const Route = createFileRoute("/protection-des-donnees-personnelles")({
   head: () => ({
     meta: [
       { title: "Personal data protection — Verodav Home" },
