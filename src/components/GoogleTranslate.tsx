@@ -99,8 +99,16 @@ export function GoogleTranslate() {
         if (!target) return;
         if (select.value !== target) select.value = target;
         ignoreTranslateMutationsUntil = Date.now() + 900;
-        select.dispatchEvent(new Event("input", { bubbles: true }));
-        select.dispatchEvent(new Event("change", { bubbles: true }));
+        // Google Translate's internal handlers occasionally throw during
+        // dispose/re-init when the DOM swaps under it (SPA route change).
+        // Swallow to avoid noisy console errors — translation still applies
+        // on the next mutation pass.
+        try {
+          select.dispatchEvent(new Event("input", { bubbles: true }));
+          select.dispatchEvent(new Event("change", { bubbles: true }));
+        } catch {
+          /* ignore GT internal dispose race */
+        }
       }, delay);
       timers.push(id);
     };
