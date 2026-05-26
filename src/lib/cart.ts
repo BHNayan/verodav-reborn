@@ -56,7 +56,11 @@ if (typeof window !== "undefined") {
 }
 
 const getSnapshot = () => items;
-const getServerSnapshot = () => [] as CartItem[];
+// Stable empty array reference so getServerSnapshot returns the same value
+// across calls (React warns if it doesn't — "The result of getServerSnapshot
+// should be cached").
+const EMPTY_CART: CartItem[] = [];
+const getServerSnapshot = () => EMPTY_CART;
 
 export function useCart() {
   return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
