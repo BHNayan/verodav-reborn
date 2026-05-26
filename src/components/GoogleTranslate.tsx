@@ -105,7 +105,11 @@ export function GoogleTranslate() {
     document.body.appendChild(s);
 
     timeoutId = window.setTimeout(() => markFailed("init timeout"), 6000);
-    return () => { if (timeoutId) window.clearTimeout(timeoutId); };
+    return () => {
+      if (timeoutId) window.clearTimeout(timeoutId);
+      window.removeEventListener("error", onError, true);
+      window.removeEventListener("unhandledrejection", onRejection, true);
+    };
   }, []);
 
   // On SPA rorte/language changes, nudge the widget to re-scan the current DOM. The
