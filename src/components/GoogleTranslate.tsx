@@ -32,7 +32,36 @@ export function GoogleTranslate() {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (window.__gt_loaded) return;
+
+    // Google Translate's injected script mutates nodes React also controls.
+    // When React unmounts a translated subtree, GT's internal handlers can
+    // call removeChild on a now-detached parent and throw asynchronously.
+    // These errors are harmless for the app but spam the console — filter
+    // them at the source. We only swallow when the error originates from
+    // GT's own script URLs or stack frames.
+    const isGtError = (msg: unknown, src: unknown, stack?: unknown) => {
+      const text = `${msg ?? ""} ${src ?? ""} ${stack ?? ""}`;
+      return /translate\.google|translate_a\/element|goog-te-/i.test(text);
+    };
+    const onError = (e: ErrorEvent) => {
+      if (isGtError(e.message, e.filename, e.error?.stack)) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+      }
+    };
+    const onRejection = (e: PromiseRejectionEvent) => {
+      const r = e.reason as { message?: string; stack?: string } | undefined;
+      if (isGtError(r?.message, "", r?.stack)) e.preventDefault();
+    };
+    window.addEventListener("error", onError, true);
+    window.addEventListener("unhandledrejection", onRejection, true);
+
+    if (window.__gt_loaded) {
+      return () => {
+        window.removeEventListener("error", onError, true);
+        window.removeEventListener("unhandledrejection", onRejection, true);
+      };
+    }
     window.__gt_loaded = true;
 
     let timeoutId: number | undefined;
