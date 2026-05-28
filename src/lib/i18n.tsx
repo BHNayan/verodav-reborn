@@ -335,7 +335,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     try { writeGoogTransCookie(l); } catch {}
 
     if (typeof window === "undefined") return;
-    try { document.documentElement.lang = l; } catch {}
+    // Intentionally do NOT touch document.documentElement.lang here — see note above.
 
     // Show a full-screen overlay so users see immediate feedback while the
     // page reloads to let Google Translate re-render the whole DOM.
