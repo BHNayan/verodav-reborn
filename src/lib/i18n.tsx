@@ -323,7 +323,9 @@ export function I18nProvider({ children }: { children: ReactNode }) {
       }
       setLangState(initial);
       writeGoogTransCookie(initial);
-      try { document.documentElement.lang = initial; } catch {}
+      // Do NOT change document.documentElement.lang — it must stay "fr" (SOURCE_LANG)
+      // so Google Translate keeps translating the page body from French to the target.
+
     } catch {}
   }, []);
 
