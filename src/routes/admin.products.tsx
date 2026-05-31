@@ -53,6 +53,29 @@ function AdminProducts() {
   const [editing, setEditing] = useState<(Omit<Product, "id"> & { id?: string }) | null>(null);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
+  const [syncing, setSyncing] = useState(false);
+  const runWooSync = useServerFn(syncWooCommerce);
+
+  const handleWooSync = async () => {
+    if (!confirm("Sync all products from your WordPress/WooCommerce store? Existing products with the same slug will be updated.")) return;
+    setSyncing(true);
+    try {
+      const r = await runWooSync({ data: {} as never });
+      alert(
+        `WordPress sync complete.\nCreated: ${r.created}\nUpdated: ${r.updated}\nFailed: ${r.failed}` +
+        (r.errors.length ? `\n\nErrors:\n${r.errors.join("\n")}` : "")
+      );
+      load();
+    } catch (e) {
+      alert("WordPress sync failed: " + (e as Error).message);
+    } finally {
+      setSyncing(false);
+    }
+  };
+
+  const [editing, setEditing] = useState<(Omit<Product, "id"> & { id?: string }) | null>(null);
+  const [busy, setBusy] = useState(false);
+  const [err, setErr] = useState<string | null>(null);
 
   const load = async () => {
     const { data } = await supabase.from("products").select("*").order("created_at", { ascending: false });
