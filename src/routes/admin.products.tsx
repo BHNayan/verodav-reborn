@@ -73,9 +73,8 @@ function AdminProducts() {
     }
   };
 
-  const [editing, setEditing] = useState<(Omit<Product, "id"> & { id?: string }) | null>(null);
-  const [busy, setBusy] = useState(false);
-  const [err, setErr] = useState<string | null>(null);
+
+
 
   const load = async () => {
     const { data } = await supabase.from("products").select("*").order("created_at", { ascending: false });
