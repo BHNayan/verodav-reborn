@@ -218,6 +218,14 @@ function AdminProducts() {
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h1 className="font-display text-2xl md:text-4xl">Products</h1>
         <div className="flex flex-wrap items-center gap-2">
+          <button
+            onClick={handleWooSync}
+            disabled={syncing}
+            className="inline-flex items-center gap-2 border border-border bg-card px-3 py-2 text-xs uppercase tracking-widest hover:bg-secondary disabled:opacity-50"
+            title="Import all products from your WooCommerce store"
+          >
+            <RefreshCw className={`h-4 w-4 ${syncing ? "animate-spin" : ""}`} /> {syncing ? "Sync…" : "Sync WordPress"}
+          </button>
           <ExportImportBar filenameBase="products" getRows={exportRows} onImport={importRows} />
           <button onClick={() => setEditing({ ...empty })} className="inline-flex items-center gap-2 bg-primary px-4 py-2.5 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper">
             <Plus className="h-4 w-4" /> Norveto
