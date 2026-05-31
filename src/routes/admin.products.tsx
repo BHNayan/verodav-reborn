@@ -1,9 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent } from "react";
-import { Plus, Pencil, Trash2, X } from "lucide-react";
+import { useServerFn } from "@tanstack/react-start";
+import { Plus, Pencil, Trash2, X, RefreshCw } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { ExportImportBar } from "@/components/admin/ExportImportBar";
 import { ProductImageManager } from "@/components/admin/ProductImageManager";
+import { syncWooCommerce } from "@/lib/woo-sync.functions";
 
 type Product = {
   id: string;
@@ -51,6 +53,28 @@ function AdminProducts() {
   const [editing, setEditing] = useState<(Omit<Product, "id"> & { id?: string }) | null>(null);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
+  const [syncing, setSyncing] = useState(false);
+  const runWooSync = useServerFn(syncWooCommerce);
+
+  const handleWooSync = async () => {
+    if (!confirm("Sync all products from your WordPress/WooCommerce store? Existing products with the same slug will be updated.")) return;
+    setSyncing(true);
+    try {
+      const r = await runWooSync();
+      alert(
+        `WordPress sync complete.\nCreated: ${r.created}\nUpdated: ${r.updated}\nFailed: ${r.failed}` +
+        (r.errors.length ? `\n\nErrors:\n${r.errors.join("\n")}` : "")
+      );
+      load();
+    } catch (e) {
+      alert("WordPress sync failed: " + (e as Error).message);
+    } finally {
+      setSyncing(false);
+    }
+  };
+
+
+
 
   const load = async () => {
     const { data } = await supabase.from("products").select("*").order("created_at", { ascending: false });
@@ -194,6 +218,14 @@ function AdminProducts() {
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h1 className="font-display text-2xl md:text-4xl">Products</h1>
         <div className="flex flex-wrap items-center gap-2">
+          <button
+            onClick={handleWooSync}
+            disabled={syncing}
+            className="inline-flex items-center gap-2 border border-border bg-card px-3 py-2 text-xs uppercase tracking-widest hover:bg-secondary disabled:opacity-50"
+            title="Import all products from your WooCommerce store"
+          >
+            <RefreshCw className={`h-4 w-4 ${syncing ? "animate-spin" : ""}`} /> {syncing ? "Sync…" : "Sync WordPress"}
+          </button>
           <ExportImportBar filenameBase="products" getRows={exportRows} onImport={importRows} />
           <button onClick={() => setEditing({ ...empty })} className="inline-flex items-center gap-2 bg-primary px-4 py-2.5 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper">
             <Plus className="h-4 w-4" /> Norveto
