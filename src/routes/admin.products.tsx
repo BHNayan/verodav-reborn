@@ -60,7 +60,7 @@ function AdminProducts() {
     if (!confirm("Sync all products from your WordPress/WooCommerce store? Existing products with the same slug will be updated.")) return;
     setSyncing(true);
     try {
-      const r = await runWooSync({ data: {} as never });
+      const r = await runWooSync();
       alert(
         `WordPress sync complete.\nCreated: ${r.created}\nUpdated: ${r.updated}\nFailed: ${r.failed}` +
         (r.errors.length ? `\n\nErrors:\n${r.errors.join("\n")}` : "")
