@@ -1,9 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent } from "react";
-import { Plus, Pencil, Trash2, X } from "lucide-react";
+import { useServerFn } from "@tanstack/react-start";
+import { Plus, Pencil, Trash2, X, RefreshCw } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { ExportImportBar } from "@/components/admin/ExportImportBar";
 import { ProductImageManager } from "@/components/admin/ProductImageManager";
+import { syncWooCommerce } from "@/lib/woo-sync.functions";
 
 type Product = {
   id: string;
