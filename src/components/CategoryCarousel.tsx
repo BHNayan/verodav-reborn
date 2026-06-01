@@ -22,7 +22,7 @@ export function CategoryCarousel() {
           <div>
             <span className="text-[11px] uppercase tracking-[0.3em] text-copper">— Categories</span>
             <h2 className="mt-3 font-display font-light text-3xl md:text-5xl tracking-tight text-balance">
-              All nos <em className="not-italic italic text-copper">familles</em>.
+              All our <em className="not-italic italic text-copper">families</em>.
             </h2>
           </div>
           <div className="hidden md:flex items-center gap-2">
