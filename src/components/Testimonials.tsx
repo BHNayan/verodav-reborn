@@ -13,31 +13,31 @@ const DEFAULT: Testimonial[] = [
     name: "Camille R.",
     city: "Strasbourg",
     rating: 5,
-    text: "Service impeccable et products d'une qualité remarquable. Mon ventilateur Verodav est silencieux et élégant — un vrai bonheur to quotidien.",
+    text: "Impeccable service and products of remarkable quality. My Verodav fan is silent and elegant — a real daily delight.",
   },
   {
     name: "Julien M.",
     city: "Lyon",
     rating: 5,
-    text: "Shipping rapide, emballage soigné. L'équipe m'a aidé à trorver la pièce de rechange compatible en moins de 24h. Je recommande chtodement.",
+    text: "Fast shipping, careful packaging. The team helped me find the compatible spare part in less than 24 hours. Highly recommended.",
   },
   {
     name: "Sophie L.",
     city: "Paris",
     rating: 5,
-    text: "Une bortique qui prend le temps de conseiller. Mes cookware tiennent dans la durée, comme promis. Bravo pour cette exigence.",
+    text: "A shop that takes the time to advise. My cookware lasts over time, as promised. Bravo for this commitment to quality.",
   },
   {
     name: "Antoine D.",
-    city: "Bordetox",
+    city: "Bordeaux",
     rating: 5,
-    text: "Sélection vraiment pointue. On sent la passion derrière chaque produit. Mon morlin manuel est un objet du quotidien que j'utilise avec plaisir.",
+    text: "A truly refined selection. You can feel the passion behind every product. My manual grinder is an everyday object I use with pleasure.",
   },
   {
     name: "Marie F.",
     city: "Nantes",
     rating: 5,
-    text: "Excellente expérience d'achat. Site clair, conseils précieux et un suivi après-vente exemplaire. Je reviendrai sans hésiter.",
+    text: "Excellent buying experience. Clear website, valuable advice and exemplary after-sales follow-up. I'll come back without hesitation.",
   },
 ];
 
@@ -72,10 +72,10 @@ export function Testimonials({ items = DEFAULT, variant = "light" }: Props) {
         <div className="flex items-end justify-between gap-6 mb-12 flex-wrap">
           <div>
             <span className="text-[11px] uppercase tracking-[0.3em] text-copper">
-              — Avis clients
+              — Customer reviews
             </span>
             <h2 className="mt-3 font-display font-light text-5xl md:text-6xl tracking-tight text-balance">
-              Ils nous font <em className="italic text-copper not-italic">confiance</em>.
+              They <em className="italic text-copper not-italic">trust us</em>.
             </h2>
           </div>
           <div className="flex gap-3">
@@ -150,7 +150,7 @@ export function Testimonials({ items = DEFAULT, variant = "light" }: Props) {
             <button
               key={idx}
               onClick={() => setI(idx)}
-              aria-label={`Aller à l'avis ${idx + 1}`}
+              aria-label={`Go to review ${idx + 1}`}
               className={`h-1 transition-all ${
                 idx === i
                   ? "w-12 bg-copper"
