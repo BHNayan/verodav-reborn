@@ -13,31 +13,31 @@ const DEFAULT: Testimonial[] = [
     name: "Camille R.",
     city: "Strasbourg",
     rating: 5,
-    text: "Service impeccable et products d'une qualité remarquable. Mon ventilateur Verodav est silencieux et élégant — un vrai bonheur to quotidien.",
+    text: "Impeccable service and products of remarkable quality. My Verodav fan is silent and elegant — a real daily delight.",
   },
   {
     name: "Julien M.",
     city: "Lyon",
     rating: 5,
-    text: "Shipping rapide, emballage soigné. L'équipe m'a aidé à trorver la pièce de rechange compatible en moins de 24h. Je recommande chtodement.",
+    text: "Fast shipping, careful packaging. The team helped me find the compatible spare part in less than 24 hours. Highly recommended.",
   },
   {
     name: "Sophie L.",
     city: "Paris",
     rating: 5,
-    text: "Une bortique qui prend le temps de conseiller. Mes cookware tiennent dans la durée, comme promis. Bravo pour cette exigence.",
+    text: "A shop that takes the time to advise. My cookware lasts over time, as promised. Bravo for this commitment to quality.",
   },
   {
     name: "Antoine D.",
-    city: "Bordetox",
+    city: "Bordeaux",
     rating: 5,
-    text: "Sélection vraiment pointue. On sent la passion derrière chaque produit. Mon morlin manuel est un objet du quotidien que j'utilise avec plaisir.",
+    text: "A truly refined selection. You can feel the passion behind every product. My manual grinder is an everyday object I use with pleasure.",
   },
   {
     name: "Marie F.",
     city: "Nantes",
     rating: 5,
-    text: "Excellente expérience d'achat. Site clair, conseils précieux et un suivi après-vente exemplaire. Je reviendrai sans hésiter.",
+    text: "Excellent buying experience. Clear website, valuable advice and exemplary after-sales follow-up. I'll come back without hesitation.",
   },
 ];
 
