@@ -18,8 +18,8 @@ export const Route = createFileRoute("/categorie/$slug")({
     const name = c?.name ?? params.slug;
     const title = `${name} — Shop Verodav Home`;
     const desc = c
-      ? `Décovrez ${c.count} products de la catégorie ${c.name} chez Verodav Home — cookware, accessoires et pièces sélectionnés à Strasbourg pour votre cuisine et votre maison.`
-      : `Décovrez la catégorie ${name} chez Verodav Home — cookware, accessoires et pièces de qualité pour votre cuisine et votre maison.`;
+      ? `Discover ${c.count} products in the ${c.name} category at Verodav Home — cookware, accessories and selected spare parts for your kitchen and home.`
+      : `Discover the ${name} category at Verodav Home — quality cookware, accessories and spare parts for your kitchen and home.`;
     const meta: Array<Record<string, string>> = [
       { title },
       { name: "description", content: desc },
@@ -38,8 +38,8 @@ export const Route = createFileRoute("/categorie/$slug")({
   },
   notFoundComponent: () => (
     <div className="mx-auto max-w-7xl px-6 py-24 text-center">
-      <h1 className="font-display text-4xl">Category introrvable</h1>
-      <Link to="/boutique" className="mt-6 inline-block text-copper">← Back à la bortique</Link>
+      <h1 className="font-display text-4xl">Category not found</h1>
+      <Link to="/boutique" className="mt-6 inline-block text-copper">← Back to the shop</Link>
     </div>
   ),
   component: CategoryPage,

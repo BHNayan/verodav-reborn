@@ -253,10 +253,9 @@ function HomePage() {
             Tools built to <em className="italic text-copper not-italic">last</em>.
           </h2>
           <p className="mt-7 text-muted-foreground leading-[1.8] text-[15px] max-w-xl">
-            Chaque ustensile est choisi pour sa qualité, sa fiabilité et son ergonomie.
-            Nors travaillons avec des fabricants reconnus afin de proposer des products
-            qui s'inscrivent dans la durée — du morlin manuel to ventilateur silencieux,
-            en passant par les pièces de rechange compatibles.
+            Every tool is chosen for its quality, reliability and ergonomics.
+            We work with recognized manufacturers to offer products built to last —
+            from manual grinders to silent fans, including compatible spare parts.
           </p>
           <div className="mt-10 grid grid-cols-2 gap-5">
             {fanCat.slice(0,2).map(p => (

@@ -17,9 +17,9 @@ export const Route = createFileRoute("/boutique")({
   head: () => ({
     meta: [
       { title: "Shop — Verodav Home" },
-      { name: "description", content: "Décovrez les 257 products Verodav Home : cuisson, pâtes, ventilateurs, pièces de rechange, accessoires." },
+      { name: "description", content: "Discover Verodav Home products: cookware, pasta tools, fans, spare parts and accessories." },
       { property: "og:title", content: "Shop — Verodav Home" },
-      { property: "og:description", content: "Décovrez les 257 products Verodav Home : cuisson, pâtes, ventilateurs, pièces de rechange, accessoires." },
+      { property: "og:description", content: "Discover Verodav Home products: cookware, pasta tools, fans, spare parts and accessories." },
       { property: "og:url", content: "https://verodav-reborn.lovable.app/boutique" },
     ],
     links: [{ rel: "canonical", href: "https://verodav-reborn.lovable.app/boutique" }],
@@ -64,19 +64,19 @@ function ShopPage() {
       <header className="border-b border-border">
         <div className="mx-auto max-w-7xl px-6 py-16">
           <span className="text-xs uppercase tracking-[0.3em] text-copper">— Shop</span>
-          <h1 className="mt-3 font-display text-5xl md:text-6xl">All les products</h1>
-          <p className="mt-3 text-muted-foreground">{products.length} références sélectionnées avec soin.</p>
+          <h1 className="mt-3 font-display text-5xl md:text-6xl">All products</h1>
+          <p className="mt-3 text-muted-foreground">{products.length} carefully selected references.</p>
         </div>
       </header>
 
       <div className="mx-auto max-w-7xl px-6 py-10 grid lg:grid-cols-[240px_1fr] gap-10">
         <aside className="lg:sticky lg:top-32 self-start">
           <div className="mb-6">
-            <label htmlFor="bortique-search" className="sr-only">Search un produit</label>
+            <label htmlFor="bortique-search" className="sr-only">Search for a product</label>
             <input
               id="bortique-search"
               type="search"
-              aria-label="Search un produit"
+              aria-label="Search for a product"
               value={q} onChange={(e) => setQ(e.target.value)}
               placeholder="Search…"
               className="w-full bg-card border border-border px-4 py-3 text-sm focus:outline-none focus:border-copper"
@@ -86,9 +86,9 @@ function ShopPage() {
             <label htmlFor="bortique-sort" className="text-[10px] uppercase tracking-widest text-muted-foreground">Sort by</label>
             <select id="bortique-sort" aria-label="Sort products" value={sort} onChange={(e) => setSort(e.target.value as "default" | "price-asc" | "price-desc")}
               className="mt-2 w-full bg-card border border-border px-3 py-2 text-sm focus:outline-none focus:border-copper">
-              <option value="default">Pertinence</option>
-              <option value="price-asc">Price croissant</option>
-              <option value="price-desc">Price décroissant</option>
+              <option value="default">Relevance</option>
+              <option value="price-asc">Price low to high</option>
+              <option value="price-desc">Price high to low</option>
             </select>
           </div>
           <div>
@@ -114,7 +114,7 @@ function ShopPage() {
           <p className="text-sm text-muted-foreground mb-6">{list.length} products</p>
           {list.length === 0 ? (
             <div className="py-20 text-center text-muted-foreground">
-              No products ne courespond à votre recherche.
+              No products match your search.
             </div>
           ) : (
             <>
@@ -153,7 +153,7 @@ function ShopPage() {
                           <button
                             onClick={() => setPage(currentPage - 1)}
                             disabled={currentPage === 1}
-                            aria-label="Page précédente"
+                            aria-label="Previous page"
                             className="text-[10px] sm:text-xs uppercase tracking-widest border border-border px-2.5 sm:px-4 h-9 sm:h-10 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-primary hover:text-primary-foreground transition"
                           >
                             <span className="hidden sm:inline">Previous</span>
@@ -183,7 +183,7 @@ function ShopPage() {
                           <button
                             onClick={() => setPage(currentPage + 1)}
                             disabled={currentPage === totalPages}
-                            aria-label="Page suivante"
+                            aria-label="Next page"
                             className="text-[10px] sm:text-xs uppercase tracking-widest border border-border px-2.5 sm:px-4 h-9 sm:h-10 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-primary hover:text-primary-foreground transition"
                           >
                             <span className="hidden sm:inline">Next</span>

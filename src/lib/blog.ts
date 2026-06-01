@@ -117,7 +117,7 @@ export const postQueryOptions = (slug: string) =>
   });
 
 export function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString("fr-FR", {
+  return new Date(iso).toLocaleDateString("en-US", {
     day: "numeric",
     month: "long",
     year: "numeric",
