@@ -13,7 +13,7 @@ export const Route = createFileRoute("/blog/$slug")({
     const post = loaderData?.post;
     const url = `${SITE_URL}/blog/${params.slug}`;
     const title = post ? `${post.title} — Verodav Home` : `${params.slug} — Verodav Home`;
-    const desc = (post?.excerpt || "Article du journal Verodav Home.").slice(0, 160);
+    const desc = (post?.excerpt || "Article from the Verodav Home journal.").slice(0, 160);
     const image = post?.image;
     const meta: Array<Record<string, string>> = [
       { title },
@@ -118,7 +118,7 @@ function BlogPostPage() {
           ))}
 
           <div className="border-t border-border pt-8 text-sm text-muted-foreground">
-            Article publié par <span className="text-foreground">Verodav Home</span> · {formatDate(post.date)}
+          Article published by <span className="text-foreground">Verodav Home</span> · {formatDate(post.date)}
           </div>
         </div>
       </div>
