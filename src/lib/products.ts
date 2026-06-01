@@ -79,7 +79,7 @@ function rowToProduct(row: ProductRow): Product {
     categories: catSlug ? [catSlug] : [],
     category_names: catName ? [catName] : [],
     shout,
-    description: desc,
+    description: rawDesc,
     on_sale: compare != null && compare > price,
     in_stock: row.stock > 0,
     rating: 0,
