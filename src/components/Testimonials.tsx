@@ -72,10 +72,10 @@ export function Testimonials({ items = DEFAULT, variant = "light" }: Props) {
         <div className="flex items-end justify-between gap-6 mb-12 flex-wrap">
           <div>
             <span className="text-[11px] uppercase tracking-[0.3em] text-copper">
-              — Avis clients
+              — Customer reviews
             </span>
             <h2 className="mt-3 font-display font-light text-5xl md:text-6xl tracking-tight text-balance">
-              Ils nous font <em className="italic text-copper not-italic">confiance</em>.
+              They <em className="italic text-copper not-italic">trust us</em>.
             </h2>
           </div>
           <div className="flex gap-3">
