@@ -353,21 +353,22 @@ function HomePage() {
         <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: "radial-gradient(circle at 20% 20%, var(--copper) 0, transparent 40%), radial-gradient(circle at 80% 80%, var(--copper) 0, transparent 50%)" }} />
         <div className="relative mx-auto max-w-[1400px] px-6 lg:px-10 py-24 grid md:grid-cols-12 gap-10 items-center">
           <div className="md:col-span-7">
-            <span className="text-[11px] uppercase tracking-[0.3em] text-copper">— Service client</span>
+            <span className="text-[11px] uppercase tracking-[0.3em] text-copper">— Customer service</span>
             <h2 className="mt-3 font-display font-light text-5xl md:text-6xl tracking-tight text-balance">
-              Une question sur un <em className="italic text-copper not-italic">produit</em> ?
+              A question about a <em className="italic text-copper not-italic">product</em>?
             </h2>
             <p className="mt-6 text-primary-foreground/70 max-w-xl leading-relaxed">
-              Notre équipe vous répond rapidement. Conseils d'use, compatibilité de pièces, suivi de livraison —
-              parlons-en.
+              Our team responds quickly. Usage advice, parts compatibility, delivery tracking —
+              let's talk.
             </p>
           </div>
           <div className="md:col-span-5 flex flex-col gap-5 md:items-end">
             <a href={`tel:${SITE.phoneRaw}`} className="font-display text-4xl md:text-5xl hover:text-copper transition tracking-tight">{SITE.phone}</a>
             <a href={`mailto:${SITE.email}`} className="text-primary-foreground/80 hover:text-copper transition text-sm">{SITE.email}</a>
             <Link to="/contact" className="mt-2 inline-flex items-center gap-3 border border-primary-foreground/40 px-7 py-4 text-[11px] uppercase tracking-[0.25em] hover:bg-copper hover:border-copper transition">
-              Page contact <ArrowRight className="h-4 w-4" />
+              Contact page <ArrowRight className="h-4 w-4" />
             </Link>
+
           </div>
         </div>
       </section>
