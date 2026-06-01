@@ -50,10 +50,20 @@ type CategoryRow = {
 const SHORT_LEN = 200;
 
 function rowToProduct(row: ProductRow): Product {
-  const desc = (row.description ?? "").trim();
-  // Use the first paragraph (split on double-newline) as the "short" excerpt,
-  // capped at SHORT_LEN chars.
-  const firstChunk = desc.split(/\n{2,}/)[0] ?? "";
+  const rawDesc = (row.description ?? "").trim();
+  // Strip HTML tags + decode common entities for the short excerpt and any
+  // place we render description as plain text.
+  const plainDesc = rawDesc
+    .replace(/<[^>]*>/g, " ")
+    .replace(/&nbsp;/gi, " ")
+    .replace(/&amp;/gi, "&")
+    .replace(/&lt;/gi, "<")
+    .replace(/&gt;/gi, ">")
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;/gi, "'")
+    .replace(/\s+/g, " ")
+    .trim();
+  const firstChunk = plainDesc.split(/\n{2,}/)[0] ?? "";
   const shout =
     firstChunk.length > SHORT_LEN ? firstChunk.slice(0, SHORT_LEN).trimEnd() + "…" : firstChunk;
   const catSlug = row.categories?.slug ?? "";
