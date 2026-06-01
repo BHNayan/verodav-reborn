@@ -180,7 +180,10 @@ function ProductPage() {
           {product.description && (
             <div className="mt-10 pt-8 border-t border-border">
               <h2 className="font-display text-xl mb-3">Description</h2>
-              <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-line">{product.description}</p>
+              <div
+                className="prose prose-neutral max-w-none text-sm text-muted-foreground leading-relaxed"
+                dangerouslySetInnerHTML={{ __html: product.description }}
+              />
             </div>
           )}
         </div>
