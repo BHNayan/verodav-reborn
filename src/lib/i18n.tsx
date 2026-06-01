@@ -286,10 +286,9 @@ const DICT: Record<Lang, Dict> = { en, fr, de };
 type Ctx = { lang: Lang; setLang: (l: Lang) => void; t: (key: string) => string };
 const I18nContext = createContext<Ctx>({ lang: "en", setLang: () => {}, t: (k) => k });
 
-// Main authored content in the project is still largely French.
-// Google Translate should translate from French into the selected target,
-// while the app-level dictionary keeps shared UI labels in English/French/German.
-const SOURCE_LANG: Lang = "fr";
+// Main authored content in the project is largely English now.
+// Google Translate should translate from English into the selected target.
+const SOURCE_LANG: Lang = "en";
 
 function writeGoogTransCookie(target: Lang) {
   if (typeof document === "undefined") return;
