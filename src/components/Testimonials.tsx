@@ -150,7 +150,7 @@ export function Testimonials({ items = DEFAULT, variant = "light" }: Props) {
             <button
               key={idx}
               onClick={() => setI(idx)}
-              aria-label={`Aller à l'avis ${idx + 1}`}
+              aria-label={`Go to review ${idx + 1}`}
               className={`h-1 transition-all ${
                 idx === i
                   ? "w-12 bg-copper"
