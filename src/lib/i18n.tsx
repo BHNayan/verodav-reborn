@@ -369,7 +369,10 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     try { window.location.reload(); } catch {}
   };
 
-  const t = (key: string) => DICT[lang][key] ?? DICT.en[key] ?? key;
+  // Keep authored DOM text in English for every selected language. The hidden
+  // Google Translate widget then translates the full page consistently from
+  // English into French/German instead of receiving a mixed-language DOM.
+  const t = (key: string) => DICT.en[key] ?? key;
   return <I18nContext.Provider value={{ lang, setLang, t }}>{children}</I18nContext.Provider>;
 }
 
