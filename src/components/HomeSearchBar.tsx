@@ -39,15 +39,15 @@ export function HomeSearchBar() {
               value={q}
               onChange={(e) => { setQ(e.target.value); setOpen(true); }}
               onFocus={() => setOpen(true)}
-              placeholder="Search for a product…"
-              aria-label="Search for a product"
+              placeholder="Rechercher un produit…"
+              aria-label="Rechercher un produit"
               className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground"
             />
             {q && (
               <button
                 type="button"
                 onClick={() => { setQ(""); setOpen(false); }}
-                aria-label="Clear"
+                aria-label="Effacer"
                 className="shrink-0 p-1 text-muted-foreground hover:text-primary"
               >
                 <X className="h-4 w-4" />
@@ -59,7 +59,7 @@ export function HomeSearchBar() {
             <div className="absolute left-0 right-0 top-full z-50 mt-1 max-h-[70vh] overflow-y-auto border border-border bg-background shadow-2xl">
               {results.length === 0 ? (
                 <div className="break-words px-4 py-6 text-center text-xs text-muted-foreground sm:text-sm">
-                  No products found for "{q}".
+                  Aucun produit trouvé pour "{q}".
                 </div>
               ) : (
                 <ul className="divide-y divide-border">

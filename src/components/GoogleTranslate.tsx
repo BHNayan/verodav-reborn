@@ -68,14 +68,14 @@ export function GoogleTranslate() {
 
     const markFailed = (reason: string) => {
       if (window.__gt_ready) return;
-      console.warn(`[i18n] Google Translate unavailable — falling back to dictionary (${reason}).`);
+      console.warn(`[i18n] Google Translate indisponible — retour au dictionnaire (${reason}).`);
       try { document.documentElement.setAttribute("data-gt", "unavailable"); } catch {}
     };
 
     window.googleTranslateElementInit = () => {
       try {
         if (!window.google?.translate?.TranslateElement) {
-          markFailed("TranslateElement missing");
+          markFailed("TranslateElement manquant");
           return;
         }
         new window.google.translate.TranslateElement(
@@ -94,7 +94,7 @@ export function GoogleTranslate() {
         }));
         if (timeoutId) window.clearTimeout(timeoutId);
       } catch (e) {
-        markFailed(`init threw: ${(e as Error)?.message ?? e}`);
+        markFailed(`init a levé une erreur : ${(e as Error)?.message ?? e}`);
       }
     };
 
@@ -104,7 +104,7 @@ export function GoogleTranslate() {
     s.onerror = () => markFailed("script onerror");
     document.body.appendChild(s);
 
-    timeoutId = window.setTimeout(() => markFailed("init timeout"), 6000);
+    timeoutId = window.setTimeout(() => markFailed("délai d'initialisation expiré"), 6000);
     return () => {
       if (timeoutId) window.clearTimeout(timeoutId);
       window.removeEventListener("error", onError, true);
@@ -140,7 +140,7 @@ export function GoogleTranslate() {
           select.dispatchEvent(new Event("input", { bubbles: true }));
           select.dispatchEvent(new Event("change", { bubbles: true }));
         } catch {
-          /* ignore GT internal dispose race */
+          /* ignorer la course interne de disposition de GT */
         }
       }, delay);
       timers.push(id);
