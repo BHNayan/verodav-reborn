@@ -105,9 +105,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 const BOOT_LANG_SCRIPT = `(function(){try{
-  var SRC='en';
+  var SRC='fr';
   var saved=null;try{saved=localStorage.getItem('lang');}catch(e){}
-  var lang=(saved==='en'||saved==='fr'||saved==='de')?saved:'en';
+  var lang=(saved==='en'||saved==='fr'||saved==='de')?saved:'fr';
   if(!saved){try{localStorage.setItem('lang',lang);}catch(e){}}
   var val='/'+SRC+'/'+lang;
   var host=location.hostname;
@@ -117,14 +117,14 @@ const BOOT_LANG_SCRIPT = `(function(){try{
   for(var i=0;i<domains.length;i++){
     document.cookie='googtrans='+val+';path=/'+(domains[i]?';domain='+domains[i]:'');
   }
-  // Keep <html lang> matching the SOURCE (en) so Google Translate
-  // treats the page body as English and translates into the target.
+  // Keep <html lang> matching the SOURCE (fr) so Google Translate
+  // treats the page body as French and translates into the target.
   document.documentElement.lang=SRC;
 }catch(e){}})();`;
 
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="fr">
       <head>
         <HeadContent />
         <script dangerouslySetInnerHTML={{ __html: BOOT_LANG_SCRIPT }} />
