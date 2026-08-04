@@ -188,3 +188,19 @@ font[style*="vertical-align"] {
   pointer-events: none !important;
 }
 
+
+/* Product description: badge/payment icons imported from WooCommerce should
+ * flow side by side under the text instead of stacking one per line. */
+.product-desc img {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0.25rem 0.5rem 0.25rem 0;
+}
+.product-desc p:has(> img),
+.product-desc p:has(> a > img) {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.25rem 0.5rem 0.25rem 0;
+}
