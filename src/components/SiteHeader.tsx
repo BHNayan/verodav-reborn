@@ -1,5 +1,3 @@
-File: src/components/SiteHeader.tsx
-
 import { Link, useNavigate } from "@tanstack/react-router";
 import { Menu, X, Search, ShoppingBag, User, ChevronDown, LogOut, Package, Heart, UserCircle } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";

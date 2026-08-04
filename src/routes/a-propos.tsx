@@ -1,5 +1,3 @@
-File: src/routes/a-propos.tsx
-
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageCmsWrapper } from "@/components/PageCmsWrapper";
 import { useState } from "react";

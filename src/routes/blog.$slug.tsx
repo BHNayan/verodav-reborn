@@ -1,5 +1,3 @@
-File: src/routes/blog.$slug.tsx
-
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { postQueryOptions, usePosts, formatDate, type BlogPost, type BlogSection } from "@/lib/blog";

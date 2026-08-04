@@ -1,5 +1,3 @@
-File: src/components/SiteFooter.tsx
-
 import { Link } from "@tanstack/react-router";
 import { Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react";
 import { useSiteSettings } from "@/lib/site";

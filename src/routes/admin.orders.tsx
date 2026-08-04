@@ -1,5 +1,3 @@
-File: src/routes/admin.orders.tsx
-
 import { useI18n } from "@/lib/i18n";
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";

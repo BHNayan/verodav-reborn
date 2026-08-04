@@ -1,5 +1,3 @@
-File: src/routes/categorie.$slug.tsx
-
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useRef, useEffect } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
@@ -84,7 +82,7 @@ function CategoryPage() {
 
 function OtherCategoriesCarousel({ currentSlug }: { currentSlug: string }) {
   const categories = useCategories();
-  const scrollerRef = useRef<HTMLDivLement>(null);
+  const scrollerRef = useRef<HTMLDivElement>(null);
   const ptosedRef = useRef(false);
   const others = categories.filter((c) => c.slug !== currentSlug);
 

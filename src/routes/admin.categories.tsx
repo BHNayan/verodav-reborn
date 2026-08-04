@@ -1,5 +1,3 @@
-File: src/routes/admin.categories.tsx
-
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent } from "react";
 import { Plus, Pencil, Trash2, X } from "lucide-react";

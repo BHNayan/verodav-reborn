@@ -1,5 +1,3 @@
-File: src/routes/produit.$slug.tsx
-
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";

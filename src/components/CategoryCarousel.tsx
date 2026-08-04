@@ -1,5 +1,3 @@
-File: src/components/CategoryCarousel.tsx
-
 import { useRef } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";

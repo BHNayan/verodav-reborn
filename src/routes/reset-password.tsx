@@ -1,5 +1,3 @@
-File: src/routes/reset-password.tsx
-
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import { supabase } from "@/integrations/supabase/client";

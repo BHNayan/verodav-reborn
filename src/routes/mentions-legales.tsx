@@ -1,5 +1,3 @@
-File: src/routes/mentions-legales.tsx
-
 import { createFileRoute } from "@tanstack/react-router";
 import { PageCmsWrapper } from "@/components/PageCmsWrapper";
 import { LegalLayout, Section } from "@/components/LegalLayout";

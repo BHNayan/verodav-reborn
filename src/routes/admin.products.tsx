@@ -1,5 +1,3 @@
-File: src/routes/admin.products.tsx
-
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent } from "react";
 import { useServerFn } from "@tanstack/react-start";

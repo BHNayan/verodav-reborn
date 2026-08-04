@@ -1,5 +1,3 @@
-File: src/routes/index.tsx
-
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight, Truck, ShieldCheck, Wrench, Sparkles, Quote } from "lucide-react";
 import { useCategories, useProducts } from "@/lib/products";

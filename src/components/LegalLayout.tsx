@@ -1,5 +1,3 @@
-File: src/components/LegalLayout.tsx
-
 import { Link } from "@tanstack/react-router";
 
 export function LegalLayout({
