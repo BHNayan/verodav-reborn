@@ -181,7 +181,7 @@ function ProductPage() {
             <div className="mt-10 pt-8 border-t border-border">
               <h2 className="font-display text-xl mb-3">Description</h2>
               <div
-                className="prose prose-neutral max-w-none text-sm text-muted-foreground leading-relaxed"
+                className="product-desc prose prose-neutral max-w-none text-sm text-muted-foreground leading-relaxed"
                 dangerouslySetInnerHTML={{ __html: product.description }}
               />
             </div>
