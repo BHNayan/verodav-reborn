@@ -9,7 +9,7 @@ type Props = {
   importLabel?: string;
 };
 
-export function ExportImportBar({ filenameBase, getRows, onImport, importLabel = "Import" }: Props) {
+export function ExportImportBar({ filenameBase, getRows, onImport, importLabel = "Importer" }: Props) {
   const [open, setOpen] = useState(false);
   const [busy, setBusy] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
@@ -36,7 +36,7 @@ export function ExportImportBar({ filenameBase, getRows, onImport, importLabel =
       const rows = await importFile(f);
       await onImport(rows);
     } catch (err) {
-      alert("Import: " + (err as Error).message);
+      alert("Importation : " + (err as Error).message);
     } finally {
       setBusy(false);
     }
@@ -51,7 +51,7 @@ export function ExportImportBar({ filenameBase, getRows, onImport, importLabel =
           onClick={() => setOpen((v) => !v)}
           className="inline-flex items-center gap-2 border border-border bg-card px-3 py-2 text-xs uppercase tracking-widest hover:bg-secondary disabled:opacity-50"
         >
-          <Download className="h-4 w-4" /> Export <ChevronDown className="h-3 w-3" />
+          <Download className="h-4 w-4" /> Exporter <ChevronDown className="h-3 w-3" />
         </button>
         {open && (
           <div className="absolute right-0 z-20 mt-1 min-w-[140px] border border-border bg-background shadow-lg">

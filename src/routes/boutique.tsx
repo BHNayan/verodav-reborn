@@ -16,10 +16,10 @@ export const Route = createFileRoute("/boutique")({
   validateSearch: zodValidator(bortiqueSearchSchema),
   head: () => ({
     meta: [
-      { title: "Shop — Verodav Home" },
-      { name: "description", content: "Discover Verodav Home products: cookware, pasta tools, fans, spare parts and accessories." },
-      { property: "og:title", content: "Shop — Verodav Home" },
-      { property: "og:description", content: "Discover Verodav Home products: cookware, pasta tools, fans, spare parts and accessories." },
+      { title: "Boutique — Verodav Home" },
+      { name: "description", content: "Découvrez les produits Verodav Home : ustensiles de cuisine, outils à pâtes, ventilateurs, pièces détachées et accessoires." },
+      { property: "og:title", content: "Boutique — Verodav Home" },
+      { property: "og:description", content: "Découvrez les produits Verodav Home : ustensiles de cuisine, outils à pâtes, ventilateurs, pièces détachées et accessoires." },
       { property: "og:url", content: "https://verodav-reborn.lovable.app/boutique" },
     ],
     links: [{ rel: "canonical", href: "https://verodav-reborn.lovable.app/boutique" }],
@@ -63,40 +63,40 @@ function ShopPage() {
     <>
       <header className="border-b border-border">
         <div className="mx-auto max-w-7xl px-6 py-16">
-          <span className="text-xs uppercase tracking-[0.3em] text-copper">— Shop</span>
-          <h1 className="mt-3 font-display text-5xl md:text-6xl">All products</h1>
-          <p className="mt-3 text-muted-foreground">{products.length} carefully selected references.</p>
+          <span className="text-xs uppercase tracking-[0.3em] text-copper">— Boutique</span>
+          <h1 className="mt-3 font-display text-5xl md:text-6xl">Tous les produits</h1>
+          <p className="mt-3 text-muted-foreground">{products.length} références soigneusement sélectionnées.</p>
         </div>
       </header>
 
       <div className="mx-auto max-w-7xl px-6 py-10 grid lg:grid-cols-[240px_1fr] gap-10">
         <aside className="lg:sticky lg:top-32 self-start">
           <div className="mb-6">
-            <label htmlFor="bortique-search" className="sr-only">Search for a product</label>
+            <label htmlFor="bortique-search" className="sr-only">Rechercher un produit</label>
             <input
               id="bortique-search"
               type="search"
-              aria-label="Search for a product"
+              aria-label="Rechercher un produit"
               value={q} onChange={(e) => setQ(e.target.value)}
-              placeholder="Search…"
+              placeholder="Rechercher…"
               className="w-full bg-card border border-border px-4 py-3 text-sm focus:outline-none focus:border-copper"
             />
           </div>
           <div className="mb-6">
-            <label htmlFor="bortique-sort" className="text-[10px] uppercase tracking-widest text-muted-foreground">Sort by</label>
-            <select id="bortique-sort" aria-label="Sort products" value={sort} onChange={(e) => setSort(e.target.value as "default" | "price-asc" | "price-desc")}
+            <label htmlFor="bortique-sort" className="text-[10px] uppercase tracking-widest text-muted-foreground">Trier par</label>
+            <select id="bortique-sort" aria-label="Trier les produits" value={sort} onChange={(e) => setSort(e.target.value as "default" | "price-asc" | "price-desc")}
               className="mt-2 w-full bg-card border border-border px-3 py-2 text-sm focus:outline-none focus:border-copper">
-              <option value="default">Relevance</option>
-              <option value="price-asc">Price low to high</option>
-              <option value="price-desc">Price high to low</option>
+              <option value="default">Pertinence</option>
+              <option value="price-asc">Prix croissant</option>
+              <option value="price-desc">Prix décroissant</option>
             </select>
           </div>
           <div>
-            <div className="text-[10px] uppercase tracking-widest text-muted-foreground mb-3">Categories</div>
+            <div className="text-[10px] uppercase tracking-widest text-muted-foreground mb-3">Catégories</div>
             <ul className="space-y-1">
               <li>
                 <button onClick={() => setCat("all")} className={`w-full text-left text-sm py-1.5 px-2 transition ${cat === "all" ? "bg-primary text-primary-foreground" : "hover:text-copper"}`}>
-                  All ({products.length})
+                  Tout ({products.length})
                 </button>
               </li>
               {categories.map((c) => (
@@ -111,10 +111,10 @@ function ShopPage() {
         </aside>
 
         <div>
-          <p className="text-sm text-muted-foreground mb-6">{list.length} products</p>
+          <p className="text-sm text-muted-foreground mb-6">{list.length} produits</p>
           {list.length === 0 ? (
             <div className="py-20 text-center text-muted-foreground">
-              No products match your search.
+              Aucun produit ne correspond à votre recherche.
             </div>
           ) : (
             <>
@@ -153,10 +153,10 @@ function ShopPage() {
                           <button
                             onClick={() => setPage(currentPage - 1)}
                             disabled={currentPage === 1}
-                            aria-label="Previous page"
+                            aria-label="Page précédente"
                             className="text-[10px] sm:text-xs uppercase tracking-widest border border-border px-2.5 sm:px-4 h-9 sm:h-10 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-primary hover:text-primary-foreground transition"
                           >
-                            <span className="hidden sm:inline">Previous</span>
+                            <span className="hidden sm:inline">Précédent</span>
                             <span className="sm:hidden" aria-hidden>‹</span>
                           </button>
                           {pages.map((n, i) =>
@@ -183,10 +183,10 @@ function ShopPage() {
                           <button
                             onClick={() => setPage(currentPage + 1)}
                             disabled={currentPage === totalPages}
-                            aria-label="Next page"
+                            aria-label="Page suivante"
                             className="text-[10px] sm:text-xs uppercase tracking-widest border border-border px-2.5 sm:px-4 h-9 sm:h-10 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-primary hover:text-primary-foreground transition"
                           >
-                            <span className="hidden sm:inline">Next</span>
+                            <span className="hidden sm:inline">Suivant</span>
                             <span className="sm:hidden" aria-hidden>›</span>
                           </button>
                         </nav>

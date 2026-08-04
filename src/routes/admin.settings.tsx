@@ -26,15 +26,15 @@ function Page() {
   };
 
   const fields: { k: keyof SiteSettings; label: string }[] = [
-    { k: "name", label: "Name du site" },
+    { k: "name", label: "Nom du site" },
     { k: "tagline", label: "Slogan" },
     { k: "email", label: "Email de contact" },
-    { k: "phone", label: "Phone (affichage)" },
-    { k: "phoneRaw", label: "Phone (lien tel:)" },
-    { k: "address", label: "Address" },
-    { k: "facebook", label: "Facebook URL" },
-    { k: "instagram", label: "Instagram URL" },
-    { k: "tiktok", label: "TikTok URL" },
+    { k: "phone", label: "Téléphone (affichage)" },
+    { k: "phoneRaw", label: "Téléphone (lien tel:)" },
+    { k: "address", label: "Adresse" },
+    { k: "facebook", label: "URL Facebook" },
+    { k: "instagram", label: "URL Instagram" },
+    { k: "tiktok", label: "URL TikTok" },
   ];
 
   return (
@@ -55,7 +55,7 @@ function Page() {
         {msg && <p className="text-sm text-emerald-700">{msg}</p>}
         <div className="flex justify-end">
           <button type="submit" disabled={busy} className="inline-flex items-center gap-2 bg-primary px-5 py-2.5 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper disabled:opacity-50">
-            <Save className="h-4 w-4" /> {busy ? "Saving…" : "Save"}
+            <Save className="h-4 w-4" /> {busy ? "Enregistrement…" : "Enregistrer"}
           </button>
         </div>
       </form>

@@ -29,17 +29,17 @@ export function ProductCard({ p, eager = false }: { p: Product; eager?: boolean 
         {/* corner badges */}
         <div className="absolute left-3 top-3 flex gap-2">
           {p.on_sale && (
-            <span className="bg-copper text-copper-foreground text-[10px] uppercase tracking-widest px-2 py-1">Sale</span>
+            <span className="bg-copper text-copper-foreground text-[10px] uppercase tracking-widest px-2 py-1">Promo</span>
           )}
           {!p.in_stock && (
-            <span className="bg-primary/90 text-primary-foreground text-[10px] uppercase tracking-widest px-2 py-1">Out of stock</span>
+            <span className="bg-primary/90 text-primary-foreground text-[10px] uppercase tracking-widest px-2 py-1">En rupture de stock</span>
           )}
         </div>
 
         {/* hover CTA */}
         <div className="absolute right-3 bottom-3 translate-y-3 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition duration-500">
           <span className="inline-flex items-center gap-1.5 bg-background text-foreground text-[10px] uppercase tracking-widest px-3 py-2 shadow-lg">
-            View <ArrowUpRight className="h-3 w-3" />
+            Voir <ArrowUpRight className="h-3 w-3" />
           </span>
         </div>
       </div>

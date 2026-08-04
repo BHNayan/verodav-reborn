@@ -16,10 +16,10 @@ export const Route = createFileRoute("/categorie/$slug")({
     const c = loaderData?.category;
     const url = `${SITE_URL}/categorie/${params.slug}`;
     const name = c?.name ?? params.slug;
-    const title = `${name} — Shop Verodav Home`;
+    const title = `${name} — Boutique Verodav Home`;
     const desc = c
-      ? `Discover ${c.count} products in the ${c.name} category at Verodav Home — cookware, accessories and selected spare parts for your kitchen and home.`
-      : `Discover the ${name} category at Verodav Home — quality cookware, accessories and spare parts for your kitchen and home.`;
+      ? `Découvrez ${c.count} produits dans la catégorie ${c.name} chez Verodav Home — ustensiles de cuisine, accessoires et pièces détachées sélectionnées pour votre cuisine et votre maison.`
+      : `Découvrez la catégorie ${name} chez Verodav Home — ustensiles de cuisine, accessoires et pièces détachées de qualité pour votre cuisine et votre maison.`;
     const meta: Array<Record<string, string>> = [
       { title },
       { name: "description", content: desc },
@@ -38,8 +38,8 @@ export const Route = createFileRoute("/categorie/$slug")({
   },
   notFoundComponent: () => (
     <div className="mx-auto max-w-7xl px-6 py-24 text-center">
-      <h1 className="font-display text-4xl">Category not found</h1>
-      <Link to="/boutique" className="mt-6 inline-block text-copper">← Back to the shop</Link>
+      <h1 className="font-display text-4xl">Catégorie introuvable</h1>
+      <Link to="/boutique" className="mt-6 inline-block text-copper">← Retour à la boutique</Link>
     </div>
   ),
   component: CategoryPage,
@@ -53,7 +53,7 @@ function CategoryPage() {
   const products = allProducts.filter((p) => p.categories.includes(slug));
 
   if (categories.length && !cat) throw notFound();
-  if (!cat) return <div className="mx-auto max-w-7xl px-6 py-16 text-sm text-muted-foreground">Loading…</div>;
+  if (!cat) return <div className="mx-auto max-w-7xl px-6 py-16 text-sm text-muted-foreground">Chargement…</div>;
 
   return (
     <>
@@ -63,9 +63,9 @@ function CategoryPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/40" />
         </div>
         <div className="relative mx-auto max-w-7xl px-6 py-20 lg:py-28">
-          <Link to="/boutique" className="text-xs uppercase tracking-widest text-muted-foreground hover:text-copper">← Shop</Link>
+          <Link to="/boutique" className="text-xs uppercase tracking-widest text-muted-foreground hover:text-copper">← Boutique</Link>
           <h1 className="mt-4 font-display text-5xl md:text-7xl text-balance">{cat.name}</h1>
-          <p className="mt-3 text-muted-foreground">{products.length} products</p>
+          <p className="mt-3 text-muted-foreground">{products.length} produits</p>
         </div>
       </header>
 
@@ -119,11 +119,11 @@ function OtherCategoriesCarousel({ currentSlug }: { currentSlug: string }) {
       <div className="flex items-end justify-between mb-6 gap-6">
         <h2 className="font-display text-2xl md:text-3xl">Autres catégories</h2>
         <div className="flex items-center gap-2">
-          <button onClick={() => scrollBy(-1)} aria-label="Previous"
+          <button onClick={() => scrollBy(-1)} aria-label="Précédent"
             className="h-10 w-10 inline-flex items-center justify-center border border-border hover:bg-primary hover:text-primary-foreground hover:border-primary transition">
             <ArrowLeft className="h-4 w-4" />
           </button>
-          <button onClick={() => scrollBy(1)} aria-label="Next"
+          <button onClick={() => scrollBy(1)} aria-label="Suivant"
             className="h-10 w-10 inline-flex items-center justify-center border border-border hover:bg-primary hover:text-primary-foreground hover:border-primary transition">
             <ArrowRight className="h-4 w-4" />
           </button>
@@ -143,7 +143,7 @@ function OtherCategoriesCarousel({ currentSlug }: { currentSlug: string }) {
               )}
               <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/10 to-transparent" />
               <div className="absolute top-3 left-3 text-[10px] uppercase tracking-[0.28em] text-primary-foreground/90 bg-primary/40 backdrop-blur px-2 py-1">
-                {c.count} products
+                {c.count} produits
               </div>
               <div className="absolute inset-x-0 bottom-0 p-4 text-primary-foreground flex items-end justify-between gap-2">
                 <h3 className="font-display text-lg leading-tight">{c.name}</h3>

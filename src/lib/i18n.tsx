@@ -105,90 +105,90 @@ const en: Dict = {
 
 const fr: Dict = {
   "nav.home": "Accueil",
-  "nav.shop": "Shop",
-  "nav.categories": "Categories",
+  "nav.shop": "Boutique",
+  "nav.categories": "Catégories",
   "nav.about": "À propos",
   "nav.blog": "Blog",
   "nav.contact": "Contact",
-  "nav.account": "My account",
-  "nav.orders": "My orders",
-  "nav.favorites": "My favorites",
-  "nav.signin": "Sign in",
-  "nav.signout": "Sign ort",
+  "nav.account": "Mon compte",
+  "nav.orders": "Mes commandes",
+  "nav.favorites": "Mes favoris",
+  "nav.signin": "Se connecter",
+  "nav.signout": "Se déconnecter",
   "nav.admin": "Administration",
-  "nav.connected": "Signed in",
-  "nav.menu": "Navigation menu",
-  "common.cart": "Cart",
-  "common.search": "Search",
-  "common.send": "Send message",
-  "common.name": "Name",
-  "common.email": "Email",
-  "common.subject": "Subject",
+  "nav.connected": "Connecté",
+  "nav.menu": "Menu de navigation",
+  "common.cart": "Panier",
+  "common.search": "Rechercher",
+  "common.send": "Envoyer le message",
+  "common.name": "Nom",
+  "common.email": "E-mail",
+  "common.subject": "Sujet",
   "common.message": "Message",
-  "common.save": "Save",
-  "common.saving": "Saving…",
-  "common.loading": "Loading…",
-  "common.cancel": "Cancel",
-  "common.delete": "Delete",
-  "common.edit": "Edit",
-  "common.add": "Add",
-  "common.close": "Close",
-  "common.back": "Back",
+  "common.save": "Enregistrer",
+  "common.saving": "Enregistrement…",
+  "common.loading": "Chargement…",
+  "common.cancel": "Annuler",
+  "common.delete": "Supprimer",
+  "common.edit": "Modifier",
+  "common.add": "Ajouter",
+  "common.close": "Fermer",
+  "common.back": "Retour",
 
-  "footer.categories": "Categories",
+  "footer.categories": "Catégories",
   "footer.navigation": "Navigation",
   "footer.contact": "Contact",
-  "footer.app_soon": "The mobile app is coming soon",
-  "footer.payments": "Accepted payments",
-  "footer.rights": "All rights reserved.",
-  "footer.legal": "Legal notice",
-  "footer.privacy": "Privacy policy",
-  "footer.data": "Data protection",
-  "footer.sav": "After-sales service",
-  "footer.tagline_extra": "Une sélection d'cookware de cuisine professionnels conçus pour last.",
+  "footer.app_soon": "L'application mobile arrive bientôt",
+  "footer.payments": "Paiements acceptés",
+  "footer.rights": "Tous droits réservés.",
+  "footer.legal": "Mentions légales",
+  "footer.privacy": "Politique de confidentialité",
+  "footer.data": "Protection des données",
+  "footer.sav": "Service après-vente",
+  "footer.tagline_extra": "Une sélection d'ustensiles de cuisine professionnels conçus pour durer.",
 
   "contact.title": "Contact",
-  "contact.intro": "A question, an order, advice on a spare part? Our team responds quickly.",
-  "contact.write": "Write to us",
-  "contact.coords": "Contact info",
-  "contact.hours": "Hours",
-  "contact.shop": "Shop",
-  "contact.phone": "Phone",
-  "contact.sent": "Message sent. We will get back to you shortly.",
-  "contact.error": "Unable to send the message.",
+  "contact.intro": "Une question, une commande, un conseil sur une pièce détachée ? Notre équipe vous répond rapidement.",
+  "contact.write": "Écrivez-nous",
+  "contact.coords": "Coordonnées",
+  "contact.hours": "Horaires",
+  "contact.shop": "Boutique",
+  "contact.phone": "Téléphone",
+  "contact.sent": "Message envoyé. Nous revenons vers vous très vite.",
+  "contact.error": "Impossible d'envoyer le message.",
 
-  "account.title": "My account",
-  "account.hello": "Hello",
-  "account.tab.profile": "Profile",
-  "account.tab.addresses": "Addresses",
-  "account.tab.favorites": "Favorites",
-  "account.tab.orders": "Orders",
-  "orders.title": "My orders",
-  "orders.empty": "You have not placed any order yet.",
-  "orders.history": "Your order history will appear here.",
-  "fav.title": "My favorites",
-  "fav.empty": "No favorites yet.",
-  "fav.hint": "Ajortez des products à vos favoris depuis la bortique.",
+  "account.title": "Mon compte",
+  "account.hello": "Bonjour",
+  "account.tab.profile": "Profil",
+  "account.tab.addresses": "Adresses",
+  "account.tab.favorites": "Favoris",
+  "account.tab.orders": "Commandes",
+  "orders.title": "Mes commandes",
+  "orders.empty": "Vous n'avez pas encore passé de commande.",
+  "orders.history": "L'historique de vos commandes apparaîtra ici.",
+  "fav.title": "Mes favoris",
+  "fav.empty": "Aucun favori pour le moment.",
+  "fav.hint": "Ajoutez des produits à vos favoris depuis la boutique.",
 
   "admin.title": "Administration",
-  "admin.checking": "Verifying admin access…",
+  "admin.checking": "Vérification de l'accès administrateur…",
   "admin.site": "Site",
-  "admin.signout": "Sign ort",
-  "admin.dashboard": "Dashboard",
-  "admin.overview": "Overview of your shop.",
-  "admin.products": "Products",
-  "admin.categories": "Categories",
-  "admin.orders": "Orders",
-  "admin.customers": "Customers",
+  "admin.signout": "Se déconnecter",
+  "admin.dashboard": "Tableau de bord",
+  "admin.overview": "Vue d'ensemble de votre boutique.",
+  "admin.products": "Produits",
+  "admin.categories": "Catégories",
+  "admin.orders": "Commandes",
+  "admin.customers": "Clients",
   "admin.messages": "Messages",
   "admin.blog": "Blog",
   "admin.pages": "Pages",
-  "admin.settings": "Settings",
-  "admin.revenue": "Revenue (€)",
-  "admin.settings.title": "Settings du site",
-  "admin.settings.intro": "Edit the information shown in the header, footer and contact pages.",
-  "admin.customers.title": "Customers",
-  "admin.orders.title": "Orders",
+  "admin.settings": "Paramètres",
+  "admin.revenue": "Chiffre d'affaires (€)",
+  "admin.settings.title": "Paramètres du site",
+  "admin.settings.intro": "Modifiez les informations affichées dans l'en-tête, le pied de page et les pages de contact.",
+  "admin.customers.title": "Clients",
+  "admin.orders.title": "Commandes",
   "admin.contacts.title": "Messages",
 };
 
@@ -284,11 +284,11 @@ const de: Dict = {
 const DICT: Record<Lang, Dict> = { en, fr, de };
 
 type Ctx = { lang: Lang; setLang: (l: Lang) => void; t: (key: string) => string };
-const I18nContext = createContext<Ctx>({ lang: "en", setLang: () => {}, t: (k) => k });
+const I18nContext = createContext<Ctx>({ lang: "fr", setLang: () => {}, t: (k) => k });
 
 // Main authored content in the project is largely English now.
 // Google Translate should translate from English into the selected target.
-const SOURCE_LANG: Lang = "en";
+const SOURCE_LANG: Lang = "fr";
 
 function writeGoogTransCookie(target: Lang) {
   if (typeof document === "undefined") return;
@@ -309,12 +309,12 @@ function writeGoogTransCookie(target: Lang) {
 }
 
 export function I18nProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Lang>("en");
+  const [lang, setLangState] = useState<Lang>("fr");
 
   useEffect(() => {
     try {
       const saved = (localStorage.getItem("lang") as Lang | null);
-      const initial: Lang = saved && DICT[saved] ? saved : "en";
+      const initial: Lang = saved && DICT[saved] ? saved : "fr";
       if (!saved) {
         // First-time visitor: persist English as the default so the Google
         // Translate cookie is set before any subsequent navigation.
@@ -369,10 +369,10 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     try { window.location.reload(); } catch {}
   };
 
-  // Keep authored DOM text in English for every selected language. The hidden
+  // Keep authored DOM text in French for every selected language. The hidden
   // Google Translate widget then translates the full page consistently from
-  // English into French/German instead of receiving a mixed-language DOM.
-  const t = (key: string) => DICT.en[key] ?? key;
+  // French into English/German instead of receiving a mixed-language DOM.
+  const t = (key: string) => DICT.fr[key] ?? key;
   return <I18nContext.Provider value={{ lang, setLang, t }}>{children}</I18nContext.Provider>;
 }
 

@@ -15,7 +15,7 @@ export type SiteSettings = {
 
 export const SITE_DEFAULTS: SiteSettings = {
   name: "Verodav Home",
-  tagline: "Better home, think us.",
+  tagline: "Une meilleure maison, pensez à nous.",
   email: "info@verodav-home.com",
   phone: "+33 7 58 34 76 62",
   phoneRaw: "+33758347662",

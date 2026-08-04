@@ -27,7 +27,7 @@ function Page() {
     load();
   };
   const remove = async (id: string) => {
-    if (!confirm("Delete ce message ?")) return;
+    if (!confirm("Supprimer ce message ?")) return;
     const { error } = await supabase.from("contact_submissions").delete().eq("id", id);
     if (error) return alert(error.message);
     load();
@@ -38,7 +38,7 @@ function Page() {
       <h1 className="font-display text-2xl md:text-4xl">Messages de contact</h1>
       <div className="mt-4 flex flex-wrap gap-2">
         {["all", ...STATUSES].map((s) => (
-          <button key={s} onClick={() => setFilter(s)} className={`border border-border px-3 py-1.5 text-xs uppercase tracking-widest ${filter === s ? "bg-primary text-primary-foreground" : "hover:bg-secondary"}`}>{s}</button>
+          <button key={s} onClick={() => setFilter(s)} className={`border border-border px-3 py-1.5 text-xs uppercase tracking-widest ${filter === s ? "bg-primary text-primary-foreground" : "hover:bg-secondary"}`}>{s === "new" ? "nouveau" : s === "read" ? "lu" : s === "replied" ? "répondu" : s === "archived" ? "archivé" : "tous"}</button>
         ))}
       </div>
       <div className="mt-6 border border-border bg-card">
@@ -56,20 +56,20 @@ function Page() {
               <div className="flex items-center gap-3 shrink-0">
                 <span className="text-xs text-muted-foreground">{new Date(r.created_at).toLocaleDateString()}</span>
                 <select value={r.status} onChange={(e) => { e.stopPropagation(); setStatus(r.id, e.target.value); }} onClick={(e) => e.stopPropagation()} className="border border-border bg-transparent px-2 py-1 text-xs">
-                  {STATUSES.map((s) => <option key={s} value={s}>{s}</option>)}
+                  {STATUSES.map((s) => <option key={s} value={s}>{s === "new" ? "Nouveau" : s === "read" ? "Lu" : s === "replied" ? "Répondu" : s === "archived" ? "Archivé" : s}</option>)}
                 </select>
               </div>
             </button>
             {open === r.id && (
               <div className="bg-secondary/30 px-4 py-4 text-sm space-y-3">
-                {r.subject && <div><strong>Subject :</strong> {r.subject}</div>}
+                {r.subject && <div><strong>Sujet :</strong> {r.subject}</div>}
                 <div className="whitespace-pre-wrap">{r.message}</div>
                 <div className="flex gap-2 pt-2">
                   <a href={`mailto:${r.email}?subject=Re: ${encodeURIComponent(r.subject || "Votre message")}`} className="inline-flex items-center gap-2 border border-border px-3 py-1.5 text-xs hover:bg-secondary">
                     <Mail className="h-3.5 w-3.5" /> Répondre
                   </a>
                   <button onClick={() => remove(r.id)} className="inline-flex items-center gap-2 border border-border px-3 py-1.5 text-xs text-destructive hover:bg-destructive/10">
-                    <Trash2 className="h-3.5 w-3.5" /> Delete
+                    <Trash2 className="h-3.5 w-3.5" /> Supprimer
                   </button>
                 </div>
               </div>

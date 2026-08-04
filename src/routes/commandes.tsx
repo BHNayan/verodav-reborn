@@ -4,7 +4,7 @@ import { useAuth } from "@/lib/auth";
 import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/commandes")({
-  head: () => ({ meta: [{ title: "My orders — Verodav Home" }] }),
+  head: () => ({ meta: [{ title: "Mes commandes — Verodav Home" }] }),
   component: OrdersPage,
 });
 

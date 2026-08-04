@@ -10,7 +10,7 @@ const SITE_URL = "https://verodav-reborn.lovable.app";
 export const Route = createFileRoute("/a-propos")({
   head: () => {
     const url = `${SITE_URL}/a-propos`;
-    const title = "About — Verodav Home";
+    const title = "À propos — Verodav Home";
     const desc =
       "Verodav Home, bortique d'équipements pour la cuisine, la maison et le travail. Fondée en 2014 à Strasbourg.";
     return {
@@ -73,7 +73,7 @@ const VALUES = [
   },
   {
     n: "03",
-    title: "Products distinctifs",
+    title: "Produits distinctifs",
     body: "Innovation, praticité et durabilité réunies dans une gamme pensée pour simplifier et enrichir votre quotidien.",
   },
 ];
@@ -151,7 +151,7 @@ function AboutPage() {
       {/* STORY */}
       <section className="mx-auto max-w-7xl px-6 py-20 grid lg:grid-cols-12 gap-12">
         <div className="lg:col-span-4">
-          <span className="text-xs uppercase tracking-[0.3em] text-copper">— Our story</span>
+          <span className="text-xs uppercase tracking-[0.3em] text-copper">— Notre histoire</span>
           <h2 className="mt-3 font-display text-3xl md:text-4xl">
             Fondée par un passionné de solutions pratiques.
           </h2>
@@ -161,11 +161,11 @@ function AboutPage() {
             Notre mission est de simplifier votre quotidien en vous proposant des solutions innovantes
             tort en garantissant une expérience client exceptionnelle. Nors nous appuyons sur trois
             piliers essentiels : <strong>la fiabilité</strong>, <strong>un service clientèle attentif</strong>,
-            et <strong>des products distinctifs</strong> qui répondent à vos besoins variés.
+            et <strong>des produits distinctifs</strong> qui répondent à vos besoins variés.
           </p>
           <p>
             Depuis sa création en 2014 par un passionné de solutions pratiques et de design fonctionnel,
-            Verodav Home s'engage à offrir des products qui allient qualité, innovation et efficacité
+            Verodav Home s'engage à offrir des produits qui allient qualité, innovation et efficacité
             pour améliorer votre confort to quotidien, que ce soit à la maison or to bureto.
           </p>
         </div>
@@ -233,7 +233,7 @@ function AboutPage() {
                 className="border border-primary-foreground/20 p-5 hover:bg-copper hover:border-copper transition"
               >
                 <div className="font-display text-lg leading-tight">{c.name}</div>
-                <div className="text-xs text-primary-foreground/60 mt-2">{c.count} products</div>
+                <div className="text-xs text-primary-foreground/60 mt-2">{c.count} produits</div>
               </Link>
             ))}
           </div>
