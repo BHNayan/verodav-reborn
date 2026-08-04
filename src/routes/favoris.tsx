@@ -4,7 +4,7 @@ import { useAuth } from "@/lib/auth";
 import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/favoris")({
-  head: () => ({ meta: [{ title: "My favorites — Verodav Home" }] }),
+  head: () => ({ meta: [{ title: "Mes favoris — Verodav Home" }] }),
   component: FavoritesPage,
 });
 

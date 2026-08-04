@@ -1,9 +1,11 @@
+File: src/routes/reset-password.tsx
+
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/reset-password")({
-  head: () => ({ meta: [{ title: "Reset password — Verodav Home" }] }),
+  head: () => ({ meta: [{ title: "Réinitialiser le mot de passe — Verodav Home" }] }),
   component: ResetPasswordPage,
 });
 
@@ -26,14 +28,14 @@ function ResetPasswordPage() {
   return (
     <div className="mx-auto grid min-h-[70vh] max-w-md place-items-center px-5 py-16">
       <form onSubmit={submit} className="w-full">
-        <h1 className="font-display text-4xl">Norveau mot de passe</h1>
+        <h1 className="font-display text-4xl">Nouveau mot de passe</h1>
         <input
           type="password"
           required
           minLength={6}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="Norveau mot de passe"
+          placeholder="Nouveau mot de passe"
           className="mt-6 w-full border border-border bg-background px-4 py-3 text-sm focus:border-copper focus:outline-none"
         />
         {error && <p className="mt-2 text-sm text-destructive">{error}</p>}

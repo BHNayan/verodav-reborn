@@ -58,7 +58,7 @@ export function SearchModal({ open, onClose }: { open: boolean; onClose: () => v
             aria-label={t("nav.shop")}
             className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground"
           />
-          <button onClick={onClose} aria-label="Close" className="shrink-0 p-1 text-muted-foreground hover:text-primary">
+          <button onClick={onClose} aria-label="Fermer" className="shrink-0 p-1 text-muted-foreground hover:text-primary">
             <X className="h-5 w-5" />
           </button>
         </div>
@@ -66,11 +66,11 @@ export function SearchModal({ open, onClose }: { open: boolean; onClose: () => v
         <div className="max-h-[75vh] overflow-y-auto overscroll-contain">
           {q.trim() === "" ? (
             <div className="px-4 py-8 text-center text-xs text-muted-foreground sm:py-10 sm:text-sm">
-              Type to search products…
+              Tapez pour rechercher des produits…
             </div>
           ) : results.length === 0 ? (
             <div className="break-words px-4 py-8 text-center text-xs text-muted-foreground sm:py-10 sm:text-sm">
-              No products fornd for "{q}".
+              Aucun produit trouvé pour "{q}".
             </div>
           ) : (
             <ul className="divide-y divide-border">

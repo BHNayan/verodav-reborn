@@ -6,8 +6,8 @@ import { SITE } from "@/lib/site";
 export const Route = createFileRoute("/politique-de-confidentialite")({
   head: () => ({
     meta: [
-      { title: "Privacy policy — Verodav Home" },
-      { name: "description", content: "How Verodav Home collects, processes and protects your personal data." },
+      { title: "Politique de confidentialité — Verodav Home" },
+      { name: "description", content: "Comment Verodav Home collecte, traite et protège vos données personnelles." },
     ],
   }),
   component: Page,
@@ -28,7 +28,7 @@ function Page() {
     <PageCmsWrapper slug="politique-de-confidentialite">
       <>
     <LegalLayout
-      title="Privacy policy"
+      title="Politique de confidentialité"
       intro="Informations sur la collecte et le traitement de vos données personnelles."
     >
       <Section title="1. Introduction">

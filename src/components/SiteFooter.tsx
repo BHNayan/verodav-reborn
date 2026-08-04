@@ -1,3 +1,5 @@
+File: src/components/SiteFooter.tsx
+
 import { Link } from "@tanstack/react-router";
 import { Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react";
 import { useSiteSettings } from "@/lib/site";
@@ -33,8 +35,8 @@ export function SiteFooter() {
     <footer className="bg-primary text-primary-foreground">
       <div className="mx-auto max-w-7xl px-6 py-16 grid gap-12 md:grid-cols-12">
         <div className="md:col-span-4 flex flex-col items-center text-center md:items-start md:text-left">
-          <Link to="/" aria-label="Verodav Home" className="inline-flex items-center justify-center bg-white rounded-lg px-5 py-3 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.45)] ring-1 ring-white/10">
-            <img src={logo} alt="Verodav Home" className="h-11 md:h-12 w-auto" />
+          <Link to="/" aria-label="Accueil Verodav" className="inline-flex items-center justify-center bg-white rounded-lg px-5 py-3 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.45)] ring-1 ring-white/10">
+            <img src={logo} alt="Accueil Verodav" className="h-11 md:h-12 w-auto" />
           </Link>
           <p className="mt-5 text-sm text-primary-foreground/70 leading-relaxed max-w-sm">
             {SITE.tagline} {t("footer.tagline_extra")}
@@ -49,11 +51,11 @@ export function SiteFooter() {
             <div className="flex flex-wrap gap-3 justify-center md:justify-start">
               <a href="#" aria-label="Google Play" className="inline-flex items-center gap-2 bg-black text-white px-3 py-2 rounded-md hover:opacity-90 transition">
                 <svg viewBox="0 0 24 24" className="h-6 w-6" fill="currentColor"><path d="M3.6 2.3c-.3.3-.5.8-.5 1.4v16.6c0 .6.2 1.1.5 1.4l9.2-9.7L3.6 2.3zm10.2 10.4l2.7 2.8-11 6.3c-.4.2-.8.2-1.1.1l9.4-9.2zm0-1.4L4.4 2c.3-.1.7 0 1.1.2l11 6.3-2.7 2.8zm6.4-1.6c.9.5 1.3 1.2 1.3 1.9s-.5 1.4-1.3 1.9l-3.1 1.8-3.1-3.2 3.1-3.2 3.1.8z"/></svg>
-                <span className="text-left leading-tight"><span className="block text-[9px] uppercase opacity-80">Get it on</span><span className="block text-sm font-semibold">Google Play</span></span>
+                <span className="text-left leading-tight"><span className="block text-[9px] uppercase opacity-80">Disponible sur</span><span className="block text-sm font-semibold">Google Play</span></span>
               </a>
               <a href="#" aria-label="App Store" className="inline-flex items-center gap-2 bg-black text-white px-3 py-2 rounded-md hover:opacity-90 transition">
                 <svg viewBox="0 0 24 24" className="h-6 w-6" fill="currentColor"><path d="M17.05 12.5c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.2 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3.1 2.4 1.2-.1 1.7-.8 3.2-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8-.1 0-2.6-1-2.7-3.9zM14.6 5.3c.7-.8 1.1-1.9 1-3-1 0-2.2.6-2.9 1.5-.6.7-1.2 1.9-1 2.9 1.1.1 2.2-.6 2.9-1.4z"/></svg>
-                <span className="text-left leading-tight"><span className="block text-[9px] uppercase opacity-80">Download on the</span><span className="block text-sm font-semibold">App Store</span></span>
+                <span className="text-left leading-tight"><span className="block text-[9px] uppercase opacity-80">Télécharger sur l'</span><span className="block text-sm font-semibold">App Store</span></span>
               </a>
             </div>
           </div>

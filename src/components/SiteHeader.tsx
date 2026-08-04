@@ -1,3 +1,5 @@
+File: src/components/SiteHeader.tsx
+
 import { Link, useNavigate } from "@tanstack/react-router";
 import { Menu, X, Search, ShoppingBag, User, ChevronDown, LogOut, Package, Heart, UserCircle } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -75,13 +77,13 @@ export function SiteHeader() {
 
       <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-5 lg:px-10 py-4 md:py-5">
         <div className="flex items-center gap-2 lg:hidden">
-          <button onClick={() => setOpen(true)} className="p-2 -ml-2 text-primary" aria-label="Open menu">
+          <button onClick={() => setOpen(true)} className="p-2 -ml-2 text-primary" aria-label="Ouvrir le menu">
             <Menu className="h-6 w-6" />
           </button>
         </div>
 
-        <Link to="/" className="flex items-center lg:flex-none" aria-label="Verodav Home">
-          <img src={logo} alt="Verodav Home — Better home, think us" className="h-8 md:h-10 w-auto" />
+        <Link to="/" className="flex items-center lg:flex-none" aria-label="Verodav Accueil">
+          <img src={logo} alt="Verodav Accueil — Une meilleure maison, pensez à nous" className="h-8 md:h-10 w-auto" />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-8 text-sm">
@@ -173,14 +175,14 @@ export function SiteHeader() {
             <Link
               to="/auth"
               search={{ redirect: "/", mode: "signin" }}
-              aria-label="Sign in"
+              aria-label="Se connecter"
               className="p-2 text-primary hover:text-copper transition"
             >
               <User className="h-5 w-5" />
             </Link>
           )}
 
-          <Link to="/panier" aria-label="Cart" className="relative p-2 text-primary hover:text-copper transition">
+          <Link to="/panier" aria-label="Panier" className="relative p-2 text-primary hover:text-copper transition">
             <ShoppingBag className="h-5 w-5" />
             {cartCount > 0 && (
               <span className="absolute -right-0.5 -top-0.5 grid h-4 min-w-4 place-items-center rounded-full bg-copper px-1 text-[10px] font-semibold text-primary-foreground">
@@ -205,14 +207,14 @@ export function SiteHeader() {
         }`}
         role="dialog"
         aria-modal="true"
-        aria-label="Navigation menu"
+        aria-label="Menu de navigation"
       >
         <div className="flex h-full min-h-0 flex-col">
           <div className="flex items-center justify-between border-b border-border px-5 py-4">
-            <Link to="/" onClick={close} aria-label="Verodav Home">
-              <img src={logo} alt="Verodav Home" className="h-9 w-auto" />
+            <Link to="/" onClick={close} aria-label="Verodav Accueil">
+              <img src={logo} alt="Verodav Accueil" className="h-9 w-auto" />
             </Link>
-            <button onClick={close} aria-label="Close menu" className="p-2 text-primary">
+            <button onClick={close} aria-label="Fermer le menu" className="p-2 text-primary">
               <X className="h-5 w-5" />
             </button>
           </div>
@@ -237,7 +239,7 @@ export function SiteHeader() {
                   className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground"
                 />
                 {drawerQ && (
-                  <button onClick={() => setDrawerQ("")} aria-label="Clear" className="shrink-0 text-muted-foreground hover:text-primary">
+                  <button onClick={() => setDrawerQ("")} aria-label="Effacer" className="shrink-0 text-muted-foreground hover:text-primary">
                     <X className="h-4 w-4" />
                   </button>
                 )}
@@ -246,7 +248,7 @@ export function SiteHeader() {
                 <div className="mt-2 max-h-72 overflow-y-auto overscroll-contain rounded-md border border-border">
                   {drawerResults.length === 0 ? (
                     <div className="break-words px-3 py-4 text-center text-xs text-muted-foreground">
-                      No products fornd for "{drawerQ}".
+                      Aucun produit trouvé pour "{drawerQ}".
                     </div>
                   ) : (
                     <ul className="divide-y divide-border">

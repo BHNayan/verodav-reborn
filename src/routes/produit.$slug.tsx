@@ -1,3 +1,5 @@
+File: src/routes/produit.$slug.tsx
+
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
@@ -22,8 +24,8 @@ export const Route = createFileRoute("/produit/$slug")({
     const desc = rawDesc
       ? rawDesc.slice(0, 157) + (rawDesc.length > 157 ? "…" : "")
       : p
-        ? `Discover ${p.name} at Verodav Home — ${formatPrice(p.price)}. Shipping and advice from our team in Strasbourg.`
-      : "Verodav Home product — kitchenware and kitchen accessories.";
+        ? `Découvrez ${p.name} chez Verodav Home — ${formatPrice(p.price)}. Expédition et conseils de notre équipe à Strasbourg.`
+      : "Produit Verodav Home — ustensiles et accessoires de cuisine.";
     const image = p?.image || undefined;
     const meta: Array<Record<string, string>> = [
       { title },
@@ -75,8 +77,8 @@ export const Route = createFileRoute("/produit/$slug")({
   },
   notFoundComponent: () => (
     <div className="mx-auto max-w-7xl px-6 py-24 text-center">
-      <h1 className="font-display text-4xl">Product not found</h1>
-      <Link to="/boutique" className="mt-6 inline-block text-copper">← Back to the shop</Link>
+      <h1 className="font-display text-4xl">Produit non trouvé</h1>
+      <Link to="/boutique" className="mt-6 inline-block text-copper">← Retour à la boutique</Link>
     </div>
   ),
   component: ProductPage,
@@ -88,7 +90,7 @@ function ProductPage() {
   const all = useProducts();
   const [qty, setQty] = useState(1);
 
-  if (isLoading) return <div className="mx-auto max-w-7xl px-6 py-16 text-sm text-muted-foreground">Loading…</div>;
+  if (isLoading) return <div className="mx-auto max-w-7xl px-6 py-16 text-sm text-muted-foreground">Chargement…</div>;
   if (!product) throw notFound();
 
   const related = all
@@ -99,7 +101,7 @@ function ProductPage() {
     <>
       <div className="mx-auto max-w-7xl px-6 pt-8">
         <Link to="/boutique" className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-muted-foreground hover:text-copper">
-          <ArrowLeft className="h-3.5 w-3.5" /> Back
+          <ArrowLeft className="h-3.5 w-3.5" /> Retour
         </Link>
       </div>
 
@@ -108,7 +110,7 @@ function ProductPage() {
           {product.image ? (
             <img src={product.image} alt={product.name} className="h-full w-full object-cover" />
           ) : (
-            <div className="h-full w-full flex items-center justify-center text-muted-foreground">No image</div>
+            <div className="h-full w-full flex items-center justify-center text-muted-foreground">Pas d'image</div>
           )}
         </div>
 
@@ -138,9 +140,9 @@ function ProductPage() {
           <div className="mt-6 flex items-baseline gap-3">
             <span className="font-display text-4xl">{formatPrice(product.price)}</span>
             {product.in_stock ? (
-              <span className="inline-flex items-center gap-1 text-xs text-copper"><Check className="h-3.5 w-3.5" /> In stock</span>
+              <span className="inline-flex items-center gap-1 text-xs text-copper"><Check className="h-3.5 w-3.5" /> En stock</span>
             ) : (
-              <span className="text-xs text-muted-foreground">Out of stock</span>
+              <span className="text-xs text-muted-foreground">Rupture de stock</span>
             )}
           </div>
 
@@ -149,10 +151,10 @@ function ProductPage() {
           )}
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
-            <div className="inline-flex items-center border border-border" role="group" aria-label="Quantity">
-              <button type="button" aria-label="Decrease quantity" onClick={() => setQty(Math.max(1, qty - 1))} className="px-4 py-3 hover:bg-secondary">−</button>
-              <span aria-live="polite" aria-label={`Quantity : ${qty}`} className="px-5 py-3 font-medium min-w-12 text-center">{qty}</span>
-              <button type="button" aria-label="Increase quantity" onClick={() => setQty(qty + 1)} className="px-4 py-3 hover:bg-secondary">+</button>
+            <div className="inline-flex items-center border border-border" role="group" aria-label="Quantité">
+              <button type="button" aria-label="Diminuer la quantité" onClick={() => setQty(Math.max(1, qty - 1))} className="px-4 py-3 hover:bg-secondary">−</button>
+              <span aria-live="polite" aria-label={`Quantité : ${qty}`} className="px-5 py-3 font-medium min-w-12 text-center">{qty}</span>
+              <button type="button" aria-label="Augmenter la quantité" onClick={() => setQty(qty + 1)} className="px-4 py-3 hover:bg-secondary">+</button>
             </div>
             <button
               onClick={() =>
@@ -164,13 +166,13 @@ function ProductPage() {
               disabled={!product.in_stock}
               className="flex-1 inline-flex items-center justify-center gap-2 bg-primary px-6 py-4 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <ShoppingBag className="h-4 w-4" /> Add to cart
+              <ShoppingBag className="h-4 w-4" /> Ajouter au panier
             </button>
           </div>
 
           <div className="mt-6 grid grid-cols-2 gap-3">
             <a href={`tel:${SITE.phoneRaw}`} className="inline-flex items-center justify-center gap-2 border border-border px-4 py-3 text-xs uppercase tracking-widest hover:border-copper hover:text-copper transition">
-              <Phone className="h-3.5 w-3.5" /> Call
+              <Phone className="h-3.5 w-3.5" /> Appeler
             </a>
             <a href={`mailto:${SITE.email}`} className="inline-flex items-center justify-center gap-2 border border-border px-4 py-3 text-xs uppercase tracking-widest hover:border-copper hover:text-copper transition">
               <Mail className="h-3.5 w-3.5" /> Question
@@ -192,7 +194,7 @@ function ProductPage() {
       {related.length > 0 && (
         <section className="border-t border-border bg-card mt-20">
           <div className="mx-auto max-w-7xl px-6 py-16">
-            <h2 className="font-display text-3xl mb-8">You may also like</h2>
+            <h2 className="font-display text-3xl mb-8">Vous pourriez aussi aimer</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-12">
               {related.map((p: Product) => <ProductCard key={p.id} p={p} />)}
             </div>

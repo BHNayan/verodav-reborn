@@ -1,3 +1,5 @@
+File: src/routes/admin.products.tsx
+
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent } from "react";
 import { useServerFn } from "@tanstack/react-start";
@@ -57,17 +59,17 @@ function AdminProducts() {
   const runWooSync = useServerFn(syncWooCommerce);
 
   const handleWooSync = async () => {
-    if (!confirm("Sync all products from your WordPress/WooCommerce store? Existing products with the same slug will be updated.")) return;
+    if (!confirm("Synchroniser tous les produits de votre boutique WordPress/WooCommerce ? Les produits existants avec le même slug seront mis à jour.")) return;
     setSyncing(true);
     try {
       const r = await runWooSync();
       alert(
-        `WordPress sync complete.\nCreated: ${r.created}\nUpdated: ${r.updated}\nFailed: ${r.failed}` +
-        (r.errors.length ? `\n\nErrors:\n${r.errors.join("\n")}` : "")
+        `Synchronisation WordPress terminée.\nCréés : ${r.created}\nMise à jour : ${r.updated}\nÉchec : ${r.failed}` +
+        (r.errors.length ? `\n\nErreurs :\n${r.errors.join("\n")}` : "")
       );
       load();
     } catch (e) {
-      alert("WordPress sync failed: " + (e as Error).message);
+      alert("La synchronisation WordPress a échoué : " + (e as Error).message);
     } finally {
       setSyncing(false);
     }
@@ -103,7 +105,7 @@ function AdminProducts() {
   };
 
   const remove = async (id: string) => {
-    if (!confirm("Delete ce produit ?")) return;
+    if (!confirm("Supprimer ce produit ?")) return;
     const { error } = await supabase.from("products").delete().eq("id", id);
     if (error) alert(error.message); else load();
   };
@@ -205,30 +207,30 @@ function AdminProducts() {
       // Check existence to report new vs updated.
       const { data: existing } = await supabase.from("products").select("id").eq("slug", slug).maybeSingle();
       const { error } = await supabase.from("products").upsert(payload, { onConflict: "slug" });
-      if (error) { fail++; errors.push(`${slug}: ${error.message}`); }
+      if (error) { fail++; errors.push(`${slug} : ${error.message}`); }
       else if (existing) updated++;
       else ok++;
     }
-    alert(`Import terminé. Créés: ${ok}, mis à jour: ${updated}, échoués: ${fail}${errors.length ? "\n" + errors.slice(0, 5).join("\n") : ""}`);
+    alert(`Importation terminée. Créés : ${ok}, Mis à jour : ${updated}, Échoués : ${fail}${errors.length ? "\n" + errors.slice(0, 5).join("\n") : ""}`);
     load();
   };
 
   return (
     <div>
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="font-display text-2xl md:text-4xl">Products</h1>
+        <h1 className="font-display text-2xl md:text-4xl">Produits</h1>
         <div className="flex flex-wrap items-center gap-2">
           <button
             onClick={handleWooSync}
             disabled={syncing}
             className="inline-flex items-center gap-2 border border-border bg-card px-3 py-2 text-xs uppercase tracking-widest hover:bg-secondary disabled:opacity-50"
-            title="Import all products from your WooCommerce store"
+            title="Importer tous les produits de votre boutique WooCommerce"
           >
-            <RefreshCw className={`h-4 w-4 ${syncing ? "animate-spin" : ""}`} /> {syncing ? "Sync…" : "Sync WordPress"}
+            <RefreshCw className={`h-4 w-4 ${syncing ? "animate-spin" : ""}`} /> {syncing ? "Synchronisation…" : "Synchroniser WordPress"}
           </button>
           <ExportImportBar filenameBase="products" getRows={exportRows} onImport={importRows} />
           <button onClick={() => setEditing({ ...empty })} className="inline-flex items-center gap-2 bg-primary px-4 py-2.5 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper">
-            <Plus className="h-4 w-4" /> Norveto
+            <Plus className="h-4 w-4" /> Nouveau
           </button>
         </div>
       </div>
@@ -236,7 +238,7 @@ function AdminProducts() {
       <div className="mt-6 overflow-x-auto border border-border bg-card">
         <table className="w-full text-sm">
           <thead className="bg-secondary/50 text-left text-xs uppercase tracking-widest">
-            <tr><th className="px-4 py-3">Produit</th><th className="px-4 py-3">Price</th><th className="px-4 py-3">Stock</th><th className="px-4 py-3">Status</th><th className="px-4 py-3"></th></tr>
+            <tr><th className="px-4 py-3">Produit</th><th className="px-4 py-3">Prix</th><th className="px-4 py-3">Stock</th><th className="px-4 py-3">Statut</th><th className="px-4 py-3"></th></tr>
           </thead>
           <tbody>
             {items.map((p) => (
@@ -251,7 +253,7 @@ function AdminProducts() {
                 <td className="px-4 py-3">{p.stock}</td>
                 <td className="px-4 py-3">
                   <span className={`inline-block px-2 py-0.5 text-xs ${p.is_active ? "bg-emerald-100 text-emerald-800" : "bg-muted"}`}>{p.is_active ? "Actif" : "Inactif"}</span>
-                  {p.is_featured && <span className="ml-1 inline-block bg-copper/20 px-2 py-0.5 text-xs text-copper">Vedette</span>}
+                  {p.is_featured && <span className="ml-1 inline-block bg-copper/20 px-2 py-0.5 text-xs text-copper">En vedette</span>}
                 </td>
                 <td className="px-4 py-3 text-right">
                   <button onClick={() => setEditing(p)} className="p-2 hover:text-copper"><Pencil className="h-4 w-4" /></button>
@@ -259,7 +261,7 @@ function AdminProducts() {
                 </td>
               </tr>
             ))}
-            {!items.length && <tr><td className="px-4 py-8 text-center text-muted-foreground" colSpan={5}>No products</td></tr>}
+            {!items.length && <tr><td className="px-4 py-8 text-center text-muted-foreground" colSpan={5}>Aucun produit</td></tr>}
           </tbody>
         </table>
       </div>
@@ -267,14 +269,14 @@ function AdminProducts() {
       {editing && (
         <div className="fixed inset-0 z-50 grid place-items-center bg-black/60 p-4">
           <form onSubmit={save} className="w-full max-w-3xl max-h-[90vh] overflow-y-auto border border-border bg-background p-6">
-            <div className="flex items-center justify-between"><h3 className="font-display text-2xl">{editing.id ? "Edit" : "Norveto"} produit</h3>
+            <div className="flex items-center justify-between"><h3 className="font-display text-2xl">{editing.id ? "Modifier" : "Nouveau"} produit</h3>
               <button type="button" onClick={() => setEditing(null)} className="p-1"><X className="h-5 w-5" /></button></div>
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
-              <Field label="Name"><input required value={editing.name} onChange={(e) => setEditing({ ...editing, name: e.target.value })} className="inp" /></Field>
+              <Field label="Nom"><input required value={editing.name} onChange={(e) => setEditing({ ...editing, name: e.target.value })} className="inp" /></Field>
               <Field label="Slug (auto si vide)"><input value={editing.slug} onChange={(e) => setEditing({ ...editing, slug: e.target.value })} className="inp" /></Field>
-              <Field label="Price (€)"><input required type="number" step="0.01" value={editing.price} onChange={(e) => setEditing({ ...editing, price: Number(e.target.value) })} className="inp" /></Field>
+              <Field label="Prix (€)"><input required type="number" step="0.01" value={editing.price} onChange={(e) => setEditing({ ...editing, price: Number(e.target.value) })} className="inp" /></Field>
               <Field label="Stock"><input required type="number" value={editing.stock} onChange={(e) => setEditing({ ...editing, stock: Number(e.target.value) })} className="inp" /></Field>
-              <Field label="Category">
+              <Field label="Catégorie">
                 <select value={editing.category_id ?? ""} onChange={(e) => setEditing({ ...editing, category_id: e.target.value || null })} className="inp">
                   <option value="">—</option>{cats.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
                 </select>
@@ -291,12 +293,12 @@ function AdminProducts() {
               </div>
               <div className="sm:col-span-2"><Field label="Description"><textarea rows={4} value={editing.description ?? ""} onChange={(e) => setEditing({ ...editing, description: e.target.value })} className="inp" /></Field></div>
               <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={editing.is_active} onChange={(e) => setEditing({ ...editing, is_active: e.target.checked })} /> Actif</label>
-              <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={editing.is_featured} onChange={(e) => setEditing({ ...editing, is_featured: e.target.checked })} /> Vedette</label>
+              <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={editing.is_featured} onChange={(e) => setEditing({ ...editing, is_featured: e.target.checked })} /> En vedette</label>
             </div>
             {err && <p className="mt-3 text-sm text-destructive">{err}</p>}
             <div className="mt-6 flex justify-end gap-2">
-              <button type="button" onClick={() => setEditing(null)} className="border border-border px-4 py-2 text-xs uppercase tracking-widest hover:bg-secondary">Cancel</button>
-              <button disabled={busy} className="bg-primary px-5 py-2 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper disabled:opacity-50">{busy ? "..." : "Save"}</button>
+              <button type="button" onClick={() => setEditing(null)} className="border border-border px-4 py-2 text-xs uppercase tracking-widest hover:bg-secondary">Annuler</button>
+              <button disabled={busy} className="bg-primary px-5 py-2 text-xs uppercase tracking-widest text-primary-foreground hover:bg-copper disabled:opacity-50">{busy ? "..." : "Enregistrer"}</button>
             </div>
           </form>
         </div>

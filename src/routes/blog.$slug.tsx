@@ -1,3 +1,5 @@
+File: src/routes/blog.$slug.tsx
+
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { postQueryOptions, usePosts, formatDate, type BlogPost, type BlogSection } from "@/lib/blog";
@@ -13,7 +15,7 @@ export const Route = createFileRoute("/blog/$slug")({
     const post = loaderData?.post;
     const url = `${SITE_URL}/blog/${params.slug}`;
     const title = post ? `${post.title} — Verodav Home` : `${params.slug} — Verodav Home`;
-    const desc = (post?.excerpt || "Article from the Verodav Home journal.").slice(0, 160);
+    const desc = (post?.excerpt || "Article du journal Verodav Home.").slice(0, 160);
     const image = post?.image;
     const meta: Array<Record<string, string>> = [
       { title },
@@ -54,8 +56,8 @@ export const Route = createFileRoute("/blog/$slug")({
   },
   notFoundComponent: () => (
     <div className="mx-auto max-w-3xl px-5 py-24 text-center">
-      <h1 className="font-display text-5xl">Article introrvable</h1>
-      <Link to="/blog" className="mt-6 inline-block text-copper">← Back to blog</Link>
+      <h1 className="font-display text-5xl">Article introuvable</h1>
+      <Link to="/blog" className="mt-6 inline-block text-copper">← Retour au blog</Link>
     </div>
   ),
   component: BlogPostPage,
@@ -66,7 +68,7 @@ function BlogPostPage() {
   const { data: post, isLoading } = useQuery(postQueryOptions(slug));
   const all = usePosts();
 
-  if (isLoading) return <div className="mx-auto max-w-3xl px-5 py-16 text-sm text-muted-foreground">Loading…</div>;
+  if (isLoading) return <div className="mx-auto max-w-3xl px-5 py-16 text-sm text-muted-foreground">Chargement…</div>;
   if (!post) throw notFound();
 
   const related = all.filter((p: BlogPost) => p.slug !== post.slug).slice(0, 3);
@@ -74,7 +76,7 @@ function BlogPostPage() {
   return (
     <article className="mx-auto max-w-[1400px] px-5 lg:px-10 py-12 md:py-20">
       <Link to="/blog" className="text-xs uppercase tracking-widest text-muted-foreground hover:text-copper">
-        ← All articles
+        ← Tous les articles
       </Link>
 
       <header className="mt-8 max-w-3xl">
@@ -82,7 +84,7 @@ function BlogPostPage() {
           <span className="text-copper">{post.category}</span>
           <span className="h-px w-6 bg-border" />
           <span>{formatDate(post.date)}</span>
-          <span>· {post.readTime} read</span>
+          <span>· {post.readTime} de lecture</span>
         </div>
         <h1 className="mt-4 font-display text-4xl md:text-6xl leading-[1.05]">{post.title}</h1>
         <p className="mt-6 text-lg text-muted-foreground">{post.excerpt}</p>
@@ -118,16 +120,16 @@ function BlogPostPage() {
           ))}
 
           <div className="border-t border-border pt-8 text-sm text-muted-foreground">
-          Article published by <span className="text-foreground">Verodav Home</span> · {formatDate(post.date)}
+          Article publié par <span className="text-foreground">Verodav Home</span> · {formatDate(post.date)}
           </div>
         </div>
       </div>
 
       <div className="mt-24">
         <div className="flex items-end justify-between">
-          <h2 className="font-display text-3xl md:text-4xl">Also read</h2>
+          <h2 className="font-display text-3xl md:text-4xl">À lire aussi</h2>
           <Link to="/blog" className="text-xs uppercase tracking-widest text-muted-foreground hover:text-copper">
-            Tort le blog →
+            Tout le blog →
           </Link>
         </div>
         <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
