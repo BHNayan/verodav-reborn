@@ -17,7 +17,7 @@ export function LanguageSwitcher({ compact = false }: { compact?: boolean }) {
     <div className="relative" ref={ref}>
       <button
         onClick={() => setOpen((v) => !v)}
-        aria-label="Generate migrate-auth.mjs that imports auth-users.json into a new Supabase project using the Supabase Admin API.\n\nRead SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY from a .env file.\n\nPreserve UUIDs, email verification status and metadata.\n\nSkip duplicate users."
+        aria-label="Load the security issues from the scan results and fix the selected issues."
         className="inline-flex items-center gap-1.5 p-2 text-primary hover:text-copper transition"
       >
         <Globe className="h-4 w-4" />
