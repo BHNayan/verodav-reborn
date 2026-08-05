@@ -17,7 +17,7 @@ export function LanguageSwitcher({ compact = false }: { compact?: boolean }) {
     <div className="relative" ref={ref}>
       <button
         onClick={() => setOpen((v) => !v)}
-        aria-label="The generated full_schema.sql is empty and only contains \"-- GRANTS\".
+        aria-label="The generated full_schema.sql is empty and only contains &quot;-- GRANTS&quot;.
 
 Please regenerate a complete standalone Supabase-compatible SQL schema.
 
@@ -25,7 +25,7 @@ Requirements:
 
 - Do NOT generate a pg_dump file.
 
-- Do NOT include psql commands such as \restrict, \unrestrict, \connect, or other meta commands.
+- Do NOT include psql commands such as \\restrict, \\unrestrict, \\connect, or other meta commands.
 
 - Generate plain SQL only.
 
