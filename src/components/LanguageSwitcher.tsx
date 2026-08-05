@@ -17,7 +17,7 @@ export function LanguageSwitcher({ compact = false }: { compact?: boolean }) {
     <div className="relative" ref={ref}>
       <button
         onClick={() => setOpen((v) => !v)}
-        aria-label="Generate a complete auth export for migration.\n\nCreate a file named:\n\nauth-users.json\n\nExport every authenticated user including:\n\n- id\n\n- email\n\n- encrypted_password (password hash if available)\n\n- email_confirmed_at\n\n- phone\n\n- phone_confirmed_at\n\n- raw_app_meta_data\n\n- raw_user_meta_data\n\n- created_at\n\n- updated_at\n\n- last_sign_in_at\n\n- is_super_admin\n\n- role\n\n- aud\n\nDo NOT export profiles.\n\nExport ONLY auth.users.\n\nThe JSON must be compatible with Supabase Admin API migration."
+        aria-label="Generate migrate-auth.mjs\r\n\r\nRequirements:\r\n\r\n- Use @supabase/supabase-js v2\r\n- Read auth-users.json\r\n- Create users in the new Supabase project\r\n- Preserve UUIDs\r\n- Preserve metadata\r\n- Preserve email confirmation status\r\n\r\nUse the Supabase Admin API.\r\n\r\nDo not create duplicate users."
         className="inline-flex items-center gap-1.5 p-2 text-primary hover:text-copper transition"
       >
         <Globe className="h-4 w-4" />
