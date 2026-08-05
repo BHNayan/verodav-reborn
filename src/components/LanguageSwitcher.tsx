@@ -17,23 +17,7 @@ export function LanguageSwitcher({ compact = false }: { compact?: boolean }) {
     <div className="relative" ref={ref}>
       <button
         onClick={() => setOpen((v) => !v)}
-        aria-label="The generated full_schema.sql is empty and only contains &quot;-- GRANTS&quot;.
-
-Please regenerate a complete standalone Supabase-compatible SQL schema.
-
-Requirements:
-
-- Do NOT generate a pg_dump file.
-
-- Do NOT include psql commands such as \\restrict, \\unrestrict, \\connect, or other meta commands.
-
-- Generate plain SQL only.
-
-- It must run directly inside the Supabase SQL Editor without any modifications.
-
-- Include all tables, enums, indexes, constraints, triggers, functions, RLS policies, storage definitions, and permissions.
-
-Replace the empty full_schema.sql with the complete SQL."
+        aria-label="generate new files.remove old generte files scema.and generate new one."
         className="inline-flex items-center gap-1.5 p-2 text-primary hover:text-copper transition"
       >
         <Globe className="h-4 w-4" />
