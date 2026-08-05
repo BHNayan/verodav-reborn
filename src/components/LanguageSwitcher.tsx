@@ -17,7 +17,75 @@ export function LanguageSwitcher({ compact = false }: { compact?: boolean }) {
     <div className="relative" ref={ref}>
       <button
         onClick={() => setOpen((v) => !v)}
-        aria-label="Changer la langue"
+        aria-label="I want to migrate this project from Loveable Cloud to my own Supabase project.
+
+First, do NOT modify any code.
+
+Please inspect the entire database and generate a complete SQL schema export.
+
+The SQL must include EVERYTHING required to recreate the database exactly:
+
+Extensions
+
+Custom Types (ENUMs)
+
+Tables
+
+All Columns
+
+Primary Keys
+
+Foreign Keys
+
+Unique Constraints
+
+Check Constraints
+
+Default Values
+
+Indexes
+
+Triggers
+
+Trigger Functions
+
+Stored Procedures / Functions
+
+Views
+
+Materialized Views (if any)
+
+Sequences
+
+Row Level Security (RLS)
+
+Policies
+
+Grants / Permissions
+
+Storage bucket definitions (if applicable)
+
+Also provide a complete database documentation including:
+
+Every table name
+
+Purpose of each table
+
+Relationships between tables
+
+Primary and foreign keys
+
+Which tables are used for authentication
+
+Which tables store products, categories, orders, users, settings, pages, blogs, media, etc.
+
+Any custom SQL functions or business logic.
+
+Output everything as SQL files and Markdown documentation.
+
+Do NOT omit anything.
+
+I need a complete database schema so I can recreate this project in a brand-new Supabase instance with identical functionality."
         className="inline-flex items-center gap-1.5 p-2 text-primary hover:text-copper transition"
       >
         <Globe className="h-4 w-4" />
