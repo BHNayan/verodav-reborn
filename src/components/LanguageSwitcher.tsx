@@ -17,7 +17,7 @@ export function LanguageSwitcher({ compact = false }: { compact?: boolean }) {
     <div className="relative" ref={ref}>
       <button
         onClick={() => setOpen((v) => !v)}
-        aria-label="Generate an auth.users migration plan for the new Supabase project.\n\nInclude all existing users and explain how to migrate them safely."
+        aria-label="Generate an auth.users migration plan for the new Supabase project. Include all existing users and explain how to migrate them safely."
         className="inline-flex items-center gap-1.5 p-2 text-primary hover:text-copper transition"
       >
         <Globe className="h-4 w-4" />
