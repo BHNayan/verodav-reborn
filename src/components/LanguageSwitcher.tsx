@@ -17,7 +17,7 @@ export function LanguageSwitcher({ compact = false }: { compact?: boolean }) {
     <div className="relative" ref={ref}>
       <button
         onClick={() => setOpen((v) => !v)}
-        aria-label="Generate migrate-auth.mjs\r\n\r\nRequirements:\r\n\r\n- Use @supabase/supabase-js v2\r\n- Read auth-users.json\r\n- Create users in the new Supabase project\r\n- Preserve UUIDs\r\n- Preserve metadata\r\n- Preserve email confirmation status\r\n\r\nUse the Supabase Admin API.\r\n\r\nDo not create duplicate users."
+        aria-label="Generate migrate-auth.mjs that imports auth-users.json into a new Supabase project using the Supabase Admin API.\n\nRead SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY from a .env file.\n\nPreserve UUIDs, email verification status and metadata.\n\nSkip duplicate users."
         className="inline-flex items-center gap-1.5 p-2 text-primary hover:text-copper transition"
       >
         <Globe className="h-4 w-4" />
