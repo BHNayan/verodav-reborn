@@ -17,7 +17,7 @@ export function LanguageSwitcher({ compact = false }: { compact?: boolean }) {
     <div className="relative" ref={ref}>
       <button
         onClick={() => setOpen((v) => !v)}
-        aria-label="The migrated products table does NOT contain the column compare_at_price.\n\nThe actual schema is:\n\nid\n\nslug\n\ncategory_id\n\nname\n\ndescription\n\nprice\n\nsale_price\n\nstock\n\nimage_url\n\nimages\n\nis_active\n\nis_featured\n\nsku\n\ncreated_at\n\nupdated_at\n\nPlease regenerate ONLY 014_products.sql.\n\nRequirements:\n\n- Replace compare_at_price with sale_price.\n\n- Use ONLY columns that exist in the migrated schema.\n\n- Do not change any data.\n\n- Split the export into files of maximum 50 INSERT statements each:\n\n014_products_part1.sql\n\n014_products_part2.sql\n\n014_products_part3.sql\n\n...\n\nValidate every file before returning."
+        aria-label="Generate an auth.users migration plan for the new Supabase project.\n\nInclude all existing users and explain how to migrate them safely."
         className="inline-flex items-center gap-1.5 p-2 text-primary hover:text-copper transition"
       >
         <Globe className="h-4 w-4" />
