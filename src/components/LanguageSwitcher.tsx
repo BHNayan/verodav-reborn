@@ -17,7 +17,7 @@ export function LanguageSwitcher({ compact = false }: { compact?: boolean }) {
     <div className="relative" ref={ref}>
       <button
         onClick={() => setOpen((v) => !v)}
-        aria-label="Do not generate one large schema.sql.\n\nInstead generate a proper Supabase migration.\n\nRequirements:\n\n- Split the migration into multiple files.\n\nOrder them correctly:\n\n001_extensions.sql\n\n002_types.sql\n\n003_tables.sql\n\n004_indexes.sql\n\n005_functions.sql\n\n006_triggers.sql\n\n007_rls.sql\n\n008_policies.sql\n\n009_storage.sql\n\n010_grants.sql\n\nEvery file must execute successfully after the previous one.\n\nValidate the migration order before returning it.\n\nDo not create policies before the tables they reference exist.\n\nDo not create triggers before their functions exist.\n\nDo not include pg_dump commands."
+        aria-label="The database schema migration has completed successfully.\n\nNow export ALL existing data from the original Supabase database.\n\nGenerate SQL INSERT statements for every table.\n\nInclude data for:\n\n- profiles\n\n- user_roles\n\n- products\n\n- categories\n\n- orders\n\n- order_items\n\n- favorites\n\n- addresses\n\n- blog_posts\n\n- site_pages\n\n- site_settings\n\n- contact_submissions\n\nRequirements:\n\n- Export all existing rows.\n\n- Use INSERT INTO statements only.\n\n- Preserve original UUIDs.\n\n- Do not export schema.\n\n- Do not export CREATE TABLE or ALTER TABLE statements.\n\n- Name the file: 011_data.sql"
         className="inline-flex items-center gap-1.5 p-2 text-primary hover:text-copper transition"
       >
         <Globe className="h-4 w-4" />
