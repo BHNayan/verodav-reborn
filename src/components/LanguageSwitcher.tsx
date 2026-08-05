@@ -17,75 +17,23 @@ export function LanguageSwitcher({ compact = false }: { compact?: boolean }) {
     <div className="relative" ref={ref}>
       <button
         onClick={() => setOpen((v) => !v)}
-        aria-label="I want to migrate this project from Loveable Cloud to my own Supabase project.
+        aria-label="The generated full_schema.sql is empty and only contains \"-- GRANTS\".
 
-First, do NOT modify any code.
+Please regenerate a complete standalone Supabase-compatible SQL schema.
 
-Please inspect the entire database and generate a complete SQL schema export.
+Requirements:
 
-The SQL must include EVERYTHING required to recreate the database exactly:
+- Do NOT generate a pg_dump file.
 
-Extensions
+- Do NOT include psql commands such as \restrict, \unrestrict, \connect, or other meta commands.
 
-Custom Types (ENUMs)
+- Generate plain SQL only.
 
-Tables
+- It must run directly inside the Supabase SQL Editor without any modifications.
 
-All Columns
+- Include all tables, enums, indexes, constraints, triggers, functions, RLS policies, storage definitions, and permissions.
 
-Primary Keys
-
-Foreign Keys
-
-Unique Constraints
-
-Check Constraints
-
-Default Values
-
-Indexes
-
-Triggers
-
-Trigger Functions
-
-Stored Procedures / Functions
-
-Views
-
-Materialized Views (if any)
-
-Sequences
-
-Row Level Security (RLS)
-
-Policies
-
-Grants / Permissions
-
-Storage bucket definitions (if applicable)
-
-Also provide a complete database documentation including:
-
-Every table name
-
-Purpose of each table
-
-Relationships between tables
-
-Primary and foreign keys
-
-Which tables are used for authentication
-
-Which tables store products, categories, orders, users, settings, pages, blogs, media, etc.
-
-Any custom SQL functions or business logic.
-
-Output everything as SQL files and Markdown documentation.
-
-Do NOT omit anything.
-
-I need a complete database schema so I can recreate this project in a brand-new Supabase instance with identical functionality."
+Replace the empty full_schema.sql with the complete SQL."
         className="inline-flex items-center gap-1.5 p-2 text-primary hover:text-copper transition"
       >
         <Globe className="h-4 w-4" />
