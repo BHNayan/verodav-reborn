@@ -17,7 +17,7 @@ export function LanguageSwitcher({ compact = false }: { compact?: boolean }) {
     <div className="relative" ref={ref}>
       <button
         onClick={() => setOpen((v) => !v)}
-        aria-label="generate new files.remove old generte files scema.and generate new one."
+        aria-label="The generated SQL is not valid PostgreSQL.\n\nThe CREATE FUNCTION statements are broken because RETURNS, LANGUAGE, AS, and the function body are separated incorrectly.\n\nPlease regenerate the schema as valid PostgreSQL/Supabase SQL.\n\nRequirements:\n\n- Generate executable SQL only.\n\n- Every CREATE FUNCTION must be valid PostgreSQL syntax.\n\n- Do not split CREATE FUNCTION into invalid statements.\n\n- Remove all \restrict and \unrestrict commands.\n\n- Do not include pg_dump meta commands.\n\n- The SQL must execute in Supabase SQL Editor without any manual changes.\n\nReturn one complete file named schema_fixed.sql."
         className="inline-flex items-center gap-1.5 p-2 text-primary hover:text-copper transition"
       >
         <Globe className="h-4 w-4" />
